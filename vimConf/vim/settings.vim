@@ -1,0 +1,154 @@
+
+"{{{ General configuration options
+"
+"Use Vim settings, rather then Vi settings. It's important to have this on the top of your file, as it influences other options.
+set nocompatible  
+
+"- Allow backspacing over indention, line breaks and insertion start.
+set backspace=indent,eol,start 
+
+"- Set bigger history of executed commands.
+set history=1000 
+
+"- Show incomplete commands at the bottom.
+set showcmd 
+
+ "- Show current mode at the bottom.
+set showmode
+
+"- Automatically re-read files if unmodified inside Vim.
+set autoread
+
+"- Manage multiple buffers effectively: the current buffer can be 'sent' to the background without writing to disk. When a background buffer becomes current again, marks and undo-history are remembered. See chapter Buffers to understand this better.
+set hidden 
+" Show incomplete commands
+set showcmd
+
+" Security
+set modelines=0
+
+"}}}
+
+
+"{{{ User Interface Options
+"- Always display the status bar.
+set laststatus=2
+"- Always show cursor position.
+set ruler
+"- Display command line's tab complete options as a menu.
+set wildmenu
+" Decent wildmenu
+set wildmenu
+set wildmode=longest:full,full
+set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
+" redraw only when we need to (i.e. don't redraw when executing a macro)
+set lazyredraw
+
+" Visualize tabs and newlines
+"set listchars=tab:?\ ,eol:¬
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+" highlight a matching [{()}] when cursor is placed on start/end character
+set showmatch
+
+"- Maximum number of tab pages that can be opened from the command line.
+set tabpagemax=40
+"- Change color scheme.
+colorscheme desert
+"- Highlight the line currently under cursor.
+set cursorline
+"- Show line numbers on the sidebar.
+set number
+"- Show line number on the current line and relative numbers on all other lines. Works only if the option above (number) is enabled.
+set relativenumber
+"- Disable beep on errors.
+set noerrorbells
+"- Flash the screen instead of beeping on errors.
+set visualbell
+"- Enable mouse for scrolling and resizing.
+set mouse=a
+"- Use colors that suit a dark background.
+set background=dark
+"- Set the window’s title, reflecting the file currently being edited.
+set title
+"}}}
+
+
+"{{{ Swap and backup file options
+set noswapfile
+set nobackup
+set nowb
+"}}}
+
+
+"{{{ Indentation options
+"- New lines inherit the indentation of previous lines.
+set autoindent
+"- Smart auto indentation (instead of old smartindent option).
+filetype plugin indent on
+"- Show existing tab with 4 spaces width.
+set tabstop=4
+"- When indenting with '>', use 2 spaces width.
+set shiftwidth=2
+"- On pressing tab, insert 4 spaces.
+set expandtab
+"- Don't wrap lines.
+set nowrap
+
+"}}}
+
+"{{{Search options
+nnoremap / /\v
+vnoremap / /\v
+"- Find the next match as we type the search.
+set incsearch
+"- Highlight searches by default.
+set hlsearch
+"- Ignore case when searching ...
+set ignorecase
+"- ... unless you type a capital.
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+"}}}
+
+"{{{Text rendering options
+"- Use an encoding that supports Unicode.
+set encoding=utf-8
+
+"- Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
+set linebreak
+
+"- The number of screen lines to keep above and below the cursor.
+set scrolloff=3
+
+"- The number of screen columns to keep to the left and right of the cursor.
+set sidescrolloff=5
+
+"- Enable syntax highlighting.
+syntax enable
+
+
+"}}}
+
+"{{{ Miscellaneous Options
+"- Display a confirmation dialog when closing an unsaved file.
+set confirm
+"- Ignore file’s mode lines; use vimrc configurations instead.
+set nomodeline
+" - Interpret octal as decimal when incrementing numbers.
+set nrformats-=octal
+"- The shell used to execute commands.
+"set shell
+"- Enable spellchecking.
+"set spell
+" Blink cursor on error instead of beeping (grr)
+set visualbell
+" Better splits (new windows appear below and to the right)
+set splitbelow
+set splitright
+
+" Better splits (new windows appear below and to the right)
+set splitbelow
+set splitright
+"}}}
+

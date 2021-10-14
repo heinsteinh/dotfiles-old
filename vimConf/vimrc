@@ -1,0 +1,190 @@
+" Don't try to be vi compatible
+set nocompatible
+
+if(has("win32") || has("win95") || has("win64") || has("win16"))
+    let g:iswindows=1
+else
+    let g:iswindows=0
+endif
+
+
+if(g:iswindows==1)
+
+  "set path+="C:\\DevPath\\lua-5.4.2\\"
+  let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+  "set shell="C:\\WINDOWS\\system32\\cmd.exe"
+  let $scrapbook = "W:\\WorkDir\\scrapbook.textile"
+  "map <F12> :silent! !"C:\Program Files\Google\Chrome\Application\chrome.exe" % <CR>
+else
+   let $scrapbook = $HOME."/scrapbook.textile"
+   set guifont=Monaco\ 11
+endif
+
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Monospace\ 13
+  elseif has("gui_win32")
+    set guifont=Consolas:h10:cANSI
+  endif
+endif
+
+
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window (for an alternative on Windows, see simalt below).
+  set lines=50 columns=180
+
+else
+  " This is console Vim.
+  if exists("+lines")
+    set lines=50
+  endif
+  if exists("+columns")
+    set columns=150
+  endif
+endif
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+source ~/.vim/settings/plugins.vim
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+" Turn on syntax highlighting
+syntax on
+
+" For plugins to load correctly
+filetype plugin indent on
+
+"load here my custom settings
+"source ~/.vim/settings.vim
+source ~/.vim/settings-light.vim
+
+
+"let mapleader = " " " map leader to Space
+let mapleader = "," " map leader to comma
+let maplocalleader = ","
+
+
+if has("gui_running")
+
+" Always show cursor
+set ruler
+
+" Highlight the current line
+set cursorline
+
+
+" Hide the toolbar
+set guioptions-=T
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+"set guifont=Consolas:h11:cANSI
+set guifont=FiraCode_Nerd_Font_Mono:h11
+"set guifont=Hack_Nerd_Font_Mono:h11
+"set guifont=DejaVuSansMono_Nerd_Font_Mono:h11
+"
+" " Only set guifont once, since it resizes gVim when sourcing $MYVIMRC
+"  if !exists('s:set_guifont')
+"        let s:set_guifont = 1
+
+"        if has('win32')
+"            set guifont=FiraCode_Nerd_Font_Mono:h11
+"        else
+"            set guifont=Ubuntu\ Mono\ Regular\ 18
+"        endif
+"    endif
+endif
+
+
+" Color scheme (terminal)
+if !has('gui_running')
+  set t_Co=256
+endif
+
+"set background=dark
+"colorscheme slate
+
+
+colorscheme gruvbox
+"colorscheme OceanicNext
+"highlight Normal guifg=white guibg=black
+"colorscheme delek
+
+"{{{
+" Start NERDTree and leave the cursor in it.
+"autocmd VimEnter * NERDTree
+
+ map <leader>ne :NERDTreeFind<cr>
+ map <C-o> :NERDTreeToggle %<CR>
+
+
+" Start NERDTree when Vim is started without file arguments.
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+"
+"
+"Air Vim Pluggin setting
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
+"enable rainbow it globally
+au FileType c,cpp,objc,objcpp call rainbow#load()
+"let g:rainbow_active = 1
+"
+
+""}}}
+
+" source custom files
+
+source ~/.vim/settings/functions.vim
+source ~/.vim/settings/keymaps.vim
+source ~/.vim/settings/movements.vim
+source ~/.vim/settings/spelling.vim
+
+source ~/.vim/settings/settings-extra.vim
+
+
+source ~/.vim/plugins/backupFiles.vim
+source ~/.vim/plugins/automkdir.vim
+source ~/.vim/plugins/neocomplete.vim
+
+:let g:session_autosave = 'no'
+
+
+"Automatically remove trailing spaces when saving a file.
+"autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
+if has ('autocmd') " Remain compatible with earlier versions
+ augroup vimrc     " Source vim configuration upon save
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+  augroup END
+endif " has autocmd
+
+
+let &t_SI.="\e[5 q"
+let &t_SR.="\e[3 q"
+let &t_EI.="\e[2 q"
+
+
