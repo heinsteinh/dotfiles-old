@@ -12,9 +12,9 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'preservim/nerdtree'
 Plugin 'mileszs/ack.vim'
 
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
-Plugin 'itchyny/lightline.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'itchyny/lightline.vim'
 
 Plugin 'frazrepo/vim-rainbow'
 

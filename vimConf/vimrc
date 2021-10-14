@@ -8,11 +8,10 @@ else
 endif
 
 
+
 if(g:iswindows==1)
 
-  "set path+="C:\\DevPath\\lua-5.4.2\\"
   let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-  "set shell="C:\\WINDOWS\\system32\\cmd.exe"
   let $scrapbook = "W:\\WorkDir\\scrapbook.textile"
   "map <F12> :silent! !"C:\Program Files\Google\Chrome\Application\chrome.exe" % <CR>
 else
@@ -29,20 +28,7 @@ if has("gui_running")
 endif
 
 
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window (for an alternative on Windows, see simalt below).
-  set lines=50 columns=180
 
-else
-  " This is console Vim.
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=150
-  endif
-endif
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
@@ -56,7 +42,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-source ~/.vim/settings/plugins.vim
+"source ~/.vim/settings/plugins.vim
 
 
 " All of your Plugins must be added before the following line
@@ -76,6 +62,7 @@ filetype plugin indent on
 source ~/.vim/settings-light.vim
 
 
+
 "let mapleader = " " " map leader to Space
 let mapleader = "," " map leader to comma
 let maplocalleader = ","
@@ -91,14 +78,14 @@ set cursorline
 
 
 " Hide the toolbar
-set guioptions-=T
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
+"set guioptions-=T
+"set guioptions-=m  "remove menu bar
+"set guioptions-=T  "remove toolbar
+"set guioptions-=r  "remove right-hand,scroll bar
+"set guioptions-=L  "remove left-hand scroll bar
 
 "set guifont=Consolas:h11:cANSI
-set guifont=FiraCode_Nerd_Font_Mono:h11
+set guifont=FiraCode_Nerd_Font_Mono:h9
 "set guifont=Hack_Nerd_Font_Mono:h11
 "set guifont=DejaVuSansMono_Nerd_Font_Mono:h11
 "
@@ -124,7 +111,10 @@ endif
 "colorscheme slate
 
 
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme darkblue
+
+
 "colorscheme OceanicNext
 "highlight Normal guifg=white guibg=black
 "colorscheme delek
@@ -157,30 +147,46 @@ au FileType c,cpp,objc,objcpp call rainbow#load()
 
 " source custom files
 
-source ~/.vim/settings/functions.vim
-source ~/.vim/settings/keymaps.vim
-source ~/.vim/settings/movements.vim
-source ~/.vim/settings/spelling.vim
+"source ~/.vim/settings/functions.vim
+"source ~/.vim/settings/keymaps.vim
+"source ~/.vim/settings/movements.vim
+"source ~/.vim/settings/spelling.vim
 
+"source ~/.vim/settings/settings-extra.vim
 source ~/.vim/settings/settings-extra.vim
 
 
-source ~/.vim/plugins/backupFiles.vim
-source ~/.vim/plugins/automkdir.vim
-source ~/.vim/plugins/neocomplete.vim
+"source ~/.vim/plugins/backupFiles.vim
+"source ~/.vim/plugins/automkdir.vim
+"source ~/.vim/plugins/neocomplete.vim
 
 :let g:session_autosave = 'no'
 
 
+
+"if has("gui_running")
+"  " GUI is running or is about to start.
+"  " Maximize gvim window (for an alternative on Windows, see simalt below).
+"  set lines=50 columns=180
+"else
+"  " This is console Vim.
+"  if exists("+lines")
+"    set lines=50
+"  endif
+"  if exists("+columns")
+"    set columns=150
+"  endif
+"endif
+
 "Automatically remove trailing spaces when saving a file.
 "autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
-if has ('autocmd') " Remain compatible with earlier versions
- augroup vimrc     " Source vim configuration upon save
-    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-  augroup END
-endif " has autocmd
+"if has ('autocmd') " Remain compatible with earlier versions
+" augroup vimrc     " Source vim configuration upon save
+"    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+"    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+"  augroup END
+"endif " has autocmd
 
 
 let &t_SI.="\e[5 q"
