@@ -1,4 +1,7 @@
 set nocompatible        " Use Vim settings, rather than Vi settings
+
+
+
 set softtabstop=2       " Indent by 2 spaces when hitting tab
 set shiftwidth=4        " Indent by 4 spaces when auto-indenting
 set tabstop=4           " Show existing tab with 4 spaces width
@@ -11,3 +14,9 @@ set nobackup            " Disable backup files
 set laststatus=2        "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu 
+
+
+
+" enable syntax and plugins (for netrw)
+syntax enable
+filetype plugin on

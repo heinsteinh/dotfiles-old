@@ -15,18 +15,18 @@
 let s:MSWIN = has("win16") || has("win32")   || has("win64")    || has("win95")
 if s:MSWIN 
                 set backup
-                set backupdir=C:\Temp\vim\backup\\
-                set backupskip=C:\Temp\vim\backup_skip\*
-                set directory=C:\Temp\vim\swp\\
+                set backupdir=C:\Temp\vimbackup
+                set backupskip=C:\Temp\vimbackup\*
+                set directory=C:\Temp\vimbackup
                 set writebackup
-                set undodir=C:\Temp\vim\undodir\\
+                set undodir=C:\Temp\vimbackup
 else 
                 set backup
-                set backupdir=~/tmp/vim/backup//
-                set backupskip=~/tmp/vim/*
-                set directory=~/tmp/vim/swp//
+                set backupdir=~/tmp
+                set backupskip=~/tmp/*
+                set directory=~/tmp
                 set writebackup
-                set undodir=~/tmp/vim/undodir//
+                set undodir=~/tmp
 endif
 
 
