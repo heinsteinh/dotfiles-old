@@ -4,7 +4,6 @@
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
-
 set nocompatible        " Use Vim settings, rather than Vi settings
 set softtabstop=4       " Indent by 2 spaces when hitting tab
 set shiftwidth=4        " Indent by 4 spaces when auto-indenting
@@ -19,6 +18,7 @@ set laststatus=2        "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu            " Display command line's tab complete options as a menu.
 
+
 set undofile   " Maintain undo history between sessions
 
 set splitbelow 
@@ -31,6 +31,11 @@ colorscheme darkblue
 if filereadable(expand("~/.vimrc.local"))
 	source ~/.vimrc.local
 endif
+
+
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
 
 source ~/.vim/plugins/backupFiles.vim
 source ~/.vim/settings/settings-extra.vim
