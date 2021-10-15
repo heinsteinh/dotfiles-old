@@ -21,7 +21,8 @@ set wildmenu            " Display command line's tab complete options as a menu.
 
 set undofile   " Maintain undo history between sessions
 
-
+set splitbelow 
+set splitright 
 
 colorscheme darkblue
 "colorscheme torte
