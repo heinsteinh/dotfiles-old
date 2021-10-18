@@ -12,6 +12,26 @@ if(g:iswindows==1)
   let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
   let $scrapbook = "W:\\WorkDir\\scrapbook.textile"
   "map <F12> :silent! !"C:\Program Files\Google\Chrome\Application\chrome.exe" % <CR>
+
+    if hostname() == "DESKTOP-LL8PBC8"
+        set lines=40 columns=130
+    else
+        autocmd GUIEnter * simalt ~x
+    endif
+    "sets path for python3
+    if isdirectory('C:\Users\feng\AppData\Local\Programs\Python\Python37-32')
+        set pythonthreedll=C:\Users\feng\AppData\Local\Programs\Python\Python37-32\python37.dll
+    elseif isdirectory('C:\Users\fwar3\AppData\Local\Programs\Python\Python36')
+        set pythonthreedll=C:\Users\fwar3\AppData\Local\Programs\Python\Python36\python36.dll
+    elseif isdirectory('C:\Python37')
+        set pythonthreedll=C:\Python37\python37.dll
+    elseif isdirectory('C:\Python38')
+        set pythonthreedll=C:\Python38\python38.dll
+    endif
+
+    let $LANG='en'  
+    set langmenu=en
+    set fileencoding=utf-8
 else
    let $scrapbook = $HOME."/scrapbook.textile"
    set guifont=Monaco\ 11
@@ -24,7 +44,6 @@ if has("gui_running")
     "set guifont=Consolas:h10:cANSI
   endif
 endif
-
 
 
 " Helps force plugins to load correctly when it is turned back on below
@@ -191,19 +210,19 @@ source ~/.vim/settings/vimrc_mappings.vim
 
 
 
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window (for an alternative on Windows, see simalt below).
-  set lines=50 columns=180
-else
-  " This is console Vim.
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=150
-  endif
-endif
+" if has("gui_running")
+"   " GUI is running or is about to start.
+"   " Maximize gvim window (for an alternative on Windows, see simalt below).
+"   set lines=50 columns=180
+" else
+"   " This is console Vim.
+"   if exists("+lines")
+"     set lines=50
+"   endif
+"   if exists("+columns")
+"     set columns=150
+"   endif
+" endif
 
 "Automatically remove trailing spaces when saving a file.
 "autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
