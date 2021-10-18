@@ -24,6 +24,18 @@ set undofile   " Maintain undo history between sessions
 set splitbelow 
 set splitright 
 
+set backspace=indent,eol,start
+
+set history=200
+set ruler
+set showcmd
+set display=truncate
+
+
+"Do not recognize numbers starting with a zero as octal
+set nrformats-=octal
+       
+
 colorscheme darkblue
 "colorscheme torte
 
@@ -32,10 +44,51 @@ if filereadable(expand("~/.vimrc.local"))
 	source ~/.vimrc.local
 endif
 
+" Cursor style {{{
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+" }}}
 
+
+" source all the helper files
+  for f in split(glob('$HOME/.vim/functions/*.vim'), '\n')
+	  "echo "sourcing dir"
+      exec 'source' f
+  endfor
+
+  " source all the helper files
+  for f in split(glob('$$HOME/.vim/helpers/**/*.vim'), '\n')
+      exec 'source' f
+  endfor
+
+source ~/.vim/plugins/backupFiles.vim
+source ~/.vim/settings/settings-extra.vim
+source ~/.vim/settings/vimrc_mappings.vim
+
+
+
+" Highlighting {{{
+" show errors
+ highlight Errors ctermbg=green guibg=darkred
+" }}}
+
+"Changing number base on the mode we are in
 augroup toggle_relative_number
 autocmd InsertEnter * :setlocal norelativenumber
 autocmd InsertLeave * :setlocal relativenumber
 
-source ~/.vim/plugins/backupFiles.vim
-source ~/.vim/settings/settings-extra.vim
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+
+"Automatically remove trailing spaces when saving a file.
+"autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
+if has ('autocmd') " Remain compatible with earlier versions
+ augroup vimrc     " Source vim configuration upon save
+    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+  augroup END
+endif " has autocmd
