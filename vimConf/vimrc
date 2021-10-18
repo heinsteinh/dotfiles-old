@@ -1,9 +1,36 @@
+set nocompatible
 
-" FINDING FILES:
+
+
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+source ~/.vim/settings/plugins.vim
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+" Turn on syntax highlighting
+syntax on
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
+
 set nocompatible        " Use Vim settings, rather than Vi settings
 set softtabstop=4       " Indent by 2 spaces when hitting tab
 set shiftwidth=4        " Indent by 4 spaces when auto-indenting
@@ -12,12 +39,11 @@ syntax on               " Enable syntax highlighting
 filetype indent on      " Enable indenting for files
 set autoindent          " Enable auto indenting
 set number              " Enable line numbers
-colorscheme desert      " Set nice looking colorscheme
-"set nobackup            " Disable backup files
 set laststatus=2        "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu            " Display command line's tab complete options as a menu.
-
+"set wildmenu                    " Enable enhanced tab autocomplete.
+set wildmode=list:longest,full  " Complete till longest string, then open menu.
 
 set undofile   " Maintain undo history between sessions
 
@@ -26,7 +52,7 @@ set splitright
 
 set backspace=indent,eol,start
 
-set history=200
+set history=1000
 set ruler
 set showcmd
 set display=truncate
@@ -34,61 +60,130 @@ set display=truncate
 
 "Do not recognize numbers starting with a zero as octal
 set nrformats-=octal
-       
 
-colorscheme darkblue
-"colorscheme torte
+" Highlighting {{{
+" show errors
+" highlight Errors ctermbg=green guibg=darkred
+" }}}
 
-" Source local cutomizations
-if filereadable(expand("~/.vimrc.local"))
-	source ~/.vimrc.local
-endif
+
+
+
+
+"let mapleader = " " " map leader to Space
+let mapleader = "," " map leader to comma
+let maplocalleader = ","
+
+
+
+
+"set background=dark
+"colorscheme slate
+colorscheme gruvbox
+"colorscheme darkblue
+"colorscheme oceanicNext
+
+
+
+"{{{{
+
+
+
+
+
+"}}}}
+
+
+
+
+"colorscheme OceanicNext
+"highlight Normal guifg=white guibg=black
+"colorscheme delek
+
+"{{{
+" Start NERDTree and leave the cursor in it.
+"autocmd VimEnter * NERDTree
+
+" map <leader>ne :NERDTreeFind<cr>
+" map <C-o> :NERDTreeToggle %<CR>
+
+
+" Start NERDTree when Vim is started without file arguments.
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+"
+"
+"Air Vim Pluggin setting
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
+"enable rainbow it globally
+"au FileType c,cpp,objc,objcpp call rainbow#load()
+"let g:rainbow_active = 1
+"
+
+""}}}
+
+" source custom files
+
+"load here my custom settings
+"source ~/.vim/settings.vim
+"source ~/.vim/settings/settings-extra.vim
+"source ~/.vim/settings-light.vim
+
+"source ~/.vim/settings/functions.vim
+"source ~/.vim/settings/keymaps.vim
+"source ~/.vim/settings/movements.vim
+"source ~/.vim/settings/spelling.vim
+
+"source ~/.vim/settings/settings-extra.vim
+"source ~/.vim/settings/settings-extra.vim
+
+
+"source ~/.vim/plugins/backupFiles.vim
+"source ~/.vim/plugins/automkdir.vim
+"source ~/.vim/plugins/neocomplete.vim
+
+"source ~/.vim/settings/vimrc_mappings.vim
+
+
+:let g:session_autosave = 'no'
+
+
+
+"if has("gui_running")
+"  " GUI is running or is about to start.
+"  " Maximize gvim window (for an alternative on Windows, see simalt below).
+"  set lines=50 columns=180
+"else
+"  " This is console Vim.
+"  if exists("+lines")
+"    set lines=50
+"  endif
+"  if exists("+columns")
+"    set columns=150
+"  endif
+"endif
+
+"Automatically remove trailing spaces when saving a file.
+"autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
+
+" Plugin-related settings below are commented out. Uncomment them to enable
+" the plugin functionality once you download the plugins.
+
+
+
+"Changing number base on the mode we are in
+"augroup toggle_relative_number
+"autocmd InsertEnter * :setlocal norelativenumber
+"autocmd InsertLeave * :setlocal relativenumber
+
 
 " Cursor style {{{
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 " }}}
-
-
-" source all the helper files
-  for f in split(glob('$HOME/.vim/functions/*.vim'), '\n')
-	  "echo "sourcing dir"
-      exec 'source' f
-  endfor
-
-  " source all the helper files
-  for f in split(glob('$$HOME/.vim/helpers/**/*.vim'), '\n')
-      exec 'source' f
-  endfor
-
-source ~/.vim/plugins/backupFiles.vim
-source ~/.vim/settings/settings-extra.vim
-source ~/.vim/settings/vimrc_mappings.vim
-
-
-
-" Highlighting {{{
-" show errors
- highlight Errors ctermbg=green guibg=darkred
-" }}}
-
-"Changing number base on the mode we are in
-augroup toggle_relative_number
-autocmd InsertEnter * :setlocal norelativenumber
-autocmd InsertLeave * :setlocal relativenumber
-
-
-" automatically rebalance windows on vim resize
-autocmd VimResized * :wincmd =
-
-
-"Automatically remove trailing spaces when saving a file.
-"autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-
-if has ('autocmd') " Remain compatible with earlier versions
- augroup vimrc     " Source vim configuration upon save
-    autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-    autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-  augroup END
-endif " has autocmd

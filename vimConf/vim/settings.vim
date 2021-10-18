@@ -46,7 +46,7 @@ set lazyredraw
 
 " Visualize tabs and newlines
 "set listchars=tab:?\ ,eol:¬
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
@@ -143,9 +143,6 @@ set nrformats-=octal
 "set spell
 " Blink cursor on error instead of beeping (grr)
 set visualbell
-" Better splits (new windows appear below and to the right)
-set splitbelow
-set splitright
 
 " Better splits (new windows appear below and to the right)
 set splitbelow
