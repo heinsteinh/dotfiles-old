@@ -1,0 +1,491 @@
+
+Error detected while processing CursorMoved Autocommands for "<buffer=6>"..function <SNR>27_highlight_block:
+line    1:
+E803: ID not found: 73
+
+
+n  ,hp          @<Plug>(GitGutterPreviewHunk)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 137
+n  ,hu          @<Plug>(GitGutterUndoHunk)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 134
+n  ,hs          @<Plug>(GitGutterStageHunk)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 131
+x  ,hs          @<Plug>(GitGutterStageHunk)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 128
+v  ["          *@:<C-U>exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 85
+n  ["          *@:call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 84
+v  []          *@m':<C-U>exe "normal! gv"|call search('^\s*end\(f\%[unction]\|def\)\>', "bW")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 77
+n  []          *@m':call search('^\s*end\(f\%[unction]\|def\)\>', "bW")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 76
+v  [[          *@m':<C-U>exe "normal! gv"|call search('^\s*\(fu\%[nction]\|def\)\>', "bW")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 73
+n  [[          *@m':call search('^\s*\(fu\%[nction]\|def\)\>', "bW")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 72
+n  [c           @<Plug>(GitGutterPrevHunk)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 121
+v  ]"          *@:<C-U>exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 83
+n  ]"          *@:call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 82
+v  ][          *@m':<C-U>exe "normal! gv"|call search('^\s*end\(f\%[unction]\|def\)\>', "W")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 79
+n  ][          *@m':call search('^\s*end\(f\%[unction]\|def\)\>', "W")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 78
+v  ]]          *@m':<C-U>exe "normal! gv"|call search('^\s*\(fu\%[nction]\|def\)\>', "W")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 75
+n  ]]          *@m':call search('^\s*\(fu\%[nction]\|def\)\>', "W")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\ftplugin\vim.vim line 74
+n  ]c           @<Plug>(GitGutterNextHunk)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 124
+x  ac           @<Plug>(GitGutterTextObjectOuterVisual)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 150
+o  ac           @<Plug>(GitGutterTextObjectOuterPending)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 144
+x  ic           @<Plug>(GitGutterTextObjectInnerVisual)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 147
+o  ic           @<Plug>(GitGutterTextObjectInnerPending)
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\autoload\gitgutter.vim line 141
+n  <Tab>       * gt
+	Last set from ~\.vim\settings\keymaps.vim line 66
+n  <Space>     * :
+	Last set from ~\.vim\settings\keymaps.vim line 17
+n  #           * #zz
+	Last set from ~\.vim\settings\keymaps.vim line 220
+o  %             <Plug>(MatchitOperationForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 60
+x  %             <Plug>(MatchitVisualForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 58
+n  %             <Plug>(MatchitNormalForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 56
+n  *           * *zz
+	Last set from ~\.vim\settings\keymaps.vim line 219
+n  ,v          * "+p
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 20
+   ,s            :split  <C-R>=expand("%:p:h") . '/'<CR>
+	Last set from ~\.vim\settings\movements.vim line 59
+ov ,v            :vsplit <C-R>=expand("%:p:h") . '/'<CR>
+	Last set from ~\.vim\settings\movements.vim line 60
+n  ,rh           :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+	Last set from ~\.vim\settings\movements.vim line 83
+   ,i            mmgg=G`m<CR>
+	Last set from ~\.vim\settings\movements.vim line 81
+   ,n            :call RenameFile()<CR>
+	Last set from ~\.vim\settings\movements.vim line 73
+   ,te           :tabe   <C-R>=expand("%:p:h") . '/'<CR>
+	Last set from ~\.vim\settings\movements.vim line 61
+   ,e            :e      <C-R>=expand("%:p:h") . '/'<CR>
+	Last set from ~\.vim\settings\movements.vim line 58
+n  ,l          * :vertical resize -5<CR>
+	Last set from ~\.vim\settings\movements.vim line 49
+n  ,h          * :vertical resize +5<CR>
+	Last set from ~\.vim\settings\movements.vim line 48
+n  ,k          * :resize -5<CR>
+	Last set from ~\.vim\settings\movements.vim line 47
+n  ,j          * :resize +5<CR>
+	Last set from ~\.vim\settings\movements.vim line 46
+n  ,D            :!mkdir -p %:h<CR>
+	Last set from ~\.vim\settings\movements.vim line 32
+n  ,d            :e %:h<CR>
+	Last set from ~\.vim\settings\movements.vim line 30
+v  ,rt           <Esc>:call RemoveTabs()<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 324
+n  ,rt           :call RemoveTabs()<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 323
+n  ,ff           :CtrlP<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 320
+n  ,ct           :w !find -E `pwd` -regex ".*\\.(h|c|java|php|py)" | xargs ctags -f ~/.tags -R --c++-kinds=+px --fields=+iaS --extra=+q<CR><CR>
+	Last set from ~\.vim\settings\keymaps.vim line 317
+n  ,tbc          :TagbarClose<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 313
+n  ,tbo          :TagbarOpen<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 312
+n  ,tbg          :TagbarToggle<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 311
+n  ,nc           :NERDTreeCWD<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 307
+n  ,nf           :NERDTreeFind<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 306
+n  ,nm           :NERtTreeMirror<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 305
+n  ,nq           :NERDTreeClose<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 304
+n  ,nt           :NERDTreeToggle<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 303
+n  ,no           :NERDTree<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 302
+n  ,tt           :call CleanCode()<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 298
+n  ,mm         * :call ToggleMouse()<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 295
+n  ,ve         * :call ToggleVirtualEdit()<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 292
+n  ,rn         * :call ToggleRelativeNumber()<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 289
+n  ,rr         * :bufdo e!<CR>:tabdo e!<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 285
+n  ,ml         * :tabnew ~/Dropbox\ Lists/buffer.txt<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 280
+n  ,sen        * :setlocal spell spelllang=en<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 279
+n  ,sde        * :setlocal spell spelllang=de_DE<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 278
+n  ,cdc        * :cd %:p:h<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 277
+n  ,p          * :setlocal paste!<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 276
+   ,su         * :w !sudo tee % > /dev/null
+	Last set from ~\.vim\settings\keymaps.vim line 275
+n  ,sv         * :source $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 274
+n  ,ss         * :set spell!<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 167
+v  ,cd         * :cd %:p:h<CR>:pwd<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 164
+n  ,wp         * :set wrap!<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 157
+n  ,\          * :vsp <CR><C-W>l<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 154
+n  ,-          * :sp <CR>
+	Last set from ~\.vim\settings\keymaps.vim line 152
+v  ,r          * :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 13
+n  ,rv         * :source $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 12
+n  ,vv         * :vsplit $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 11
+n  ,pv         * :split $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 10
+n  ,tv         * :tabnew $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 8
+   ,<Space>      :let @/=''<CR> " clear search
+	Last set from ~\.vim\settings.vim line 115
+n  ,et         * :vsplit $DOTFILES/tmux/tmux.conf<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 58
+n  ,ea         * :vsplit $DOTFILES/zsh/aliases.zsh<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 56
+n  ,em         * :vsplit $DOTFILES/vim/helpers/mappings.vim<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 54
+n  ,ez         * :vsplit $DOTFILES/zsh/zshrc<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 52
+n  ,ev         * :tabnew $MYVIMRC<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 273
+n  ,tn         * :call OpenBufferInNewTab()<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 44
+n  ,tc         * :tabnew<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 43
+n  ,tK         * :tablast<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 42
+n  ,tJ         * :tabfirst<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 41
+n  ,tk         * :tabnext<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 40
+n  ,tj         * :tabprevious<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 39
+n  ,ww         * <C-W>c<C-W>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 38
+n  ,w          * <C-W>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 37
+n  ,gpl        * :Gpull<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 32
+n  ,gps        * :Gpush<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 31
+n  ,gd         * :Gvdiff<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 30
+n  ,gc         * :Git commit<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 29
+n  ,gw         * :Gwrite<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 28
+n  ,gr         * :Gread<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 27
+n  ,gs         * :Git<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 26
+n  ,gb         * :Gblame<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 25
+n  ,c          * "+y
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 17
+x  ,c          * "+y<Space>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 16
+n  ,di         * :call GoToDaily()<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 12
+n  ,bi           :source ~/.vimrc<CR>:PlugInstall<CR>
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 4
+v  /           * /\v
+	Last set from ~\.vim\settings.vim line 105
+n  /           * /\v
+	Last set from ~\.vim\settings\keymaps.vim line 224
+n  ;           * :!
+	Last set from ~\.vim\settings\keymaps.vim line 18
+n  ?           * ?\v
+	Last set from ~\.vim\settings\keymaps.vim line 223
+   H           * 0
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 8
+n  J           * <C-D>
+	Last set from ~\.vim\settings\keymaps.vim line 21
+n  K           * <C-U>
+	Last set from ~\.vim\settings\keymaps.vim line 22
+   L           * $
+	Last set from ~\.vim\settings\vimrc_mappings.vim line 9
+n  N           * Nzz
+	Last set from ~\.vim\settings\keymaps.vim line 218
+n  S           * :shell<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 270
+n  ZZ          * zz
+	Last set from ~\.vim\settings\movements.vim line 26
+o  [%            <Plug>(MatchitOperationMultiBackward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 75
+x  [%            <Plug>(MatchitVisualMultiBackward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 73
+n  [%            <Plug>(MatchitNormalMultiBackward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 71
+o  ]%            <Plug>(MatchitOperationMultiForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 76
+x  ]%            <Plug>(MatchitVisualMultiForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 74
+n  ]%            <Plug>(MatchitNormalMultiForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 72
+x  a%            <Plug>(MatchitVisualTextObject)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 80
+n  g*          * g*zz
+	Last set from ~\.vim\settings\keymaps.vim line 221
+n  gp          * '`[' . strpart(getregtype(), 0, 1) . '`]'
+	Last set from ~\.vim\settings\keymaps.vim line 209
+v  gx            <Plug>NetrwBrowseXVis
+	Last set from C:\Program Files (x86)\Vim\vim82\plugin\netrwPlugin.vim line 88
+n  gx            <Plug>NetrwBrowseX
+	Last set from C:\Program Files (x86)\Vim\vim82\plugin\netrwPlugin.vim line 82
+o  g%            <Plug>(MatchitOperationBackward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 61
+x  g%            <Plug>(MatchitVisualBackward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 59
+n  g%            <Plug>(MatchitNormalBackward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 57
+n  gcu           <Plug>Commentary<Plug>Commentary
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 121
+n  gcc           <Plug>CommentaryLine
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 117
+o  gc            <Plug>Commentary
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 116
+n  gc            <Plug>Commentary
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 115
+x  gc            <Plug>Commentary
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 114
+   j           * gj
+	Last set from ~\.vim\settings\movements.vim line 8
+   k           * gk
+	Last set from ~\.vim\settings\movements.vim line 9
+n  n           * nzz
+	Last set from ~\.vim\settings\keymaps.vim line 217
+n  y<C-G>      & :<C-U>call setreg(v:register, fugitive#Object(@%))<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-fugitive\plugin\fugitive.vim line 682
+   <C-L>         <C-W>l
+	Last set from ~\.vim\settings\movements.vim line 36
+   <C-K>         <C-W>k
+	Last set from ~\.vim\settings\movements.vim line 38
+   <C-J>         <C-W>j
+	Last set from ~\.vim\settings\movements.vim line 37
+   <C-H>         <C-W>h
+	Last set from ~\.vim\settings\movements.vim line 35
+   <C-Down>      <C-W>-
+	Last set from ~\.vim\settings\movements.vim line 40
+   <C-Up>        <C-W>+
+	Last set from ~\.vim\settings\movements.vim line 39
+   <C-Left>      <C-W><
+	Last set from ~\.vim\settings\movements.vim line 42
+   <C-Right>     <C-W>>
+	Last set from ~\.vim\settings\movements.vim line 41
+v  <C-R>       * "0y<Esc>:%s/<C-R>0//g<Left><Left>
+	Last set from ~\.vim\settings\keymaps.vim line 240
+n  <C-R>       * :redo<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 202
+n  <C-U>       * :undo<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 199
+v  <C-C>       * y
+	Last set from ~\.vim\settings\keymaps.vim line 183
+n  <C-V>       * p
+	Last set from ~\.vim\settings\keymaps.vim line 182
+n  <M-v>       * <C-V>
+	Last set from ~\.vim\settings\keymaps.vim line 181
+   <C-Q>       * :confirm qall<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 173
+v  <S-Up>      * <Esc>:call comfortable_motion#flick(-200)<CR>gi
+	Last set from ~\.vim\settings\keymaps.vim line 146
+n  <S-Up>      * :call comfortable_motion#flick(-200)<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 144
+v  <S-Down>    * <Esc>:call comfortable_motion#flick(200)<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 141
+n  <S-Down>    * :call comfortable_motion#flick(200)<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 139
+v  <M-Down>    * <Esc>:wincmd j<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 136
+n  <M-Down>    * :wincmd j<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 134
+v  <M-Up>      * <Esc>:wincmd k<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 131
+n  <M-Up>      * :wincmd k<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 129
+v  <M-Left>    * <Esc>:wincmd h<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 126
+n  <M-Left>    * :wincmd h<CR><Space>
+	Last set from ~\.vim\settings\keymaps.vim line 124
+v  <M-Right>   * <Esc>:wincmd l<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 121
+n  <M-Right>   * :wincmd l<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 119
+v  <C-V><Right> * <Esc>:botright vsplit<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 116
+n  <C-V><Right> * :botright vsplit<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 114
+v  <C-V><Left> * <Esc>:vsplit<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 111
+n  <C-V><Left> * :vsplit<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 109
+v  <C-V><Down> * <Esc>:below split<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 106
+n  <C-V><Down> * :below split<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 104
+v  <C-V><Up>   * <Esc>:above split<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 101
+n  <C-V><Up>   * :above split<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 99
+v  <M-f>       * <Esc>:noh<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 96
+n  <M-f>       * :noh<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 94
+v  <M-r>       * <Esc>:%s/
+	Last set from ~\.vim\settings\keymaps.vim line 91
+n  <M-r>       * :%s/
+	Last set from ~\.vim\settings\keymaps.vim line 89
+v  <C-F>       * y<Esc>/<C-R>"<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 239
+n  <C-F>       * /
+	Last set from ~\.vim\settings\keymaps.vim line 84
+v  <C-W>       * <Esc>:q<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 81
+n  <C-W>       * :q<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 79
+n  <C-N>       * :tabnew<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 76
+v  <S-Tab>     * <gv
+	Last set from ~\.vim\settings\keymaps.vim line 73
+n  <S-Tab>     * gT
+	Last set from ~\.vim\settings\keymaps.vim line 69
+v  <C-S>       * <Esc>:w!<CR>gv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 63
+n  <C-S>       * :w!<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 61
+n  <C-Y>       * <C-R>
+	Last set from ~\.vim\settings\keymaps.vim line 55
+n  <C-Z>       * u
+	Last set from ~\.vim\settings\keymaps.vim line 52
+n  <C-D>       * dd
+	Last set from ~\.vim\settings\keymaps.vim line 49
+n  <BS>        * d1<Left>
+	Last set from ~\.vim\settings\keymaps.vim line 46
+n  <S-Del>     * <Esc>dd
+	Last set from ~\.vim\settings\keymaps.vim line 31
+v  <C-A>       * <Esc>ggVG<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 28
+n  <C-A>       * ggVG<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 26
+n  <SNR>99_:   * :<C-U><C-R>=v:count ? v:count : ''<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-fugitive\autoload\fugitive.vim line 7374
+   <F12>         <Esc>;set guifont=Consolas:h14:b<CR>
+	Last set from ~\.gvimrc line 38
+   <F11>         <Esc>;set guifont=Consolas:h12:b<CR>
+	Last set from ~\.gvimrc line 37
+   <F10>         <Esc>;set guifont=Consolas:h10:b<CR>
+	Last set from ~\.gvimrc line 36
+   <F9>          <Esc>;set guifont=Consolas:h8:b<CR>
+	Last set from ~\.gvimrc line 35
+v  <Plug>NetrwBrowseXVis * :<C-U>call netrw#BrowseXVis()<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\plugin\netrwPlugin.vim line 90
+n  <Plug>NetrwBrowseX * :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\plugin\netrwPlugin.vim line 84
+x  <Plug>(MatchitVisualTextObject)   <Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitVisualMultiForward)
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 79
+o  <Plug>(MatchitOperationMultiForward) * :<C-U>call matchit#MultiMatch("W",  "o")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 69
+o  <Plug>(MatchitOperationMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "o")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 68
+x  <Plug>(MatchitVisualMultiForward) * :<C-U>call matchit#MultiMatch("W",  "n")<CR>m'gv``
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 67
+x  <Plug>(MatchitVisualMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "n")<CR>m'gv``
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 66
+n  <Plug>(MatchitNormalMultiForward) * :<C-U>call matchit#MultiMatch("W",  "n")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 65
+n  <Plug>(MatchitNormalMultiBackward) * :<C-U>call matchit#MultiMatch("bW", "n")<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 64
+o  <Plug>(MatchitOperationBackward) * :<C-U>call matchit#Match_wrapper('',0,'o')<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 54
+o  <Plug>(MatchitOperationForward) * :<C-U>call matchit#Match_wrapper('',1,'o')<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 53
+x  <Plug>(MatchitVisualBackward) * :<C-U>call matchit#Match_wrapper('',0,'v')<CR>m'gv``
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 52
+x  <Plug>(MatchitVisualForward) * :<C-U>call matchit#Match_wrapper('',1,'v')<CR>m'gv``
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 51
+n  <Plug>(MatchitNormalBackward) * :<C-U>call matchit#Match_wrapper('',0,'n')<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 50
+n  <Plug>(MatchitNormalForward) * :<C-U>call matchit#Match_wrapper('',1,'n')<CR>
+	Last set from C:\Program Files (x86)\Vim\vim82\pack\dist\opt\matchit\plugin\matchit.vim line 49
+n  <Plug>CommentaryUndo   :echoerr "Change your <Plug>CommentaryUndo map to <Plug>Commentary<Plug>Commentary"<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 111
+n  <Plug>ChangeCommentary * c:<C-U>call <SNR>62_textobject(1)<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 110
+o  <Plug>Commentary * :<C-U>call <SNR>62_textobject(get(v:, 'operator', '') ==# 'c')<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 109
+n  <Plug>CommentaryLine * <SNR>62_go() . '_'
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 108
+n  <Plug>Commentary * <SNR>62_go()
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 107
+x  <Plug>Commentary * <SNR>62_go()
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-commentary\plugin\commentary.vim line 106
+n  <Plug>GitGutterPreviewHunk * :call gitgutter#utility#warn('Please change your map <Plug>GitGutterPreviewHunk to <Plug>(GitGutterPreviewHunk)')<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 217
+n  <Plug>(GitGutterPreviewHunk) * :GitGutterPreviewHunk<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 216
+n  <Plug>GitGutterUndoHunk * :call gitgutter#utility#warn('Please change your map <Plug>GitGutterUndoHunk to <Plug>(GitGutterUndoHunk)')<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 215
+n  <Plug>(GitGutterUndoHunk) * :GitGutterUndoHunk<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 214
+n  <Plug>GitGutterStageHunk * :call gitgutter#utility#warn('Please change your map <Plug>GitGutterStageHunk to <Plug>(GitGutterStageHunk)')<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 213
+n  <Plug>(GitGutterStageHunk) * :GitGutterStageHunk<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 212
+x  <Plug>GitGutterStageHunk * :call gitgutter#utility#warn('Please change your map <Plug>GitGutterStageHunk to <Plug>(GitGutterStageHunk)')<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 211
+x  <Plug>(GitGutterStageHunk) * :GitGutterStageHunk<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 210
+n  <Plug>GitGutterPrevHunk * &diff ? '[c' : ":\<C-U>call gitgutter#utility#warn('Please change your map \<Plug>GitGutterPrevHunk to \<Plug>(GitGutterPrevHunk)')\<CR>"
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 208
+n  <Plug>(GitGutterPrevHunk) * &diff ? '[c' : ":\<C-U>execute v:count1 . 'GitGutterPrevHunk'\<CR>"
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 207
+n  <Plug>GitGutterNextHunk * &diff ? ']c' : ":\<C-U>call gitgutter#utility#warn('Please change your map \<Plug>GitGutterNextHunk to \<Plug>(GitGutterNextHunk)')\<CR>"
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 206
+n  <Plug>(GitGutterNextHunk) * &diff ? ']c' : ":\<C-U>execute v:count1 . 'GitGutterNextHunk'\<CR>"
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 205
+x  <Plug>(GitGutterTextObjectOuterVisual) * :<C-U>call gitgutter#hunk#text_object(0)<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 161
+x  <Plug>(GitGutterTextObjectInnerVisual) * :<C-U>call gitgutter#hunk#text_object(1)<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 160
+o  <Plug>(GitGutterTextObjectOuterPending) * :<C-U>call gitgutter#hunk#text_object(0)<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 159
+o  <Plug>(GitGutterTextObjectInnerPending) * :<C-U>call gitgutter#hunk#text_object(1)<CR>
+	Last set from ~\dotfiles\vimConf\vim\bundle\vim-gitgutter\plugin\gitgutter.vim line 158
+v  <C-X>       * c
+	Last set from ~\.vim\settings\keymaps.vim line 184
+v  <C-Del>       "*d
+v  <S-Del>     * <Esc>ddgv=gv
+	Last set from ~\.vim\settings\keymaps.vim line 33
+v  <C-Insert>    "*y
+v  <S-Insert>    "-d"*P
+n  <S-Insert>    "*P
+n  ü           * :bnext<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 251
+n  ö           * :bprevious<CR>
+	Last set from ~\.vim\settings\keymaps.vim line 252
+Error detected while processing CursorMoved Autocommands for "<buffer=6>"..function <SNR>27_highlight_block:
+line    1:
+E803: ID not found: 73

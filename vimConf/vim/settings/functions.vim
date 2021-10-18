@@ -97,7 +97,6 @@ endfunction
 " /*}}}*/
 
 
-" \rt                 一键替换全部Tab为空格
 func! RemoveTabs()
     if &shiftwidth == 2
         exec "%s/   /  /g"

@@ -6,7 +6,6 @@ Plugin 'airblade/vim-gitgutter'
 
 " UI
 Plugin 'justinmk/vim-matchparenalways' " Scope highlighting
-Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'chriskempson/base16-vim'
 Plugin 'preservim/nerdtree'
@@ -22,6 +21,9 @@ Plugin 'frazrepo/vim-rainbow'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'ryanoasis/vim-webdevicons'
 
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
 "Plugin 'yuttie/comfortable-motion.vim'
 
 "Completion plugin goes here
@@ -36,6 +38,11 @@ Plugin 'ryanoasis/vim-webdevicons'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-session'
 
+" http://vimawesome.com/plugin/ctrlp-vim-red
+" This does the same thing as Sublime’s Ctrl P. Fuzzy search by file name.
+" Must have.
+Plugin 'kien/ctrlp.vim'
+
 " Automatically change directory to project root
 Plugin 'airblade/vim-rooter'
 
@@ -45,7 +52,69 @@ Plugin 'sheerun/vim-polyglot'
 " Code comments
 Plugin 'tpope/vim-commentary'
 
-" Debugging
-"Plugin 'puremourning/vimspector'
+"c/c++ stuff here
+Plugin 'majutsushi/tagbar'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'vim-scripts/a.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/screen'
+
+Plugin 'lifepillar/vim-mucomplete'
+Plugin 'ntpeters/vim-better-whitespace'
+
+if(g:iswindows==1)
+" 15.d Clang Complete -->
+"let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
+"let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
+"let g:clang_complete_auto = 1
+else
+  Plugin 'Rip-Rip/clang_complete'
+  " clang_complete configuration
+  let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+endif
+
+" tagbar configuration
+"autocmd VimEnter * nested TagbarOpen
+map <F7> :TagbarToggle<CR>
+let g:tagbar_width = 50
+let g:tagbar_sort = 0
+let g:tagbar_compact = 0
+let g:tagbar_indent = 2
+let g:tagbar_autofocus = 0
+let g:tagbar_autoclose = 0
+let g:tagbar_usearrows = 1
+let g:tagbar_autoshowtag = 1
+
+" buffkill configuration
+map <F4> :BD<CRv
+
+
+" vim-airline configuration
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_solarized_bg = 'dark'
+"let g:airline_powerline_fonts = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0 " if 1 --> slower to open.
+let g:syntastic_check_on_wq = 0
+
+
+" 17. MUcomplete -->
+imap <C-j> <plug>(MUcompleteFwd)
+imap <C-k> <plug>(MUcompleteBwd)
+let g:mucomplete#enable_auto_at_startup = 1
+set noinfercase
+set completeopt-=preview
+set completeopt+=menuone,noselect
+
+
 
 

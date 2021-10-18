@@ -1,21 +1,24 @@
 
 "{{{ General configuration options
 "
+
+" Turn on syntax highlighting
+syntax on
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+"set path+=**
+
 "Use Vim settings, rather then Vi settings. It's important to have this on the top of your file, as it influences other options.
 set nocompatible  
-
 "- Allow backspacing over indention, line breaks and insertion start.
 set backspace=indent,eol,start 
-
 "- Set bigger history of executed commands.
 set history=1000 
-
 "- Show incomplete commands at the bottom.
 set showcmd 
-
  "- Show current mode at the bottom.
 set showmode
-
 "- Automatically re-read files if unmodified inside Vim.
 set autoread
 
@@ -23,7 +26,6 @@ set autoread
 set hidden 
 " Show incomplete commands
 set showcmd
-
 " Security
 set modelines=0
 
@@ -44,6 +46,8 @@ set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp
 " redraw only when we need to (i.e. don't redraw when executing a macro)
 set lazyredraw
 
+set undofile   " Maintain undo history between sessions
+
 " Visualize tabs and newlines
 "set listchars=tab:?\ ,eol:¬
 "set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
@@ -59,7 +63,7 @@ set cursorline
 "- Show line numbers on the sidebar.
 set number
 "- Show line number on the current line and relative numbers on all other lines. Works only if the option above (number) is enabled.
-set relativenumber
+"set relativenumber
 "- Disable beep on errors.
 set noerrorbells
 "- Flash the screen instead of beeping on errors.
@@ -74,9 +78,9 @@ set title
 
 
 "{{{ Swap and backup file options
-set noswapfile
-set nobackup
-set nowb
+"set noswapfile
+"set nobackup
+"set nowb
 "}}}
 
 
@@ -114,16 +118,12 @@ map <leader><space> :let @/=''<cr> " clear search
 "{{{Text rendering options
 "- Use an encoding that supports Unicode.
 set encoding=utf-8
-
 "- Wrap lines at convenient points, avoid wrapping a line in the middle of a word.
 set linebreak
-
 "- The number of screen lines to keep above and below the cursor.
 set scrolloff=3
-
 "- The number of screen columns to keep to the left and right of the cursor.
 set sidescrolloff=5
-
 "- Enable syntax highlighting.
 syntax enable
 
