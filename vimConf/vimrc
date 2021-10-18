@@ -1,4 +1,4 @@
-set nocompatible
+set nocompatible        " Use Vim settings, rather than Vi settings
 
 
 
@@ -79,9 +79,9 @@ let maplocalleader = ","
 
 "set background=dark
 "colorscheme slate
-colorscheme gruvbox
+"colorscheme gruvbox
 "colorscheme darkblue
-"colorscheme oceanicNext
+colorscheme oceanicNext
 
 
 
