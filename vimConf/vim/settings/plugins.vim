@@ -18,8 +18,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'frazrepo/vim-rainbow'
 
 
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ryanoasis/vim-webdevicons'
+"Plugin 'ryanoasis/vim-devicons'
+"Plugin 'ryanoasis/vim-webdevicons'
 
 Plugin 'godlygeek/tabular'
 Plugin 'jlanzarotta/bufexplorer'
@@ -117,7 +117,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_solarized_bg = 'dark'
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -147,4 +147,16 @@ let g:ctrlp_use_caching=0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+  let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'some_bad_symbolic_links',
+    \ }
+"Use a custom file listing command:
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+"Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']

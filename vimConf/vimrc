@@ -36,11 +36,7 @@ else
     let $scrapbook = $HOME."/scrapbook.textile"
     set guifont=Monaco\ 11
 
-
-
 endif
-
-
 
 
 if has("gui_running")
@@ -51,6 +47,7 @@ if has("gui_running")
     endif
 endif
 
+"{{{ Plugin Section
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
@@ -72,7 +69,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-
+"}}}
 
 source ~/.vim/settings.vim
 
@@ -124,14 +121,14 @@ if has("gui_running")
 
 
     " Hide the toolbar
-    "set guioptions-=T
-    "set guioptions-=m  "remove menu bar
-    "set guioptions-=T  "remove toolbar
-    "set guioptions-=r  "remove right-hand,scroll bar
-    "set guioptions-=L  "remove left-hand scroll bar
+    set guioptions-=T
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand,scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 
-    set guifont=Consolas:h11:cANSI
-    "set guifont=FiraCode_Nerd_Font_Mono:h9
+    "set guifont=Consolas:h11:cANSI
+    set guifont=FiraCode_Nerd_Font_Mono:h10
     "set guifont=Hack_Nerd_Font_Mono:h10
     "set guifont=DejaVuSansMono_Nerd_Font_Mono:h11
     "
@@ -151,8 +148,6 @@ endif
 "}}}}
 
 
-
-
 "colorscheme OceanicNext
 "highlight Normal guifg=white guibg=black
 
@@ -162,8 +157,8 @@ endif
 
 map <leader>ne :NERDTreeFind<cr>
 map <C-o> :NERDTreeToggle %<CR>
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+"let g:NERDTreeDirArrowExpandable = '▸'
+"let g:NERDTreeDirArrowCollapsible = '▾'
 " Start NERDTree when Vim is started without file arguments.
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
@@ -207,28 +202,32 @@ source ~/.vim/settings/vimrc_mappings.vim
 :let g:session_autosave = 'no'
 
 
+"{{{ Setting window size
+" if has("gui_running")
+"     " GUI is running or is about to start.
+"     " Maximize gvim window (for an alternative on Windows, see simalt below).
+"     set lines=50 columns=180
+" else
+"     " This is console Vim.
+"     if exists("+lines")
+"         set lines=50
+"     endif
+"     if exists("+columns")
+"         set columns=150
+"     endif
+" endif
+"}}}
 
-if has("gui_running")
-    " GUI is running or is about to start.
-    " Maximize gvim window (for an alternative on Windows, see simalt below).
-    set lines=50 columns=180
-else
-    " This is console Vim.
-    if exists("+lines")
-        set lines=50
-    endif
-    if exists("+columns")
-        set columns=150
-    endif
-endif
 
+
+"{{{ AutoCommand Section
 "Automatically remove trailing spaces when saving a file.
 "autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 "useful to clear search highlight
 map <esc> :noh <CR>
 
-if has ('autocmd') " Remain compatible with earlier versions
+if has ('autocmd') " Remain compatible with earlier versaons
 
     " automatically rebalance windows on vim resize
     autocmd VimResized * :wincmd =
@@ -260,14 +259,6 @@ if has ('autocmd') " Remain compatible with earlier versions
         autocmd WinLeave * setlocal nocursorline
     augroup END
 
-    "     " relative number 
-    "     set number relativenumber
-    "     augroup numbertoggle
-    "         autocmd!
-    "         autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    "         autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-    "     augroup END
-
 
     let NERDTreeShowHidden=1
     let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
@@ -292,6 +283,10 @@ if has ('autocmd') " Remain compatible with earlier versions
                 \   exe "normal! g`\"" |
                 \ endif
 
+    " Close all folds when opening a new buffer
+    autocmd BufRead * setlocal foldmethod=marker
+    autocmd BufRead * normal zM
+
 
     augroup vimrc     " Source vim configuration upon save
         autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
@@ -299,10 +294,7 @@ if has ('autocmd') " Remain compatible with earlier versions
     augroup END
 
 endif " has autocmd
-
-
-
-
+"}}}
 
 
 " Cursor style {{{

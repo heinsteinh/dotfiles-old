@@ -48,8 +48,8 @@ set lazyredraw
 set undofile   " Maintain undo history between sessions
 
 " Visualize tabs and newlines
-"set listchars=tab:?\ ,eol:¬
-"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set list
+set listchars=tab:\ ¬,trail:.
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
@@ -74,9 +74,6 @@ set background=dark
 "- Set the window’s title, reflecting the file currently being edited.
 set title
 
-" Display tabs and trailing spaces
-set list
-set listchars=tab:\ ¬,trail:.
 "}}}
 
 "{{{ Swap and backup file options
