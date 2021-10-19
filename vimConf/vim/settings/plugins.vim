@@ -22,8 +22,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'ryanoasis/vim-webdevicons'
 
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-
+Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'yuttie/comfortable-motion.vim'
 
 "Completion plugin goes here
@@ -31,7 +30,7 @@ Plugin 'plasticboy/vim-markdown'
 "Plugin 'shougo/neocomplete.vim'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
-"Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
+" Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
 
 " colorschemes
 "Plugin 'xolox/vim-colorscheme-switcher'
@@ -59,9 +58,22 @@ Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/screen'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
+
 
 Plugin 'lifepillar/vim-mucomplete'
 Plugin 'ntpeters/vim-better-whitespace'
+
+" Markdown / Writting
+Plugin 'reedes/vim-pencil'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'LanguageTool'
+
+" Quick PluginStall
+noremap <Leader>pi :source ~/.vimrc<cr>:PluginInstall<cr>
+
 
 if(g:iswindows==1)
 " 15.d Clang Complete -->
@@ -73,6 +85,17 @@ else
   " clang_complete configuration
   let g:clang_library_path='/usr/lib/llvm-3.8/lib'
 endif
+
+
+" Disable function highlighting (affects both C and C++ files)
+let g:cpp_function_highlight = 1
+" Enable highlighting of C++11 attributes
+let g:cpp_attributes_highlight = 1
+" Highlight struct/class member variables (affects both C and C++ files)
+let g:cpp_member_highlight = 1
+" Put all standard C and C++ keywords under Vim's highlight group 'Statement'
+" (affects both C and C++ files)
+let g:cpp_simple_highlight = 1
 
 " tagbar configuration
 "autocmd VimEnter * nested TagbarOpen
@@ -86,8 +109,6 @@ let g:tagbar_autoclose = 0
 let g:tagbar_usearrows = 1
 let g:tagbar_autoshowtag = 1
 
-" buffkill configuration
-map <F4> :BD<CRv
 
 
 " vim-airline configuration
@@ -115,6 +136,15 @@ set noinfercase
 set completeopt-=preview
 set completeopt+=menuone,noselect
 
-
+" ---------- Ctrl-P stuff --------------
+"  Put ctrl p at the bottom ordererf from top to bottom
+let g:ctrlp_match_window='bottom,order:ttb,min:1,max:20,results:20'
+" use rg as our ctrlp finder
+"let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden -g ""'
+" rg is fast enough we don't need no stinking cache
+let g:ctrlp_use_caching=0
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 

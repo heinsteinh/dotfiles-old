@@ -11,6 +11,6 @@ nnoremap <esc> :noh<return><esc>
 "augroup END
 
 
-set wildchar=<Tab> wildmenu wildmode=full
-set wildcharm=<C-Z>
-nnoremap <F10> :b <C-Z>
+"set wildchar=<Tab> wildmenu wildmode=full
+"set wildcharm=<C-Z>
+"nnoremap <F10> :b <C-Z>

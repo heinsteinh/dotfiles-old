@@ -5,12 +5,13 @@ let g:mapleader = ','
 
 
 " Vimrc quick edit
-nnoremap <Leader>tv :tabnew $MYVIMRC<CR>
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
 nnoremap <Leader>pv :split $MYVIMRC<CR>
 nnoremap <Leader>vv :vsplit $MYVIMRC<CR>
 nnoremap <Leader>rv :source $MYVIMRC<CR>
 vnoremap <Leader>r :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
+nnoremap <Leader>tv :tabnew $MYVIMRC<CR>
+nnoremap <Leader>ev :edit $MYVIMRC<CR>
+
 
 
 " Faster command mode access
@@ -75,10 +76,10 @@ vnoremap <S-TAB> <gv
 " [COMMAND] CTRL-N new tab
 nnoremap <C-n> :tabnew<CR>
 
-" [COMMAND] CTRL-W quit tab
-nnoremap <C-w> :q<CR>
-inoremap <C-w> <ESC>:q<CR>
-vnoremap <C-w> <ESC>:q<CR>
+" " [COMMAND] CTRL-W quit tab
+" nnoremap <C-w> :q<CR>
+" inoremap <C-w> <ESC>:q<CR>
+" vnoremap <C-w> <ESC>:q<CR>
 
 " [EDIT+VISUAL+COMMAND] CTRL-f open search
 nnoremap <C-f> /
@@ -121,7 +122,7 @@ inoremap <M-Right> <ESC>:wincmd l<CR>gi
 vnoremap <M-Right> <ESC>:wincmd l<CR>gv=gv
 
 " [EDIT+VISUAL+COMMAND] ALT-RIGHT switch to right previous window
-nnoremap <M-Left> :wincmd h<CR> 
+nnoremap <M-Left> :wincmd h<CR>
 inoremap <M-Left> <ESC>:wincmd h<CR>gi
 vnoremap <M-Left> <ESC>:wincmd h<CR>gv=gv
 
@@ -201,7 +202,6 @@ inoremap <silent> <C-u> <c-o>:undo<cr>
 inoremap <silent> <C-z> <c-o>:undo<cr>
 nnoremap <silent> <C-r> :redo<cr>
 inoremap <silent> <C-r> <c-o>:redo<cr>
-inoremap <silent> <C-y> <c-o>:redo<cr>
 " }}}
 "
 " Easy mapping to highlight pasted text
@@ -322,5 +322,4 @@ nmap <leader>ff :CtrlP<CR>
 imap <leader>rt <esc>:call RemoveTabs()<cr>
 nmap <leader>rt :call RemoveTabs()<cr>
 vmap <leader>rt <esc>:call RemoveTabs()<cr>
-
 

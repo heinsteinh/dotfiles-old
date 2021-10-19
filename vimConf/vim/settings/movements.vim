@@ -49,16 +49,20 @@ nnoremap <leader>h :vertical resize +5<CR>
 nnoremap <leader>l :vertical resize -5<CR>
 
 
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprevious<CR>
+nnoremap <leader>be :BufExplorer<CR>
+nnoremap <leader>bt :ToggleBufExplorer<CR>
 
+"
 " File Handling
 """""""""""""""
 
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
-map <Leader>e    :e      <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>s    :split  <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>v    :vsplit <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>te   :tabe   <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>fe    :e      <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>fs    :split  <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>fv    :vsplit <C-R>=expand("%:p:h") . '/'<CR>
 
 " Rename current file (thanks Gary Bernhardt)
 function! RenameFile()

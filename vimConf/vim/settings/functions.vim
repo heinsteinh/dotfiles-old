@@ -49,15 +49,21 @@ function! ToggleMouse()
 endfunction
 
 
-"  Clean code function
-function! CleanCode()
-  %retab          " Replace tabs with spaces
-  %s///eg     " Turn DOS returns ^M into real returns
-  %s=  *$==e      " Delete end of line blanks
+" "  Clean code function
+" function! CleanCode()
+"   %retab          " Replace tabs with spaces
+"   %s///eg     " Turn DOS returns ^M into real returns
+"   %s=  *$==e      " Delete end of line blanks
+"   echo "Cleaned up this mess."
+" endfunction
+
+" Clean code function
+function! s:CleanCode()
+  %retab " Replace tabs with spaces
+  %s= *$==e " Delete end of line blanks
+  %s/\r//eg " Remove DOS returns ^M
   echo "Cleaned up this mess."
 endfunction
-
-
 
 
 function! Resize(dir)

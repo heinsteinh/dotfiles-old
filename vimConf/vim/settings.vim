@@ -17,7 +17,7 @@ set backspace=indent,eol,start
 set history=1000 
 "- Show incomplete commands at the bottom.
 set showcmd 
- "- Show current mode at the bottom.
+"- Show current mode at the bottom.
 set showmode
 "- Automatically re-read files if unmodified inside Vim.
 set autoread
@@ -30,7 +30,6 @@ set showcmd
 set modelines=0
 
 "}}}
-
 
 "{{{ User Interface Options
 "- Always display the status bar.
@@ -74,15 +73,22 @@ set mouse=a
 set background=dark
 "- Set the window’s title, reflecting the file currently being edited.
 set title
-"}}}
 
+" Display tabs and trailing spaces
+set list
+set listchars=tab:\ ¬,trail:.
+"}}}
 
 "{{{ Swap and backup file options
 "set noswapfile
 "set nobackup
 "set nowb
 "}}}
-
+"
+"{{{
+set foldcolumn=3
+set foldmethod=marker
+"}}}
 
 "{{{ Indentation options
 "- New lines inherit the indentation of previous lines.
@@ -97,7 +103,6 @@ set shiftwidth=2
 set expandtab
 "- Don't wrap lines.
 set nowrap
-
 "}}}
 
 "{{{Search options

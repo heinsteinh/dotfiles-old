@@ -1,8 +1,3 @@
-let mapleader = ","
-let maplocalleader =","
-
-nmap <Leader>bi :source ~/.vimrc<cr>:PlugInstall<cr>
-
 " Cursor Navigation {{{
 " this is visual, select, normal and operator-pending modes
 noremap H 0
@@ -18,7 +13,7 @@ nnoremap <leader>c "+y
 
 " paste from system clipboard
 nnoremap <leader>v "+p
-
+"}}}
 
 " Git {{{ <leader>g-
 " vim-fugitive commands

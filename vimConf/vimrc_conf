@@ -66,8 +66,11 @@ set backspace=indent,eol,start
 set ruler
 set showcmd
 
-
-
+" folding thte code
+"set foldmethod=indent
+"set nofoldenable
+set foldenable
+set foldmethod=syntax
 
 if(g:iswindows==1)
 
