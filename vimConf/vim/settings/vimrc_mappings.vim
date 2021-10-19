@@ -13,7 +13,7 @@ nnoremap <leader>di :call GoToDaily()<cr>
 
 " Copy and Paste {{{
 " yank to system clipboard
-xnoremap <leader>c "+y 
+xnoremap <leader>c "+y
 nnoremap <leader>c "+y
 
 " paste from system clipboard
