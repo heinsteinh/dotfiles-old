@@ -30,7 +30,7 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'shougo/neocomplete.vim'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
-" Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
+ Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
 
 " colorschemes
 "Plugin 'xolox/vim-colorscheme-switcher'
@@ -74,16 +74,18 @@ Plugin 'LanguageTool'
 " Quick PluginStall
 noremap <Leader>pi :source ~/.vimrc<cr>:PluginInstall<cr>
 
+" Set up Matchit, for extending % for tags such as </div>.
+runtime macros/matchit.vim
 
 if(g:iswindows==1)
-" 15.d Clang Complete -->
-"let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
-"let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
-"let g:clang_complete_auto = 1
+    " 15.d Clang Complete -->
+    "let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
+    "let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
+    "let g:clang_complete_auto = 1
 else
-  Plugin 'Rip-Rip/clang_complete'
-  " clang_complete configuration
-  let g:clang_library_path='/usr/lib/llvm-3.8/lib'
+    Plugin 'Rip-Rip/clang_complete'
+    " clang_complete configuration
+    let g:clang_library_path='/usr/lib/llvm-3.8/lib'
 endif
 
 
@@ -117,7 +119,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_solarized_bg = 'dark'
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -149,12 +151,12 @@ let g:ctrlp_cmd = 'CtrlP'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-  let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ 'link': 'some_bad_symbolic_links',
-    \ }
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(exe|so|dll)$',
+            \ 'link': 'some_bad_symbolic_links',
+            \ }
 "Use a custom file listing command:
 let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows

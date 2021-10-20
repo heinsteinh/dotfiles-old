@@ -1,10 +1,13 @@
 set nocompatible        " Use Vim settings, rather than Vi settings
 
-
+let g:iswindows = 0
+let g:islinux = 0
 if(has("win32") || has("win95") || has("win64") || has("win16"))
-    let g:iswindows=1
+    let g:iswindows	=1
+    let g:islinux=0
 else
     let g:iswindows=0
+    let g:islinux=1
 endif
 
 if(g:iswindows==1)
@@ -44,7 +47,7 @@ if has("gui_running")
         set guifont=Monospace\ 13
     elseif has("gui_win32")
         "set guifont=Consolas:h10:cANSI
-    endif
+    end
 endif
 
 "{{{ Plugin Section
@@ -86,10 +89,9 @@ let maplocalleader = ","
 
 "set background=dark
 "colorscheme slate
-"colorscheme gruvbox
+colorscheme gruvbox
 "colorscheme darkblue
-colorscheme oceanicNext
-
+"colorscheme oceanicNext
 
 
 "{{{{
@@ -128,7 +130,12 @@ if has("gui_running")
     set guioptions-=L  "remove left-hand scroll bar
 
     "set guifont=Consolas:h11:cANSI
-    set guifont=FiraCode_Nerd_Font_Mono:h10
+    "set guifont=FiraCode_Nerd_Font_Mono:h10
+    "  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 11
+    "set guifont=Ubuntu\Mono\derivative\Powerline:h15:cANSI
+    "   set guifont=Ubuntu_Mono_derivative_Powerline:h11
+    set guifont=Ubuntu_Mono_derivative_Powerlin:h11:cANSI
+    " set guifont=Ubuntu_Mono_derivative_Powerline:h14,Ubuntu_Mono_derivative_Powerline_Bold:h14,Ubuntu_Mono_derivative_Powerline_Italic:h14
     "set guifont=Hack_Nerd_Font_Mono:h10
     "set guifont=DejaVuSansMono_Nerd_Font_Mono:h11
     "
@@ -142,6 +149,12 @@ if has("gui_running")
     "            set guifont=Ubuntu\ Mono\ Regular\ 18
     "        endif
     "    endif
+
+
+   " Open the GUI file browser.
+   map <A-o> :browse confirm e<CR>
+   nmap <C-S-s> :browse confivm saveas<CR>
+
 endif
 
 
@@ -154,6 +167,8 @@ endif
 "{{{
 " Start NERDTree and leave the cursor in it.
 "autocmd VimEnter * NERDTree
+let NERDTreeShowHidden=1
+let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
 
 map <leader>ne :NERDTreeFind<cr>
 map <C-o> :NERDTreeToggle %<CR>
@@ -172,7 +187,7 @@ map <C-o> :NERDTreeToggle %<CR>
 
 "enable rainbow it globally
 au FileType c,cpp,objc,objcpp call rainbow#load()
-let g:rainbow_active = 1
+"let g:rainbow_active = 1
 "
 
 ""}}}
@@ -191,7 +206,6 @@ source ~/.vim/settings/spelling.vim
 
 "source ~/.vim/settings/settings-extra.vim
 
-
 source ~/.vim/plugins/backupFiles.vim
 source ~/.vim/plugins/automkdir.vim
 source ~/.vim/plugins/neocomplete.vim
@@ -200,6 +214,8 @@ source ~/.vim/settings/vimrc_mappings.vim
 
 
 :let g:session_autosave = 'no'
+au GUIEnter * simalt ~x
+
 
 
 "{{{ Setting window size
@@ -217,7 +233,6 @@ source ~/.vim/settings/vimrc_mappings.vim
 "     endif
 " endif
 "}}}
-
 
 
 "{{{ AutoCommand Section
@@ -238,14 +253,10 @@ if has ('autocmd') " Remain compatible with earlier versaons
 
     " Preserve last editing position in vim
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+    autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
     autocmd bufreadpre *.mkd setlocal textwidth=0
     autocmd bufreadpre *.md setlocal textwidth=0
-
-    " treat C files differently from C++ files
-    "augroup project
-    "	autocmd!
-    "	autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-    "augroup END
 
     "Changing number base on the mode we are in
     augroup toggle_relative_number
@@ -259,13 +270,12 @@ if has ('autocmd') " Remain compatible with earlier versaons
         autocmd WinLeave * setlocal nocursorline
     augroup END
 
+    " Vim jumps to last position when reopening a file
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    au BufEnter * silent! lcd %:p:h
 
-    let NERDTreeShowHidden=1
-    let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
-
-    " Start NERDTree and put the cursor back in the other window.
-    autocmd VimEnter * NERDTree | wincmd p
-    "autocmd VimEnter * exe "vertical resize 60"
+    " auto reload vimrc when editing it
+    "autocmd! bufwritepost .vimrc source ~/.vimrc
 
     "Autoclose NERDTree if it's the only open window left.
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -284,13 +294,35 @@ if has ('autocmd') " Remain compatible with earlier versaons
                 \ endif
 
     " Close all folds when opening a new buffer
-    autocmd BufRead * setlocal foldmethod=marker
+    "autocmd BufRead * setlocal foldmethod=marker
+
+    " Enable marker folds for .vimrc files and shell files
+    autocmd FileType vim,sh setlocal foldmethod=marker
     autocmd BufRead * normal zM
 
 
     augroup vimrc     " Source vim configuration upon save
         autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
         autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
+    augroup END
+
+
+    " Start NERDTree and put the cursor back in the other window.
+    autocmd VimEnter * NERDTree | wincmd p
+    "autocmd VimEnter * exe "vertical resize 60"
+
+
+
+
+    augroup cpp_augroup
+        autocmd!
+        " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F5> :setlocal makeprg=cmake\ --build\ D:/dev/proj/SoundReader/build\ --config\ Debug\ --\ /property:GenerateFullPaths=true\ /m<CR>:Make<CR>
+        " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F6> :Dispatch "D:/dev/proj/SoundReader/bin/Debug/SoundReader.exe"<CR>
+        " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <S-Space> :YcmCompleter GetType<CR>
+
+        " " Cpp ctor stub by highlighting the member vars
+        " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Ctor :call <SID>pythonSelectedTextPasteAbove("cpp.ctor_stub")<CR>
+        " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Opeq :call <SID>pythonSelectedTextPasteAbove("cpp.stub_opeq")<CR>
     augroup END
 
 endif " has autocmd
@@ -301,4 +333,15 @@ endif " has autocmd
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (Eu)
+" }}}
+
+"" {{{ for error highlight
+highlight clear SpellBad
+highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
+highlight clear SpellCap
+highlight SpellCap term=underline cterm=underline
+highlight clear SpellRare
+highlight SpellRare term=underline cterm=underline
+highlight clear SpellLocal
+highlight SpellLocal term=underline cterm=underline
 " }}}

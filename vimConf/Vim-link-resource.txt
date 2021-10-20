@@ -1,8 +1,0 @@
-https://github.com/czulfikar/vim_config/blob/e0724058eb8db3ff163802b9aa8e8740fbe4cb52/.vimrc#L111
-
-https://vim.help/02-the-first-steps-in-vim#02.3
-
-
-
-https://github.com/search?q=autocmd+VimEnter+%2A+NERDTree&type=code
-

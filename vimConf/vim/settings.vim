@@ -10,20 +10,20 @@ syntax on
 "set path+=**
 
 "Use Vim settings, rather then Vi settings. It's important to have this on the top of your file, as it influences other options.
-set nocompatible  
+set nocompatible
 "- Allow backspacing over indention, line breaks and insertion start.
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 "- Set bigger history of executed commands.
-set history=1000 
+set history=1000
 "- Show incomplete commands at the bottom.
-set showcmd 
+set showcmd
 "- Show current mode at the bottom.
 set showmode
 "- Automatically re-read files if unmodified inside Vim.
 set autoread
 
 "- Manage multiple buffers effectively: the current buffer can be 'sent' to the background without writing to disk. When a background buffer becomes current again, marks and undo-history are remembered. See chapter Buffers to understand this better.
-set hidden 
+set hidden
 " Show incomplete commands
 set showcmd
 " Security
@@ -47,11 +47,21 @@ set lazyredraw
 
 set undofile   " Maintain undo history between sessions
 
+" Use system clipboard
+" http://stackoverflow.com/questions/8134647/copy-and-paste-in-vim-via-keyboard-between-different-mac-terminals
+"set clipboard+=unnamed
+
 " Visualize tabs and newlines
 set list
 set listchars=tab:\ ¬,trail:.
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
+
+" Tenths of a second to show the matching paren, when 'showmatch' is set.
+ set matchtime=1
+
+ " Make < and > as well as match pairs.
+set matchpairs+=<:>
 
 "- Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
@@ -115,6 +125,9 @@ set ignorecase
 set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
+
+" CtrlP -> files matched are ignored when expanding wildcards
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
 "}}}
 
 "{{{Text rendering options
@@ -128,7 +141,6 @@ set scrolloff=3
 set sidescrolloff=5
 "- Enable syntax highlighting.
 syntax enable
-
 
 "}}}
 
@@ -151,3 +163,20 @@ set splitbelow
 set splitright
 "}}}
 
+
+" {{{ Selection
+" Change selected letters when write
+set selectmode=mouse,key
+
+" Select with SHIFT + ARROW for Vim-noobs
+set keymodel=startsel,stopsel
+
+" Enable select with mouse in insert mode
+set selection=exclusive
+
+" Can move cursor past end of line, where there are no characters, in visualblock mode
+set virtualedit=block
+
+" Visual selection automatically copied to clipboard
+set go+=a
+"}}}

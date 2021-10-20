@@ -15,8 +15,8 @@ nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
 
 " Faster command mode access
-nnoremap <Space> :
-nnoremap ; :!
+"nnoremap <Space> :
+"nnoremap ; :!
 
 "Faster navigation
 nnoremap J <C-d>
@@ -64,10 +64,10 @@ inoremap <C-s> <esc>:w!<CR>gi
 vnoremap <C-s> <esc>:w!<CR>gv=gv
 
 " [COMMAND] TAB go to next tab
-nnoremap <TAB> gt
+"nnoremap <TAB> gt
 
 " [COMMAND] SHIFT-TAB go to previous tab
-nnoremap <S-TAB> gT
+"nnoremap <S-TAB> gT
 
 " [INSERT+VISUAL] SHIFT-TAB remove indent/tab
 inoremap <S-TAB> <C-d>
@@ -116,6 +116,7 @@ nnoremap <C-v><Right> :botright vsplit<CR>
 inoremap <C-v><Right> <ESC>:botright vsplit<CR>gi
 vnoremap <C-v><Right> <ESC>:botright vsplit<CR>gv=gv
 
+
 " [EDIT+VISUAL+COMMAND] ALT-LEFT switch to left or next window
 nnoremap <M-Right> :wincmd l<CR>
 inoremap <M-Right> <ESC>:wincmd l<CR>gi
@@ -136,23 +137,18 @@ nnoremap <M-Down> :wincmd j<CR>
 inoremap <M-Down> <ESC>:wincmd j<CR>gi
 vnoremap <M-Down> <ESC>:wincmd j<CR>gv=gv
 
-" [EDIT+VISUAL+COMMAND] SHIFT-DOWN Scroll down fast
-nnoremap <silent> <S-Down> :call comfortable_motion#flick(200)<CR>
-inoremap <silent> <S-Down> <ESC>:call comfortable_motion#flick(200)<CR>gi
-vnoremap <silent> <S-Down> <ESC>:call comfortable_motion#flick(200)<CR>gv=gv
+" " [EDIT+VISUAL+COMMAND] SHIFT-DOWN Scroll down fast
+" nnoremap <silent> <S-Down> :call comfortable_motion#flick(200)<CR>
+" inoremap <silent> <S-Down> <ESC>:call comfortable_motion#flick(200)<CR>gi
+" vnoremap <silent> <S-Down> <ESC>:call comfortable_motion#flick(200)<CR>gv=gv
 
-" [EDIT+VISUAL+COMMAND] SHIFT-UP Scroll up fast
-nnoremap <silent> <S-Up> :call comfortable_motion#flick(-200)<CR>
-inoremap <silent> <S-Up> <ESC>:call comfortable_motion#flick(-200)<CR>gi
-vnoremap <silent> <S-Up> <ESC>:call comfortable_motion#flick(-200)<CR>gi
+" " [EDIT+VISUAL+COMMAND] SHIFT-UP Scroll up fast
+" nnoremap <silent> <S-Up> :call comfortable_motion#flick(-200)<CR>
+" inoremap <silent> <S-Up> <ESC>:call comfortable_motion#flick(-200)<CR>gi
+" vnoremap <silent> <S-Up> <ESC>:call comfortable_motion#flick(-200)<CR>gi
 
 
 
-" split window
-" horizontal split
-nnoremap <silent> <leader>- :sp <CR>
-" vertical split
-nnoremap <silent> <leader>\ :vsp <CR><C-w>l<CR>
 
 " Toggle line wrapping
 nnoremap <Leader>wp :set wrap!<CR>

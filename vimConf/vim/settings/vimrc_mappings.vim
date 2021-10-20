@@ -13,7 +13,67 @@ nnoremap <leader>c "+y
 
 " paste from system clipboard
 nnoremap <leader>v "+p
+
+"Better copy paste
+vnoremap y <Nop>
+vnoremap xx y
+vnoremap xa "ay
+vnoremap xb "by
+vnoremap xc "+y
+nmap x y
+nnoremap yx yy
+nnoremap ya "aY
+nnoremap yb "bY
+nnoremap yc "+Y
+nnoremap pp p
+nnoremap p <Nop>
+nnoremap PP P
+nnoremap pa "ap
+nnoremap Pa "aP
+nnoremap pb "bp
+nnoremap Pb "bP
+nnoremap pc "+p
+nnoremap Pc "+P
+nnoremap pd "1p
+nnoremap Pd "1P
+nnoremap px "0p
+nnoremap Px "0P
+
 "}}}
+
+
+"{{{ More sensible cw dw and yw
+nnoremap cw ciw
+nnoremap cW ciW
+nnoremap dw daw
+nnoremap dW daW
+nnoremap yw yiw
+nnoremap yW yiW
+nmap ce cia
+nmap de daa
+"}}}
+
+
+"{{{Fold shorcuts
+nnoremap <space> za
+nnoremap zo zr
+nnoremap zO zR
+nnoremap zc zm
+nnoremap zC zM
+"}}}
+
+
+"{{{faster indent
+nnoremap > >>
+nnoremap < <<
+vnoremap < <gv
+vnoremap > >gv
+"}}}
+
+" Faster command mode access
+"nnoremap <Space> :
+"nnoremap ; :
+
 
 " Git {{{ <leader>g-
 " vim-fugitive commands
