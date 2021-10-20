@@ -53,7 +53,8 @@ set undofile   " Maintain undo history between sessions
 
 " Visualize tabs and newlines
 set list
-set listchars=tab:\ ¬,trail:.
+set listchars=space:.,eol:¬,trail:.,tab:>.
+"set listchars=eol:↵,tab:➝\ ,trail:~,extends:>,precedes:<,space:·
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch
 
@@ -146,6 +147,7 @@ syntax enable
 
 "{{{ Miscellaneous Options
 "- Display a confirmation dialog when closing an unsaved file.
+"set confirm
 set confirm
 "- Ignore file’s mode lines; use vimrc configurations instead.
 set nomodeline

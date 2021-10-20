@@ -175,30 +175,14 @@ noremap <c-q> :confirm qall<cr>
 " Ctrl-c - copy (visual)
 " Ctrl-x - cut (visual)
 " Ctrl-v - paste (insert)
-nnoremap <M-v> <C-v>
-nnoremap <C-v> p
-vnoremap <C-c> y
-vnoremap <C-x> c
-inoremap <C-v> <esc>p
+"nnoremap <M-v> <C-v>
+"nnoremap <C-v> p
+"vnoremap <C-c> y
+"vnoremap <C-x> c
+"inoremap <C-v> <esc>p
 " }}}
 
 
-" Undo and redo {{{
-" =================
-" Ctrl-u - undo (normal, insert)
-" Ctrl-r - redo (normal, insert)
-inoremap <buffer> <cr> <cr><c-g>u
-inoremap <buffer> . .<c-g>u
-inoremap <buffer> ! !<c-g>u
-inoremap <buffer> ? ?<c-g>u
-inoremap <buffer> , ,<c-g>u
-inoremap <buffer> <space> <space><c-g>u
-nnoremap <silent> <C-u> :undo<cr>
-inoremap <silent> <C-u> <c-o>:undo<cr>
-inoremap <silent> <C-z> <c-o>:undo<cr>
-nnoremap <silent> <C-r> :redo<cr>
-inoremap <silent> <C-r> <c-o>:redo<cr>
-" }}}
 "
 " Easy mapping to highlight pasted text
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text

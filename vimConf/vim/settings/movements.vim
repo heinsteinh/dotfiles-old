@@ -10,10 +10,10 @@ noremap k gk
 
 
 " Get off my lawn
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
+"nnoremap <Left>  :echoe "Use h"<CR>
+"nnoremap <Right> :echoe "Use l"<CR>
+"nnoremap <Up>    :echoe "Use k"<CR>
+"nnoremap <Down>  :echoe "Use j"<CR>
 
 "remap window movement keys to match up with above, using <C-direction> to
 "change between windows : Split window navigation
@@ -51,6 +51,9 @@ nnoremap <leader>l :vertical resize -5<CR>
 
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
+
+"close buffer and close de file behind
+noremap <leader>bc :bd<CR>
 nnoremap <leader>be :BufExplorer<CR>
 nnoremap <leader>bt :ToggleBufExplorer<CR>
 
