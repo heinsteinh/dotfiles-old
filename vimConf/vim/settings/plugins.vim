@@ -26,11 +26,11 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'yuttie/comfortable-motion.vim'
 
 "Completion plugin goes here
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 "Plugin 'shougo/neocomplete.vim'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
- Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
+Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
 
 " colorschemes
 "Plugin 'xolox/vim-colorscheme-switcher'
@@ -62,7 +62,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 
 
-Plugin 'lifepillar/vim-mucomplete'
+"Plugin 'lifepillar/vim-mucomplete'
 Plugin 'ntpeters/vim-better-whitespace'
 
 " Markdown / Writting

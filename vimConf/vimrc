@@ -76,6 +76,7 @@ filetype plugin indent on    " required
 
 source ~/.vim/settings.vim
 
+
 " Highlighting {{{
 " show errors
 highlight Errors ctermbg=green guibg=darkred

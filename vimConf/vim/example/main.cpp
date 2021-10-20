@@ -9,8 +9,9 @@ struct Foo {
     }
 };
 
-Foo f; // static object
+
 int main()
 {
+    Foo f; // static object
     std::cout << "main function\n";
 }
