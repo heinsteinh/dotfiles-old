@@ -165,7 +165,6 @@ set splitbelow
 set splitright
 "}}}
 
-
 " {{{ Selection
 " Change selected letters when write
 set selectmode=mouse,key

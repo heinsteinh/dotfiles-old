@@ -8,7 +8,7 @@ let g:mapleader = ','
 nnoremap <Leader>pv :split $MYVIMRC<CR>
 nnoremap <Leader>vv :vsplit $MYVIMRC<CR>
 nnoremap <Leader>rv :source $MYVIMRC<CR>
-vnoremap <Leader>r :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
+vnoremap <Leader>r  :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
 nnoremap <Leader>tv :tabnew $MYVIMRC<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
@@ -250,14 +250,14 @@ nnoremap ö :bprevious<CR>
 nnoremap <S-s> :shell<CR>
 
 " Special"{{{
-nnoremap <Leader>ev                                                 :tabnew $MYVIMRC<cr>
-nnoremap <Leader>sv                                                 :source $MYVIMRC<cr>
-noremap  <Leader>su                                                 :w !sudo tee % > /dev/null
-nnoremap <Leader>p                                                  :setlocal paste!<CR>
-nnoremap <Leader>cdc                                          :cd %:p:h<CR>
-nnoremap <Leader>sde                                          :setlocal spell spelllang=de_DE<CR>
-nnoremap <Leader>sen                                          :setlocal spell spelllang=en<CR>
-nnoremap <Leader>ml                                                 :tabnew ~/Dropbox\ Lists/buffer.txt<CR>
+nnoremap <Leader>ev       :tabnew $MYVIMRC<cr>
+nnoremap <Leader>sv        :source $MYVIMRC<cr>
+noremap  <Leader>su        :w !sudo tee % > /dev/null
+nnoremap <Leader>p         :setlocal paste!<CR>
+nnoremap <Leader>cdc :cd %:p:h<CR>
+nnoremap <Leader>sde :setlocal spell spelllang=de_DE<CR>
+nnoremap <Leader>sen :setlocal spell spelllang=en<CR>
+nnoremap <Leader>ml        :tabnew ~/Dropbox\ Lists/buffer.txt<CR>
 "}}}
 
 
@@ -279,12 +279,12 @@ nmap <leader>tt :call CleanCode()<cr>
 
 
 " NERDTree
-nmap <LEADER>no :NERDTree<CR>
-nmap <LEADER>nt :NERDTreeToggle<CR>
-nmap <LEADER>nq :NERDTreeClose<CR>
-nmap <LEADER>nm :NERtTreeMirror<CR>
-nmap <LEADER>nf :NERDTreeFind<CR>
-nmap <LEADER>nc :NERDTreeCWD<CR>
+nmap <leader>no :NERDTree<CR>
+nmap <leader>nt :NERDTreeToggle<CR>
+nmap <leader>nq :NERDTreeClose<CR>
+nmap <leader>nm :NERtTreeMirror<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+nmap <leader>nc :NERDTreeCWD<CR>
 
 
 " Taglist mappings

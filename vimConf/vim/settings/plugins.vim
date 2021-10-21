@@ -9,6 +9,11 @@ Plugin 'justinmk/vim-matchparenalways' " Scope highlighting
 Plugin 'flazz/vim-colorschemes'
 Plugin 'chriskempson/base16-vim'
 Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'PhilRunninger/nerdtree-visual-selection'
+
+
 Plugin 'mileszs/ack.vim'
 
 Plugin 'vim-airline/vim-airline'
@@ -17,25 +22,22 @@ Plugin 'vim-airline/vim-airline-themes'
 
 Plugin 'frazrepo/vim-rainbow'
 
-
-"Plugin 'ryanoasis/vim-devicons'
-"Plugin 'ryanoasis/vim-webdevicons'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-webdevicons'
 
 Plugin 'godlygeek/tabular'
 Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'yuttie/comfortable-motion.vim'
 
 "Completion plugin goes here
-Plugin 'valloric/youcompleteme'
+"Plugin 'valloric/youcompleteme'
 "Plugin 'shougo/neocomplete.vim'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
-Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
+"Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
 
-" colorschemes
-"Plugin 'xolox/vim-colorscheme-switcher'
-"Plugin 'xolox/vim-misc'
-"Plugin 'xolox/vim-session'
+
+
 
 " http://vimawesome.com/plugin/ctrlp-vim-red
 " This does the same thing as Sublime’s Ctrl P. Fuzzy search by file name.
@@ -62,6 +64,15 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 
 
+"Autocomplete package
+Plugin 'rhysd/vim-clang-format'
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+Plugin 'prabirshrestha/asyncomplete-file.vim'
+
+
 "Plugin 'lifepillar/vim-mucomplete'
 Plugin 'ntpeters/vim-better-whitespace'
 
@@ -71,11 +82,29 @@ Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
 
-" Quick PluginStall
-noremap <Leader>pi :source ~/.vimrc<cr>:PluginInstall<cr>
+" ColorScheme {{{
+" ---------------------------------------------------------------------------------------------------
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'vim-scripts/twilight'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'jpo/vim-railscasts-theme'
+Plugin 'vim-scripts/Wombat'
+Plugin 'tomasr/molokai'
+Plugin 'vim-scripts/rdark'
+Plugin 'itchyny/landscape.vim'
+Plugin 'altercation/vim-colors-solarized'
+" colorschemes
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+" }}}
 
-" Set up Matchit, for extending % for tags such as </div>.
-runtime macros/matchit.vim
+
+
+" Quick PluginStall
+nnoremap <Leader>pi :source ~/.vimrc<cr>:PluginInstall<cr>
+
 
 if(g:iswindows==1)
     " 15.d Clang Complete -->
@@ -119,25 +148,14 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_solarized_bg = 'dark'
-"let g:airline_powerline_fonts = 1
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0 " if 1 --> slower to open.
-let g:syntastic_check_on_wq = 0
+let g:airline_powerline_fonts = 1
 
 
-" 17. MUcomplete -->
-imap <C-j> <plug>(MUcompleteFwd)
-imap <C-k> <plug>(MUcompleteBwd)
-let g:mucomplete#enable_auto_at_startup = 1
-set noinfercase
-set completeopt-=preview
-set completeopt+=menuone,noselect
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => CtrlP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ---------- Ctrl-P stuff --------------
 "  Put ctrl p at the bottom ordererf from top to bottom
 let g:ctrlp_match_window='bottom,order:ttb,min:1,max:20,results:20'
@@ -162,3 +180,6 @@ let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 "Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+
+
+

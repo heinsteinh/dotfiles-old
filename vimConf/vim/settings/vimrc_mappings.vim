@@ -69,6 +69,15 @@ nnoremap < <<
 vnoremap < <gv
 vnoremap > >gv
 "}}}
+"
+"
+"{{{
+nmap <leader>c :Commentary<CR>
+vmap <leader>c :Commentary<CR>
+"}}}"
+"
+"
+"
 
 " Faster command mode access
 "nnoremap <Space> :

@@ -31,11 +31,11 @@ nmap <leader>d :e %:h<cr>
 " ... or make it
 nmap <leader>D :!mkdir -p %:h<cr>
 
-" Easier window management
-map <c-h> <c-w>h
-map <c-l> <c-w>l
-map <c-j> <c-w>j
-map <c-k> <c-w>k
+" " Easier window management
+" map <c-h> <c-w>h
+" map <c-l> <c-w>l
+" map <c-j> <c-w>j
+" map <c-k> <c-w>k
 map <c-Up>    <c-w>+
 map <c-Down>  <c-w>-
 map <c-Right> <c-w>>
@@ -79,7 +79,7 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-
+nmap <C-F2> :call ToggleWhitespace()<CR>
 
 " Formatting
 """"""""""""

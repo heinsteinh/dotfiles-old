@@ -1,19 +1,32 @@
 set nocompatible        " Use Vim settings, rather than Vi settings
 
-let g:iswindows = 0
-let g:islinux = 0
+"let g:iswindows = 0
+"let g:islinux = 0
 if(has("win32") || has("win95") || has("win64") || has("win16"))
-    let g:iswindows	=1
+    let g:iswindows=1
     let g:islinux=0
 else
     let g:iswindows=0
     let g:islinux=1
 endif
 
+" O S {{{
+"====================================================================================================
+let s:is_win   = has('win32') || has('win64')
+let s:is_mac   = has('mac') || system('uname') =~? '^darwin'
+let s:is_linux = !s:is_mac && has('unix')
+
+if s:is_win
+elseif s:is_mac
+elseif s:is_linux
+endif
+" }}}
+
+
 if(g:iswindows==1)
 
     let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-    let $scrapbook = "W:\\WorkDir\\scrapbook.textile"
+    let scrapbook = "W:\\WorkDir\\scrapbook.textile"
     "map <F12> :silent! !"C:\Program Files\Google\Chrome\Application\chrome.exe" % <CR>
 
     "     if hostname() == "DESKTOP-LL8PBC8"
@@ -36,18 +49,14 @@ if(g:iswindows==1)
     set langmenu=en
     set fileencoding=utf-8
 else
-    let $scrapbook = $HOME."/scrapbook.textile"
+    let scrapbook = $HOME."/scrapbook.textile"
     set guifont=Monaco\ 11
 
 endif
 
 
 if has("gui_running")
-    if has("gui_gtk2")
-        set guifont=Monospace\ 13
-    elseif has("gui_win32")
-        "set guifont=Consolas:h10:cANSI
-    end
+
 endif
 
 "{{{ Plugin Section
@@ -90,9 +99,11 @@ let maplocalleader = ","
 
 "set background=dark
 "colorscheme slate
-colorscheme gruvbox
+"colorscheme gruvbox
+"colorscheme wombat256
+"colorscheme herald
 "colorscheme darkblue
-"colorscheme oceanicNext
+colorscheme oceanicNext
 
 
 "{{{{
@@ -110,9 +121,9 @@ for f in split(glob('$HOME/.vim/functions/*.vim'), '\n')
 endfor
 
 " source all the helper files
-for f in split(glob('$$HOME/.vim/helpers/**/*.vim'), '\n')
-    exec 'source' f
-endfor
+"for f in split(glob('$$HOME/.vim/helpers/**/*.vim'), '\n')
+"    exec 'source' f
+"endfor
 
 if has("gui_running")
 
@@ -131,11 +142,11 @@ if has("gui_running")
     set guioptions-=L  "remove left-hand scroll bar
 
     "set guifont=Consolas:h11:cANSI
-    "set guifont=FiraCode_Nerd_Font_Mono:h10
+    set guifont=FiraCode_Nerd_Font_Mono:h10
     "  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 11
     "set guifont=Ubuntu\Mono\derivative\Powerline:h15:cANSI
-    "   set guifont=Ubuntu_Mono_derivative_Powerline:h11
-    set guifont=Ubuntu_Mono_derivative_Powerlin:h11:cANSI
+    "set guifont=Ubuntu_Mono_derivative_Powerline:h11
+    "set guifont=Ubuntu_Mono_derivative_Powerlin:h11:cANSI
     " set guifont=Ubuntu_Mono_derivative_Powerline:h14,Ubuntu_Mono_derivative_Powerline_Bold:h14,Ubuntu_Mono_derivative_Powerline_Italic:h14
     "set guifont=Hack_Nerd_Font_Mono:h10
     "set guifont=DejaVuSansMono_Nerd_Font_Mono:h11
@@ -171,8 +182,28 @@ endif
 let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
 
+" Basically disable nerdtree markers
+let g:NERDTreeDirArrowExpandable = ' '
+let g:NERDTreeDirArrowCollapsible = ' '
 map <leader>ne :NERDTreeFind<cr>
 map <C-o> :NERDTreeToggle %<CR>
+
+
+let g:NERDTreeHighlightFolders = 1
+let g:NERDTreeHighlightFoldersFullName = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1 " enable folder glyph flag
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
+" Basically disable nerdtree markers
+let g:NERDTreeDirArrowExpandable = ' '
+let g:NERDTreeDirArrowCollapsible = ' '
+
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
+let g:DevIconsDefaultFolderOpenSymbol = ' '
+
+
 "let g:NERDTreeDirArrowExpandable = '▸'
 "let g:NERDTreeDirArrowCollapsible = '▾'
 " Start NERDTree when Vim is started without file arguments.
@@ -209,126 +240,39 @@ source ~/.vim/settings/spelling.vim
 
 source ~/.vim/plugins/backupFiles.vim
 source ~/.vim/plugins/automkdir.vim
-source ~/.vim/plugins/neocomplete.vim
+"source ~/.vim/plugins/neocomplete.vim
 
 source ~/.vim/settings/vimrc_mappings.vim
 
 
 :let g:session_autosave = 'no'
-au GUIEnter * simalt ~x
-
 
 
 "{{{ Setting window size
-" if has("gui_running")
-"     " GUI is running or is about to start.
-"     " Maximize gvim window (for an alternative on Windows, see simalt below).
-"     set lines=50 columns=180
-" else
-"     " This is console Vim.
-"     if exists("+lines")
-"         set lines=50
-"     endif
-"     if exists("+columns")
-"         set columns=150
-"     endif
-" endif
+ if has("gui_running")
+     " GUI is running or is about to start.
+     " Maximize gvim window (for an alternative on Windows, see simalt below).
+     set lines=60 columns=200
+ else
+     " This is console Vim.
+     if exists("+lines")
+         set lines=50
+     endif
+     if exists("+columns")
+         set columns=150
+     endif
+ endif
 "}}}
 
 
-"{{{ AutoCommand Section
+"{{{ AutoCommand  Section
 "Automatically remove trailing spaces when saving a file.
 "autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 "useful to clear search highlight
 map <esc> :noh <CR>
 
-if has ('autocmd') " Remain compatible with earlier versaons
-
-    " automatically rebalance windows on vim resize
-    autocmd VimResized * :wincmd =
-
-    " zoom a vim pane, <C-w>= to re-balance
-    nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-    nnoremap <leader>= :wincmd =<cr>
-
-    " Preserve last editing position in vim
-    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-    autocmd Bufread,BufNewFile *.md set filetype=markdown " Vim interprets .md as 'modula2' otherwise, see :set filetype?
-    autocmd bufreadpre *.mkd setlocal textwidth=0
-    autocmd bufreadpre *.md setlocal textwidth=0
-
-    "Changing number base on the mode we are in
-    augroup toggle_relative_number
-        autocmd InsertEnter * :setlocal relativenumber " norelativenumber
-        autocmd InsertLeave * :setlocal norelativenumber " relativenumber
-    augroup END
-
-    augroup CursorLineOnlyInActiveWindow
-        autocmd!
-        autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-        autocmd WinLeave * setlocal nocursorline
-    augroup END
-
-    " Vim jumps to last position when reopening a file
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-    au BufEnter * silent! lcd %:p:h
-
-    " auto reload vimrc when editing it
-    "autocmd! bufwritepost .vimrc source ~/.vimrc
-
-    "Autoclose NERDTree if it's the only open window left.
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-    " Close the tab if NERDTree is the only window remaining in it.
-    autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-    " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-                \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-    " Cursor at position of last saved line when opening file
-    autocmd BufReadPost *
-                \ if line("'\"") > 1 && line("'\"") <= line("$") |
-                \   exe "normal! g`\"" |
-                \ endif
-
-    " Close all folds when opening a new buffer
-    "autocmd BufRead * setlocal foldmethod=marker
-
-    " Enable marker folds for .vimrc files and shell files
-    autocmd FileType vim,sh setlocal foldmethod=marker
-    autocmd BufRead * normal zM
-
-
-    augroup vimrc     " Source vim configuration upon save
-        autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-        autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-    augroup END
-
-
-    " Start NERDTree and put the cursor back in the other window.
-    autocmd VimEnter * NERDTree | wincmd p
-    "autocmd VimEnter * exe "vertical resize 60"
-
-
-
-
-    augroup cpp_augroup
-        autocmd!
-        " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F5> :setlocal makeprg=cmake\ --build\ D:/dev/proj/SoundReader/build\ --config\ Debug\ --\ /property:GenerateFullPaths=true\ /m<CR>:Make<CR>
-        " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F6> :Dispatch "D:/dev/proj/SoundReader/bin/Debug/SoundReader.exe"<CR>
-        " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <S-Space> :YcmCompleter GetType<CR>
-
-        " " Cpp ctor stub by highlighting the member vars
-        " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Ctor :call <SID>pythonSelectedTextPasteAbove("cpp.ctor_stub")<CR>
-        " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Opeq :call <SID>pythonSelectedTextPasteAbove("cpp.stub_opeq")<CR>
-    augroup END
-
-endif " has autocmd
-"}}}
-
+source ~/.vim/settings/AutoCommand.vim
 
 " Cursor style {{{
 let &t_SI.="\e[5 q" "SI = INSERT mode
@@ -336,13 +280,4 @@ let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (Eu)
 " }}}
 
-"" {{{ for error highlight
-highlight clear SpellBad
-highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline
-highlight clear SpellCap
-highlight SpellCap term=underline cterm=underline
-highlight clear SpellRare
-highlight SpellRare term=underline cterm=underline
-highlight clear SpellLocal
-highlight SpellLocal term=underline cterm=underline
-" }}}
+"}}}
