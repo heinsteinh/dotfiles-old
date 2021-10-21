@@ -63,7 +63,9 @@ if has ('autocmd') " Remain compatible with earlier versaons
     " Start NERDTree and put the cursor back in the other window.
     autocmd VimEnter * NERDTree | wincmd p
     "autocmd VimEnter * exe "vertical resize 60"
-
+    "
+    " in your .vimrc (_vimrc for Windows)
+    autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
 
     augroup cpp_augroup
         autocmd!

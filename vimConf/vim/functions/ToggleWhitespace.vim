@@ -10,4 +10,4 @@ function! ToggleWhitespace()
     set nolist
   end
 endfunction
-"command! ToggleWhitespace execute ToggleWhitespace()
+command! ToggleWhitespace execute ToggleWhitespace()

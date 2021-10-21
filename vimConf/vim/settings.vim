@@ -53,7 +53,7 @@ set undofile   " Maintain undo history between sessions
 
 " Visualize tabs and newlines
 set list
-set listchars=space:.,eol:¬,trail:.,tab:>.
+"set listchars=space:.,eol:¬,trail:.,tab:>.
 "set listchars=eol:↵,tab:➝\ ,trail:~,extends:>,precedes:<,space:·
 " highlight a matching [{()}] when cursor is placed on start/end character
 set showmatch

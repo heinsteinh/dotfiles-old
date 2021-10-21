@@ -1,4 +1,4 @@
-1) Learnin Search in Vim Editor
+1) Learning Search in Vim Editor
 
 
 Let’s say the cursor is on a word, and you want to search for a similar word. Instead of typing

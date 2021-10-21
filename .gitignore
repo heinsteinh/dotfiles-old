@@ -1,3 +1,8 @@
 vimConf/vim/bundle/*
 vimConf/vim/tmps/*
 *.un~
+
+
+vimConf/vim-cmake-boilerplate/build/*
+vimConf/vim-cmake-boilerplate/bin/*
+vimConf/vim-cmake-boilerplate/.cache/

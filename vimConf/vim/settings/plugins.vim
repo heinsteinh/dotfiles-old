@@ -30,7 +30,7 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'yuttie/comfortable-motion.vim'
 
 "Completion plugin goes here
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 "Plugin 'shougo/neocomplete.vim'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
@@ -62,6 +62,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/screen'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
+Plugin 'Rip-Rip/clang_complete'
 
 
 "Autocomplete package
@@ -82,6 +83,8 @@ Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
 
+Plugin 'tikhomirov/vim-glsl'
+
 " ColorScheme {{{
 " ---------------------------------------------------------------------------------------------------
 Plugin 'nanotech/jellybeans.vim'
@@ -99,7 +102,11 @@ Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 " }}}
-
+"
+"
+"
+" in your .vimrc (_vimrc for Windows)
+"autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
 
 
 " Quick PluginStall
@@ -108,11 +115,11 @@ nnoremap <Leader>pi :source ~/.vimrc<cr>:PluginInstall<cr>
 
 if(g:iswindows==1)
     " 15.d Clang Complete -->
-    "let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
-    "let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
-    "let g:clang_complete_auto = 1
+    let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
+    let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
+    let g:clang_complete_auto = 1
 else
-    Plugin 'Rip-Rip/clang_complete'
+
     " clang_complete configuration
     let g:clang_library_path='/usr/lib/llvm-3.8/lib'
 endif
@@ -182,4 +189,35 @@ let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 
+if executable('rg')
+    set grepprg=rg\ --color=never
+    let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+    "let g:ctrlp_use_caching = 0
 
+    let g:ctrlp_use_caching = 1
+    let g:ctrlp_clear_cache_on_exit = 0
+    let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
+    let g:ctrlp_working_path_mode = 'ra'
+    let g:ctrlp_switch_buffer = 'et'
+    let g:ackprg = 'rg --vimgrep --no-heading'
+else
+    let g:ctrlp_clear_cache_on_exit = 0
+endif
+
+
+"https://github.com/junegunn/fzf.vim
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+" let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+" let g:fzf_preview_window = []
+
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+nnoremap <C-p> :GFiles<CR>
