@@ -1,0 +1,7 @@
+[
+  {
+    "directory": "C:\\Users\\108012516\\dotfiles\\vimConf\\vim-cmake-boilerplate\\build",
+    "command": "\"C:\\windows\\system32\\CL.exe\" \/c \/I\"C:\\Users\\108012516\\dotfiles\\vimConf\\vim-cmake-boilerplate\\include\" \/Zi \/nologo \/W3 \/WX- \/diagnostics:column \/Od \/Ob0 \/D CODE_ANALYSIS \/D _MBCS \/D WIN32 \/D _WINDOWS \/D \"CMAKE_INTDIR=\\\"Debug\\\"\" \/EHsc \/RTC1 \/MDd \/GS \/fp:precise \/GR \/Fo\"Boilerplate.dir\\Debug\\\\\" \/Gd \/TP   \"C:\\Users\\108012516\\dotfiles\\vimConf\\vim-cmake-boilerplate\\src\\main.cpp\"",
+    "file": "C:\\Users\\108012516\\dotfiles\\vimConf\\vim-cmake-boilerplate\\src\\main.cpp"
+  }
+]
