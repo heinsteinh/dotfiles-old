@@ -3,6 +3,9 @@
 noremap H 0
 noremap L $
 
+" highlight last inserted text
+nnoremap gV `[v`]
+
 " open today's daily in a split
 nnoremap <leader>di :call GoToDaily()<cr>
 
@@ -20,11 +23,12 @@ vnoremap xx y
 vnoremap xa "ay
 vnoremap xb "by
 vnoremap xc "+y
-nmap x y
+
 nnoremap yx yy
 nnoremap ya "aY
 nnoremap yb "bY
 nnoremap yc "+Y
+
 nnoremap pp p
 nnoremap p <Nop>
 nnoremap PP P
@@ -40,6 +44,13 @@ nnoremap px "0p
 nnoremap Px "0P
 
 "}}}
+nnoremap pc "+p
+nnoremap Pc "+P
+nnoremap pd "1p
+nnoremap Pd "1P
+nnoremap px "0
+
+
 
 
 "{{{ More sensible cw dw and yw

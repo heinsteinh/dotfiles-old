@@ -95,7 +95,11 @@ set title
 "
 "{{{
 set foldcolumn=3
-set foldmethod=marker
+set foldmethod=marker   "marker, indent,  manual, expr, syntax, diff.
+
+"set foldenable          " enable folding
+"set foldlevelstart=10   " open most folds by default
+"set foldnestmax=10      " 10 nested fold max
 "}}}
 
 "{{{ Indentation options

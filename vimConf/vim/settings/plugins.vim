@@ -30,13 +30,16 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'yuttie/comfortable-motion.vim'
 
 "Completion plugin goes here
-Plugin 'valloric/youcompleteme'
 "Plugin 'shougo/neocomplete.vim'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
 "Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
+Plugin 'valloric/youcompleteme'
+Plugin 'adah1972/ycmconf'   "https://github.com/adah1972/ycmc
 
-
+if hostname() == "BHI4PCH7D3"
+else
+end
 
 
 " http://vimawesome.com/plugin/ctrlp-vim-red
@@ -63,15 +66,21 @@ Plugin 'ervandew/screen'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'Rip-Rip/clang_complete'
+Plugin 'rhysd/vim-clang-format'
+
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
 
 "Autocomplete package
-Plugin 'rhysd/vim-clang-format'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'prabirshrestha/asyncomplete.vim'
-Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'prabirshrestha/asyncomplete-file.vim'
+" Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'prabirshrestha/asyncomplete.vim'
+" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+" Plugin 'prabirshrestha/asyncomplete-file.vim'
 
 
 "Plugin 'lifepillar/vim-mucomplete'
@@ -83,6 +92,7 @@ Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
 
+"Shader syntax support
 Plugin 'tikhomirov/vim-glsl'
 
 " ColorScheme {{{
@@ -112,12 +122,19 @@ Plugin 'xolox/vim-session'
 " Quick PluginStall
 nnoremap <Leader>pi :source ~/.vimrc<cr>:PluginInstall<cr>
 
-
+"https://github.com/4Bruno/LessonsLearned/blob/a9443b9a3613f8491d802a580d19e721e10c6ce1/vim/.vimrc
 if(g:iswindows==1)
     " 15.d Clang Complete -->
     let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
     let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
     let g:clang_complete_auto = 1
+
+
+    if hostname() == "BHI4PCH7D3"
+        let g:clang_library_path='C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\Llvm\x64\bin'
+    else
+        let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
+    endif
 else
 
     " clang_complete configuration
@@ -147,6 +164,18 @@ let g:tagbar_autoclose = 0
 let g:tagbar_usearrows = 1
 let g:tagbar_autoshowtag = 1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => UltiSnip
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 
 " vim-airline configuration

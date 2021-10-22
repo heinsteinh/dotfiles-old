@@ -35,20 +35,18 @@ if(g:iswindows==1)
     "         autocmd GUIEnter * simalt ~x
     "     endif
     "sets path for python3
-    if isdirectory('C:\Users\feng\AppData\Local\Programs\Python\Python37-32')
-        set pythonthreedll=C:\Users\feng\AppData\Local\Programs\Python\Python37-32\python37.dll
-    elseif isdirectory('C:\Users\fwar3\AppData\Local\Programs\Python\Python36')
-        set pythonthreedll=C:\Users\fwar3\AppData\Local\Programs\Python\Python36\python36.dll
-    elseif isdirectory('C:\Python37')
-        set pythonthreedll=C:\Python37\python37.dll
-    elseif isdirectory('C:\Python38')
-        set pythonthreedll=C:\Python38\python38.dll
-    endif
+    if hostname() == "BHI4PCH7D3"
+        let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
+        let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
+    else
+    end
 
     let $LANG='en'
     set langmenu=en
     set fileencoding=utf-8
+
 else
+
     let scrapbook = $HOME."/scrapbook.textile"
     set guifont=Monaco\ 11
 
@@ -163,9 +161,9 @@ if has("gui_running")
     "    endif
 
 
-   " Open the GUI file browser.
-   map <A-o> :browse confirm e<CR>
-   nmap <C-S-s> :browse confivm saveas<CR>
+    " Open the GUI file browser.
+    map <A-o> :browse confirm e<CR>
+    nmap <C-S-s> :browse confivm saveas<CR>
 
 endif
 
@@ -245,23 +243,24 @@ source ~/.vim/plugins/automkdir.vim
 source ~/.vim/settings/vimrc_mappings.vim
 
 
+
 :let g:session_autosave = 'no'
 
 
 "{{{ Setting window size
- if has("gui_running")
-     " GUI is running or is about to start.
-     " Maximize gvim window (for an alternative on Windows, see simalt below).
-     set lines=60 columns=200
- else
-     " This is console Vim.
-     if exists("+lines")
-         set lines=50
-     endif
-     if exists("+columns")
-         set columns=150
-     endif
- endif
+if has("gui_running")
+    " GUI is running or is about to start.
+    " Maximize gvim window (for an alternative on Windows, see simalt below).
+    set lines=60 columns=200
+else
+    " This is console Vim.
+    if exists("+lines")
+        set lines=50
+    endif
+    if exists("+columns")
+        set columns=150
+    endif
+endif
 "}}}
 
 
@@ -273,6 +272,8 @@ source ~/.vim/settings/vimrc_mappings.vim
 map <esc> :noh <CR>
 
 source ~/.vim/settings/AutoCommand.vim
+
+"source 
 
 " Cursor style {{{
 let &t_SI.="\e[5 q" "SI = INSERT mode

@@ -72,7 +72,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
         " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F5> :setlocal makeprg=cmake\ --build\ D:/dev/proj/SoundReader/build\ --config\ Debug\ --\ /property:GenerateFullPaths=true\ /m<CR>:Make<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F6> :Dispatch "D:/dev/proj/SoundReader/bin/Debug/SoundReader.exe"<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <S-Space> :YcmCompleter GetType<CR>
-
+        autocmd BufEnter *{.cpp,.h} source ~/.vim/language/cpp.vim
+        autocmd BufEnter *{.c,.h} source ~/.vim/language/c.vim
         " " Cpp ctor stub by highlighting the member vars
         " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Ctor :call <SID>pythonSelectedTextPasteAbove("cpp.ctor_stub")<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Opeq :call <SID>pythonSelectedTextPasteAbove("cpp.stub_opeq")<CR>
@@ -86,8 +87,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
     augroup vimrc     " Source vim configuration upon save
         autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
         autocmd! BufWritePost $MYGVIMRC if has('gui_running') | so % | echom "Reloaded " . $MYGVIMRC | endif | redraw
-        augroup EN
-        endif " has autocmd
-        "}}}
+    augroup END
+endif " has autocmd
+"}}}
 
 
