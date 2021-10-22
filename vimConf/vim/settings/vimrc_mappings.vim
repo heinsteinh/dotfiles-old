@@ -44,13 +44,10 @@ nnoremap px "0p
 nnoremap Px "0P
 
 "}}}
-nnoremap pc "+p
-nnoremap Pc "+P
-nnoremap pd "1p
-nnoremap Pd "1P
-nnoremap px "0
 
-
+" Automatically jump to end of text thats pasted/yanked, feels inuitively.
+noremap <silent> y y`]
+noremap <silent> p p`]
 
 
 "{{{ More sensible cw dw and yw
@@ -93,6 +90,11 @@ vmap <leader>c :Commentary<CR>
 " Faster command mode access
 "nnoremap <Space> :
 "nnoremap ; :
+
+"fzf {{{
+
+
+"}}}
 
 
 " Git {{{ <leader>g-

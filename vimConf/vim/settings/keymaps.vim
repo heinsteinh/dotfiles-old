@@ -8,11 +8,11 @@ let g:mapleader = ','
 nnoremap <Leader>pv :split $MYVIMRC<CR>
 nnoremap <Leader>vv :vsplit $MYVIMRC<CR>
 nnoremap <Leader>rv :source $MYVIMRC<CR>
-vnoremap <Leader>r  :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
+nnoremap <Leader>r  :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
 nnoremap <Leader>tv :tabnew $MYVIMRC<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
-
+nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
 
 " Faster command mode access
 "nnoremap <Space> :

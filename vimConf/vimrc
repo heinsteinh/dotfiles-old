@@ -22,7 +22,6 @@ elseif s:is_linux
 endif
 " }}}
 
-
 if(g:iswindows==1)
 
     let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -46,16 +45,15 @@ if(g:iswindows==1)
     set fileencoding=utf-8
 
 else
-
     let scrapbook = $HOME."/scrapbook.textile"
     set guifont=Monaco\ 11
-
 endif
-
 
 if has("gui_running")
 
 endif
+
+
 
 "{{{ Plugin Section
 
@@ -82,7 +80,6 @@ filetype plugin indent on    " required
 "}}}
 
 source ~/.vim/settings.vim
-
 
 " Highlighting {{{
 " show errors
@@ -140,7 +137,7 @@ if has("gui_running")
     set guioptions-=L  "remove left-hand scroll bar
 
     "set guifont=Consolas:h11:cANSI
-    set guifont=FiraCode_Nerd_Font_Mono:h10
+    set guifont=FiraCode_Nerd_Font_Mono:h9
     "  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 11
     "set guifont=Ubuntu\Mono\derivative\Powerline:h15:cANSI
     "set guifont=Ubuntu_Mono_derivative_Powerline:h11
@@ -186,33 +183,32 @@ let g:NERDTreeDirArrowCollapsible = ' '
 map <leader>ne :NERDTreeFind<cr>
 map <C-o> :NERDTreeToggle %<CR>
 
+" don;t show these file types
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
-let g:NERDTreeHighlightFolders = 1
-let g:NERDTreeHighlightFoldersFullName = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1 " enable folder glyph flag
+" Enable folder icons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:DevIconsEnableFolderExtensionPatternMatching = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
 
-" Basically disable nerdtree markers
-let g:NERDTreeDirArrowExpandable = ' '
-let g:NERDTreeDirArrowCollapsible = ' '
+" Fix directory colors
+highlight! link NERDTreeFlags NERDTreeDir
 
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-let g:DevIconsDefaultFolderOpenSymbol = ''
+" Remove expandable arrow
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+"let NERDTreeDirArrowExpandable = "\u00a0"
+"let NERDTreeDirArrowCollapsible = "\u00a0"
+"let NERDTreeNodeDelimiter = "\x07"
 
+" Autorefresh on tree focus
+function! NERDTreeRefresh()
+    if &filetype == "nerdtree"
+        silent exe substitute(mapcheck("R"), "<CR>", "", "")
+    endif
+endfunction
 
-"let g:NERDTreeDirArrowExpandable = '▸'
-"let g:NERDTreeDirArrowCollapsible = '▾'
-" Start NERDTree when Vim is started without file arguments.
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-"
-"
-"Air Vim Pluggin setting
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
+autocmd BufEnter * call NERDTreeRefresh()
+
 
 
 "enable rainbow it globally
@@ -273,12 +269,12 @@ map <esc> :noh <CR>
 
 source ~/.vim/settings/AutoCommand.vim
 
-"source 
+"}}}
+
+"source
 
 " Cursor style {{{
 let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (Eu)
-" }}}
-
 "}}}

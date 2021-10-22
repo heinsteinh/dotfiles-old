@@ -36,9 +36,9 @@ nmap <leader>D :!mkdir -p %:h<cr>
 " map <c-l> <c-w>l
 " map <c-j> <c-w>j
 " map <c-k> <c-w>k
-map <c-Up>    <c-w>+
 map <c-Down>  <c-w>-
 map <c-Right> <c-w>>
+map <c-Up>    <c-w>+
 map <c-Left>  <c-w><
 
 
@@ -53,10 +53,18 @@ nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
 
 "close buffer and close de file behind
-noremap <leader>bc :bd<CR>
+nnoremap <leader>bc :bd<CR>
 nnoremap <leader>be :BufExplorer<CR>
 nnoremap <leader>bt :ToggleBufExplorer<CR>
 
+
+
+" Double tap s to save the buffer contents, more convienent than keep the pressure on the modifier keys to be CUA compatible.
+nnoremap <silent> ss :update<CR>
+
+
+
+map <F11> <Esc>:call libcallnr("gvimfullscreen_64.dll", "ToggleFullScreen", 0)<CR>
 "
 " File Handling
 """""""""""""""

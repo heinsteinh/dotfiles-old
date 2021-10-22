@@ -146,7 +146,7 @@ set scrolloff=3
 set sidescrolloff=5
 "- Enable syntax highlighting.
 syntax enable
-
+set termguicolors
 "}}}
 
 "{{{ Miscellaneous Options
