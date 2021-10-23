@@ -82,13 +82,14 @@ nnoremap <C-n> :tabnew<CR>
 " vnoremap <C-w> <ESC>:q<CR>
 
 " [EDIT+VISUAL+COMMAND] CTRL-f open search
-nnoremap <C-f> /
+"nnoremap <C-f> /
+nnoremap <C-f> :Rg <CR>
 inoremap <C-f> <ESC>/
 vnoremap <C-f> <ESC>/
 
 " [EDIT+VISUAL+COMMAND] ALT-f open search replace
 nnoremap <M-r> :%s/
-inoremap <M-r> <ESC>:%s/
+inoremap <M-r> <ESC>:%s,r/
 vnoremap <M-r> <ESC>:%s/
 
 " [EDIT+VISUAL+COMMAND] ALT-f clear search
@@ -297,7 +298,7 @@ nmap <Leader>tbc :TagbarClose<CR>
 nmap <LEADER>ct :w !find -E `pwd` -regex ".*\\.(h\|c\|java\|php\|py)" \| xargs ctags -f ~/.tags -R --c++-kinds=+px --fields=+iaS --extra=+q<CR><CR>
 
 " \ff                                                                                        打开文件搜索窗口，在状态栏显示 [ctrlp.vim插件]
-nmap <leader>ff :CtrlP<CR>
+"nmap <leader>ff :CtrlP<CR>
 
 imap <leader>rt <esc>:call RemoveTabs()<cr>
 nmap <leader>rt :call RemoveTabs()<cr>

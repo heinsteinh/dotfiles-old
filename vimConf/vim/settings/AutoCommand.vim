@@ -45,7 +45,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
 
 
     " Open the existing NERDTree on each new tab.
-    autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+    "autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
     " Cursor at position of last saved line when opening file
     autocmd BufReadPost *
@@ -65,7 +65,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     "autocmd VimEnter * exe "vertical resize 60"
     "
     " in your .vimrc (_vimrc for Windows)
-    autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
+    autocmd! BufNewFile,BufRead *{.vs,.vert,.vsh},*{.fs,.frag,.fsh} set ft=glsl
 
     augroup cpp_augroup
         autocmd!

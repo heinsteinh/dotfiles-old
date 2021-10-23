@@ -1,5 +1,5 @@
 "https://github.com/junegunn/fzf.vim
-let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_preview_window = ['right:40%', 'ctrl-/']
 " let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 " let g:fzf_preview_window = []
 
@@ -27,6 +27,7 @@ let g:fzf_action = {
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+nnoremap <C-p> :Files<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>gg :GFiles<CR>
 nnoremap <leader>bb :Buffers<CR>
@@ -38,10 +39,22 @@ nnoremap <leader>m :Marks<CR>
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.9, 'height': 0.6,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+" Default fzf layout
+" - Popup window (center of the screen)
+"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+
+" - Popup window (anchored to the bottom of the current window)
+"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+"let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =

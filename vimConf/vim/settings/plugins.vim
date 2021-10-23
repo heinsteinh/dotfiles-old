@@ -14,14 +14,15 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
 
 
-Plugin 'mileszs/ack.vim'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'itchyny/lightline.vim'
 
-Plugin 'frazrepo/vim-rainbow'
+" Gruvbox Community theme.
+"Plugin 'gruvbox-community/gruvbox'
 
+Plugin 'frazrepo/vim-rainbow'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'ryanoasis/vim-webdevicons'
 
@@ -35,13 +36,16 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
 "Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
 Plugin 'valloric/youcompleteme'
-Plugin 'adah1972/ycmconf'   "https://github.com/adah1972/ycmc
+"Plugin 'adah1972/ycmconf'   "https://github.com/adah1972/ycmc
+
+
+
 
 if hostname() == "BHI4PCH7D3"
 else
 end
 
-Plugin 'jiangmiao/auto-pairs'
+"Plugin 'jiangmiao/auto-pairs'
 " http://vimawesome.com/plugin/ctrlp-vim-red
 " This does the same thing as Sublime’s Ctrl P. Fuzzy search by file name.
 " Must have.
@@ -59,32 +63,28 @@ Plugin 'tpope/vim-commentary'
 "c/c++ stuff here
 Plugin 'majutsushi/tagbar'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'qpkorr/vim-bufkill'
+" Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'ervandew/screen'
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'rhysd/vim-clang-format'
+Plugin 'mileszs/ack.vim'
 
 
-" Track the engine.
-"Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
 
 
-"Autocomplete package
-" Plugin 'prabirshrestha/async.vim'
-" Plugin 'prabirshrestha/vim-lsp'
-" Plugin 'prabirshrestha/asyncomplete.vim'
-" Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-" Plugin 'prabirshrestha/asyncomplete-file.vim'
+
 
 
 "Plugin 'lifepillar/vim-mucomplete'
-Plugin 'ntpeters/vim-better-whitespace'
+" Plugin 'ntpeters/vim-better-whitespace'
 
 " Markdown / Writting
 Plugin 'reedes/vim-pencil'
@@ -108,9 +108,9 @@ Plugin 'vim-scripts/rdark'
 Plugin 'itchyny/landscape.vim'
 Plugin 'altercation/vim-colors-solarized'
 " colorschemes
-Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
+" Plugin 'xolox/vim-colorscheme-switcher'
+" Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-session'
 " }}}
 "
 "
@@ -128,7 +128,6 @@ if(g:iswindows==1)
     let g:clang_library_path='C:\Program Files\LLVM\bin\libclang.dll'
     let g:clang_user_options = '-target=x86_64-w64-windows-gnu'
     let g:clang_complete_auto = 1
-
 
     if hostname() == "BHI4PCH7D3"
         let g:clang_library_path='C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Tools\Llvm\x64\bin'
@@ -164,18 +163,24 @@ let g:tagbar_autoclose = 0
 let g:tagbar_usearrows = 1
 let g:tagbar_autoshowtag = 1
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => UltiSnip
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
 " - https://github.com/nvim-lua/completion-nvim
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Trigger configuration. Do not use <tab> if you use YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-t>"
+let g:UltiSnipsJumpForwardTrigger="<C-f>"
+let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 
 " " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="vertical"
 
 
 " vim-airline configuration
@@ -234,98 +239,38 @@ else
     let g:ctrlp_clear_cache_on_exit = 0
 endif
 
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 
+
+" Mapping to close the completion menu (default <C-y>)
+let g:ycm_key_list_stop_completion = ['<C-x>']
+
+" Set filetypes where YCM will be turned on
+let g:ycm_filetype_whitelist = { 'cpp':1, 'h':2, 'hpp':3, 'c':4, 'cxx':5 }
+
+" Close preview window after completing the insertion
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+
+let g:ycm_confirm_extra_conf = 0                 " Don't confirm python conf
+let g:ycm_always_populate_location_list = 1      " Always populae diagnostics list
+let g:ycm_enable_diagnostic_signs = 1            " Enable line highligting diagnostics
+let g:ycm_open_loclist_on_ycm_diags = 1          " Open location list to view diagnostics
+
+let g:ycm_max_num_candidates = 20                " Max number of completion suggestions 
+let g:ycm_max_num_identifier_candidates = 10     " Max number of identifier-based suggestions
+let g:ycm_auto_trigger = 1                       " Enable completion menu
+let g:ycm_show_diagnostic_ui = 1                 " Show diagnostic display features
+let g:ycm_error_symbol = '>>'                    " The error symbol in Vim gutter
+let g:ycm_enable_diagnostic_signs = 1            " Display icons in Vim's gutter, error, warnings
+let g:ycm_enable_diagnostic_highlighting = 1     " Highlight regions of diagnostic text
+let g:ycm_echo_current_diagnostic = 1            " Echo line's diagnostic that cursor is on
+
+" make YCM compatible with UltiSnips (using supertab)
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 
 source $HOME/.vim/plugins/fzf-setting.vim
 
-
-""https://github.com/junegunn/fzf.vim
-"let g:fzf_preview_window = ['right:50%', 'ctrl-/']
-"" let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
-"" let g:fzf_preview_window = []
-
-
-"" [Buffers] Jump to the existing window if possible
-"let g:fzf_buffers_jump = 1
-"" [[B]Commits] Customize the options used by 'git log':
-"let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-"" [Tags] Command to generate tags file
-"let g:fzf_tags_command = 'ctags -R'
-"" [Commands] --expect expression for directly executing the command
-"let g:fzf_commands_expect = 'alt-enter,ctrl-x'
-""nnoremap <C-p> :GFiles<CR>
-
-"nnoremap <leader>>gg :GFiles<CR
-
-
-"" This is the default extra key bindings
-"let g:fzf_action = {
-"  \ 'ctrl-t': 'tab split',
-"  \ 'ctrl-x': 'split',
-"  \ 'ctrl-v': 'vsplit' }
-
-"" Enable per-command history.
-"" CTRL-N and CTRL-P will be automatically bound to next-history and
-"" previous-history instead of down and up. If you don't like the change,
-"" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-"let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-"nnoremap <leader>ff :Files<CR>
-"nnoremap <leader>gg :GFiles<CR>
-"nnoremap <leader>bb :Buffers<CR>
-"nnoremap <leader>g :Rg<CR>
-"nnoremap <leader>t :Tags<CR>
-"nnoremap <leader>m :Marks<CR>
-
-
-
-"let g:fzf_tags_command = 'ctags -R'
-"" Border color
-"let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-"let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-"let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-
-"" Customize fzf colors to match your color scheme
-"let g:fzf_colors =
-            "\ { 'fg':      ['fg', 'Normal'],
-"  \ 'bg':      ['bg', 'Normal'],
-"  \ 'hl':      ['fg', 'Comment'],
-"  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"  \ 'hl+':     ['fg', 'Statement'],
-"  \ 'info':    ['fg', 'PreProc'],
-"  \ 'border':  ['fg', 'Ignore'],
-"  \ 'prompt':  ['fg', 'Conditional'],
-"  \ 'pointer': ['fg', 'Exception'],
-"  \ 'marker':  ['fg', 'Keyword'],
-"  \ 'spinner': ['fg', 'Label'],
-"  \ 'header':  ['fg', 'Comment'] }
-
-""Get Files
-"command! -bang -nargs=? -complete=dir Files
-"    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-
-
-"" Get text in files with Rg
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"  \   fzf#vim#with_preview(), <bang>0)
-
-"" Ripgrep advanced
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-
-"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-"" Git grep
-"command! -bang -nargs=* GGrep
-"  \ call fzf#vim#grep(
-"  \   'git grep --line-number '.shellescape(<q-args>), 0,
-"  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)

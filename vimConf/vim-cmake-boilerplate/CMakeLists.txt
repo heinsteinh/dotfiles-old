@@ -1,7 +1,5 @@
 # Specify the minimum version of CMake that can run this script
 cmake_minimum_required(VERSION 3.20)
-# Specify the minimum version of CMake that can run this script
-cmake_minimum_required(VERSION 3.12)
 
 # Project name and version
 project(Boilerplate VERSION 1.0)
@@ -10,7 +8,6 @@ project(Boilerplate VERSION 1.0)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 
 
 # if(NOT DEFINED ENV{CMAKE_EXPORT_COMPILE_COMMANDS})
@@ -30,6 +27,4 @@ target_include_directories(Boilerplate PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/inclu
 # Set the output directory for executables
 set_target_properties(Boilerplate
     PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
-
-
+    RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin/$<CONFIG>")

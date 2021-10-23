@@ -13,53 +13,32 @@ nnoremap <leader>di :call GoToDaily()<cr>
 " yank to system clipboard
 xnoremap <leader>c "+y
 nnoremap <leader>c "+y
+" paste from system clipboard and go end of the paste
+nnoremap <leader>v "+p`]
 
-" paste from system clipboard
-nnoremap <leader>v "+p
+
 
 "Better copy paste
-vnoremap y <Nop>
-vnoremap xx y
-vnoremap xa "ay
-vnoremap xb "by
-vnoremap xc "+y
 
-nnoremap yx yy
-nnoremap ya "aY
-nnoremap yb "bY
-nnoremap yc "+Y
+nnoremap ay "+y
+vnoremap ay "+y
+nnoremap aY "+Y
+vnoremap aY "+Y
+nnoremap ayy "+yy
+vnoremap ayy "+yy
+nnoremap ap "+p
+nnoremap ad "+d
+vnoremap ad "+d
+nnoremap add "+dd
+vnoremap add "+dd
 
-nnoremap pp p
-nnoremap p <Nop>
-nnoremap PP P
-nnoremap pa "ap
-nnoremap Pa "aP
-nnoremap pb "bp
-nnoremap Pb "bP
-nnoremap pc "+p
-nnoremap Pc "+P
-nnoremap pd "1p
-nnoremap Pd "1P
-nnoremap px "0p
-nnoremap Px "0P
 
 "}}}
 
 " Automatically jump to end of text thats pasted/yanked, feels inuitively.
-noremap <silent> y y`]
-noremap <silent> p p`]
+"noremap <silent> y y`]
+"noremap <silent> p p`]
 
-
-"{{{ More sensible cw dw and yw
-nnoremap cw ciw
-nnoremap cW ciW
-nnoremap dw daw
-nnoremap dW daW
-nnoremap yw yiw
-nnoremap yW yiW
-nmap ce cia
-nmap de daa
-"}}}
 
 
 "{{{Fold shorcuts
@@ -80,8 +59,8 @@ vnoremap > >gv
 "
 "
 "{{{
-nmap <leader>c :Commentary<CR>
-vmap <leader>c :Commentary<CR>
+nmap <leader>cc :Commentary<CR>
+vmap <leader>cc :Commentary<CR>
 "}}}"
 "
 "
@@ -92,7 +71,12 @@ vmap <leader>c :Commentary<CR>
 "nnoremap ; :
 
 "fzf {{{
+if executable('rg')
+" Search for word under cursor with RipGrep
+nnoremap <leader>g :<C-U>execute "Rg ".expand('<cword>') \| cw<CR>
+else
 
+endi
 
 "}}}
 

@@ -1,19 +1,47 @@
 #include <iostream>
+#include <cstdlib>
 #include <iterator>
 #include <memory>
+#include <ostream>
+#include <stdint.h>
+
 
 #include <algorithm>
 
+#include <iostream>
+
+
+class main
+{
+    public:
+        main (uint32_t arguments);
+        virtual ~main ();
+
+        void testFunction()
+        {
+            for (int i = 0; i < 2; ++i) {
+                for (int i = 0; i <3; ++i) {
+
+                    for (int i = 0; i < 3; ++i) {
+                        std::cout<< "" std:}
+n
+                }
+            }
+        }
+
+    private:
+        /* data */
+};
 
 
 
 struct Foo {
     int n;
     Foo() {
-       std::cout << "static constructor\n";
+        std::cout << "static constructor\n";
     }
     ~Foo() {
-       std::cout << "static destructor\n";
+        std::cout << "static destructor\n";
     }
 };
 

@@ -42,7 +42,11 @@ if(g:iswindows==1)
 
     let $LANG='en'
     set langmenu=en
-    set fileencoding=utf-8
+    set encoding=utf-8
+
+
+    autocmd GUIEnter * simalt ~x
+
 
 else
     let scrapbook = $HOME."/scrapbook.textile"
@@ -94,11 +98,11 @@ let maplocalleader = ","
 
 "set background=dark
 "colorscheme slate
-"colorscheme gruvbox
+colorscheme gruvbox
 "colorscheme wombat256
 "colorscheme herald
 "colorscheme darkblue
-colorscheme oceanicNext
+"colorscheme oceanicNext
 
 
 "{{{{
@@ -114,6 +118,13 @@ for f in split(glob('$HOME/.vim/functions/*.vim'), '\n')
     "echo "sourcing dir"
     exec 'source' f
 endfor
+
+
+" source all the helper files
+for f in split(glob('$HOME/.vim/plugin/*.vim'), '\n')
+    "echo "sourcing dir"
+    exec 'source' f
+endfo
 
 " source all the helper files
 "for f in split(glob('$$HOME/.vim/helpers/**/*.vim'), '\n')
@@ -136,8 +147,11 @@ if has("gui_running")
     set guioptions-=r  "remove right-hand,scroll bar
     set guioptions-=L  "remove left-hand scroll bar
 
+
     "set guifont=Consolas:h11:cANSI
-    set guifont=FiraCode_Nerd_Font_Mono:h9
+    set guifont=FiraCode_Nerd_Font_Mono:h11
+    "set guifont=monofur_for_Powerline:h14
+
     "  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 11
     "set guifont=Ubuntu\Mono\derivative\Powerline:h15:cANSI
     "set guifont=Ubuntu_Mono_derivative_Powerline:h11
@@ -168,6 +182,7 @@ endif
 "}}}}
 
 
+
 "colorscheme OceanicNext
 "highlight Normal guifg=white guibg=black
 
@@ -178,8 +193,9 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
 
 " Basically disable nerdtree markers
-let g:NERDTreeDirArrowExpandable = ' '
-let g:NERDTreeDirArrowCollapsible = ' '
+"let NERDTreeDirArrowExpandable=">"
+"let NERDTreeDirArrowCollapsible="v"
+
 map <leader>ne :NERDTreeFind<cr>
 map <C-o> :NERDTreeToggle %<CR>
 
@@ -196,9 +212,9 @@ highlight! link NERDTreeFlags NERDTreeDir
 " Remove expandable arrow
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-"let NERDTreeDirArrowExpandable = "\u00a0"
-"let NERDTreeDirArrowCollapsible = "\u00a0"
-"let NERDTreeNodeDelimiter = "\x07"
+let NERDTreeDirArrowExpandable = "\u00a0"
+let NERDTreeDirArrowCollapsible = "\u00a0"
+let NERDTreeNodeDelimiter = "\x07"
 
 " Autorefresh on tree focus
 function! NERDTreeRefresh()
@@ -218,7 +234,7 @@ au FileType c,cpp,objc,objcpp call rainbow#load()
 
 ""}}}
 
-" source custom files
+"source custom files
 
 "load here my custom settings
 "source ~/.vim/settings.vim
@@ -232,32 +248,35 @@ source ~/.vim/settings/spelling.vim
 
 "source ~/.vim/settings/settings-extra.vim
 
+
 source ~/.vim/plugins/backupFiles.vim
 source ~/.vim/plugins/automkdir.vim
 "source ~/.vim/plugins/neocomplete.vim
 
 source ~/.vim/settings/vimrc_mappings.vim
-
+source ~/.vim/plugins/diminactive.vim
 
 
 :let g:session_autosave = 'no'
 
 
-"{{{ Setting window size
-if has("gui_running")
-    " GUI is running or is about to start.
-    " Maximize gvim window (for an alternative on Windows, see simalt below).
-    set lines=60 columns=200
-else
-    " This is console Vim.
-    if exists("+lines")
-        set lines=50
-    endif
-    if exists("+columns")
-        set columns=150
-    endif
-endif
-"}}}
+
+
+""{{{ Setting window size
+"if has("gui_running")
+"    " GUI is running or is about to start.
+"    " Maximize gvim window (for an alternative on Windows, see simalt below).
+"    set lines=60 columns=200
+"else
+"    " This is console Vim.
+"    if exists("+lines")
+"        set lines=50
+"    endif
+"    if exists("+columns")
+"        set columns=150
+"    endif
+"endif
+""}}}
 
 
 "{{{ AutoCommand  Section

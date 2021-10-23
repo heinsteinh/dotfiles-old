@@ -59,9 +59,9 @@ set list
 set showmatch
 
 " Tenths of a second to show the matching paren, when 'showmatch' is set.
- set matchtime=1
+set matchtime=1
 
- " Make < and > as well as match pairs.
+" Make < and > as well as match pairs.
 set matchpairs+=<:>
 
 "- Maximum number of tab pages that can be opened from the command line.
@@ -167,6 +167,10 @@ set visualbell
 " Better splits (new windows appear below and to the right)
 set splitbelow
 set splitright
+
+
+" Restore buffer list, marks are remembered for 9999 files, memory registers up to 512Kb are remembered.
+set viminfo=%,'9999,s512,nF:\\VimData\\files-viminfo
 "}}}
 
 " {{{ Selection
@@ -185,3 +189,4 @@ set virtualedit=block
 " Visual selection automatically copied to clipboard
 set go+=a
 "}}}
+
