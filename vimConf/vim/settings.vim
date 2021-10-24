@@ -190,3 +190,6 @@ set virtualedit=block
 set go+=a
 "}}}
 
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac

@@ -82,8 +82,8 @@ nnoremap <C-n> :tabnew<CR>
 " vnoremap <C-w> <ESC>:q<CR>
 
 " [EDIT+VISUAL+COMMAND] CTRL-f open search
-"nnoremap <C-f> /
-nnoremap <C-f> :Rg <CR>
+nnoremap <C-f> /
+"nnoremap <C-f> : <CR>
 inoremap <C-f> <ESC>/
 vnoremap <C-f> <ESC>/
 
@@ -297,7 +297,18 @@ nmap <Leader>tbc :TagbarClose<CR>
 " ctags
 nmap <LEADER>ct :w !find -E `pwd` -regex ".*\\.(h\|c\|java\|php\|py)" \| xargs ctags -f ~/.tags -R --c++-kinds=+px --fields=+iaS --extra=+q<CR><CR>
 
-" \ff                                                                                        打开文件搜索窗口，在状态栏显示 [ctrlp.vim插件]
+
+
+map <silent> <F2> :!ctags -I __THROW --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+px --fields=+ialS --extra=+q -R -f ~/.vim/systags /usr/include /usr/local/include<CR>:!ctags -I __THROW --file-scope=yes --langmap=c:+.h --languages=c,c++ --links=yes --c-kinds=+p --c++-kinds=+px --fields=+ialS --extra=+q -R -f ~/.vim/tangtags /tang/include<CR>:set tags+=~/.vim/systags<CR>:set tags+=~/.vim/tangtags<CR>
+
+set tags+=~/.vim/systags
+set tags+=~/.vim/tangtags
+
+map <silent> <F10> :!ctags -R .<CR><CR>
+map <silent> <F11> :!ctags -R --c++-kinds=+px --fields=+iaS --extra=+q .<CR><CR>
+map <silent> <F12> :!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q .<CR><CR>
+
+" \ff                                                                                       
 "nmap <leader>ff :CtrlP<CR>
 
 imap <leader>rt <esc>:call RemoveTabs()<cr>
