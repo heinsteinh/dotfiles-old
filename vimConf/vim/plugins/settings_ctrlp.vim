@@ -56,6 +56,9 @@ if executable('rg')
     let g:ctrlp_working_path_mode = 'ra'
     let g:ctrlp_switch_buffer = 'et'
     let g:ackprg = 'rg --vimgrep --no-heading'
+
+
+    echo "Yes we can use rg to find in ctrlp !"
 else
     let g:ctrlp_clear_cache_on_exit = 0
 endif

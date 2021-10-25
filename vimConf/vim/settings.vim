@@ -92,8 +92,8 @@ set title
 "}}}
 
 "{{{
-"set foldcolumn=3
-"set foldmethod=marker   "marker, indent,  manual, expr, syntax, diff.
+set foldcolumn=3
+set foldmethod=marker   "marker, indent,  manual, expr, syntax, diff.
 
 "set foldenable          " enable folding
 "set foldlevelstart=10   " open most folds by default
@@ -192,3 +192,8 @@ set go+=a
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+
+set omnifunc=syntaxcomplete#Complete " Enable omnifunc (C-x C-o)
+set fillchars+=vert:│                " Solid line instead of dashed line
+set clipboard=unnamedplus
+

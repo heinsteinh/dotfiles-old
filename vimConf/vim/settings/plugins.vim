@@ -62,7 +62,7 @@ Plugin 'tpope/vim-commentary'
 "c/c++ stuff here
 Plugin 'majutsushi/tagbar'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-" Plugin 'qpkorr/vim-bufkill'
+Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/syntastic'
 " Track the engine.
@@ -105,10 +105,10 @@ Plugin 'vim-scripts/rdark'
 Plugin 'itchyny/landscape.vim'
 Plugin 'altercation/vim-colors-solarized'
 " colorschemes
-" Plugin 'xolox/vim-colorscheme-switcher'
-" Plugin 'xolox/vim-misc'
-" Plugin 'xolox/vim-session'
-" }}}
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+"}}}
 "
 "
 "

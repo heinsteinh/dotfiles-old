@@ -137,7 +137,8 @@ if has("gui_running")
     let $LANG='en'
     set langmenu=en
     set encoding=utf-8
-    colorscheme gruvbox 
+    "colorscheme gruvbox 
+
 
     "set background=dark
     "colorscheme slate
@@ -145,7 +146,7 @@ if has("gui_running")
     "colorscheme wombat256
     "colorscheme herald
     "colorscheme darkblue
-    "colorscheme oceanicNext
+    colorscheme OceanicNext
 
     " Always show cursor
     set ruler
@@ -173,13 +174,14 @@ if has("gui_running")
             "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
             set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
         else
-            set guifont=DejaVu\ Sans\ Mono\ 13
+            set guifont=DejaVu\ Sans\ Mono\ 14
         endif
 
         au GUIEnter * simalt ~x
 
     elseif g:is_linux
-        set guifont=Ubuntu\ Mono\ Regular\ 12
+        "set guifont=Ubuntu\ Mono\ Regular\ 13
+        set guifont=Fira\ Code\ 11
     endif
 
 

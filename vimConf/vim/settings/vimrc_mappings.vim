@@ -16,12 +16,10 @@ nnoremap <leader>c "+y
 " paste from system clipboard and go end of the paste
 nnoremap <leader>v "+p`]
 
-
-
 "Better copy paste
 
 nnoremap ay "+y
-vnoremap ay "+y
+vnoremap ay "+y:
 nnoremap aY "+Y
 vnoremap aY "+Y
 nnoremap ayy "+yy

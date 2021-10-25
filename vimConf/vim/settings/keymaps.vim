@@ -4,7 +4,7 @@ let maplocalleader = ','
 let g:mapleader = ','
 
 
-" Vimrc quick edit
+"Vimrc quick edit
 nnoremap <Leader>pv :split $MYVIMRC<CR>
 nnoremap <Leader>vv :vsplit $MYVIMRC<CR>
 nnoremap <Leader>rv :source $MYVIMRC<CR>
