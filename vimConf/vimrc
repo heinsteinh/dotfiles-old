@@ -8,8 +8,8 @@ set encoding=utf-8
 "syntax on " Enable syntax highlighting
 "filetype indent on " Enable indenting for files
 "set autoindent " Enable auto indenting
-set number " Enable line numbers
-colorscheme desert " Set nice looking colorscheme
+"set number " Enable line numbers
+"colorscheme desert " Set nice looking colorscheme
 "set nobackup " Disable backup files
 "set laststatus=2 "show status line
 "set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
@@ -48,8 +48,8 @@ if g:is_iterm
         source $HOME/$VIMFILE_DIR/tmux.vim
     endif
 
-   "echo "sourcing is_iterm "
-   set t_Co=256  
+    "echo "sourcing is_iterm "
+    set t_Co=256  
 endif
 
 
@@ -63,8 +63,22 @@ if g:is_win
 
     else
 
-    end
+    endif
+
 elseif g:is_linux
+    " Allows you to enter sudo pass and save the file
+    " " when you forgot to open your file with sudo
+    cmap w!! %!sudo tee > /dev/null %
+
+
+    if hostname() == "BHI4PCH7D3"
+        let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
+        let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
+
+    else
+
+    endif
+
 
 endif
 
@@ -99,6 +113,13 @@ filetype plugin indent on    " required
 
 
 
+if g:is_win
+    "set shell=cmd
+    "set shellcmdflag=/c
+else
+    "set shell=/bin/bash
+endif
+
 " Highlighting {{{
 " show errors
 highlight Errors ctermbg=green guibg=darkred
@@ -108,6 +129,9 @@ highlight Errors ctermbg=green guibg=darkred
 source $HOME/$VIMFILE_DIR/settings.vim
 
 
+let $LANG='en'
+set langmenu=en
+
 if has("gui_running")
 
     let $LANG='en'
@@ -115,13 +139,13 @@ if has("gui_running")
     set encoding=utf-8
     colorscheme gruvbox 
 
-"set background=dark
-"colorscheme slate
-"colorscheme gruvbox
-"colorscheme wombat256
-"colorscheme herald
-"colorscheme darkblue
-"colorscheme oceanicNext
+    "set background=dark
+    "colorscheme slate
+    "colorscheme gruvbox
+    "colorscheme wombat256
+    "colorscheme herald
+    "colorscheme darkblue
+    "colorscheme oceanicNext
 
     " Always show cursor
     set ruler
@@ -129,34 +153,66 @@ if has("gui_running")
     " Highlight the current line
     set cursorline
 
+    " enable true colors suppor
+    set termguicolors
 
     " Hide the toolbar
     set guioptions-=T
     "set guioptions-=m  "remove menu bar
-    "set guioptions-=T  "remove toolbar
-    "set guioptions-=r  "remove right-hand,scroll bar
-    "set guioptions-=L  "remove left-hand scroll bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand,scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 
     if g:is_win
-   set guifont=FiraCode_Nerd_Font_Mono:h11 
+        "set guifont=FiraCode_Nerd_Font_Mono:h10:style=Medium 
+        " set guifont=FiraCode_Nerd_Font_Mono:h10
+        " set guifont=FiraCode\ Nerd\ Font\ Mono:h10
+        " set guifont=FiraCode\ Nerd\ Font\ Mono:h12:style=Retina
+        set guifont=FiraCode\ Nerd\ Font\ Mono:h13
+        if has('gui_win32')
+            "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
+            set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
+        else
+            set guifont=DejaVu\ Sans\ Mono\ 13
+        endif
+
+        au GUIEnter * simalt ~x
+
     elseif g:is_linux
-   set guifont=Ubuntu\ Mono\ Regular\ 14
+        set guifont=Ubuntu\ Mono\ Regular\ 12
     endif
 
-else
-   echo "sourcing Terminal "
-   set t_Co=256
-   "colorscheme desert
-   colorscheme gruvbox 
-   set nocursorline
-  
 
-     if g:is_win
-    
-    
+    nnoremap <A-n>  :confirm enew<CR>
+    inoremap <A-n>  :confirm enew<CR>
+
+    " Open the GUI file browser.
+    " CTRL-O is Quickopen file
+    noremap <A-o> :browse confirm e<CR>
+    vnoremap <A-o> :browse confirm e<CR>
+    inoremap <A-o> :browse confirm e<CR>
+
+    " CTRL-W is Quicksave as.. file
+    noremap <A-w> :browse confirm saveas<CR>
+    vnoremap <A-w> :browse confirm saveas<CR>
+    inoremap <A-w> :browse confirm saveas<CR>
+
+    "Useful to find out how the font is set in guifont :set guifont?
+    map <F3> <Esc>:set guifont=*<CR> 
+else
+    echo "sourcing Terminal "
+    set t_Co=256
+    set term=xterm-256color
+    "colorscheme desert
+    colorscheme gruvbox 
+    set nocursorline  
+    set mouse=a
+
+    if g:is_win
+
+
     elseif g:is_linux
-    
-    
+
     endif
 endif
 
@@ -164,26 +220,25 @@ endif
 " {{{ Special setting for ConEmu
 " http://conemu.github.io/en/VimXterm.html
 if g:is_win && !has("gui_running")
-  " 256-color
-  set term=xterm
-  set t_Co=256
-  let &t_AB="\e[48;5;%dm"
-  let &t_AF="\e[38;5;%dm"
-  colorscheme desert
-  "colorscheme zenburn
+    " 256-color
+    set term=xterm
+    set t_Co=256
+    let &t_AB="\e[48;5;%dm"
+    let &t_AF="\e[38;5;%dm"
+    colorscheme desert
+    "colorscheme zenburn
 
-  " Enable mouse interaction
-  set mouse=a
-  inoremap <Esc>[62~ <C-X><C-E>
-  inoremap <Esc>[63~ <C-X><C-Y>
-  nnoremap <Esc>[62~ <C-E>
-  nnoremap <Esc>[63~ <C-Y>
+    " Enable mouse interaction
+    set mouse=a
+    inoremap <Esc>[62~ <C-X><C-E>
+    inoremap <Esc>[63~ <C-X><C-Y>
+    nnoremap <Esc>[62~ <C-E>
+    nnoremap <Esc>[63~ <C-Y>
 endif
 "}}}
 
 
-
-"{{{{
+"{{{ Sourcing config and plugin files here
 
 " source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
@@ -195,7 +250,6 @@ endfor
 
 "" source all the helper files
 "for f in split(glob('$HOME/$VIMFILE_DIR/plugins/*.vim'), '\n')
-"    "echo "sourcing dir"
 "    echo f
 "    exec 'source' f
 "endfor
@@ -207,23 +261,57 @@ endfor
 "
 
 
-
+"{{{ Source architecture config dependency 
 if g:is_win
-  if filereadable(expand('$HOME/$VIMFILE_DIR/vimrc.win'))
-    "echo "sourcing win dir
-    source $HOME/$VIMFILE_DIR/vimrc.win
-  endif
+    if filereadable(expand('$HOME/$VIMFILE_DIR/vimrc.win'))
+        "echo "sourcing win dir
+        source $HOME/$VIMFILE_DIR/vimrc.win
+    endif
 elseif g:is_mac
-  if filereadable(expand("$HOME/$VIMFILE_DIR/vimrc.mac"))
-    source  $HOME/$VIMFILE_DIR/vimrc.mac
-  endif
+    if filereadable(expand("$HOME/$VIMFILE_DIR/vimrc.mac"))
+        source  $HOME/$VIMFILE_DIR/vimrc.mac
+    endif
 elseif g:is_linux
-  if filereadable(expand("$HOME/$VIMFILE_DIR/vimrc.linux"))
-    source  $HOME/$VIMFILE_DIR/vimrc.linux
-  endif
+    if filereadable(expand("$HOME/$VIMFILE_DIR/vimrc.linux"))
+        source  $HOME/$VIMFILE_DIR/vimrc.linux
+    endif
 endif
+"}}}
 
-"}}}}
+"}}}
+
+
+"{{{ Source custum settings
+
+
+source ~/.vim/settings/functions.vim
+source ~/.vim/settings/keymaps.vim
+source ~/.vim/settings/movements.vim
+source ~/.vim/settings/spelling.vim
+source ~/.vim/settings/vimrc_mappings.vim
+
+source ~/.vim/plugins/backupFiles.vim
+source ~/.vim/plugins/automkdir.vim
+source ~/.vim/plugins/diminactive.vim
+
+"}}}
+
+
+"{{{ AutoCommand  Section
+
+"useful to clear search highlight
+"map <esc> :noh <CR>
+
+source ~/.vim/settings/AutoCommand.vim
+
+"}}}
+
+
+" Cursor style {{{
+"let &t_SI.="\e[5 q" "SI = INSERT mode
+"let &t_SR.="\e[4 q" "SR = REPLACE mode
+"let &t_EI.="\e[1 q" "EI = NORMAL mode (Eu)
+"}}}
 
 
 

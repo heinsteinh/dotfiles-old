@@ -9,7 +9,7 @@
 #include <algorithm>
 
 #include <iostream>
-
+#include <iostream>
 
 class main
 {
@@ -23,8 +23,8 @@ class main
                 for (int i = 0; i <3; ++i) {
 
                     for (int i = 0; i < 3; ++i) {
-                        std::cout<< "" std:}
-n
+                        std::cout<< "" << std::endl;
+                    }
                 }
             }
         }

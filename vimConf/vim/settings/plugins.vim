@@ -35,9 +35,8 @@ Plugin 'jlanzarotta/bufexplorer'
 "Plugin 'vim-scripts/AutoComplPop'
 "Plugin 'vim-scripts/AutoComplPop'   " too slow
 "Plugin 'Shougo/neocomplete.vim' " faster than AutoComplPop
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 "Plugin 'adah1972/ycmconf'   "https://github.com/adah1972/ycmc
-
 
 
 
@@ -76,8 +75,6 @@ Plugin 'junegunn/fzf'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'mileszs/ack.vim'
-
-
 
 
 
@@ -135,12 +132,13 @@ let g:airline_powerline_fonts = 1
 
 
 
-"source $HOME/$VIMFILEiS/plugins/settings_programming.vim
-"source $HOME/$VIMFILEiS/plugins/settings_ctrlp.vim
-"source $HOME/$VIMFILEiS/plugins/settings_fzf.vim
-"source $HOME/$VIMFILEiS/plugins/settings_ycm.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_nerdtree.vim
+"source $HOME/$VIMFILE_DIR/plugins/settings_programming.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_ctrlp.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
+"source $HOME/$VIMFILE_DIR/plugins/settings_ycm.vim
 
 
-"source $HOME/$VIMFILEiS/plugins/fzf-setting.vim
+"source $HOME/$VIMFILE_DIR/plugins/fzf-setting.vim
 
 

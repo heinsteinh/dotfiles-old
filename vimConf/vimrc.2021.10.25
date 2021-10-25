@@ -202,6 +202,19 @@ if has("gui_running")
     map <A-o> :browse confirm e<CR>
     nmap <C-S-s> :browse confivm saveas<CR>
 
+   nnoremap <A-n>  :confirm enew<CR>
+   inoremap <A-n>  :confirm enew<CR>
+
+   " CTRL-O is Quickopen file
+   noremap <A-o> :browse confirm e<CR>
+   vnoremap <A-o> :browse confirm e<CR>
+   inoremap <A-o> :browse confirm e<CR>
+
+   " CTRL-W is Quicksave as.. file
+   noremap <A-w> :browse confirm saveas<CR>
+   vnoremap <A-w> :browse confirm saveas<CR>
+   inoremap <A-w> :browse confirm saveas<CR>
+   
 end
 
 
