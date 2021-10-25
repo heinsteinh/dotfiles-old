@@ -1,13 +1,13 @@
 
 "{{{ General configuration options
-"
+
 
 " Turn on syntax highlighting
 syntax on
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
-"set path+=**
+set path+=**
 
 "Use Vim settings, rather then Vi settings. It's important to have this on the top of your file, as it influences other options.
 set nocompatible
@@ -52,7 +52,7 @@ set undofile   " Maintain undo history between sessions
 "set clipboard+=unnamed
 
 " Visualize tabs and newlines
-set list
+"set list
 "set listchars=space:.,eol:¬,trail:.,tab:>.
 "set listchars=eol:↵,tab:➝\ ,trail:~,extends:>,precedes:<,space:·
 " highlight a matching [{()}] when cursor is placed on start/end character
@@ -90,10 +90,10 @@ set title
 "set nobackup
 "set nowb
 "}}}
-"
+
 "{{{
-set foldcolumn=3
-set foldmethod=marker   "marker, indent,  manual, expr, syntax, diff.
+"set foldcolumn=3
+"set foldmethod=marker   "marker, indent,  manual, expr, syntax, diff.
 
 "set foldenable          " enable folding
 "set foldlevelstart=10   " open most folds by default
@@ -169,7 +169,7 @@ set splitright
 
 
 " Restore buffer list, marks are remembered for 9999 files, memory registers up to 512Kb are remembered.
-set viminfo=%,'9999,s512,nF:\\VimData\\files-viminfo
+"set viminfo=%,'9999,s512,nF:\\VimData\\files-viminfo
 "}}}
 
 " {{{ Selection
