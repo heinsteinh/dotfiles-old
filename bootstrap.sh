@@ -3,7 +3,7 @@
 set -e
 
 
-DOTFILES=$HOME/Seafile/Dotfiles
+#DOTFILES=$HOME/Seafile/Dotfiles
 
 function link {
     ln -sf $DOTFILES/$1 ~/$2
@@ -36,8 +36,8 @@ rm -rf ${HOME}/.vim
 [[ -d ${DOTFILES_DIR}/vimConf                  ]] &&  ln -sfv ${DOTFILES_DIR}/vimConf/vim               ${HOME}/.vim
 
 
-rm -rf ${HOME}/.tmux
-[[ -d ${DOTFILES_DIR}/tmuxConf                 ]] &&  ln -sfv ${DOTFILES_DIR}/tmuxConf/tmux             ${HOME}/.tmux
+#rm -rf ${HOME}/.tmux
+#[[ -d ${DOTFILES_DIR}/tmuxConf                 ]] &&  ln -sfv ${DOTFILES_DIR}/tmuxConf/tmux             ${HOME}/.tmux
 
 
 #rm -rf ${HOME}/.emacs.d
@@ -45,7 +45,7 @@ rm -rf ${HOME}/.tmux
 
 
 ln -sfv ${DOTFILES_DIR}/vimConf/vimrc              ${HOME}/.vimrc
-ln -sfv ${DOTFILES_DIR}/tmuxConf/tmux.conf           ${HOME}/.tmux.conf
+#ln -sfv ${DOTFILES_DIR}/tmuxConf/tmux.conf           ${HOME}/.tmux.conf
 
 #ln -sfv ${DOTFILES_DIR}/runcom/bash_profile           ${HOME}/.bash_profile
 #ln -sfv ${DOTFILES_DIR}/runcom/bashrc                 ${HOME}/.bashrc

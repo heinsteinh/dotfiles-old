@@ -24,38 +24,40 @@ endif
 
 if(g:iswindows==1)
 
-    let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-    let scrapbook = "W:\\WorkDir\\scrapbook.textile"
-    "map <F12> :silent! !"C:\Program Files\Google\Chrome\Application\chrome.exe" % <CR>
+    if has("gui_running")
+        let webBrowser = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+        let scrapbook = "W:\\WorkDir\\scrapbook.textile"
+        "map <F12> :silent! !"C:\Program Files\Google\Chrome\Application\chrome.exe" % <CR>
 
-    "     if hostname() == "DESKTOP-LL8PBC8"
-    "         set lines=40 columns=130
-    "     els,
-    "         autocmd GUIEnter * simalt ~x
-    "     endif
-    "sets path for python3
-    if hostname() == "BHI4PCH7D3"
-        let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
-        let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
-    else
-    end
+        "     if hostname() == "DESKTOP-LL8PBC8"
+        "         set lines=40 columns=130
+        "     els,
+        "         autocmd GUIEnter * simalt ~x
+        "     endif
+        "sets path for python3
+        if hostname() == "BHI4PCH7D3"
+            let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
+            let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
+        else
+        end
 
-    let $LANG='en'
-    set langmenu=en
-    set encoding=utf-8
+        let $LANG='en'
+        set langmenu=en
+        set encoding=utf-8
 
 
-    autocmd GUIEnter * simalt ~x
+        autocmd GUIEnter * simalt ~x
+    endif
 
 
 else
-    let scrapbook = $HOME."/scrapbook.textile"
-    set guifont=Monaco\ 11
+    if has("gui_running")
+        let scrapbook = $HOME."/scrapbook.textile"
+        "set guifont=Monaco\ 11
+    endif
 endif
 
-if has("gui_running")
 
-endif
 
 
 
@@ -83,7 +85,7 @@ filetype plugin indent on    " required
 "filetype plugin on
 "}}}
 
-source ~/.vim/settings.vim
+"source ~/.vim/settings.vim
 
 " Highlighting {{{
 " show errors
@@ -98,10 +100,10 @@ let maplocalleader = ","
 
 set background=dark
 "colorscheme slate
-colorscheme gruvbox
+"colorscheme gruvbox
 "colorscheme wombat256
 "colorscheme herald
-"colorscheme darkblue
+colorscheme darkblue
 "colorscheme oceanicNext
 
 
@@ -113,18 +115,18 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 
-" source all the helper files
-for f in split(glob('$HOME/.vim/functions/*.vim'), '\n')
-    "echo "sourcing dir"
-    exec 'source' f
-endfor
+"" source all the helper files
+"for f in split(glob('$HOME/.vim/functions/*.vim'), '\n')
+"    "echo "sourcing dir"
+"    exec 'source' f
+"endfor
 
 
-" source all the helper files
-for f in split(glob('$HOME/.vim/plugin/*.vim'), '\n')
-    "echo "sourcing dir"
-    exec 'source' f
-endfo
+"" source all the helper files
+"for f in split(glob('$HOME/.vim/plugin/*.vim'), '\n')
+"    "echo "sourcing dir"
+"    exec 'source' f
+"endfo
 
 " source all the helper files
 "for f in split(glob('$$HOME/.vim/helpers/**/*.vim'), '\n')
@@ -148,29 +150,29 @@ if has("gui_running")
     set guioptions-=L  "remove left-hand scroll bar
 
 
-
     "set guifont=Consolas:h11:cANSI
-    set guifont=FiraCode_Nerd_Font_Mono:h11
+    "set guifont=FiraCode_Nerd_Font_Mono:h11
     "set guifont=monofur_for_Powerline:h14
 
     "  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 11
     "set guifont=Ubuntu\Mono\derivative\Powerline:h15:cANSI
     "set guifont=Ubuntu_Mono_derivative_Powerline:h11
     "set guifont=Ubuntu_Mono_derivative_Powerlin:h11:cANSI
-    " set guifont=Ubuntu_Mono_derivative_Powerline:h14,Ubuntu_Mono_derivative_Powerline_Bold:h14,Ubuntu_Mono_derivative_Powerline_Italic:h14
+    "set guifont=Ubuntu_Mono_derivative_Powerline:h14,Ubuntu_Mono_derivative_Powerline_Bold:h14,Ubuntu_Mono_derivative_Powerline_Italic:h14
     "set guifont=Hack_Nerd_Font_Mono:h10
     "set guifont=DejaVuSansMono_Nerd_Font_Mono:h11
     "
-    " " Only set guifont once, since it resizes gVim when sourcing $MYVIMRC
-    "  if !exists('s:set_guifont')
-    "        let s:set_guifont = 1
 
-    "        if has('win32')
-    "            set guifont=FiraCode_Nerd_Font_Mono:h11
-    "        else
-    "            set guifont=Ubuntu\ Mono\ Regular\ 18
-    "        endif
-    "    endif
+    " " Only set guifont once, since it resizes gVim when sourcing $MYVIMRC
+    " if !exists('s:set_guifont')
+    "       let s:set_guifont = 1
+
+    if has('win32')
+        set guifont=FiraCode_Nerd_Font_Mono:h11
+    else
+        set guifont=Ubuntu\ Mono\ Regular\ 14
+    endif
+    "  endif
 
 
     " Open the GUI file browser.
@@ -217,14 +219,14 @@ let NERDTreeDirArrowExpandable = "\u00a0"
 let NERDTreeDirArrowCollapsible = "\u00a0"
 let NERDTreeNodeDelimiter = "\x07"
 
-" Autorefresh on tree focus
-function! NERDTreeRefresh()
-    if &filetype == "nerdtree"
-        silent exe substitute(mapcheck("R"), "<CR>", "", "")
-    endif
-endfunction
+"" Autorefresh on tree focus
+"function! NERDTreeRefresh()
+"    if &filetype == "nerdtree"
+"        silent exe substitute(mapcheck("R"), "<CR>", "", "")
+"    endif
+"endfunction
 
-autocmd BufEnter * call NERDTreeRefresh()
+"autocmd BufEnter * call NERDTreeRefresh()
 
 
 
@@ -238,24 +240,18 @@ au FileType c,cpp,objc,objcpp call rainbow#load()
 "source custom files
 
 "load here my custom settings
-"source ~/.vim/settings.vim
-"source ~/.vim/settings/settings-extra.vim
-"source ~/.vim/settings-light.vim
 
-source ~/.vim/settings/functions.vim
-source ~/.vim/settings/keymaps.vim
-source ~/.vim/settings/movements.vim
-source ~/.vim/settings/spelling.vim
-
-"source ~/.vim/settings/settings-extra.vim
+"source ~/.vim/settings/functions.vim
+"source ~/.vim/settings/keymaps.vim
+"source ~/.vim/settings/movements.vim
+"source ~/.vim/settings/spelling.vim
+"source ~/.vim/settings/vimrc_mappings.vim
 
 
-source ~/.vim/plugins/backupFiles.vim
-source ~/.vim/plugins/automkdir.vim
-"source ~/.vim/plugins/neocomplete.vim
+"source ~/.vim/plugins/backupFiles.vim
+"source ~/.vim/plugins/automkdir.vim
+"source ~/.vim/plugins/diminactive.vim
 
-source ~/.vim/settings/vimrc_mappings.vim
-source ~/.vim/plugins/diminactive.vim
 
 
 :let g:session_autosave = 'no'
@@ -287,7 +283,7 @@ source ~/.vim/plugins/diminactive.vim
 "useful to clear search highlight
 map <esc> :noh <CR>
 
-source ~/.vim/settings/AutoCommand.vim
+"source ~/.vim/settings/AutoCommand.vim
 
 "}}}
 

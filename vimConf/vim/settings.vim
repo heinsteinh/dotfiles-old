@@ -66,8 +66,6 @@ set matchpairs+=<:>
 
 "- Maximum number of tab pages that can be opened from the command line.
 set tabpagemax=40
-"- Change color scheme.
-colorscheme desert
 "- Highlight the line currently under cursor.
 set cursorline
 "- Show line numbers on the sidebar.
@@ -129,7 +127,8 @@ set ignorecase
 "- ... unless you type a capital.
 set smartcase
 set showmatch
-map <leader><space> :let @/=''<cr> " clear search
+" clear search
+map <leader><space> :let @/=''<cr> "
 
 " CtrlP -> files matched are ignored when expanding wildcards
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*.,*/.DS_Store
@@ -146,7 +145,7 @@ set scrolloff=3
 set sidescrolloff=5
 "- Enable syntax highlighting.
 syntax enable
-set termguicolors
+"set termguicolors
 "}}}
 
 "{{{ Miscellaneous Options
