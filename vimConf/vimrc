@@ -176,7 +176,7 @@ if has("gui_running")
             "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
             set guifont=FiraCode_Nerd_Font_Mono:h10:W500:cANSI:qDRAFT
         else
-            set guifont=DejaVu\ Sans\ Mono\ 14
+            set guifont=DejaVu\ Sans\ Mono\ 13
         endif
 
         au GUIEnter * simalt ~x
@@ -221,8 +221,6 @@ else
 endif
 
 "}}}
-
-
 
 
 " {{{ Special setting for ConEmu

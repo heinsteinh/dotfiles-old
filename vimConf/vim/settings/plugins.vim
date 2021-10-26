@@ -12,7 +12,8 @@ Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
-"Plugin 'ludovicchabant/vim-gutentags'
+"CTage management for 
+Plugin 'ludovicchabant/vim-gutentags' 
 
 
 Plugin 'vim-airline/vim-airline'
@@ -117,6 +118,7 @@ Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/rdark'
 Plugin 'itchyny/landscape.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'Badacadabra/vim-archery'
 " colorschemes
 "Plugin 'xolox/vim-colorscheme-switcher'
 "Plugin 'xolox/vim-misc'
@@ -131,6 +133,7 @@ Plugin 'altercation/vim-colors-solarized'
 " Quick PluginStall
 nnoremap <Leader>pi :source $MYVIMRC<cr>:PluginInstall<cr>
 
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 
 " vim-airline configuration
