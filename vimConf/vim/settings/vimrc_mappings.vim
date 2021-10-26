@@ -19,7 +19,7 @@ nnoremap <leader>v "+p`]
 "Better copy paste
 
 nnoremap ay "+y
-vnoremap ay "+y:
+vnoremap ay "+y
 nnoremap aY "+Y
 vnoremap aY "+Y
 nnoremap ayy "+yy
@@ -45,6 +45,14 @@ nnoremap zo zr
 nnoremap zO zR
 nnoremap zc zm
 nnoremap zC zM
+
+
+
+" create fold (visual select)
+vnoremap <space> zf
+
+" close other folds
+nnoremap zo zMzv
 "}}}
 
 

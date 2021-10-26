@@ -196,10 +196,10 @@ endif
 "}}}
 
 
+"{{{ Setting System Clipboard
+
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-
-
 set fillchars+=vert:│                " Solid line instead of dashed line
 "set clipboard=unnamedplus
 
@@ -218,3 +218,7 @@ if has("gui_running")
 else
     " Terminal vim
 endif
+"}}}
+
+set switchbuf=useopen " reveal already opened files from the quickfix window
+                      " instead of opening new buffers

@@ -37,9 +37,9 @@ nmap <leader>D :!mkdir -p %:h<cr>
 " map <c-j> <c-w>j
 " map <c-k> <c-w>k
 map <c-Down>  <c-w>-
-map <c-Right> <c-w>>
+map <c-Right> <c-w><
 map <c-Up>    <c-w>+
-map <c-Left>  <c-w><
+map <c-Left>  <c-w>>
 
 
 "Split window resize
@@ -49,6 +49,7 @@ nnoremap <leader>h :vertical resize +5<CR>
 nnoremap <leader>l :vertical resize -5<CR>
 
 
+"" Buffers Mapping {{{
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprevious<CR>
 
@@ -56,7 +57,17 @@ nnoremap <leader>bp :bprevious<CR>
 nnoremap <leader>bc :bd<CR>
 nnoremap <leader>be :BufExplorer<CR>
 nnoremap <leader>bt :ToggleBufExplorer<CR>
+" Delete all buffers
+nnoremap <Leader>dd :bufdo BD<CR> 
 
+" close buffer
+noremap <leader>q :bp<cr>:bd #<cr>
+" cleanup all vim buffers
+noremap <leader>qq :bufdo bd<cr>
+noremap <leader>qa :bufdo bd!<cr>
+" cleanup all vim buffers, except the active one.
+noremap <leader>qo :call buffer#DeleteOnly()<cr>
+" }}}
 
 
 " Double tap s to save the buffer contents, more convienent than keep the pressure on the modifier keys to be CUA compatible.
@@ -74,6 +85,11 @@ map <F11> <Esc>:call libcallnr("gvimfullscreen_64.dll", "ToggleFullScreen", 0)<C
 map <Leader>fe    :e      <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>fs    :split  <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>fv    :vsplit <C-R>=expand("%:p:h") . '/'<CR>
+
+
+"" Terminal-mode  {{{
+tnoremap <Esc> <C-\><C-n>
+" }}}
 
 " Rename current file (thanks Gary Bernhardt)
 function! RenameFile()

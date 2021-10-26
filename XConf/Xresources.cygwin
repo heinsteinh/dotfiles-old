@@ -1,0 +1,160 @@
+!  ¦¦     ¦¦
+! ¦¦¦¦   ¦¦
+!  ¦¦¦¦ ¦¦   ¦¦¦¦¦¦  ¦¦¦¦¦   ¦¦¦¦¦¦  ¦¦¦¦¦¦  ¦¦   ¦¦ ¦¦¦¦¦¦  ¦¦¦¦¦   ¦¦¦¦¦   ¦¦¦¦¦¦
+!   ¦¦¦¦¦   ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦  ¦¦¦¦¦¦¦¦¦¦¦  ¦¦¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦
+!    ¦¦¦¦¦   ¦¦¦ ¦ ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦ ¦¦¦   ¦¦¦¦¦¦  ¦¦¦ ¦¦¦ ¦ ¦¦¦  ¦¦ ¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+!   ¦¦ ¦¦¦¦  ¦¦¦   ¦¦¦¦¦¦¦  ¦¦¦¦¦¦¦¦¦¦   ¦¦¦¦¦¦  ¦¦¦ ¦¦¦   ¦¦¦   ¦¦¦¦¦¦¦¦¦  ¦¦¦¦¦¦¦
+!  ¦¦   ¦¦¦¦¦¦¦¦   ¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦ ¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦¦¦¦¦¦   ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦
+! ¦¦     ¦¦ ¦¦¦     ¦¦¦¦¦¦ ¦¦¦¦¦¦   ¦¦¦¦¦¦   ¦¦¦¦¦¦ ¦¦¦     ¦¦¦¦¦   ¦¦¦¦¦¦ ¦¦¦¦¦¦
+
+!!----------------------------------------------------------------------------------------
+!!-- Author  ? Joe Biden aka ygr                                                        --
+!!-- Dotfile ? ${HOME}/.Xresources                                                      --
+!!-- vim: set nu ai et ts=12 sw=4 ft=xdefaults syn=xdefaults :                           --
+!!----------------------------------------------------------------------------------------
+
+!! ? general options
+!!----------------------------------------------------------------------------------------
+
+
+! ? Xft options
+! normal screen
+!Xft.dpi                                    : 96
+Xft.dpi                                    : 76
+Xft.autohint                               : false
+Xft.lcdfilter                              : lcddefault
+Xft.hintstyle                              : hintslight
+Xft.hinting                                : true
+Xft.antialias                              : true
+Xft.rgba                                   : none
+
+
+!! ? Cursor options
+ Xcursor.theme                              : aDMZ
+ Xcursor.size                               : 16   !  32, 48 or 64 may also be good values
+ Xcursor.theme_core                         : true
+
+
+!! ? Tk theme
+ *TkTheme                                   : clam
+
+
+
+!! ? colour schemes
+!! define the external colourscheme
+!#include "/home/fkheinstein/.xresources.d/colors-scheme"
+!#include  "/home/fkheinstein/.xresources.d/gruvbox-dark.xresources"
+
+!#include </home/108012516/build/xcolors/xcolor_code/wagon>
+!#include </home/108012516/build/xcolors/xcolor_code/autumn>
+!#include </home/108012516/build/xcolors/xcolor_code/meditatesafe>
+!#include </home/108012516/build/xcolors/xcolor_code/warm>
+
+#include </home/108012516/build/xcolors/xcolor_code/blackened>
+
+
+!! ? terminal options
+!!----------------------------------------------------------------------------------------
+!! ? URxvt options
+!! fonts
+ URxvt*font:                 xft:Monaco for Powerline:bold:size=12
+ URxvt*imFont:               xft:Monaco for Powerline:bold:size=12
+ URxvt*boldFont:             xft:Monaco for Powerline:bold:size=12
+ URxvt*italicFont:           xft:Monaco for Powerline:italic:size=12
+ URxvt*boldItalicFont:       xft:Monaco for Powerline:bold:italic:size=12
+
+
+URxvt.iconFile: /usr/share/icons/Menda-Square/apps/scalable/terminal.svg
+
+!! general options
+ URxvt*termname                             : rxvt-unicode-256color
+ URxvt*modifier                             : alt
+ URxvt*geometry                             : 120x30
+ URxvt*savelines                            : 0
+ URxvt*letterSpace                          : 0
+ URxvt*lineSpace                            : 0
+ URxvt*imLocate                             : en_US.UTF-8
+ URxvt*allow_bold                           : true
+ URxvt*boldMode                             : true
+ URxvt*loginShell                           : false
+ URxvt*multiClickTime                       : 500
+ URxvt*utmpInhibit                          : false
+ URxvt*skipBuiltinGlyphs                    : false
+ URxvt*meta8                                : false
+ URxvt*tripleclickwords                     : true
+ URxvt*secondaryScreen                      : true
+ URxvt*secondaryScroll                      : true
+ URxvt*hold                                 : false
+ URxvt*mouseWheelScrollPage                 : false
+ URxvt*pastableTabs                         : true
+ URxvt*buffered                             : true
+ URxvt*fading                               : false
+ URxvt*intensityStyles                      : true
+ URxvt*pointerBlank                         : false
+ URxvt*pointerBlankDelay                    : 2
+
+!! border
+ URxvt*internalBorder                       : 2
+ URxvt*externalBorder                       : 4
+ URxvt*borderLess                           : false
+
+!! disable faulty alerts
+ URxvt*urgentOnBell                         : false
+ URxvt*visualBell                           : false
+ URxvt*mapAlert                             : false
+ URxvt*insecure                             : false
+
+!! scrollbar options
+ URxvt*scrollBar                            : false
+ URxvt*scrollstyle                          : plain
+ URxvt*thickness                            : false
+ URxvt*scrollBar_right                      : true
+ URxvt*scrollBar_floating                   : false
+ URxvt*scrollBar_align                      : centre
+ URxvt*scrollTtyOutput                      : true
+ URxvt*scrollWithBuffer                     : false
+ URxvt*scrollTtyKeypress                    : true
+ URxvt*jumpScroll                           : false
+ URxvt*skipScroll                           : false
+
+!! disable key capture mode
+ URxvt*iso14755                             : false
+ URxvt*iso14755_52                          : false
+
+!! colour options
+
+
+!URxvt*reverseVideo                         : true
+ URxvt*cursorColor                          : #395573
+ URxvt*cursorUnderline                      : false
+ URxvt*cursorBlink                          : true
+ URxvt*fadeColor                            : #111111
+ URxvt*scrollColor                          : #b2b2b2
+ URxvt*throughColor                         : #969696
+
+ !URxvt*borderColor                          : #000000
+ URxvt.borderColor                           : #050505
+ URxvt.borderless                            : true
+ URxvt.internalBorder                        : 5
+
+
+
+! ¦¦¦¦ clipboard
+ URxvt.perl-ext-common                       : default,clipboard,url-select,keyboard-select
+
+ ! Clipboard : ALT+C / ALT+V ===
+ URxvt.keysym.M-x                            : perl:keyboard-select:activate
+ URxvt.keysym.M-u                            : perl:url-select:select_next
+ URxvt.keysym.M-c                            : perl:clipboard:copy
+ URxvt.keysym.M-v                            : perl:clipboard:paste
+ URxvt.keysym.M-s                            : perl:keyboard-select:search
+ URxvt.keysym.M-C-v                          : perl:clipboard:paste_escaped
+
+ URxvt.url-select.launcher                   : dwb
+ URxvt.url-select.autocopy                   : true
+ URxvt.url-select.underline                  : true
+
+ !URxvt.clipboard.copycmd                     : xsel -ib
+ !URxvt.clipboard.pastecmd                    : xsel -ob
+
+

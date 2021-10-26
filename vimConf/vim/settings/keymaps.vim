@@ -155,8 +155,8 @@ vnoremap <M-Down> <ESC>:wincmd j<CR>gv=gv
 nnoremap <Leader>wp :set wrap!<CR>
 
 " splits
-nnoremap <leader>v :vsplit<CR>:Explore<CR>
-nnoremap <leader>s :split<CR>:Explore<CR>
+"nnoremap <leader>v :vsplit<CR>:Explore<CR>
+"nnoremap <leader>s :split<CR>:Explore<CR>
 
 " Switch CWD to the directory of the open buffer
 vnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
@@ -170,18 +170,6 @@ nnoremap <leader>ss :set spell!<cr>
 " Quit all
 noremap <c-q> :confirm qall<cr>
 
-
-" Copy and paste {{{
-" ==================
-" Ctrl-c - copy (visual)
-" Ctrl-x - cut (visual)
-" Ctrl-v - paste (insert)
-"nnoremap <M-v> <C-v>
-"nnoremap <C-v> p
-"vnoremap <C-c> y
-"vnoremap <C-x> c
-"inoremap <C-v> <esc>p
-" }}}
 
 
 "

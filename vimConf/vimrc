@@ -46,6 +46,8 @@ endif
 if g:is_iterm
     if g:is_tmux
         source $HOME/$VIMFILE_DIR/tmux.vim
+
+        "echo "sourcing is_iterm in TMUX"
     endif
 
     "echo "sourcing is_iterm "
@@ -142,11 +144,11 @@ if has("gui_running")
 
     "set background=dark
     "colorscheme slate
-    "colorscheme gruvbox
+    colorscheme gruvbox
     "colorscheme wombat256
     "colorscheme herald
     "colorscheme darkblue
-    colorscheme OceanicNext
+   " colorscheme OceanicNext
 
     " Always show cursor
     set ruler
@@ -172,7 +174,7 @@ if has("gui_running")
         set guifont=FiraCode\ Nerd\ Font\ Mono:h13
         if has('gui_win32')
             "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
-            set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
+            set guifont=FiraCode_Nerd_Font_Mono:h10:W500:cANSI:qDRAFT
         else
             set guifont=DejaVu\ Sans\ Mono\ 14
         endif
@@ -249,7 +251,7 @@ endif
 " source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
     "echo "sourcing dir "
-    "echo f
+    echo f
     exec 'source' f
 endfor
 

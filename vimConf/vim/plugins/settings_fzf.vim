@@ -7,22 +7,22 @@ let g:fzf_preview_window = ['right:60%', 'ctrl-/']
 
 " This is the default extra key bindings
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
 endfunction
 
 let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-q': function('s:build_quickfix_list'),
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 
 " Enable per-command history.
@@ -38,6 +38,17 @@ nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
+
+"fzf { {{
+if executable('rg')
+    " Search for word under cursor with RipGrep
+    nnoremap <leader>g :<C-U>execute "Rg ".expand('<cword>') \| cw<CR>
+else
+
+endif
+
+"}}}
+
 
 
 " [Buffers] Jump to the existing window if possible
@@ -78,74 +89,74 @@ let $FZF_DEFAULT_COMMAND='fd --type file --follow --hidden --exclude .git  --col
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 "Get Files
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 
 " Get text in files with Rg
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   fzf#vim#with_preview(), <bang>0)
 
 " Ripgrep advanced
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Git grep
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+            \ call fzf#vim#grep(
+            \   'git grep --line-number '.shellescape(<q-args>), 0,
+            \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 
 
-" <leader>p = :FZFSearch
-nnoremap <leader>p :FZFSearch<CR>
-" <leader>P = :Files
-nnoremap <leader>P :Files .<CR>
+"" <leader>p = :FZFSearch
+"nnoremap <leader>p :FZFSearch<CR>
+"" <leader>P = :Files
+"nnoremap <leader>P :Files .<CR>
 
-" <leader>g = Fzf grep search
-nnoremap <leader>g :AgSearch<CR>
-" <leader>G = Fzf grep search from current directory
-nnoremap <leader>G :Ag<CR>
+"" <leader>g = Fzf grep search
+"nnoremap <leader>g :AgSearch<CR>
+"" <leader>G = Fzf grep search from current directory
+"nnoremap <leader>G :Ag<CR>
 
-" Function to make FZF search from git root if in git repo.
-" Else, search from current directory
-function! s:fzf_find_files()
-    let git_root = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-    execute 'Files' git_root
-endfunction
-command! FZFSearch execute s:fzf_find_files()
+"" Function to make FZF search from git root if in git repo.
+"" Else, search from current directory
+"function! s:fzf_find_files()
+"    let git_root = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+"    execute 'Files' git_root
+"endfunction
+"command! FZFSearch execute s:fzf_find_files()
 
-" Function to make Ag search from git root if in git repo.
-" Else, search from current directory
-function! s:ag_search(bang)
-    let git_root = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-    call fzf#vim#ag(join(a:000[1:], ' '),
-                  \ fzf#vim#with_preview({'dir': git_root}),
-                  \ a:bang)
-endfunction
-""command! -bang -complete=dir AgSearch call s:ag_search(<bang>0)
+"" Function to make Ag search from git root if in git repo.
+"" Else, search from current directory
+"function! s:ag_search(bang)
+"    let git_root = system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+"    call fzf#vim#ag(join(a:000[1:], ' '),
+"                \ fzf#vim#with_preview({'dir': git_root}),
+"                \ a:bang)
+"endfunction
+"""command! -bang -complete=dir AgSearch call s:ag_search(<bang>0)

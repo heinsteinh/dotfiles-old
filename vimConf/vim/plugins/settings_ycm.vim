@@ -1,4 +1,5 @@
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/.vim/*', '~/work/*', '~/Documents/*']
 
 
 " Mapping to close the completion menu (default <C-y>)
@@ -11,8 +12,7 @@ let g:ycm_filetype_whitelist = { 'cpp':1, 'h':2, 'hpp':3, 'c':4, 'cxx':5 }
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-
-let g:ycm_confirm_extra_conf = 0                 " Don't confirm python conf
+"let g:ycm_confirm_extra_conf = 0                 " Don't confirm python conf
 let g:ycm_always_populate_location_list = 1      " Always populae diagnostics list
 let g:ycm_enable_diagnostic_signs = 1            " Enable line highligting diagnostics
 let g:ycm_open_loclist_on_ycm_diags = 1          " Open location list to view diagnostics
@@ -30,3 +30,15 @@ let g:ycm_echo_current_diagnostic = 1            " Echo line's diagnostic that c
 "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 "let g:SuperTabDefaultCompletionType = '<C-n>
+
+let g:ycm_log_level = 'debug'
+let g:ycm_extra_conf_vim_data = ['g:my_project_root']
+
+if executable('clangd')
+    let g:ycm_clangd_binary_path = 'clangd'
+endif
+
+nmap cyg :YcmCompleter GoToDefinition<CR>
+nmap cys :YcmCompleter GoToDeclaration<CR>
+nmap cyf :YcmCompleter GoToInclude<CR>
+nmap cyt :YcmCompleter GetType<CR>
