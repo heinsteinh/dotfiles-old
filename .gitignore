@@ -7,3 +7,4 @@ vimConf/vim-cmake-boilerplate/build/*
 vimConf/vim-cmake-boilerplate/bin/*
 vimConf/vim-cmake-boilerplate/.cache/
 vimConf/vim/settings/tags
+vimConf/vim/tags

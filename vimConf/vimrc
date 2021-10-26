@@ -128,7 +128,7 @@ highlight Errors ctermbg=green guibg=darkred
 
 source $HOME/$VIMFILE_DIR/settings.vim
 
-
+"{{{ Gui Running config
 let $LANG='en'
 set langmenu=en
 
@@ -218,6 +218,10 @@ else
     endif
 endif
 
+"}}}
+
+
+
 
 " {{{ Special setting for ConEmu
 " http://conemu.github.io/en/VimXterm.html
@@ -245,7 +249,7 @@ endif
 " source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
     "echo "sourcing dir "
-    echo f
+    "echo f
     exec 'source' f
 endfor
 

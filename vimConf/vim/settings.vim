@@ -186,14 +186,35 @@ set selection=exclusive
 set virtualedit=block
 
 " Visual selection automatically copied to clipboard
-set go+=a
+"set go+=a
+if g:is_win
+    set go+=a
+elseif g:is_mac
+elseif g:is_linux
+    set go+=P 
+endif
 "}}}
 
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
-set omnifunc=syntaxcomplete#Complete " Enable omnifunc (C-x C-o)
-set fillchars+=vert:│                " Solid line instead of dashed line
-set clipboard=unnamedplus
 
+set fillchars+=vert:│                " Solid line instead of dashed line
+"set clipboard=unnamedplus
+
+if has("gui_running")
+    if has("gui_gtk2") || has("gui_gtk3")
+        " Linux GUI
+        set clipboard=unnamedplus
+    elseif has("gui_win32")
+        " Win32/64 GVim
+    elseif has("gui_macvim")
+        " MacVim
+        set clipboard=unnamed
+    else
+        echo "Unknown GUI system!!!!"
+    endif
+else
+    " Terminal vim
+endif
