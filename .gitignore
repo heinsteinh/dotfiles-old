@@ -8,3 +8,4 @@ vimConf/vim-cmake-boilerplate/bin/*
 vimConf/vim-cmake-boilerplate/.cache/
 vimConf/vim/settings/tags
 vimConf/vim/tags
+vimConf/vim/.netrwhist
