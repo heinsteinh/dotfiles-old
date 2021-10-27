@@ -89,6 +89,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'derekwyatt/vim-fswitch'
 
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'

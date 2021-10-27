@@ -1,5 +1,6 @@
 #include <cmath>
 #include <cstdio>
+#include <ios>
 #include <iostream>
 #include <iterator>
 #include <memory>
@@ -7,19 +8,20 @@
 
 #include "Config.h"
 
+int main(int argc, char *argv[]) {
 
-int main(int argc, char* argv[])
-{
-    // output program location and version
-    printf("Running: %s\nVersion: %i.%i\n",  argv[argc - argc], VERSION_MAJOR, VERSION_MINOR);
+  std::shared_ptr<Foo> ptrFoo = nullptr;
 
-    std::cout <<" Test" << std::endl;
+  // output program location and version
+  printf("Running: %s\nVersion: %i.%i\n", argv[argc - argc], VERSION_MAJOR,
+         VERSION_MINOR);
 
-    std::cout << "resd"  << std::endl;
+  std::cout << " Test" << std::endl;
 
-    std::cout << ""<<std::endl;
+  std::cout << "resd" << std::endl;
 
+  std::cout << "" << std::endl;
 
-    printf("Hello, CMake!\n");
-    return 0;
+  printf("Hello, CMake!\n");
+  return 0;
 }

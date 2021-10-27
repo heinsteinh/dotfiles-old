@@ -136,8 +136,8 @@ nnoremap Y y$
 
 
 " rewire n and N to highlight the current match
-nnoremap <silent> n nzv:call functions#HighlightNext(0.4)<CR>
-nnoremap <silent> N Nzv:call functions#HighlightNext(0.4)<CR>
+"nnoremap <silent> n nzv:call functions#HighlightNext(0.2)<CR>
+"nnoremap <silent> N Nzv:call functions#HighlightNext(0.2)<CR>
 
 " Faster command mode access
 "nnoremap <Space> :

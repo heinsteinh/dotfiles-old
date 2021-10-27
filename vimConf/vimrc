@@ -44,10 +44,9 @@ endif
 
 "tmux
 if g:is_iterm
-if g:is_tmux
+    if g:is_tmux
         source $HOME/$VIMFILE_DIR/tmux.vim
-
-        "echo "sourcing is_iterm in TMUX"
+        echo "sourcing is_iterm in TMUX"
     endif
 
     "echo "sourcing is_iterm "
@@ -211,6 +210,8 @@ else
     set term=xterm-256color
     "colorscheme desert
     colorscheme gruvbox 
+    colorscheme molokai
+
     set nocursorline  
     set mouse=a
 
@@ -324,4 +325,50 @@ source ~/.vim/settings/AutoCommand.vim
 "}}}
 
 
+"{{{ Utility function :TODO please remove me here
+"create `scratch` buffer
+function! ScratchBuffer(...)
+    let l:fname = get(a:, 1, "")
+    execute "new " . l:fname
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    setlocal noswapfile
+endfunction
+command! -nargs=? Scratch call ScratchBuffer(<f-args>)
 
+function! Todo()
+    cexpr system('sch -t')
+endfunction
+command! Todo call Todo()
+
+function! Agenda()
+    cexpr system('sch -a')
+endfunction
+
+command! Agenda call Agenda()
+
+"search with ag, result in quickfix 
+function! Ag(pattern, ...)
+    let l:fname = get(a:, 1, "")
+    if l:fname == ""
+        cexpr system('ag --vimgrep --silent ' . shellescape(a:pattern))
+    else
+        cexpr system('ag --vimgrep ' . shellescape(a:pattern) . ' ' . shellescape(l:fname))
+    endif
+endfunction
+command! -nargs=* Ag call Ag(<f-args>)
+
+
+function! Shellchk()
+    cexpr system('shellcheck -f gcc -s sh ' . shellescape(@%))
+endfunction
+"}}}
+
+"{{{  working on Agenda Mappings
+"insert date 
+nnoremap <Leader>-d "=system("date " . shellescape("+<%F %a>"))<CR>p
+"insert SCHEDUlED tag
+nnoremap <Leader>-sc "=system("date " . shellescape("+[SCHEDULED]: <%F %a>"))<CR>p
+"insert TODO tag
+nnoremap <Leader>-td o[TODO]<ESC>
+"}}}
