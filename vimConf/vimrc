@@ -44,7 +44,7 @@ endif
 
 "tmux
 if g:is_iterm
-    if g:is_tmux
+if g:is_tmux
         source $HOME/$VIMFILE_DIR/tmux.vim
 
         "echo "sourcing is_iterm in TMUX"
@@ -139,16 +139,13 @@ if has("gui_running")
     let $LANG='en'
     set langmenu=en
     set encoding=utf-8
-    "colorscheme gruvbox 
 
-
-    "set background=dark
     "colorscheme slate
     colorscheme gruvbox
     "colorscheme wombat256
     "colorscheme herald
     "colorscheme darkblue
-   " colorscheme OceanicNext
+    "colorscheme OceanicNext
 
     " Always show cursor
     set ruler
@@ -166,6 +163,11 @@ if has("gui_running")
     set guioptions-=r  "remove right-hand,scroll bar
     set guioptions-=L  "remove left-hand scroll bar
 
+    if hostname() == "BHI4PCH7D3"
+        set lines=70 columns=230
+    else
+        "autocmd GUIEnter * simalt ~x
+    endif
     if g:is_win
         "set guifont=FiraCode_Nerd_Font_Mono:h10:style=Medium 
         " set guifont=FiraCode_Nerd_Font_Mono:h10
@@ -175,17 +177,17 @@ if has("gui_running")
         if has('gui_win32')
             "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
             set guifont=FiraCode_Nerd_Font_Mono:h10:W500:cANSI:qDRAFT
+            "set guifont=Hack_Nerd_Font_Mono:h10:cANSI:qDRAFT  
         else
             set guifont=DejaVu\ Sans\ Mono\ 13
         endif
 
-        au GUIEnter * simalt ~x
+        "au GUIEnter * simalt ~x
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
         set guifont=Fira\ Code\ 11
     endif
-
 
     nnoremap <A-n>  :confirm enew<CR>
     inoremap <A-n>  :confirm enew<CR>
@@ -261,7 +263,7 @@ endfor
 "endfor
 
 " source all the helper files
-"for f in split(glob('$$HOME/$VIMFILE_DIR/helpers/**/*.vim'), '\n')
+"for f in split(glob('$HOME/$VIMFILE_DIR/helpers/**/*.vim'), '\n')
 "    exec 'source' f
 "endfor
 "
@@ -290,20 +292,22 @@ endif
 "{{{ Source custum settings
 
 
-source ~/.vim/settings/functions.vim
-source ~/.vim/settings/keymaps.vim
-source ~/.vim/settings/movements.vim
-source ~/.vim/settings/spelling.vim
-source ~/.vim/settings/vimrc_mappings.vim
+source $HOME/$VIMFILE_DIR/settings/functions.vim
+source $HOME/$VIMFILE_DIR/settings/keymaps.vim
+source $HOME/$VIMFILE_DIR/settings/movements.vim
+source $HOME/$VIMFILE_DIR/settings/spelling.vim
+source $HOME/$VIMFILE_DIR/settings/vimrc_mappings.vim
 
-source ~/.vim/plugins/backupFiles.vim
-source ~/.vim/plugins/automkdir.vim
-source ~/.vim/plugins/diminactive.vim
+source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
+source $HOME/$VIMFILE_DIR/plugins/automkdir.vim
+source $HOME/$VIMFILE_DIR/plugins/diminactive.vim
+
+source $HOME/$VIMFILE_DIR/settings/fzf-spell.vim
 
 "}}}
 
 
-"{{{ AutoCommand  Section
+"{{{ Auto Command  Section
 
 "useful to clear search highlight
 "map <esc> :noh <CR>

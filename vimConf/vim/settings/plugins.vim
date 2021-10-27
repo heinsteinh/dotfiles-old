@@ -12,8 +12,7 @@ Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
-"CTage management for 
-Plugin 'ludovicchabant/vim-gutentags' 
+
 
 
 Plugin 'vim-airline/vim-airline'
@@ -51,10 +50,23 @@ Plugin 'valloric/youcompleteme'
 "Plugin 'tpope/vim-fugitive'       " Git stuff, Gblame, etc
 "Plugin 'tpope/vim-abolish'        " :Subvert/blog{,s}/post{,s}/g
 "Plugin 'junegunn/vim-easy-align'  " A simple, easy-to-use Vim alignment plugin.
+"
 
+
+"{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
 else
+    "CTage management for 
+    Plugin 'ludovicchabant/vim-gutentags'
+
+    "Track the engine.
+    Plugin 'SirVer/ultisnips'
+   "Snippets are separated from the engine. Add this if you want them:
+    Plugin 'honza/vim-snippets'
+
 end
+
+"}}}
 
 "Plugin 'jiangmiao/auto-pairs'
 " http://vimawesome.com/plugin/ctrlp-vim-red
@@ -77,10 +89,6 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'vim-scripts/a.vim'
 Plugin 'scrooloose/syntastic'
-"Track the engine.
-"Plugin 'SirVer/ultisnips'
-"Snippets are separated from the engine. Add this if you want them:
-"Plugin 'honza/vim-snippets'
 
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
@@ -95,7 +103,7 @@ Plugin 'NLKNguyen/papercolor-theme'
 
 
 "Plugin 'lifepillar/vim-mucomplete'
-" Plugin 'ntpeters/vim-better-whitespace'
+"Plugin 'ntpeters/vim-better-whitespace'
 
 " Markdown / Writting
 "Plugin 'reedes/vim-pencil'
@@ -125,15 +133,6 @@ Plugin 'Badacadabra/vim-archery'
 "Plugin 'xolox/vim-session'
 " }}}
 
-"
-" in your .vimrc (_vimrc for Windows)
-"autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
-
-
-" Quick PluginStall
-nnoremap <Leader>pi :source $MYVIMRC<cr>:PluginInstall<cr>
-
-tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 
 
 " vim-airline configuration
@@ -142,7 +141,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 let g:airline_solarized_bg = 'dark'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 
 

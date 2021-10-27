@@ -3,8 +3,7 @@
 noremap H 0
 noremap L $
 
-" highlight last inserted text
-nnoremap gV `[v`]
+
 
 " open today's daily in a split
 nnoremap <leader>di :call GoToDaily()<cr>
@@ -31,6 +30,21 @@ nnoremap add "+dd
 vnoremap add "+dd
 
 
+
+nnoremap <C-Insert> "*y
+nnoremap <S-Insert> "*p
+vnoremap <C-Insert> "*y
+vnoremap <S-Insert> "*p
+
+
+
+" go automatically to the end of the text after yanking/pasting
+vnoremap <silent> y y`]
+vmap <silent> p p`]
+nmap <silent> p p`]
+vmap <silent> P P`]
+nmap <silent> P P`]
+
 "}}}
 
 " Automatically jump to end of text thats pasted/yanked, feels inuitively.
@@ -38,6 +52,11 @@ vnoremap add "+dd
 "noremap <silent> p p`]
 
 
+"{{{  Terminal Mode Mappings
+tnoremap <Esc> <C-w>N
+"tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+
+"}}}
 
 "{{{Fold shorcuts
 nnoremap <space> za
@@ -47,12 +66,15 @@ nnoremap zc zm
 nnoremap zC zM
 
 
-
 " create fold (visual select)
 vnoremap <space> zf
 
 " close other folds
 nnoremap zo zMzv
+
+
+hi Folded guibg=bg
+hi Folded guifg='orange'
 "}}}
 
 
@@ -64,13 +86,58 @@ vnoremap > >gv
 "}}}
 "
 "
-"{{{
+"{{{ Comment text
 nmap <leader>cc :Commentary<CR>
 vmap <leader>cc :Commentary<CR>
 "}}}"
-"
-"
-"
+
+" Visual mode "{{{
+
+
+" select just-pasted text
+noremap gV `[v`]
+
+" search for what's visually selected by pressing `//`
+vnoremap // y/<C-R>"<CR>
+
+" duplicate visual mode selection
+vnoremap D y'>p
+
+
+" Press Shift+P while in visual mode to replace the selection without
+" overwriting the default register
+vnoremap P p:call setreg('+', getreg('0'))<CR>
+"}}}
+
+" Editing "{{{
+
+"Experiment C-U instead of Resizing windows
+" Bubble single lines
+nnoremap <silent> <C-Up>   :move-2<CR>==
+nnoremap <silent> <C-Down> :move+<CR>==
+" Bubble multiple lines
+xnoremap <silent> <C-Up>   :move-2<CR>gv=gv
+xnoremap <silent> <C-Down> :move'>+<CR>gv=gv
+
+"Duplicate lines above and below
+inoremap <C-A-down> <esc>Ypk
+nnoremap <C-A-down> Ypk
+xnoremap <C-A-down> y`>pgv
+inoremap <C-A-up> <esc>YPj
+nnoremap <C-A-up> YPj
+xnoremap <C-A-up> y`<Pgv
+
+
+" make Y behave like D, C, ...
+nnoremap Y y$
+"}}}
+
+
+
+
+" rewire n and N to highlight the current match
+nnoremap <silent> n nzv:call functions#HighlightNext(0.4)<CR>
+nnoremap <silent> N Nzv:call functions#HighlightNext(0.4)<CR>
 
 " Faster command mode access
 "nnoremap <Space> :
@@ -82,7 +149,7 @@ if executable('rg')
 nnoremap <leader>g :<C-U>execute "Rg ".expand('<cword>') \| cw<CR>
 else
 
-endi
+endif
 
 "}}}
 
@@ -101,8 +168,8 @@ nnoremap <leader>gpl :Gpull<cr>
 
 
 " Tabs and Windows  {{{
-nnoremap <leader>w <c-w>
-nnoremap <leader>ww <c-w>c<c-w>
+"nnoremap <leader>w <c-w>
+"nnoremap <leader>ww <c-w>c<c-w>
 nnoremap <leader>tj :tabprevious<cr>
 nnoremap <leader>tk :tabnext<cr>
 nnoremap <leader>tJ :tabfirst<cr>

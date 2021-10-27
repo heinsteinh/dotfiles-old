@@ -1,4 +1,3 @@
-
 "{{{ General configuration options
 
 
@@ -91,13 +90,13 @@ set title
 "set nowb
 "}}}
 
-"{{{
+"{{{ Folding Settings
 set foldcolumn=3
 set foldmethod=marker   "marker, indent,  manual, expr, syntax, diff.
-
-"set foldenable          " enable folding
-"set foldlevelstart=10   " open most folds by default
-"set foldnestmax=10      " 10 nested fold max
+set fdc=1               " add fold indicator to status column
+set foldenable          " do/don't fold files by default on open
+set foldlevelstart=1    " open most folds by default
+set foldnestmax=10      " 10 nested fold max
 "}}}
 
 "{{{ Indentation options
@@ -160,6 +159,7 @@ set nrformats-=octal
 "set shell
 "- Enable spellchecking.
 "set spell
+set spelllang=en_us,de_de
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 
@@ -167,6 +167,8 @@ set visualbell
 set splitbelow
 set splitright
 
+" reveal already opened files from the quickfix window instead of opening new buffers
+set switchbuf=useopen 
 
 " Restore buffer list, marks are remembered for 9999 files, memory registers up to 512Kb are remembered.
 "set viminfo=%,'9999,s512,nF:\\VimData\\files-viminfo
@@ -195,7 +197,6 @@ elseif g:is_linux
 endif
 "}}}
 
-
 "{{{ Setting System Clipboard
 
 " Use Unix as the standard file type
@@ -219,6 +220,3 @@ else
     " Terminal vim
 endif
 "}}}
-
-set switchbuf=useopen " reveal already opened files from the quickfix window
-                      " instead of opening new buffers

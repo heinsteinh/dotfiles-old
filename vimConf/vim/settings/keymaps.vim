@@ -13,6 +13,9 @@ nnoremap <Leader>tv :tabnew $MYVIMRC<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
 nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
+" Quick PluginStall
+nnoremap <Leader>pi :source $MYVIMRC<cr>:PluginInstall<cr>
+
 
 " Faster command mode access
 "nnoremap <Space> :
@@ -67,7 +70,7 @@ vnoremap <C-s> <esc>:w!<CR>gv=gv
 "nnoremap <TAB> gt
 
 " [COMMAND] SHIFT-TAB go to previous tab
-"nnoremap <S-TAB> gT
+nnoremap <S-TAB> gT
 
 " [INSERT+VISUAL] SHIFT-TAB remove indent/tab
 inoremap <S-TAB> <C-d>

@@ -36,6 +36,8 @@ nmap <leader>D :!mkdir -p %:h<cr>
 " map <c-l> <c-w>l
 " map <c-j> <c-w>j
 " map <c-k> <c-w>k
+
+"Should find another mapper for this w. mgt
 map <c-Down>  <c-w>-
 map <c-Right> <c-w><
 map <c-Up>    <c-w>+
@@ -51,23 +53,26 @@ nnoremap <leader>l :vertical resize -5<CR>
 
 "" Buffers Mapping {{{
 nnoremap <leader>bn :bnext<CR>
+" close current buffer
+nnoremap <leader>bd :bp\|:bd #<CR>
+" Delete all buffers
+nnoremap <Leader>bda :bufdo BD<CR> 
 nnoremap <leader>bp :bprevious<CR>
 
 "close buffer and close de file behind
 nnoremap <leader>bc :bd<CR>
 nnoremap <leader>be :BufExplorer<CR>
 nnoremap <leader>bt :ToggleBufExplorer<CR>
-" Delete all buffers
-nnoremap <Leader>dd :bufdo BD<CR> 
 
 " close buffer
 noremap <leader>q :bp<cr>:bd #<cr>
 " cleanup all vim buffers
 noremap <leader>qq :bufdo bd<cr>
-noremap <leader>qa :bufdo bd!<cr>
+"noremap <leader>qa :bufdo bd!<cr>
 " cleanup all vim buffers, except the active one.
 noremap <leader>qo :call buffer#DeleteOnly()<cr>
 " }}}
+
 
 
 " Double tap s to save the buffer contents, more convienent than keep the pressure on the modifier keys to be CUA compatible.
