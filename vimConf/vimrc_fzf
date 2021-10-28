@@ -48,7 +48,8 @@ endif
 
 echo "Current Hostname :: " 
 echo hostname()
-
+echo $HOME
+echo $VIMFILE_DR
 
 if g:is_win
 
@@ -128,8 +129,10 @@ filetype indent on " Enable indenting for files
 set autoindent " Enable auto indenting
 set number " Enable line numbers
 "colorscheme desert " Set nice looking colorscheme
-colorscheme herald " Set nice looking colorscheme
+"colorscheme herald " Set nice looking colorscheme
 "colorscheme oceanic_material
+"colorscheme PaperColor
+colorscheme OceanicNext
 set nobackup " Disable backup files
 set laststatus=2 "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
@@ -216,7 +219,7 @@ if has("gui_running")
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
-        set guifont=Fira\ Code\ 11
+        set guifont=Fira\ Code\ 13
     endif
 
     nnoremap <A-n>  :confirm enew<CR>
@@ -369,18 +372,6 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" " [COMMAND+INSERT+VISUAL] CTRL-UP Move line up
-" nnoremap <silent> <M-k> :silent! m .-2<CR>==
-" inoremap <silent> <M-k> <Esc>:silent! m .-2<CR>==gi
-" vnoremap <silent> <M-k> :m '<-2<CR>gv=gv
-
-" " [COMMAND+INSERT+VISUAL] CTRL-DOWN Move line down
-" nnoremap <M-j> :silent! m .+1<CR>==
-" inoremap <M-j> <Esc>:silent! m .+1<CR>==gi
-" vnoremap <M-j> :m '>+1<CR>gv=gv
-
-
-
 
 " [EDIT+VISUAL+COMMAND] CTRL-K UP Split above
 nnoremap <C-S-Up> :above split<CR>
@@ -435,24 +426,6 @@ nmap <leader>cc :Commentary<CR>
 vmap <leader>cc :Commentary<CR>
 "}}}"
 
-"{{{ netrw settings----------------------------------------------------------
-let g:netrw_liststyle= 3    " show the tree listing (0 - 3)
-let g:netrw_winsize = 0     " set default window size to be equal
-let g:netrw_preview = 1		" open splits to the right
-let g:netrw_banner=0        " banner off; toggle on w/ I 
-let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
-let ghregex='\(^\|\s\s\)\zs\.\S\+'    " hide dot files on startup
-let g:netrw_list_hide = 'node_modules,package.json,package-lock.json,ghregex'
-
-set nocompatible      "Limit search to your project -Fuzzy finder
-set path+=**          "Search all subdirectories recursively
-set wildmenu          "Shows multiple matches on one line
-
-" by default, netrw leaves unmodified buffers open.  This autocommand
-" deletes netrw's buffer once it's hidden (using ':q;, for example)
-autocmd FileType netrw setl bufhidden=delete  " or use :qa!
-"---------------------------------------------------------^^-netrw-^^-----
-"}}}
 " Reindent file and return to current line
 map <leader>i mmgg=G`m<cr>
 
@@ -462,10 +435,9 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 "{{{
 if has ('autocmd') " Remain compatible with earlier versaons
-
     " automatically rebalance windows on vim resize
     autocmd VimResized * :wincmd =
-
+    
     " " Enable marker folds for .vimrc files and shell files
     " autocmd FileType vim,sh setlocal foldmethod=marker
     " autocmd BufRead * normal zM
@@ -483,27 +455,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     augroup END
 
 endif " has autocmd
+
+source $HOME/$VIMFILE_DIR/settings/settings_cpp.vim
 "}}}
-
-
-
-"{{{ auto-close parentheses, et. al.----------------
-inoremap { {}<left>
-inoremap {{ {
-    inoremap {} {}
-    inoremap [ []<left>
-    inoremap [[ [
-        inoremap [] []
-        inoremap ( ()<left>
-        inoremap (( (
-        inoremap () ()
-        inoremap " ""<left>
-        inoremap "" ""
-        inoremap ' ''<left>
-        inoremap '' ''
-        inoremap ''' ''''''<left>
-        inoremap ` ``<left>
-        "}}}
-
-
 
