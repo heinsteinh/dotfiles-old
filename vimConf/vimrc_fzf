@@ -129,6 +129,7 @@ set autoindent " Enable auto indenting
 set number " Enable line numbers
 "colorscheme desert " Set nice looking colorscheme
 colorscheme herald " Set nice looking colorscheme
+"colorscheme oceanic_material
 set nobackup " Disable backup files
 set laststatus=2 "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
@@ -251,7 +252,7 @@ endif
 
 " Mappings {{{
 " Useful mappings
-nnoremap <Leader>r  :source ~/dotfiles/vimConf/vimrc_fzf <CR>:echo "Reloaded: " . ~/dotfiles/vimConf/vimrc_fzf<CR>
+""nnoremap <Leader>r  :source ~/dotfiles/vimConf/vimrc_fzf <CR>:echo "Reloaded: " . ~/dotfiles/vimConf/vimrc_fzf<CR>
 nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
@@ -263,12 +264,27 @@ nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
 nnoremap <silent> ss :update<CR>
 
 
+"{{{  Documentation Link here
+"Good FZF Option here
+"https://github.com/samoshkin/dotfiles/tree/f330daaf3544184c197ae541b9893304c3adf327
+
+"}}}
+
+
+
+""https://github.com/jwbat/dotfiles/blob/4fc36a3eda20ed4467b21dd863507fa2c31b80d5/.vimrc#L131
+"Good Register paste example in this link
+"
 " yank to system clipboard
 xnoremap <leader>c "+y
 nnoremap <leader>c "+y
 " paste from system clipboard and go end of the paste
 nnoremap <leader>v "+p`]
+" cut line(s) into system clipboard
+xnoremap <leader>x"+d
 
+" yank whole file into system clipboard
+nnoremap <leader><leader>' gg0"+yG
 "}}}
 
 
@@ -419,7 +435,24 @@ nmap <leader>cc :Commentary<CR>
 vmap <leader>cc :Commentary<CR>
 "}}}"
 
+"{{{ netrw settings----------------------------------------------------------
+let g:netrw_liststyle= 3    " show the tree listing (0 - 3)
+let g:netrw_winsize = 0     " set default window size to be equal
+let g:netrw_preview = 1		" open splits to the right
+let g:netrw_banner=0        " banner off; toggle on w/ I 
+let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+let ghregex='\(^\|\s\s\)\zs\.\S\+'    " hide dot files on startup
+let g:netrw_list_hide = 'node_modules,package.json,package-lock.json,ghregex'
 
+set nocompatible      "Limit search to your project -Fuzzy finder
+set path+=**          "Search all subdirectories recursively
+set wildmenu          "Shows multiple matches on one line
+
+" by default, netrw leaves unmodified buffers open.  This autocommand
+" deletes netrw's buffer once it's hidden (using ':q;, for example)
+autocmd FileType netrw setl bufhidden=delete  " or use :qa!
+"---------------------------------------------------------^^-netrw-^^-----
+"}}}
 " Reindent file and return to current line
 map <leader>i mmgg=G`m<cr>
 
@@ -451,3 +484,26 @@ if has ('autocmd') " Remain compatible with earlier versaons
 
 endif " has autocmd
 "}}}
+
+
+
+"{{{ auto-close parentheses, et. al.----------------
+inoremap { {}<left>
+inoremap {{ {
+    inoremap {} {}
+    inoremap [ []<left>
+    inoremap [[ [
+        inoremap [] []
+        inoremap ( ()<left>
+        inoremap (( (
+        inoremap () ()
+        inoremap " ""<left>
+        inoremap "" ""
+        inoremap ' ''<left>
+        inoremap '' ''
+        inoremap ''' ''''''<left>
+        inoremap ` ``<left>
+        "}}}
+
+
+
