@@ -40,19 +40,6 @@ Plugin 'valloric/youcompleteme'
 
 
 
-" Editing
-"Plugin 'ervandew/supertab'        " Tab completion
-"Plugin 'preservim/nerdcommenter' " Excellent cross-language comment toggle
-"Plugin 'tpope/vim-unimpaired'     " Pairs of handy bracket mappings
-"Plug 'tpope/vim-endwise'        " Insert ends, intelligently
-"Plugin 'tpope/vim-surround'       " Change your surroundings
-"Plugin 'tpope/vim-repeat'         " Repeat command support for certain plugins
-"Plugin 'tpope/vim-fugitive'       " Git stuff, Gblame, etc
-"Plugin 'tpope/vim-abolish'        " :Subvert/blog{,s}/post{,s}/g
-"Plugin 'junegunn/vim-easy-align'  " A simple, easy-to-use Vim alignment plugin.
-"
-
-
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
 else
@@ -96,10 +83,6 @@ Plugin 'junegunn/fzf'
 Plugin 'Rip-Rip/clang_complete'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'mileszs/ack.vim'
-
-Plugin 'sainnhe/gruvbox-material'
-Plugin 'Murtaza-Udaipurwala/gruvqueen'
-Plugin 'NLKNguyen/papercolor-theme'
 
 
 

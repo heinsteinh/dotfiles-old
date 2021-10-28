@@ -11,7 +11,55 @@ let mapleader = ','
 let maplocalleader = ','
 let g:mapleader = ','
 
+"{{{ OS Variable initialization and Config Dir 
+let g:is_win   = has('win32') || has('win64')
+let g:is_mac   = has('mac') || system('uname') =~? '^darwin'
+let g:is_linux = !g:is_mac && has('unix')
+"}}
 
+"{{{ Simple Branch Template Example
+if g:is_win
+elseif g:is_mac
+elseif g:is_linux
+endif
+
+
+
+
+if g:is_win
+elseif g:is_linux
+endif
+"}}}
+
+"{{{ Python DLL and Dir Path
+if hostname() == "BHI4PCH7D3"
+    let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
+    let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
+
+else
+endif
+"}}
+
+if g:is_win
+    :let $VIMFILE_DIR = 'vimfiles'
+else
+    :let $VIMFILE_DIR = '.vim'
+endif
+
+echo "Current Hostname :: " 
+echo hostname()
+
+
+if g:is_win
+
+elseif g:is_linux
+    " Allows you to enter sudo pass and save the file
+    " " when you forgot to open your file with sudo
+    cmap w!! %!sudo tee > /dev/null %
+endif
+
+
+"{{{ Plugin Installation Section
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -30,35 +78,47 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'qpkorr/vim-bufkill'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 
-
+" fzf fuzzy stuff happen here!
 Plugin 'mileszs/ack.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 
+" Automatically change directory to project root
+Plugin 'airblade/vim-rooter'
+
+" Syntax highlight
+Plugin 'sheerun/vim-polyglot'
+" Code comments
+Plugin 'tpope/vim-commentary'
+
+"Status line
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "vim simple status line
-Plugin 'itchyny/lightline.vim'
+"Plugin 'itchyny/lightline.vim'
 
-" Gruvbox Community theme.
+" Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
 "Plugin 'gruvbox-community/gruvbox'
+Plugin 'frazrepo/vim-rainbow'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-webdevicons'
 
+"Nice to have colorscheme
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
+
+
+" show errors in different Colors
+highlight Errors ctermbg=green guibg=darkred
+
+"}}
 
 set softtabstop=2 " Indent by 2 spaces when hitting tab
 set shiftwidth=4 " Indent by 4 spaces when auto-indenting
@@ -89,8 +149,16 @@ set autoread
 "- Manage multiple buffers effectively: the current buffer can be 'sent' to the background without writing to disk. When a background buffer becomes current again, marks and undo-history are remembered. See chapter Buffers to understand this better.
 set showcmd
 
+
+" Indentation settings for using 4 spaces instead of tabs.
+" Do not change 'tabstop' from its default value of 8 with this setup.
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+
 set switchbuf=useopen " reveal already opened files from the quickfix window
-                      " instead of opening new buffers
+" instead of opening new buffers
 
 
 " Very magic by default
@@ -103,22 +171,96 @@ set ignorecase
 set smartcase
 
 
+let $LANG='en'
+set langmenu=en
+set mouse=a
+
+"{{{ Gui Running config
+if has("gui_running")
+
+    echo "sourcing from Gui"
+    set encoding=utf-8
+    " Always show cursor
+    set ruler
+    " Highlight the current line
+    set cursorline
+
+    " Hide the toolbar
+    set guioptions-=T
+    "set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand,scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
+
+    if hostname() == "BHI4PCH7D3"
+        set lines=70 columns=230
+    else
+        "autocmd GUIEnter * simalt ~x
+    endif
+    if g:is_win
+        "set guifont=FiraCode_Nerd_Font_Mono:h10:style=Medium 
+        " set guifont=FiraCode_Nerd_Font_Mono:h10
+        " set guifont=FiraCode\ Nerd\ Font\ Mono:h10
+        " set guifont=FiraCode\ Nerd\ Font\ Mono:h12:style=Retina
+        set guifont=FiraCode\ Nerd\ Font\ Mono:h13
+        if has('gui_win32')
+            "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
+            set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
+            "set guifont=Hack_Nerd_Font_Mono:h10:cANSI:qDRAFT  
+        else
+            set guifont=DejaVu\ Sans\ Mono\ 13
+        endif
+
+        "au GUIEnter * simalt ~x
+
+    elseif g:is_linux
+        "set guifont=Ubuntu\ Mono\ Regular\ 13
+        set guifont=Fira\ Code\ 11
+    endif
+
+    nnoremap <A-n>  :confirm enew<CR>
+    inoremap <A-n>  :confirm enew<CR>
+
+    " Open the GUI file browser.
+    " CTRL-O is Quickopen file
+    noremap <A-o> :browse confirm e<CR>
+    vnoremap <A-o> :browse confirm e<CR>
+    inoremap <A-o> :browse confirm e<CR>
+
+    " CTRL-W is Quicksave as.. file
+    noremap <A-w> :browse confirm saveas<CR>
+    vnoremap <A-w> :browse confirm saveas<CR>
+    inoremap <A-w> :browse confirm saveas<CR>
+    "Useful to find out how the font is set in guifont :set guifont?
+    map <F3> <Esc>:set guifont=*<CR> 
+else
+    echo "sourcing from Terminal "
+    set t_Co=256
+
+    set nocursorline  
+
+    if g:is_win
+
+
+    elseif g:is_linux
+        set term=xterm-256color
+
+    endif
+endif
+"}}}
+
+" Mappings {{{
+" Useful mappings
+nnoremap <Leader>r  :source ~/dotfiles/vimConf/vimrc_fzf <CR>:echo "Reloaded: " . ~/dotfiles/vimConf/vimrc_fzf<CR>
+nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
+
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+"map Y y$
+
 
 " Double tap s to save the buffer contents, more convienent than keep the pressure on the modifier keys to be CUA compatible.
 nnoremap <silent> ss :update<CR>
-
-
-"remap jk/kj to escape
-inoremap jk <Esc>
-inoremap kj <Esc>
-
-
-" remap movement keys so that up-down work over visual lines rather than 
-" actual lines
-noremap j gj
-noremap k gk
-
-
 
 
 " yank to system clipboard
@@ -127,13 +269,69 @@ nnoremap <leader>c "+y
 " paste from system clipboard and go end of the paste
 nnoremap <leader>v "+p`]
 
+"}}}
 
-"Should find another mapper for this w. mgt
-map <c-Down>  <c-w>-
-map <c-Right> <c-w><
-map <c-Up>    <c-w>+
-map <c-Left>  <c-w>>
 
+
+"{{{ Mappings Movement 
+
+" remap movement keys so that up-down work over visual lines rather than 
+" actual lines
+noremap j gj
+noremap k gk
+
+"remap jk/kj to escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+
+"Faster navigation
+nnoremap J <C-d>
+nnoremap K <C-u
+
+"Start and End of the line Maing
+noremap H 0
+noremap L $
+
+" Backspace in normal mode
+nnoremap <bs> d1<Left>
+" CTRL-D to delete line
+inoremap <C-D> <Esc>dd<Insert>
+nnoremap <C-D> dd
+" CTRL-Z to undo
+inoremap <C-Z> <Esc>u<Insert>
+nnoremap <C-Z> u
+" CTRL-Y to redo
+inoremap <C-Y> <Esc><C-R><Insert>
+nnoremap <C-Y> <C-R>
+" CTRL-S to save
+inoremap <C-S> <Esc>:w<Enter><Insert>
+nnoremap <C-S> :w<Enter>
+
+" [COMMAND+INSERT+VISUAL] CTRL-S Save file
+nnoremap <C-s> :w!<CR>
+inoremap <C-s> <esc>:w!<CR>gi
+vnoremap <C-s> <esc>:w!<CR>gv=gv
+
+" [COMMAND] TAB go to next tab
+"nnoremap <TAB> gt
+
+" [COMMAND] SHIFT-TAB go to previous tab
+nnoremap <S-TAB> gT
+
+" [INSERT+VISUAL] SHIFT-TAB remove indent/tab
+inoremap <S-TAB> <C-d>
+vnoremap <S-TAB> <gv
+
+" [COMMAND] CTRL-N new tab
+nnoremap <C-n> :tabnew<CR>
+
+
+""Should find another mapper for this w. mgt
+nnoremap <c-Down>  <c-w>-
+nnoremap <c-Right> <c-w><
+nnoremap <c-Up>    <c-w>+
+nnoremap <c-Left>  <c-w>>
 
 "Split window resize
 nnoremap <leader>j :resize +5<CR>
@@ -147,26 +345,46 @@ vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "*p
 
 
+" Move Line Up and Dow in all Tree main Mode 
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" " [COMMAND+INSERT+VISUAL] CTRL-UP Move line up
+" nnoremap <silent> <M-k> :silent! m .-2<CR>==
+" inoremap <silent> <M-k> <Esc>:silent! m .-2<CR>==gi
+" vnoremap <silent> <M-k> :m '<-2<CR>gv=gv
+
+" " [COMMAND+INSERT+VISUAL] CTRL-DOWN Move line down
+" nnoremap <M-j> :silent! m .+1<CR>==
+" inoremap <M-j> <Esc>:silent! m .+1<CR>==gi
+" vnoremap <M-j> :m '>+1<CR>gv=gv
+
+
+
 
 " [EDIT+VISUAL+COMMAND] CTRL-K UP Split above
-nnoremap <C-v><Up> :above split<CR>
-inoremap <C-v><Up> <ESC>:above split<CR>gi
-vnoremap <C-v><Up> <ESC>:above split<CR>gv=gv
+nnoremap <C-S-Up> :above split<CR>
+inoremap <C-S-Up> <ESC>:above split<CR>gi
+vnoremap <C-S-Up> <ESC>:above split<CR>gv=gv
 
 " [EDIT+VISUAL+COMMAND] CTRL-K DOWN Split below
-nnoremap <C-v><Down> :below split<CR>
-inoremap <C-v><Down> <ESC>:below split<CR>gi
-vnoremap <C-v><Down> <ESC>:below split<CR>gv=gv
+nnoremap <C-S-Down> :below split<CR>
+inoremap <C-S-Down> <ESC>:below split<CR>gi
+vnoremap <C-S-Down> <ESC>:below split<CR>gv=gv
 
 " [EDIT+VISUAL+COMMAND] CTRL-K LEFT Split left
-nnoremap <C-v><Left> :vsplit<CR>
-inoremap <C-v><Left> <ESC>:vsplit<CR>gi
-vnoremap <C-v><Left> <ESC>:vsplit<CR>gv=gv
+nnoremap <C-S-Left> :vsplit<CR>
+inoremap <C-S-Left> <ESC>:vsplit<CR>gi
+vnoremap <C-S-Left> <ESC>:vsplit<CR>gv=gv
 
 " [EDIT+VISUAkL+COMMAND] CTRL-K RIGHT Split right
-nnoremap <C-v><Right> :botright vsplit<CR>
-inoremap <C-v><Right> <ESC>:botright vsplit<CR>gi
-vnoremap <C-v><Right> <ESC>:botright vsplit<CR>gv=gv
+nnoremap <C-S-Right> :botright vsplit<CR>
+inoremap <C-S-Right> <ESC>:botright vsplit<CR>gi
+vnoremap <C-S-Right> <ESC>:botright vsplit<CR>gv=gv
 
 
 
@@ -189,13 +407,17 @@ vnoremap <M-Up> <ESC>:wincmd k<CR>gv=gv
 nnoremap <M-Down> :wincmd j<CR>
 inoremap <M-Down> <ESC>:wincmd j<CR>gi
 vnoremap <M-Down> <ESC>:wincmd j<CR>gv=g
-
+"}}}
 
 
 "Switch buffers
 nnoremap ü :bnext<CR>
 nnoremap ö :bprevious<CR>
 
+"{{{ Comment text
+nmap <leader>cc :Commentary<CR>
+vmap <leader>cc :Commentary<CR>
+"}}}"
 
 
 " Reindent file and return to current line
@@ -208,25 +430,24 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 "{{{
 if has ('autocmd') " Remain compatible with earlier versaons
 
-	" automatically rebalance windows on vim resize
-	autocmd VimResized * :wincmd =
+    " automatically rebalance windows on vim resize
+    autocmd VimResized * :wincmd =
 
-	" Enable marker folds for .vimrc files and shell files
-	autocmd FileType vim,sh setlocal foldmethod=marker
-	autocmd BufRead * normal zM
+    " " Enable marker folds for .vimrc files and shell files
+    " autocmd FileType vim,sh setlocal foldmethod=marker
+    " autocmd BufRead * normal zM
 
-	"Changing number base on the mode we are in
-	augroup toggle_relative_number
-		autocmd InsertEnter * :setlocal relativenumber " norelativenumber
-		autocmd InsertLeave * :setlocal norelativenumber " relativenumber
-	augroup END
+    "Changing number base on the mode we are in
+    augroup toggle_relative_number
+        autocmd InsertEnter * :setlocal relativenumber " norelativenumber
+        autocmd InsertLeave * :setlocal norelativenumber " relativenumber
+    augroup END
 
-	augroup CursorLineOnlyInActiveWindow
-		autocmd!
-		autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-		autocmd WinLeave * setlocal nocursorline
-	augroup END
-
+    augroup CursorLineOnlyInActiveWindow
+        autocmd!
+        autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+        autocmd WinLeave * setlocal nocursorline
+    augroup END
 
 endif " has autocmd
 "}}}
