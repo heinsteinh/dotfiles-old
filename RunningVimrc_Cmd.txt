@@ -1,0 +1,1 @@
+C:\Users\108012516\dotfiles\vimConf>gvim -u vimrc_fzf -p vimrc_fzf
