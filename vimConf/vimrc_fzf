@@ -1,0 +1,232 @@
+set nocompatible        " Use Vim settings, rather than Vi settings
+set langmenu=en
+set encoding=utf-8
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Use commas as leaders
+let mapleader = ','
+let maplocalleader = ','
+let g:mapleader = ','
+
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'qpkorr/vim-bufkill'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+
+Plugin 'mileszs/ack.vim'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
+
+"vim simple status line
+Plugin 'itchyny/lightline.vim'
+
+" Gruvbox Community theme.
+"Plugin 'gruvbox-community/gruvbox'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+
+set softtabstop=2 " Indent by 2 spaces when hitting tab
+set shiftwidth=4 " Indent by 4 spaces when auto-indenting
+set tabstop=4 " Show existing tab with 4 spaces width
+syntax on " Enable syntax highlighting
+filetype indent on " Enable indenting for files
+set autoindent " Enable auto indenting
+set number " Enable line numbers
+"colorscheme desert " Set nice looking colorscheme
+colorscheme herald " Set nice looking colorscheme
+set nobackup " Disable backup files
+set laststatus=2 "show status line
+set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+set wildmenu " Display command line's tab complete options as a menu.
+
+
+"- Allow backspacing over indention, line breaks and insertion start.
+set backspace=indent,eol,start
+"- Set bigger history of executed commands.
+set history=1000
+"- Show incomplete commands at the bottom.
+set showcmd
+"- Show current mode at the bottom.
+set showmode
+"- Automatically re-read files if unmodified inside Vim.
+set autoread
+
+"- Manage multiple buffers effectively: the current buffer can be 'sent' to the background without writing to disk. When a background buffer becomes current again, marks and undo-history are remembered. See chapter Buffers to understand this better.
+set showcmd
+
+set switchbuf=useopen " reveal already opened files from the quickfix window
+                      " instead of opening new buffers
+
+
+" Very magic by default
+nnoremap ? ?\v
+nnoremap / /\v
+cnoremap %s/ %sm/
+" Proper search
+set incsearch
+set ignorecase
+set smartcase
+
+
+
+" Double tap s to save the buffer contents, more convienent than keep the pressure on the modifier keys to be CUA compatible.
+nnoremap <silent> ss :update<CR>
+
+
+"remap jk/kj to escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+
+" remap movement keys so that up-down work over visual lines rather than 
+" actual lines
+noremap j gj
+noremap k gk
+
+
+
+
+" yank to system clipboard
+xnoremap <leader>c "+y
+nnoremap <leader>c "+y
+" paste from system clipboard and go end of the paste
+nnoremap <leader>v "+p`]
+
+
+"Should find another mapper for this w. mgt
+map <c-Down>  <c-w>-
+map <c-Right> <c-w><
+map <c-Up>    <c-w>+
+map <c-Left>  <c-w>>
+
+
+"Split window resize
+nnoremap <leader>j :resize +5<CR>
+nnoremap <leader>k :resize -5<CR>
+nnoremap <leader>h :vertical resize +5<CR>
+nnoremap <leader>l :vertical resize -5<CR>
+
+nnoremap <C-Insert> "*y
+nnoremap <S-Insert> "*p
+vnoremap <C-Insert> "*y
+vnoremap <S-Insert> "*p
+
+
+
+" [EDIT+VISUAL+COMMAND] CTRL-K UP Split above
+nnoremap <C-v><Up> :above split<CR>
+inoremap <C-v><Up> <ESC>:above split<CR>gi
+vnoremap <C-v><Up> <ESC>:above split<CR>gv=gv
+
+" [EDIT+VISUAL+COMMAND] CTRL-K DOWN Split below
+nnoremap <C-v><Down> :below split<CR>
+inoremap <C-v><Down> <ESC>:below split<CR>gi
+vnoremap <C-v><Down> <ESC>:below split<CR>gv=gv
+
+" [EDIT+VISUAL+COMMAND] CTRL-K LEFT Split left
+nnoremap <C-v><Left> :vsplit<CR>
+inoremap <C-v><Left> <ESC>:vsplit<CR>gi
+vnoremap <C-v><Left> <ESC>:vsplit<CR>gv=gv
+
+" [EDIT+VISUAkL+COMMAND] CTRL-K RIGHT Split right
+nnoremap <C-v><Right> :botright vsplit<CR>
+inoremap <C-v><Right> <ESC>:botright vsplit<CR>gi
+vnoremap <C-v><Right> <ESC>:botright vsplit<CR>gv=gv
+
+
+
+" [EDIT+VISUAL+COMMAND] ALT-LEFT switch to left or next window
+nnoremap <M-Right> :wincmd l<CR>
+inoremap <M-Right> <ESC>:wincmd l<CR>gi
+vnoremap <M-Right> <ESC>:wincmd l<CR>gv=gv
+
+" [EDIT+VISUAL+COMMAND] ALT-RIGHT switch to right previous window
+nnoremap <M-Left> :wincmd h<CR>
+inoremap <M-Left> <ESC>:wincmd h<CR>gi
+vnoremap <M-Left> <ESC>:wincmd h<CR>gv=gv
+
+" [EDIT+VISUAL+COMMAND] ALT-UP switch to window above current
+nnoremap <M-Up> :wincmd k<CR>
+inoremap <M-Up> <ESC>:wincmd k<CR>gi
+vnoremap <M-Up> <ESC>:wincmd k<CR>gv=gv
+
+" [EDIT+VISUAL+COMMAND] ALT-DOWN switch to window below current
+nnoremap <M-Down> :wincmd j<CR>
+inoremap <M-Down> <ESC>:wincmd j<CR>gi
+vnoremap <M-Down> <ESC>:wincmd j<CR>gv=g
+
+
+
+"Switch buffers
+nnoremap ü :bnext<CR>
+nnoremap ö :bprevious<CR>
+
+
+
+" Reindent file and return to current line
+map <leader>i mmgg=G`m<cr>
+
+
+" Strip all trailing whitespace from a file, using ,W
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+"{{{
+if has ('autocmd') " Remain compatible with earlier versaons
+
+	" automatically rebalance windows on vim resize
+	autocmd VimResized * :wincmd =
+
+	" Enable marker folds for .vimrc files and shell files
+	autocmd FileType vim,sh setlocal foldmethod=marker
+	autocmd BufRead * normal zM
+
+	"Changing number base on the mode we are in
+	augroup toggle_relative_number
+		autocmd InsertEnter * :setlocal relativenumber " norelativenumber
+		autocmd InsertLeave * :setlocal norelativenumber " relativenumber
+	augroup END
+
+	augroup CursorLineOnlyInActiveWindow
+		autocmd!
+		autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+		autocmd WinLeave * setlocal nocursorline
+	augroup END
+
+
+endif " has autocmd
+"}}}

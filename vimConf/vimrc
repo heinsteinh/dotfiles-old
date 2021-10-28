@@ -16,7 +16,7 @@ set encoding=utf-8
 "set wildmenu " Display command line's tab complete options as a menu.
 
 
-" O S {{{
+"{{{ OS Variable initialization and Config Dir 
 "====================================================================================================
 let g:is_win   = has('win32') || has('win64')
 let g:is_mac   = has('mac') || system('uname') =~? '^darwin'
@@ -25,6 +25,7 @@ let g:is_linux = !g:is_mac && has('unix')
 let g:is_iterm = exists('$ITERM_PROFILE')
 let g:is_tmux = exists('$TMUX')
 
+"{{{ Simple Branch Template Example
 if g:is_win
 elseif g:is_mac
 elseif g:is_linux
@@ -33,7 +34,7 @@ endif
 if g:is_win
 elseif g:is_linux
 endif
-" }}}
+"}}}
 
 if g:is_win
     :let $VIMFILE_DIR = 'vimfiles'
@@ -41,8 +42,7 @@ else
     :let $VIMFILE_DIR = '.vim'
 endif
 
-
-"tmux
+"{{{ ToDo Tmux Config
 if g:is_iterm
     if g:is_tmux
         source $HOME/$VIMFILE_DIR/tmux.vim
@@ -52,42 +52,42 @@ if g:is_iterm
     "echo "sourcing is_iterm "
     set t_Co=256  
 endif
+"}}}
 
-
-if g:is_win
-    echo "Current Hostname :: " 
-    echo hostname() 
-
+"{{{ Python DLL and Dir Path
     if hostname() == "BHI4PCH7D3"
         let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
         let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
 
     else
-
     endif
+"}}}
 
+"{{{ Shell Definition if needed
+if g:is_win
+    "set shell=cmd
+    "set shellcmdflag=/c
+else
+    "set shell=/bin/bash
+endif
+
+"}}}
+
+  echo "Current Hostname :: " 
+    echo hostname() 
+
+if g:is_win
+  
 elseif g:is_linux
     " Allows you to enter sudo pass and save the file
     " " when you forgot to open your file with sudo
     cmap w!! %!sudo tee > /dev/null %
-
-
-    if hostname() == "BHI4PCH7D3"
-        let &pythonthreehome='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64'
-        let &pythonthreedll='C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python37.dll'
-
-    else
-
-    endif
-
-
 endif
 
+"}}}
 
 
-
-
-"{{{ Plugin Section
+"{{{ Plugin Installation Section
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
@@ -110,24 +110,20 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
+
+
+
+" show errors in different Colors
+highlight Errors ctermbg=green guibg=darkred
+
 "}}}
 
 
-
-if g:is_win
-    "set shell=cmd
-    "set shellcmdflag=/c
-else
-    "set shell=/bin/bash
-endif
-
-" Highlighting {{{
-" show errors
-highlight Errors ctermbg=green guibg=darkred
-" }}}
-
+"{{{  Vim Config Settings
 
 source $HOME/$VIMFILE_DIR/settings.vim
+"}}}
+
 
 "{{{ Gui Running config
 let $LANG='en'
@@ -267,7 +263,9 @@ endfor
 "for f in split(glob('$HOME/$VIMFILE_DIR/helpers/**/*.vim'), '\n')
 "    exec 'source' f
 "endfor
-"
+
+
+"}}}
 
 
 "{{{ Source architecture config dependency 
@@ -287,11 +285,8 @@ elseif g:is_linux
 endif
 "}}}
 
-"}}}
-
 
 "{{{ Source custum settings
-
 
 source $HOME/$VIMFILE_DIR/settings/functions.vim
 source $HOME/$VIMFILE_DIR/settings/keymaps.vim
@@ -364,7 +359,8 @@ function! Shellchk()
 endfunction
 "}}}
 
-"{{{  working on Agenda Mappings
+
+"{{{ working on Agenda Mappings
 "insert date 
 nnoremap <Leader>-d "=system("date " . shellescape("+<%F %a>"))<CR>p
 "insert SCHEDUlED tag
