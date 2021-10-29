@@ -290,14 +290,15 @@ if has("gui_running")
             set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
             "set guifont=Hack_Nerd_Font_Mono:h10:cANSI:qDRAFT  
         else
-            set guifont=DejaVu\ Sans\ Mono\ 13
+            "set guifont=DejaVu\ Sans\ Mono\ 13
+            set guifont=Fira\ Code\ Medium\ 12
         endif
 
         "au GUIEnter * simalt ~x
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
-        set guifont=Fira\ Code\ 13
+        set guifont=Fira\ Code\ Medium\ 12
     endif
 
     nnoremap <A-n>  :confirm enew<CR>
@@ -587,12 +588,12 @@ nnoremap <leader>bd :BD!<CR>
 
 " <leader>t to create new tab.
 noremap <leader>t :tabnew<CR>
-  " <leader>tt to create new terminal tab.
-  noremap <leader>tt :tabnew<CR>:term ++curwin<CR>
-  " <leader>tt to create new ammonite tab.
-  noremap <leader>ta :exe 'tabnew \| term ++curwin ++close ' . g:amm <CR>
-  " <leader>tt to create new ipython tab.
-  noremap <leader>ti :tabnew<CR>:term ++curwin ++close ipython<CR>
+" <leader>tt to create new terminal tab.
+noremap <leader>tt :tabnew<CR>:term ++curwin<CR>
+" <leader>tt to create new ammonite tab.
+noremap <leader>ta :exe 'tabnew \| term ++curwin ++close ' . g:amm <CR>
+" <leader>tt to create new ipython tab.
+noremap <leader>ti :tabnew<CR>:term ++curwin ++close ipython<CR>
 " <leader>tc to close the current tab.
 noremap <leader>tc :tabc<CR>
 "Switch buffers

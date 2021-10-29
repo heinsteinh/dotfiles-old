@@ -6,7 +6,7 @@ set updatetime=300
 " Airline:
 " Use my custom airline theme.
 "let g:airline_theme = 'tomorrow'
-"let g:airline_theme = 'luna'
+let g:airline_theme = 'luna'
 " Use powerline symbols.
 let g:airline_powerline_fonts = 1
 " Create the symbols dict.
@@ -67,15 +67,25 @@ augroup TablineCwd
     au DirChanged,VimEnter * let g:airline#extensions#tabline#tabs_label = pathshorten(fnamemodify(getcwd(), ":~"))
 augroup end
 
-
-function! CheckBatteryPercent()
+function! CheckBatteryPercent_old()
     let l:unknown = "unknown"
     let l:uname = get(g:, "uname", l:unknown)
+    echo l:uname
     if l:uname ==# "Darwin"
         let g:battery_percent = trim(system('sh -c ''pmset -g batt | grep -Eo "\d+%" | cut -d% -f1'' '))
     elseif l:uname ==# l:unknown
         let g:battery_percent = "??"
     else
+        let g:battery_percent = system('sh -c ''if [[ -f /sys/class/power_supply/BAT0/capacity ]]; then cat /sys/class/power_supply/BAT0/capacity; else echo "∞"; fi'' ')[:-2]
+    endif
+endfunction
+
+function! CheckBatteryPercent()
+    if g:is_win
+        let g:battery_percent = "??"
+    elseif g:is_mac
+        let g:battery_percent = trim(system('sh -c ''pmset -g batt | grep -Eo "\d+%" | cut -d% -f1'' '))
+    elseif g:is_linux
         let g:battery_percent = system('sh -c ''if [[ -f /sys/class/power_supply/BAT0/capacity ]]; then cat /sys/class/power_supply/BAT0/capacity; else echo "∞"; fi'' ')[:-2]
     endif
 endfunction
