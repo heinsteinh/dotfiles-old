@@ -1,13 +1,9 @@
 " nerdtree icons conf
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_enable_ctrlp = 1
-"let g:tagbar_autopreview = 1
 
 let NERDTreeShowBookmarks=1
-
 let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.DS_Store', "\idea", '\.temp', '\.git']
-
 
 
 "{{{
@@ -21,7 +17,7 @@ let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
 "let NERDTreeDirArrowCollapsible="v"
 
 noremap <leader>ne :NERDTreeFind<cr>
-noremap <C-o> :NERDTreeToggle %<CR>
+noremap <F7> :NERDTreeToggle %<CR>
 noremap <F4> :lcd %:p:h<CR>:NERDTreeCWD<CR>
 
 " don;t show these file types

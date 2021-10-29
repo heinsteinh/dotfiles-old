@@ -1,0 +1,5 @@
+C:\Users\108012516\dotfiles\vimConf>gvim -u vimrc_fzf -p vimrc_fzf
+
+vim -N -u vimrc_fzf -p vimrc_fzf --startuptime startuptime.log
+
+vim -V20 2>&1 | tee logfile 
