@@ -133,7 +133,8 @@ else
 end
 
 "}}}
-
+" Show hex codes as colours
+Plugin 'chrisbra/Colorizer' 
 
 " Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
 "Plugin 'gruvbox-community/gruvbox'
@@ -204,7 +205,7 @@ set expandtab
 
 set switchbuf=useopen " reveal already opened files from the quickfix window
 " instead of opening new buffers
-
+"let g:rainbow_active = 1
 
 " Very magic by default
 nnoremap ? ?\v
@@ -298,7 +299,7 @@ if has("gui_running")
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
-        set guifont=Fira\ Code\ Medium\ 12
+        set guifont=Fira\ Code\ Medium\ 10
     endif
 
     nnoremap <A-n>  :confirm enew<CR>
@@ -539,12 +540,12 @@ noremap [w :wincmd w<CR>
 noremap ]w :wincmd W<CR>
 
 " <leader>n or <leader>- will create a new split below this one.
-noremap <leader>n :wincmd n<CR>
-noremap <leader>- :wincmd n<CR>
+"noremap <leader>n :wincmd n<CR>
+"noremap <leader>- :wincmd n<CR>
 
 " <leader>v or <leader>\ will create a new split to the right of this one.
-noremap <leader>v :wincmd v<CR>
-noremap <leader><bslash> :wincmd v<CR>
+"noremap <leader>v :wincmd v<CR>
+"noremap <leader><bslash> :wincmd v<CR>
 
 " Esc to enter terminal normal mode
 tnoremap <Esc> <C-\><C-n>
@@ -677,6 +678,7 @@ source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_nerdtree.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_airline.vim
 source $HOME/$VIMFILE_DIR/plugins/color-devicons.vim
+source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
 
 source $HOME/$VIMFILE_DIR/settings/settings_cpp.vim
 source $HOME/$VIMFILE_DIR/settings/fzf-spell.vim
