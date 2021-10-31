@@ -6,7 +6,8 @@ set updatetime=300
 " Airline:
 " Use my custom airline theme.
 "let g:airline_theme = 'tomorrow'
-let g:airline_theme = 'luna'
+"let g:airline_theme = 'luna'
+let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'papercolor'
 " Use powerline symbols.
 let g:airline_powerline_fonts = 1
