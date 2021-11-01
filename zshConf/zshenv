@@ -1,0 +1,29 @@
+
+#https://github.com/jabrouwer82/configurations/blob/ab816a9b08b394b7cd114a912d4e04c926b46345/.zshenv
+
+
+# Some common locations
+export THIRDPARTY="$HOME/thirdparty"
+export WORK="$HOME/work/"
+export PDS="$WORK/pds/"
+export PFP="$WORK/pfp/"
+export PERS="$HOME/personal/"
+export CFG="$PERS/configurations/"
+
+# FZF configuration
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Less doesn't do anything if there's less than one page.
+export LESS="-FRX $LESS"
+
+
+
+export MANPATH="/usr/local/man:$MANPATH"
+
+export LANG=en_US.UTF-8
+export TERM=xterm-256color
+export COLORTERM=truecolor
+export PYTHONPATH="${PYTHONPATH}:$HOME/work/python"
+export FZF_BASE=/usr/local/bin/fzf
+export BAT_STYLE=changes,numbers

@@ -25,8 +25,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
 
     "Changing number base on the mode we are in
     augroup toggle_relative_number
-        autocmd InsertEnter * :setlocal relativenumber " norelativenumber
-        autocmd InsertLeave * :setlocal norelativenumber " relativenumber
+        autocmd InsertEnter * :setlocal  norelativenumber
+        autocmd InsertLeave * :setlocal  relativenumber
     augroup END
 
     augroup CursorLineOnlyInActiveWindow

@@ -23,7 +23,6 @@ elseif g:is_mac
 elseif g:is_linux
 endif
 
-
 if g:is_win
 elseif g:is_linux
 endif
@@ -182,14 +181,14 @@ syntax on " Enable syntax highlighting
 filetype indent on " Enable indenting for files
 set autoindent " Enable auto indenting
 set number " Enable line numbers
-"set background=dark
+set background=dark
 "colorscheme desert " Set nice looking colorscheme
 "colorscheme herald " Set nice looking colorscheme
 "colorscheme oceanic_material
 "colorscheme PaperColor
 colorscheme OceanicNext
 "colorscheme gruvbox
-set nobackup " Disable backup files
+"colorscheme atom
 set laststatus=2 "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu " Display command line'scomplete options as a menu.
@@ -204,8 +203,24 @@ set history=1000
 set showcmd
 "- Show current mode at the bottom.
 set showmode
-"- Automatically re-read files if unmodified inside Vim.
+
+" Vim will automatically save files when moving between buffers.
+" This is pretty safe because I persist edit history, so I can undo changes if a buffer gets closed.
+set autowrite
+set autowriteall
+
+" Automatically reread a file if some other process writes to it.
+" Useful for editing files in a full IDE or other vim sessions simultaneously.
 set autoread
+
+
+" Highlights a cross over the cursor.
+" Some highlighting gets a little strange due to my theme.
+set cursorline
+"set cursorcolumn
+
+" Always display the sign column, used by coc, ale, and gitgutter to display changes, errors, and warning.
+"set signcolumn=yes
 
 set title 
 " Allow hidden buffers, don't limit to 1 file per window/split
@@ -217,6 +232,19 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
+" Displays tabs, nbsps, and trailing spaces with printable characters.
+set list listchars=tab:▸\ ,nbsp:·,trail:·
+" Shows a fancy arrow on wrapped lines.
+set showbreak=↪\ 
+
+
+" After 300 millis of no edits, a swap file will be written.
+" After 300 millis, the CursorHold event fires.
+set updatetime=300
+" Blocks "hit enter" prompts on completion menu actions.
+set shortmess+=c
+" Adds a second line to the cmd bar.
+"set cmdheight=2
 
 set switchbuf=useopen " reveal already opened files from the quickfix window
 " instead of opening new buffers
@@ -232,7 +260,6 @@ set ignorecase
 set smartcase
 " Highlights search matches.
 set hlsearch
-
 
 
 "{{{ Source architecture config dependency 
@@ -313,7 +340,7 @@ if has("gui_running")
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
-        set guifont=Fira\ Code\ Medium\ 11
+        set guifont=Fira\ Code\ Medium\ 10
     endif
 
     nnoremap <A-n>  :confirm enew<CR>
@@ -628,12 +655,9 @@ map <leader>i mmgg=G`m<cr>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 
-
 set foldlevel=100         " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set foldcolumn=1
-
-
 
 
 source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
@@ -656,18 +680,6 @@ if has ('autocmd') " Remain compatible with earlier versaons
     " " Enable marker folds for .vimrc files and shell files
     " autocmd FileType vim,sh setlocal foldmethod=marker
     " autocmd BufRead * normal zM
-
-    "Changing number base on the mode we are in
-    augroup toggle_relative_number
-        autocmd InsertEnter * :setlocal norelativenumber
-        autocmd InsertLeave * :setlocal relativenumber
-    augroup END
-
-    augroup CursorLineOnlyInActiveWindow
-        autocmd!
-        autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-        autocmd WinLeave * setlocal nocursorline
-    augroup END
 
 
     " Easier closing of vim help menus.
@@ -765,6 +777,8 @@ function! LargeFile()
     " Display message once buffer is open.
     autocmd ++once BufEnter *  echom "The file is larger than " . g:large_fsize . " MB, so some options are changed."
 endfunction
+
+
 
 source $HOME/$VIMFILE_DIR/settings/AutoCommand.vim
 

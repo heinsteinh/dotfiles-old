@@ -31,6 +31,9 @@ echo $DOTFILES_DIR
 
 #remove any symlink if exist
 
+rm -rf ${HOME}/.config/alacritty.yml
+
+
 rm -rf ${HOME}/.vim
 [[ -d ${DOTFILES_DIR}/vimConf                  ]] &&  ln -sfv ${DOTFILES_DIR}/vimConf/vim               ${HOME}/.vim
 
@@ -54,6 +57,7 @@ rm -rf ${HOME}/.vim
 # ln -sfv ${DOTFILES_DIR}/zshConf/zshrc                 ${HOME}/.zshrc
 
 
+ ln -sfv ${DOTFILES_DIR}/alacrittyConf/alacritty.yml        ${HOME}/.config/alacritty.yml
 #ln -sfv ${DOTFILES_DIR}/runcom/inputrc                ${HOME}/.inputrc
 #ln -sfv ${DOTFILES_DIR}/runcom/compton.conf           ${HOME}/.compton.conf
 
