@@ -269,6 +269,8 @@ colors:
   #
   #indexed_colors: []
 
+background_opacity: 0.8  # value range is 0 ~ 1
+
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
