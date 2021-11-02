@@ -6,6 +6,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+
 " Use commas as leaders
 let mapleader = ','
 let maplocalleader = ','
@@ -78,93 +79,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
 
+source $HOME/$VIMFILE_DIR/plugins_vimrc.vim   
 
-Plugin 'octol/vim-cpp-enhanced-highlight'
-" Provides a command to close a buffer but keep its window.
-Plugin 'qpkorr/vim-bufkill'
-
-" fzf fuzzy stuff happen here!
-Plugin 'mileszs/ack.vim'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf'
-Plugin 'tracyone/fzf-funky',{'on': 'FzfFunky'}
-
-" Automatically change directory to project root
-Plugin 'airblade/vim-rooter'
-
-" Syntax highlight
-Plugin 'sheerun/vim-polyglot'
-" Code comments
-Plugin 'tpope/vim-commentary'
-
-"Status line
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"vim simple status line
-"Plugin 'itchyny/lightline.vim'
-
-" UI
-Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'PhilRunninger/nerdtree-visual-selection'
-
-"Plugin 'markonm/traces.vim' " Preview for substitute commands.
-Plugin 'roman/golden-ratio' " Automatically resize windows.
-
-
-Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-"CTage management for 
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'majutsushi/tagbar'
-
-
-"Track the engine.
-Plugin 'SirVer/ultisnips'
-"Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-" C++ Algorithms snippets (using mnemonics)
-Plugin 'dawikur/algorithm-mnemonics.vim'
-
-
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'rhysd/vim-clang-format'
-
-
-"{{{ System Specifics Plugins
-if hostname() == "BHI4PCH7D3"
-else
-
-end
-
-"}}}
-
-
-
-Plugin 'mhinz/vim-startify'
-
-"Shader syntax support
-Plugin 'tikhomirov/vim-glsl'
-
-" Show hex codes as colours
-Plugin 'chrisbra/Colorizer' 
-
-" Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
-"Plugin 'gruvbox-community/gruvbox'
-Plugin 'frazrepo/vim-rainbow'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ryanoasis/vim-webdevicons'
-
-"Nice to have colorscheme
-Plugin 'rafi/awesome-vim-colorschemes'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-colorscheme-switcher'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -181,92 +98,101 @@ highlight Errors ctermbg=green guibg=darkred
 
 "}}
 
-set softtabstop=2 " Indent by 2 spaces when hitting tab
-set shiftwidth=4 " Indent by 4 spaces when auto-indenting
-set tabstop=4 " Show existing tab with 4 spaces width
-syntax on " Enable syntax highlighting
-filetype indent on " Enable indenting for files
-set autoindent " Enable auto indenting
-set number " Enable line numbers
-set background=dark
-"colorscheme desert " Set nice looking colorscheme
-"colorscheme herald " Set nice looking colorscheme
-"colorscheme oceanic_material
-"colorscheme PaperColor
-colorscheme OceanicNext
-"colorscheme gruvbox
-"colorscheme atom
-set laststatus=2 "show status line
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-set wildmenu " Display command line'scomplete options as a menu.
-set number
-set relativenumber
+"set softtabstop=2 " Indent by 2 spaces when hitting tab
+"set shiftwidth=4 " Indent by 4 spaces when auto-indenting
+"set tabstop=4 " Show existing tab with 4 spaces width
+"syntax on " Enable syntax highlighting
+"filetype indent on " Enable indenting for files
+"set autoindent " Enable auto indenting
+"set number " Enable line numbers
+"set background=dark
+""colorscheme desert " Set nice looking colorscheme
+""colorscheme herald " Set nice looking colorscheme
+""colorscheme oceanic_material
+""colorscheme PaperColor
+"colorscheme OceanicNext
+""colorscheme gruvbox
+""colorscheme atom
+"set laststatus=2 "show status line
+"set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+"set wildmenu " Display command line'scomplete options as a menu.
+"set number
+"set relativenumber
 
-"- Allow backspacing over indention, line breaks and insertion start.
-set backspace=indent,eol,start
-"- Set bigger history of executed commands.
-set history=1000
-"- Show incomplete commands at the bottom.
-set showcmd
-"- Show current mode at the bottom.
-set showmode
+""- Allow backspacing over indention, line breaks and insertion start.
+"set backspace=indent,eol,start
+""- Set bigger history of executed commands.
+"set history=1000
+""- Show incomplete commands at the bottom.
+"set showcmd
+""- Show current mode at the bottom.
+"set showmode
 
-" Vim will automatically save files when moving between buffers.
-" This is pretty safe because I persist edit history, so I can undo changes if a buffer gets closed.
-set autowrite
-set autowriteall
+"" Vim will automatically save files when moving between buffers.
+"" This is pretty safe because I persist edit history, so I can undo changes if a buffer gets closed.
+"set autowrite
+"set autowriteall
 
-" Automatically reread a file if some other process writes to it.
-" Useful for editing files in a full IDE or other vim sessions simultaneously.
-set autoread
-
-
-" Highlights a cross over the cursor.
-" Some highlighting gets a little strange due to my theme.
-set cursorline
-"set cursorcolumn
-
-" Always display the sign column, used by coc, ale, and gitgutter to display changes, errors, and warning.
-"set signcolumn=yes
-
-set title 
-" Allow hidden buffers, don't limit to 1 file per window/split
-set hidden
-
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-
-" Displays tabs, nbsps, and trailing spaces with printable characters.
-"set list listchars=tab:▸\ ,nbsp:·,trail:·
-" Shows a fancy arrow on wrapped lines.
-set showbreak=↪\ 
+"" Automatically reread a file if some other process writes to it.
+"" Useful for editing files in a full IDE or other vim sessions simultaneously.
+"set autoread
 
 
-" After 300 millis of no edits, a swap file will be written.
-" After 300 millis, the CursorHold event fires.
-set updatetime=300
-" Blocks "hit enter" prompts on completion menu actions.
-set shortmess+=c
-" Adds a second line to the cmd bar.
-set cmdheight=2
+"" Highlights a cross over the cursor.
+"" Some highlighting gets a little strange due to my theme.
+"set cursorline
+""set cursorcolumn
 
-set switchbuf=useopen " reveal already opened files from the quickfix window
-" instead of opening new buffers
-"let g:rainbow_active = 1
+"" Always display the sign column, used by coc, ale, and gitgutter to display changes, errors, and warning.
+""set signcolumn=yes
 
-" Very magic by default
-nnoremap ? ?\v
-nnoremap / /\v
-cnoremap %s/ %sm/
-" Proper search
-set incsearch
-set ignorecase
-set smartcase
-" Highlights search matches.
-set hlsearch
+"set title 
+"" Allow hidden buffers, don't limit to 1 file per window/split
+"set hidden
+
+"" Indentation settings for using 4 spaces instead of tabs.
+"" Do not change 'tabstop' from its default value of 8 with this setup.
+"set shiftwidth=4
+"set softtabstop=4
+"set expandtab
+
+"" Displays tabs, nbsps, and trailing spaces with printable characters.
+""set list listchars=tab:▸\ ,nbsp:·,trail:·
+"" Shows a fancy arrow on wrapped lines.
+"set showbreak=↪\ 
+
+
+"" After 300 millis of no edits, a swap file will be written.
+"" After 300 millis, the CursorHold event fires.
+"set updatetime=300
+"" Blocks "hit enter" prompts on completion menu actions.
+"set shortmess+=c
+"" Adds a second line to the cmd bar.
+"set cmdheight=2
+
+"set switchbuf=useopen " reveal already opened files from the quickfix window
+"" instead of opening new buffers
+""let g:rainbow_active = 1
+
+"" Very magic by default
+"nnoremap ? ?\v
+"nnoremap / /\v
+"cnoremap %s/ %sm/
+"" Proper search
+"set incsearch
+"set ignorecase
+"set smartcase
+"" Highlights search matches.
+"set hlsearch
+
+
+"let $LANG='en'
+"set langmenu=en
+"set mouse=a
+
+
+
+source $HOME/$VIMFILE_DIR/settings_vimrc.vim  
 
 
 "{{{ Source architecture config dependency 
@@ -298,14 +224,8 @@ nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
 " Quick PluginStall
 nnoremap <Leader>pi :source $MYVIMRC<cr>:PluginInstall<cr>
 
-source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
-source $HOME/$VIMFILE_DIR/plugins/automkdir.vim
-source $HOME/$VIMFILE_DIR/plugins/diminactive.vim
 
 
-let $LANG='en'
-set langmenu=en
-set mouse=a
 
 "{{{ Gui Running config
 if has("gui_running")
@@ -398,19 +318,6 @@ endif
 
 
 
-" if has('unix') && !has('gui_running')
-"   let s:uname = system('uname')
-"   if s:uname =~? "linux"
-"     set term=xterm-256color
-"   elseif s:uname =~? "freebsd"
-"     set term=builtin_cons25
-"   elseif s:uname =~? "Darwin"
-"     set term=beos-ansi
-"   else
-"     set term=builtin_xterm
-"   endif
-"   unlet s:uname
-" endif
 
 " Mappings {{{
 " Useful mappings
@@ -447,6 +354,14 @@ xnoremap <leader>x"+d
 
 " yank whole file into system clipboard
 nnoremap <leader><leader>' gg0"+yG
+
+
+nnoremap <C-Insert> "*y
+nnoremap <S-Insert> "*p
+vnoremap <C-Insert> "*y
+vnoremap <S-Insert> "*p
+
+
 "}}}
 
 
@@ -517,11 +432,6 @@ nnoremap <leader>k :resize -5<CR>
 nnoremap <leader>h :vertical resize +5<CR>
 nnoremap <leader>l :vertical resize -5<CR>
 
-nnoremap <C-Insert> "*y
-nnoremap <S-Insert> "*p
-vnoremap <C-Insert> "*y
-vnoremap <S-Insert> "*p
-
 
 " Move Line Up and Dow in all Tree main Mode 
 nnoremap <C-j> :m .+1<CR>==
@@ -578,9 +488,6 @@ vnoremap <M-Down> <ESC>:wincmd j<CR>gv=g
 
 "Experiment 
 "https://github.com/jabrouwer82/configurations/blob/ab816a9b08b394b7cd114a912d4e04c926b46345/.vimrc
-" <leader># or <leader>3 to go to alt buffer.
-noremap <leader># <C-^>
-noremap <leader>3 <C-^>
 
 " Switch windows
 noremap <leader><Up> :wincmd k<CR>
@@ -603,16 +510,9 @@ noremap ]r :wincmd R<CR>
 noremap [w :wincmd w<CR>
 noremap ]w :wincmd W<CR>
 
-" <leader>n or <leader>- will create a new split below this one.
-"noremap <leader>n :wincmd n<CR>
-"noremap <leader>- :wincmd n<CR>
 
-" <leader>v or <leader>\ will create a new split to the right of this one.
-"noremap <leader>v :wincmd v<CR>
-"noremap <leader><bslash> :wincmd v<CR>
-
-" Esc to enter terminal normal mode
-tnoremap <Esc> <C-\><C-n>
+"" Esc to enter terminal normal mode
+"tnoremap <Esc> <C-\><C-n>
 
 " Ctrl-Shift-V to paste.
 " Terminal Mode
@@ -661,6 +561,8 @@ noremap <leader>ta :exe 'tabnew \| term ++curwin ++close ' . g:amm <CR>
 noremap <leader>ti :tabnew<CR>:term ++curwin ++close ipython<CR>
 " <leader>tc to close the current tab.
 noremap <leader>tc :tabc<CR>
+
+
 "Switch buffers
 nnoremap ü :bnext<CR>
 nnoremap ö :bprevious<CR>
@@ -682,19 +584,41 @@ set foldlevel=100         " start out with everything folded
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set foldcolumn=1
 
-
-source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_nerdtree.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_rooter.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_tagbar.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_tagbar.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_ultisnips.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_airline.vim
-source $HOME/$VIMFILE_DIR/plugins/color-devicons.vim
-source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
 
 source $HOME/$VIMFILE_DIR/settings/settings_cpp.vim
 source $HOME/$VIMFILE_DIR/settings/fzf-spell.vim
+
+source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
+source $HOME/$VIMFILE_DIR/plugins/color-devicons.vim
+source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
+source $HOME/$VIMFILE_DIR/plugins/automkdir.vim
+source $HOME/$VIMFILE_DIR/plugins/diminactive.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
+
+
+function! My_Tab_Completion()
+   if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+      return "\<C-P>"
+   else
+      return "\<Tab>"
+   endif
+endfunction
+inoremap <Tab> <C-R>=My_Tab_Completion()<CR>
+
+function! LargeFile()
+    " No need for the extra IO of making the swap/backup/undo files.
+    setlocal noswapfile nobackup nowritebackup noundofile
+    " Disable syntax highlighting and similar ft plugins.
+    setlocal eventignore+=FileType
+    " Display message once buffer is open.
+    autocmd ++once BufEnter *  echom "The file is larger than " . g:large_fsize . " MB, so some options are changed."
+endfunction
 
 
 "{{{
@@ -705,8 +629,9 @@ if has ('autocmd') " Remain compatible with earlier versaons
     autocmd FileType sh set foldmethod=indent
     autocmd FileType c,cpp set foldmethod=syntax 
     " " Enable marker folds for .vimrc files and shell files
-    " autocmd FileType vim,sh setlocal foldmethod=marker
-    " autocmd BufRead * normal zM
+    autocmd FileType vim,sh setlocal foldmethod=marker
+    "autocmd BufRead * normal zM
+
     autocmd filetype gitcommit setlocal spell spelllang=en_us
 
     " Easier closing of vim help menus.
@@ -800,7 +725,9 @@ if has ('autocmd') " Remain compatible with earlier versaons
     augroup END
 
     "autocmd BufEnter * silent! lcd %:p:h
-    autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
+    "autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
+    autocmd BufEnter *.cpp,*.c,*.java,*.py :TagbarOpen
+
 
     " Let the cmd line breath when it has space.
     augroup ResizeCmdline
@@ -820,19 +747,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
         augroup END
     end
 
-
 endif " has autocmd
-
-
-function! LargeFile()
-    " No need for the extra IO of making the swap/backup/undo files.
-    setlocal noswapfile nobackup nowritebackup noundofile
-    " Disable syntax highlighting and similar ft plugins.
-    setlocal eventignore+=FileType
-    " Display message once buffer is open.
-    autocmd ++once BufEnter *  echom "The file is larger than " . g:large_fsize . " MB, so some options are changed."
-endfunction
-
 
 
 source $HOME/$VIMFILE_DIR/settings/AutoCommand.vim
