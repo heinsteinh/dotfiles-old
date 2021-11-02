@@ -85,6 +85,9 @@ if g:is_win
 elseif g:is_mac
 elseif g:is_linux
 
+
+if hostname() == "BHI4PCH7D3"
+else 
     " This chunk puts a clock and battery meter in the top right of the airline tabline.
     let g:battery_percent = "--"
     call CheckBatteryPercent()
@@ -99,7 +102,7 @@ elseif g:is_linux
         call timer_stop(g:battery_timer)
     endif
     let g:battery_timer = timer_start(&updatetime, 'UpdateBattery')
-
+endif
 endif
 
 

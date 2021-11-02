@@ -114,33 +114,40 @@ Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
+
 "Plugin 'markonm/traces.vim' " Preview for substitute commands.
 Plugin 'roman/golden-ratio' " Automatically resize windows.
+
+
+Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+"CTage management for 
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'majutsushi/tagbar'
+
+
+"Track the engine.
+Plugin 'SirVer/ultisnips'
+"Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" C++ Algorithms snippets (using mnemonics)
+Plugin 'dawikur/algorithm-mnemonics.vim'
+
+
+Plugin 'Rip-Rip/clang_complete'
+Plugin 'rhysd/vim-clang-format'
+
 
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
 else
-    "CTage management for 
-    Plugin 'ludovicchabant/vim-gutentags'
-
-    "Track the engine.
-    Plugin 'SirVer/ultisnips'
-    "Snippets are separated from the engine. Add this if you want them:
-    Plugin 'honza/vim-snippets'
-
-    Plugin 'Rip-Rip/clang_complete'
-    Plugin 'rhysd/vim-clang-format'
-
-    "Plugin 'valloric/youcompleteme'
-
-    Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-    "Plugin 'adah1972/ycmconf'   "https://github.com/adah1972/ycmc
 
 end
 
 "}}}
 
 
+
+Plugin 'mhinz/vim-startify'
 
 "Shader syntax support
 Plugin 'tikhomirov/vim-glsl'
@@ -233,7 +240,7 @@ set softtabstop=4
 set expandtab
 
 " Displays tabs, nbsps, and trailing spaces with printable characters.
-set list listchars=tab:▸\ ,nbsp:·,trail:·
+"set list listchars=tab:▸\ ,nbsp:·,trail:·
 " Shows a fancy arrow on wrapped lines.
 set showbreak=↪\ 
 
@@ -329,7 +336,8 @@ if has("gui_running")
         set guifont=FiraCode\ Nerd\ Font\ Mono:h13
         if has('gui_win32')
             "set guifont=FiraCode_Nerd_Font_Mono:h13:cANSI
-            set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
+            set guifont=FiraCode_Nerd_Font_Mono:h10:W500:cANSI:qDRAFT
+            "            set guifont=FiraCode_Nerd_Font_Mono:h11:W500:cANSI:qDRAFT
             "set guifont=Hack_Nerd_Font_Mono:h10:cANSI:qDRAFT  
         else
             "set guifont=DejaVu\ Sans\ Mono\ 13
@@ -388,6 +396,21 @@ if g:is_win && !has("gui_running")
 endif
 "}}}
 
+
+
+" if has('unix') && !has('gui_running')
+"   let s:uname = system('uname')
+"   if s:uname =~? "linux"
+"     set term=xterm-256color
+"   elseif s:uname =~? "freebsd"
+"     set term=builtin_cons25
+"   elseif s:uname =~? "Darwin"
+"     set term=beos-ansi
+"   else
+"     set term=builtin_xterm
+"   endif
+"   unlet s:uname
+" endif
 
 " Mappings {{{
 " Useful mappings
@@ -662,6 +685,10 @@ set foldcolumn=1
 
 source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_nerdtree.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_rooter.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_tagbar.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_tagbar.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_ultisnips.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_airline.vim
 source $HOME/$VIMFILE_DIR/plugins/color-devicons.vim
 source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
@@ -680,7 +707,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     " " Enable marker folds for .vimrc files and shell files
     " autocmd FileType vim,sh setlocal foldmethod=marker
     " autocmd BufRead * normal zM
-
+    autocmd filetype gitcommit setlocal spell spelllang=en_us
 
     " Easier closing of vim help menus.
     augroup helpft
@@ -695,7 +722,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     augroup end
 
     " autowrite[all] only saves in certain situations, leaving a window is another situation that I think should autosave.
-    augroup AutoWrite
+    augroup AutoWre
         au!
         au WinLeave * silent! update
     augroup end
@@ -766,7 +793,55 @@ if has ('autocmd') " Remain compatible with earlier versaons
                     \ | endif
     augroup end
 
+
+    " Change the directory of vim to current working directory
+    augroup General
+        autocmd BufEnter * if &modifiable | lcd %:p:h | endif
+    augroup END
+
+    "autocmd BufEnter * silent! lcd %:p:h
+    autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
+
+
+
+    " Automatic rename of tmux window
+    " if exists('$TMUX') && !exists('$NORENAME')
+    if exists('$TMUX')
+        " if &term =~ "screen"
+        augroup vimrc-screen
+            autocmd!
+            autocmd BufEnter * call system("tmux rename-window " . "'[" . expand("%:t") . "]'")
+            autocmd VimLeave * call system("tmux set-window automatic-rename on")
+            autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+        augroup END
+    end
+
+
+    " augroup vimrc-quickfix  "{{{2
+    "     autocmd!
+    "     " Quickfix
+    "     " http://hail2u.net/blog/software/vim-auto-close-quickfix-window.html
+    "     autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+
+    "     " Quickfix
+    "     " http://www.sopht.jp/blog/index.php?/archives/458-Quickfix-utility-for-Vim.html
+    "     autocmd QuickFixCmdPost [^l]* cwindow
+    "     autocmd QuickFixCmdPost l* lwindow
+
+    "     autocmd QuickfixCmdPost grep,grepadd,vimgrep copen
+    "     autocmd QuickfixCmdPost make call s:do_post_quickfix_cmd()
+
+    "     function! s:do_post_quickfix_cmd()
+    "         if len(getqflist()) > 0
+    "             cw
+    "         else
+    "             cclose
+    "         endif
+    "     endfunction
+    " augroup END
 endif " has autocmd
+
+
 
 
 function! LargeFile()
