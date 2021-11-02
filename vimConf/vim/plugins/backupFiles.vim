@@ -55,4 +55,11 @@ if !isdirectory(expand(&backupskip))
 endif
 
 
+
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
 " vim: tabstop=2 shiftwidth=2 foldmethod=marker expandtab

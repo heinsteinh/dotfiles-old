@@ -251,7 +251,7 @@ set updatetime=300
 " Blocks "hit enter" prompts on completion menu actions.
 set shortmess+=c
 " Adds a second line to the cmd bar.
-"set cmdheight=2
+set cmdheight=2
 
 set switchbuf=useopen " reveal already opened files from the quickfix window
 " instead of opening new buffers
@@ -802,7 +802,11 @@ if has ('autocmd') " Remain compatible with earlier versaons
     "autocmd BufEnter * silent! lcd %:p:h
     autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
 
-
+    " Let the cmd line breath when it has space.
+    augroup ResizeCmdline
+        au!
+        au VimResized * let &cmdheight=1 + float2nr(ceil(&lines / 64.0))
+    augroup end
 
     " Automatic rename of tmux window
     " if exists('$TMUX') && !exists('$NORENAME')
@@ -817,31 +821,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     end
 
 
-    " augroup vimrc-quickfix  "{{{2
-    "     autocmd!
-    "     " Quickfix
-    "     " http://hail2u.net/blog/software/vim-auto-close-quickfix-window.html
-    "     autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
-
-    "     " Quickfix
-    "     " http://www.sopht.jp/blog/index.php?/archives/458-Quickfix-utility-for-Vim.html
-    "     autocmd QuickFixCmdPost [^l]* cwindow
-    "     autocmd QuickFixCmdPost l* lwindow
-
-    "     autocmd QuickfixCmdPost grep,grepadd,vimgrep copen
-    "     autocmd QuickfixCmdPost make call s:do_post_quickfix_cmd()
-
-    "     function! s:do_post_quickfix_cmd()
-    "         if len(getqflist()) > 0
-    "             cw
-    "         else
-    "             cclose
-    "         endif
-    "     endfunction
-    " augroup END
 endif " has autocmd
-
-
 
 
 function! LargeFile()

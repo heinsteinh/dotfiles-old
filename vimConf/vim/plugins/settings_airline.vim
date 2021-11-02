@@ -1,7 +1,7 @@
 "https://github.com/jabrouwer82/configurations/blob/ab816a9b08b394b7cd114a912d4e04c926b46345/.vimrc
 " After 300 millis of no edits, a swap file will be written.
 " After 300 millis, the CursorHold event fires.
-set updatetime=300
+"set updatetime=300
 
 " Airline:
 " Use my custom airline theme.
@@ -10,6 +10,7 @@ let g:airline_theme = 'luna'
 "let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'papercolor'
 " Use powerline symbols.
+
 let g:airline_powerline_fonts = 1
 " Create the symbols dict.
 if !exists('g:airline_symbols')
