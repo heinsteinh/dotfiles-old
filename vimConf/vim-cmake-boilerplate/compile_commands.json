@@ -1,7 +1,1 @@
-[
-{
-  "directory": "/home/fkheinstein/dotfiles/vimConf/vim-cmake-boilerplate/build",
-  "command": "/usr/sbin/c++  -I/home/fkheinstein/dotfiles/vimConf/vim-cmake-boilerplate/include -std=gnu++11 -o CMakeFiles/Boilerplate.dir/src/main.cpp.o -c /home/fkheinstein/dotfiles/vimConf/vim-cmake-boilerplate/src/main.cpp",
-  "file": "/home/fkheinstein/dotfiles/vimConf/vim-cmake-boilerplate/src/main.cpp"
-}
-]
+build/compile_commands.json

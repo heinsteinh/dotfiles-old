@@ -1,10 +1,13 @@
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.vim/*', '~/work/*', '~/Documents/*']
 
-
+"let g:ycm_key_list_stop_completion = [ '<C-y>', '<Enter>' ]
 " Mapping to close the completion menu (default <C-y>)
-let g:ycm_key_list_stop_completion = ['<C-x>']
+let g:ycm_key_list_stop_completion = ['<C-x>', '<Enter']
 
+let g:ycm_key_list_select_completion = ['<C-n>', '<M-j>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<M-k>']
+    
 " Set filetypes where YCM will be turned on
 let g:ycm_filetype_whitelist = { 'cpp':1, 'h':2, 'hpp':3, 'c':4, 'cxx':5 }
 

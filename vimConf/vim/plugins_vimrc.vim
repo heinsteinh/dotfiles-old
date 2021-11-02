@@ -48,6 +48,7 @@ Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 
+Plugin 'tpope/vim-dispatch'
 
 "Track the engine.
 Plugin 'SirVer/ultisnips'
@@ -91,3 +92,10 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 
 
+
+
+" Open vim-dispatch window and scroll to bottom
+nnoremap    <C-m>m    :Copen<CR> <bar> G
+" Build debug and release targets
+nnoremap    <C-m>bd   :Dispatch! make -C build/Debug<CR>
+nnoremap    <C-m>br   :Dispatch! make -C build/Release<CR>

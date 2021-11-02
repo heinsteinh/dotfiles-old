@@ -28,3 +28,16 @@ target_include_directories(Boilerplate PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/inclu
 set_target_properties(Boilerplate
     PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin/$<CONFIG>")
+
+
+
+
+target_compile_features(Boilerplate PUBLIC cxx_std_11)
+
+# add compiler warning flags just when building this project
+# via the BUILD_INTERFACE generator expression
+set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU>")
+set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
+
+set(gcc_flags "-Wall;-Wextra;-Wshadow;-Wshadow;-Wformat=2")
+set(msvc_flags "-W3")
