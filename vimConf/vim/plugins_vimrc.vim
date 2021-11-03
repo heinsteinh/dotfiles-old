@@ -44,10 +44,9 @@ Plugin 'roman/golden-ratio' " Automatically resize windows.
 
 
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-"CTage management for 
+"CTage managementfor 
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
-
 Plugin 'tpope/vim-dispatch'
 
 "Track the engine.

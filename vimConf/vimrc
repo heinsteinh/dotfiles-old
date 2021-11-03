@@ -565,6 +565,8 @@ source $HOME/$VIMFILE_DIR/plugins/settings_ultisnips.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_airline.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_ycm.vim
 
+
+source $HOME/$VIMFILE_DIR/settings/settings_vim_cpp.vim
 source $HOME/$VIMFILE_DIR/settings/settings_cpp.vim
 source $HOME/$VIMFILE_DIR/settings/fzf-spell.vim
 
