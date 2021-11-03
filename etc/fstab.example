@@ -1,0 +1,41 @@
+
+##----------------------------------------------------------------------------------------
+##-- Editor   vim: set nu ai et ts=4 sw=4 :                                            --
+##-- file     ${dotfiles_dir}/etc/fstab                                                --
+##-- Author   Joe Biden aka ygr                                                        --
+##-- Version  0.1                                                                      --
+##----------------------------------------------------------------------------------------
+
+## main filesystems
+LABEL=boot_fs       /boot   vfat    defaults,discard,errors=remount-ro  0 1
+LABEL=root_fs       /       btrfs   defaults,discard,noatime,ssd,compress=lzo,subvol=ROOT,errors=remount-ro  0 0
+LABEL=root_fs       /home   btrfs   defaults,discard,noatime,ssd,compress=lzo,subvol=HOME,errors=remount-ro  0 0
+LABEL=swap_space    none    swap    defaults,discard  0 0
+
+## put google chrome data in ram
+tmpfs   /home/fkheinstein/.config/google-chrome/Default     tmpfs   mode=0777,noatime,uid=fkheinstein,gid=users  0 0
+tmpfs   /home/fkheinstein/.cache/google-chrome              tmpfs   mode=0777,noatime,uid=fkheinstein,gid=users  0 0
+
+## put downloads directory in ram
+tmpfs   /home/fkheinstein/downloads     tmpfs   defaults,mode=0777,noatime,uid=fkheinstein,gid=users  0 0
+tmpfs   /home/fkheinstein/.tmp          tmpfs   defaults,mode=0777,noatime,uid=fkheinstein,gid=users  0 0
+
+## take some precautions
+tmpfs   /tmp                    tmpfs   defaults,mode=0777,noatime  0 0
+tmpfs   /var/cache/pacman/pkg   tmpfs   defaults,mode=0777,noatime  0 0
+tmpfs   /home/fkheinstein/.purple       tmpfs   defaults,mode=0777,noatime  0 0
+
+
+
+
+#pi example
+/dev/mmcblk0p2	       /	    ext4	errors=remount-ro	0	1
+/dev/mmcblk0p1	       /boot	vfat	defaults	 	    0	0
+/dev/mmcblk0p3	       none	    swap	sw			        0	0
+tmpfs		           /tmp	    tmpfs	size=256M		    0	0
+
+## put downloads directory in ram
+tmpfs   /home/pi/downloads     tmpfs   defaults,mode=0777,noatime,uid=pi,gid=users  0 0
+tmpfs   /home/pi/.tmp          tmpfs   defaults,mode=0777,noatime,uid=pi,gid=users  0 0
+
+

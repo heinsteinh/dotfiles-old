@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+# Rules for herbstluftwm
+
+
+# rules
+hc unrule -F
+
+hc rule focus=on # normally focus new clients
+
+# give focus to most common terminals
+hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole|Termite|Roxterm)' focus=on
+hc rule class~'(feh)'   focus=on switchtag=on  pseudotile=on
+hc rule class=feh       focus=on switchtag=on  pseudotile=on
+
+hc rule class=trayer manage=off
+
+hc rule title="Open Image" pseudotile=on
+hc rule title="Open File" pseudotile=on
+hc rule title="Save As" pseudotile=on
+hc rule title="Save file" pseudotile=on
+
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)'     pseudotile=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG'                      focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hc rule class=mpv   focus=on switchtag=on fullscreen=on hook=fullscreen
+hc rule class=Vlc   focus=on switchtag=on fullscreen=on hook=fullscreen
+
+
+#tag_names=('terms' 'web' 'editor' 'files'  'pdf' 'irc' 'mail' 'music' 'media' )
+
+
+#Tag : web ${tag_names[2]}
+hc rule class~'(.*[Oo]pera.*)'            tag=${tag_names[1]}
+hc rule class~'(.*[Cc]hrom.*)'            tag=${tag_names[1]}
+#hc rule class~'(.*[Gg]oogle.*)'           tag=${tag_names[1]}
+hc rule class~'.*[Oo]pera.*'              tag=${tag_names[1]}
+hc rule class~'.*[Cc]hrom.*'              tag=${tag_names[1]}
+
+hc rule class~'.*[Qq]utebrows.*'          tag=${tag_names[2]}
+
+
+#Tag : editor ${tag_names[3]}
+hc rule class~'(.*[Su]ubl.*)'              tag=${tag_names[2]}
+hc rule class~'(.*[Gg]edit.*)'             tag=${tag_names[2]}
+#hc rule class~'(.*[Ee]macs.*)'             tag=${tag_names[2]}
+hc rule class~'(.*[Ll]eafpad.*)'           tag=${tag_names[2]}
+hc rule class~'(.*[Mm]ousepad.*)'          tag=${tag_names[2]}
+hc rule class~'(.*[Ll]ibreOffice.*)'       tag=${tag_names[2]}
+hc rule class~'(.*[Ll]ibreoffice.*)'       tag=${tag_names[2]}
+
+#Tag : mail
+hc rule class~'(.*[Tt]hunderbird.*)'       tag=${tag_names[6]}
+hc rule class~'(.*[Ev]volution.*)'         tag=${tag_names[6]} focus=on
+hc rule class~Geary                        tag=${tag_names[6]}
+hc rule class~Thunderbird                  tag=${tag_names[6]}
+
+
+#Tag : irc
+hc rule class~'(.*[Hh]exchat.*)'           tag=${tag_names[5]} focus=off
+hc rule class~'(.*[Ss]kype.*)'             tag=${tag_names[5]} focus=off
+hc rule class~'(.*[Tt]elegram.*)'          tag=${tag_names[5]} focus=off
+
+
+#Tag : media
+#hc rule class=Vlc                          tag=${tag_names[7]}
+#hc rule class=vlc                          tag=${tag_names[7]}
+hc rule class=Banshee                       tag=${tag_names[7]}
+hc rule class=gmpc                          tag=${tag_names[7]}
+hc rule class=Audience                      tag=${tag_names[7]}
+hc rule class=mpv                           tag=${tag_names[7]} focus=on switchtag=on fullscreen=on hook=fullscreen
+hc rule class~gnome-mplayer                 tag=${tag_names[7]}
+hc rule class~'(.*[Vv]lc.*)'                tag=${tag_names[7]}
+hc rule class~'(.*[Mm]player.*)'            tag=${tag_names[7]}
+hc rule class~'(mpv|Vlc|Sopcast-player.py|PornTime)'    tag=${tag_names[7]}
+
+#Tag : pdf-viewer
+hc rule class=Evince                            tag=${tag_names[4]}
+hc rule class=Zathura                           tag=${tag_names[4]}
+hc rule class=Katarakt                          tag=${tag_names[4]}
+hc rule class='Pdfpc' windowrole='presenter'    tag=${tag_names[4]}
+hc rule class='Pdfpc' windowrole='presentation' tag=${tag_names[4]}
+hc rule class~'Acroread'                        tag=${tag_names[4]}
+hc rule class~'Evince'                          tag=${tag_names[4]}
+hc rule class~'Zathura'                         tag=${tag_names[4]}
+
+#Tag : filemanager and VM
+hc rule class~'(.*[Tt]hunar.*)'                 tag=${tag_names[3]}
+hc rule class~nemo                              tag=${tag_names[3]}
+
+#Tag : music
+hc rule class~'(.*[Ss]potify.*)'                tag=${tag_names[8]} focus=off
+hc rule class~'(.*[Gg]mpc.*)'                   tag=music focus=off

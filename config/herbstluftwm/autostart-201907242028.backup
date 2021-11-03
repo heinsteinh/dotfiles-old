@@ -1,0 +1,235 @@
+#!/usr/bin/env bash
+
+# this is a simple config for herbstluftwm
+
+hc() {
+   herbstclient "$@"
+}
+
+xsetroot -solid '#5A8E3A'
+
+hc emit_hook reload
+
+
+# remove all existing keybindings
+hc keyunbind --all
+
+
+#export terminal=urxvt
+export terminal=xterm
+export TERMINAL=$terminal
+
+# The current directory
+export HLWM_CONF_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+source "$HLWM_CONF_DIR/hlwm-theming"
+
+
+
+# tags
+tag_names=('Terms' 'Web' 'Editor' 'Files'  'Pdf' 'Irc' 'Mail' 'Music' 'Media' )
+#tag_names=( {"     ","    ","     ","     ","    ","    ","    ","    ","     "} )
+
+#tag_names=( {1..9} 0 )
+tag_keys=( {1..9} 0 )
+
+hc rename default "${tag_names[0]}" || true
+for i in ${!tag_names[@]} ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+
+
+# Source hlwm-config-files
+source "$HLWM_CONF_DIR/hlwm-keybindings"
+source "$HLWM_CONF_DIR/hlwm-rules"
+
+
+# unlock, just to be sure
+hc unlock
+
+
+
+setxkbmap -layout de
+$HLWM_CONF_DIR/start.sh feh --randomize --bg-fill ~/.wallpapers/ &
+herbstclient pad 0 22  0 22  0
+
+
+
+
+# start tint2 and system tray applications
+#{
+#    pids=()
+#    for program in nm-applet cbatticon volumeicon seafile-applet udiskie ; do
+#        $program &
+#        pids+=( $! )
+#    done
+#    herbstclient -w '(quit_panel|reload)'
+#    kill ${pids[@]}
+#} &
+
+
+
+
+case "$HOSTNAME" in
+    arch-mbp)
+        $HLWM_CONF_DIR/start.sh "compton --config $HOME/.compton.conf"
+        $HLWM_CONF_DIR/start.sh "xautolock -time 5 -locker $HLWM_CONF_DIR/lock.sh"
+        ;;
+     arch-t430 )
+
+        source /home/fkheinstein/.config/polybar/launch.sh &> polybar.log
+        $HLWM_CONF_DIR/start.sh "xautolock -time 10 -locker $HLWM_CONF_DIR/lock.sh" &
+
+        #xrandr --output HDMI2 --auto --left-of LVDS1
+        #herbstclient set_monitors 1920x1080+0+0 1366x768+1920+0
+        #xrandr --output HDMI3 --auto --left-of HDMI2
+        #herbstclient set_monitors 1920x1200+0+0 1920x1080+1920+0
+        #herbstclient set_monitors 1600x900+0+0
+        herbstclient detect_monitors
+        xrandr --output LVDS-1 --off
+        #xrandr --output HDMI-3 --off
+        #xrandr --output HDMI-2 --on
+        xrandr --output HDMI-3 --auto --left-of HDMI-2
+        #herbstclient set_monitors 1920x1200+0+0
+        herbstclient set_monitors 1920x1200+0+0 1920x1080+1920+0
+        #herbstclient set_monitors 1920x1080+0+0
+
+        hc load Terms '(split vertical:0.750000:0 (split horizontal:0.810000:0 (clients vertical:0 0x60000d) (clients vertical:0 0x240000c)) (clients vertical:0 0x2000003))'
+        hc load Web '(split horizontal:0.850000:0 (clients vertical:0 0x2400001) (clients vertical:0))'
+        hc load Editor '(split horizontal:0.850000:0 (clients vertical:0 0x600003) (clients max:0))'
+        hc load Files '(split horizontal:0.500000:0 (clients vertical:0) (clients max:0))'
+        hc load Pdf '(split horizontal:0.850000:0 (clients vertical:0) (clients max:0))'
+        hc load Irc '(split horizontal:0.700000:0 (split vertical:0.600000:0 (clients vertical:0) (clients vertical:0)) (clients vertical:0))'
+        hc load Mail '(split horizontal:0.850000:0 (clients vertical:0) (clients max:0))'
+        hc load Music '(split horizontal:0.850000:0 (clients vertical:0) (clients max:0))'
+
+
+        $HLWM_CONF_DIR/start.sh "compton --config $HOME/.compton.conf" &
+
+        $HLWM_CONF_DIR/start.sh cbatticon &
+        $HLWM_CONF_DIR/start.sh kalu &
+        $HLWM_CONF_DIR/start.sh nm-applet &
+        $HLWM_CONF_DIR/start.sh volumeicon &
+        $HLWM_CONF_DIR/start.sh nm-applet &
+        $HLWM_CONF_DIR/start.sh udiskie &
+        $HLWM_CONF_DIR/start.sh seafile-applet &
+
+        pkill conky
+        $HLWM_CONF_DIR/start.sh conky -c  $HOME/.config/conky/Conky-Monitor/conkyrc-xfce4 &
+
+
+        hc rule instance="ncmpcpp" tag=Music index=001
+        hc rule instance="mutt" tag=Mail index=001
+        hc rule instance="newsboat" tag=Mail index=001
+        hc rule instance="ranger" tag=Editor index=001
+        hc rule instance="seafile-applet" tag=Terms index=01
+
+
+        pgrep newsboat >/dev/null || urxvtc -name newsboat -e newsboat &
+        pgrep mutt >/dev/null     || urxvtc -name mutt -e mutt &
+        pgrep ncmpcpp >/dev/null  || urxvtc -name music -e  sh -c 'ncmpcpp -s playlist -S visualizer' &
+        pgrep ranger >/dev/null   || urxvtc -name ranger -e ranger &
+
+
+        ;;
+    arch-x240)
+        xrdb -load /home/fkheinstein/.Xresources &
+        xrdb -override /home/fkheinstein/.Xresources.hidpi &> xresHi.log
+
+
+        #xrandr --output HDMI2 --auto --left-of LVDS#1
+        #herbstclient set_monitors 1920x1080+0+0 1366x768+1920+0
+        #xrandr --output HDMI3 --auto --left-of HDMI2
+        #herbstclient set_monitors 1920x1200+0+0 1920x1080+1920+0
+        #herbstclient set_monitors 1600x900+0+0
+        herbstclient detect_monitors
+
+
+        hc load Terms '(split vertical:0.750000:0 (split horizontal:0.800000:0 (clients vertical:0 0x60000d) (clients vertical:0 0x1c0000c)) (clients vertical:0 0x2000003))'
+        hc load Web '(split horizontal:0.840000:0 (clients vertical:1 0x2c00001 0x120000d) (clients vertical:0))'
+        hc load Editor '(split horizontal:0.840000:0 (clients vertical:0 0x3600007) (clients max:0))'
+        hc load Files '(split horizontal:0.500000:0 (clients vertical:0) (clients max:0))'
+        hc load Pdf '(split horizontal:0.840000:0 (clients vertical:1 0x340000d 0x3a0000d) (clients vertical:0))'
+        hc load Irc '(split horizontal:0.700000:0 (split vertical:0.600000:0 (clients vertical:0) (clients vertical:0)) (clients vertical:0))'
+        hc load Mail '(split horizontal:0.840000:0 (clients vertical:1 0x1000010 0x3c0000d 0x1000015) (clients max:0))'
+        hc load Music '(split horizontal:0.840000:0 (clients vertical:0 0x3e0000d) (clients vertical:0))'
+
+
+
+        hc rule instance="ncmpcpp" tag=Music index=001
+        hc rule instance="mutt" tag=Mail index=001
+        hc rule instance="newsboat" tag=Mail index=001
+        hc rule instance="ranger" tag=Editor index=001
+        hc rule instance="seafile-applet" tag=Terms index=01
+
+
+        pgrep newsboat >/dev/null || urxvtc -name newsboat -e newsboat &
+        pgrep mutt >/dev/null     || urxvtc -name mutt -e mutt &
+        pgrep ncmpcpp >/dev/null  || urxvtc -name music -e  sh -c 'ncmpcpp -s playlist -S visualizer' &
+        pgrep ranger >/dev/null   || urxvtc -name ranger -e ranger &
+        #urxvtc -name vim -e sh -c 'tmux attach-session -t vim'&
+        #urxvtc -name vim -e sh -c 'ncmpcpp -s clock -s visualizer'&
+      
+        
+        
+
+        $HLWM_CONF_DIR/start.sh "compton --config $HOME/.compton.conf" &
+        $HLWM_CONF_DIR/start.sh cbatticon &
+        $HLWM_CONF_DIR/start.sh nm-applet &
+        $HLWM_CONF_DIR/start.sh volumeicon &
+        $HLWM_CONF_DIR/start.sh nm-applet &
+        $HLWM_CONF_DIR/start.sh udiskie &
+        $HLWM_CONF_DIR/start.sh seafile-applet &
+
+        source /home/fkheinstein/.config/polybar/launch.sh &> polybar.log
+        $HLWM_CONF_DIR/start.sh "xautolock -time 10 -locker $HLWM_CONF_DIR/lock.sh" &
+
+        pkill conky
+        $HLWM_CONF_DIR/start.sh  "conky -c  $HOME/.config/conky/Conky-Monitor/conkyrc-xfce4 "&
+
+        ;;
+   GCND7220CZ8E)
+        $HLWM_CONF_DIR/start.sh "xcompmgr -c" &
+        $HLWM_CONF_DIR/start.sh "transset-df  0.7"&
+        herbstclient pad 0 22  0 0  0
+
+
+        hc load Terms '(split vertical:0.750000:0 (split horizontal:0.835000:0 (clients vertical:0 0x60000d) (clients vertical:0)) (clients vertical:0 0x2000003))'
+        hc load Web '(split horizontal:0.840000:0 (clients vertical:1 0x2c00001 0x120000d) (clients vertical:0))'
+        hc load Editor '(split horizontal:0.840000:0 (clients vertical:0 0x3600007) (clients max:0))'
+        hc load Files '(split horizontal:0.500000:0 (clients vertical:0) (clients max:0))'
+        hc load Pdf '(split horizontal:0.840000:0 (clients vertical:1 0x340000d 0x3a0000d) (clients vertical:0))'
+        hc load Irc '(split horizontal:0.700000:0 (split vertical:0.600000:0 (clients vertical:0) (clients vertical:0)) (clients vertical:0))'
+        hc load Mail '(split horizontal:0.840000:0 (clients vertical:1 0x1000010 0x3c0000d 0x1000015) (clients max:0))'
+        hc load Music '(split horizontal:0.840000:0 (clients vertical:0 0x3e0000d) (clients vertical:0))'
+
+        ;;
+    *)
+
+
+
+
+        urxvtc -e zsh -c "xrdb -override /home/fkheinstein/.Xresources.hidpi &> xresHi.log && tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n $USER -s $USER@$HOST" &
+
+       urxvtc -name "Raspi" -e ssh raspi -t "tmux"
+
+
+        xset +fp ~/.local/share/fonts/OTF
+        xset +fp ~/.local/share/fonts/TTF
+        xset +fp ~/.local/share/fonts
+        xset fp+ ~/.fonts
+        xset fp rehash
+
+
+        source /home/fkheinstein/.config/polybar/launch.sh &
+        $HLWM_CONF_DIR/start.sh "compton --config $HOME/.compton.conf"
+        $HLWM_CONF_DIR/start.sh "xautolock -time 5 -locker $HLWM_CONF_DIR/lock.sh"
+         ;;
+esac
+

@@ -1,0 +1,104 @@
+######################################
+#  file: newsbeuter config
+#  author: serdotlinecho
+#  vim: fdm=marker:ft=config:
+######################################
+
+
+# filters {{{
+
+define-filter "belgium"         "tags # \"be\""
+define-filter "vim"             "tags # \"vim\""
+define-filter "TeX and friends" "tags # \"tex\""
+define-filter "arch linux"      "tags # \"arch\""
+define-filter "flickr"          "tags # \"flickr\""
+define-filter "youtube"         "tags # \"yt\""
+define-filter "humanities"      "tags # \"humanities\""
+#define-filter "" "tags # \"be\""
+# }}}
+
+# ----- settings {{{
+always-display-description true
+#browser "chromium -new-tab %u 2> /dev/null &"
+browser "/usr/bin/chromium %u"
+##browser "dwb %u 2> /dev/null &"
+
+macro y set browser "/usr/bin/mpv %u"; open-in-browser ; set browser "/usr/bin/chromium %u"
+external-url-viewer "urlview"
+
+goto-first-unread yes
+ignore-mode "display"
+refresh-on-startup yes
+auto-reload yes
+reload-time 30
+notify-format "RSS: New %d Unread %n"
+notify-program "notify-send"
+notify-always yes
+
+# }}}
+
+# ----- theme {{{
+
+color listfocus color7 color8 bold
+color listfocus_unread color7 color8 bold
+color info color7 color8 bold
+
+##color background        color12 color8
+##color listnormal        default default
+#color listfocus         color7 color8 bold
+#color listnormal_unread color15 default
+#color listfocus_unread  color7 color8 bold
+#color info              color8 color0 bold
+##color article           default default
+
+
+
+
+
+# formatting and colorization ------------------------------------------
+#
+#
+#
+articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
+
+
+
+highlight feedlist    "^  *[0-9]+  *N  "                    color156 default
+highlight articlelist "^  *[0-9]+  *N  "                    color156 default
+
+highlight article "^Feed: .*$" color3 default
+highlight article "^Title: .*$" color13 default bold
+highlight article "^Author: .*$" color5 default
+highlight article "^Link: .*$" color6 default
+highlight article "^Date: .*$" color4 default
+
+
+
+# }}}
+
+# ----- podbeuter {{{
+
+download-path "~/Downloads/%n"
+max-downloads 2
+player "mpv"
+
+
+
+# }}}
+
+# ----- key bindings {{{
+bind-key k      prev-unread
+bind-key j      next-unread
+bind-key <esc>k prev-feed
+bind-key <esc>j next-feed
+bind-key J      next
+bind-key K      prev
+bind-key h      pageup
+bind-key l      pagedown
+bind-key o      open-in-browser
+bind-key O      open-in-browser-and-mark-read
+bind-key SPACE  toggle-article-read
+
+# }}}
+
+

@@ -1,0 +1,18 @@
+open_with gpicview
+open_with vim
+open_with :q
+open_with qq
+open_with vlc
+rename [M#I=qqqtmux Taster.pdf
+open_with zathura
+open_wit
+open_with evince
+
+rename Main1.cpp
+[M#:%qq
+shell [M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`@+[M`A%[M`A%[M`A%[M`A%[M`A% %s
+[M#;0[M g;[M#g;[M }K[M#\K[M c3[M#c3[M ]3[M# # L1[M[M E0[M#E0#L1
+find .confi
+open_with 
+rename [M#I*qDesktop
+open_wi 00_pacaur.sq

@@ -1,0 +1,300 @@
+
+
+#https://github.com/xkpd3/xkpd3conf-mutt/blob/5d8bbcb53fdac9179004b9e39c45afc7e04c73f6/muttrc
+
+# Load config source files
+# Folder hooks
+folder-hook 'account.com.gmail.heinsteinh'   'source ~/.mutt/account.com.gmail.heinsteinh'
+folder-hook 'account.fr.yahoo.fkheinstein'   'source ~/.mutt/account.fr.yahoo.fkheinstein'
+folder-hook 'account.fr.yahoo.fheinstein'    'source ~/.mutt/account.fr.yahoo.fheinstein'
+
+
+
+# Default account
+source ~/.mutt/account.com.gmail.heinsteinh
+#source ~/.mutt/account.fr.yahoo.fheinstein
+#source ~/.mutt/account.fr.yahoo.fkheinstein
+
+
+# Macros for switching accounts
+macro index <F12>  '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmail.heinsteinh<enter><change-folder>!<enter>'
+macro index <F11>  '<sync-mailbox><enter-command>source ~/.mutt/account.fr.yahoo.fheinstein<enter><change-folder>!<enter>'
+macro index <F10>  '<sync-mailbox><enter-command>source ~/.mutt/account.fr.yahoo.fkheinstein<enter><change-folder>!<enter>'
+
+
+# Paths ----------------------------------------------------------------
+#set folder           = "$HOME/.mail"
+#set mbox             = "$HOME/.mail/inbox"
+#set spoolfile        = "$HOME/.mail/inbox"
+set tmpdir           = "$HOME/.mutt/tmp"
+set signature        = "$HOME/.mutt/signature"
+set mailcap_path     = "$HOME/.mutt/mailcap" # entries for filetypes
+
+
+
+
+set imap_check_subscribed
+set mail_check = 90
+set timeout = 30
+set imap_keepalive = 300
+
+
+
+# Deal with gpg encrypting, signing, etc.
+source "$HOME/.mutt/gpg.rc"
+
+set pgp_autosign             # autosign all outgoing mails
+set pgp_replyencrypt         # autocrypt replies to crypted
+set pgp_replysign            # autosign replies to signed
+set pgp_replysignencrypted   # autosign replies to sig/crypt
+set pgp_retainable_sigs      # nested mime fmt sigs
+set pgp_sign_as=0x7B3F1675   # primary keyid (now signed!)
+set pgp_timeout=2400         # passphrase timeout
+set pgp_sort_keys=trust      # sort order
+# set crypt_autoencrypt=yes
+
+
+# aliases --------------------------------------------------------------
+
+# gnupg ----------------------------------------------------------------
+# http://dev.mutt.org/trac/wiki/MuttGuide/UseGPG
+#set pgp_sign_as=
+# http://codesorcery.net/old/mutt/mutt-gnupg-howto
+
+
+
+# Allow alt key
+set meta_key         = no
+
+# Charset Settings
+set charset          = "utf-8" # terminal
+set send_charset     = "utf-8" # when piped to editor
+set attach_charset   = "utf-8" # attachment view
+set assumed_charset  = "utf-8"
+set use_8bitmime     = yes
+set allow_8bit       = yes
+
+# Locales
+set locale           = `echo "${LC_ALL:-${LC_TIME:-${LANG}}}"`
+
+
+# Custom Header
+my_hdr From: "Heinstein F." <heinsteinh@gmail.com>
+my_hdr Precedence: first-class
+my_hdr Priority: normal
+my_hdr X-Editor: `vim --version | head -n1 | cut -d"(" -f1`
+my_hdr X-Operating-System: `uname -rms`
+my_hdr X-Mailer: `mutt -v | head -1`
+my_hdr X-GPG: 0x7B3F1675
+my_hdr OpenPGP: url=http://pgp.mit.edu/pks/lookup?op=get&search=0x70996C617B3F1675\; id=7B3F1675
+
+
+# Display Header
+ignore *
+unignore From To Cc Subject Date Reply-To Newsgroups:
+unignore Organization Organisation
+unignore X-Mailer User-Agent X-Agent X-Newsreader X-Editor
+unignore X-Bogosity X-Spam-Status
+unignore Sender X-Sender
+unignore OpenPGP
+hdr_order From: To: Cc: Subject: Date:
+
+
+# Complete address via <tab>
+set use_from        = yes
+set query_command   = "mates mutt-query '%s'" # sync icloud contacts via vdirsyncer
+bind editor     <Tab> complete-query
+bind editor        ^T complete
+
+# Format
+set date_format     = "%e.%m.%y %H:%M"
+set index_format    = "%4C %Z[%-30.30F] %{%e.%m %H:%M} (%4c) %s"
+set forward_format  = "Fw: %s"
+set attach_format   = "%n %D %f (Size: %s) (Mime: %m/%M) %d "
+set attach_format   = "%u%D%I %t%4n %T%.40d [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+set folder_format   = "%t %2C %d %f %>\  %s Bytes"
+set status_format   = '%v: %f [Msg:%?M?%M/?%m%?n? New:%n?%?t? Post:%p?%?b?'
+
+# Composing
+set   editor        = "vim -c 'set syntax=mail ft=mail enc=utf-8 tw=78'" # set mail editor
+set   attribution   = "* %n wrote:" # start quote
+set   fast_reply    = yes     # do not ask for subject etc.
+set   autoedit      = no      # go directly to the editor. send_to has to be entered to hdr directly
+set   askcc         = no      # do not ask for cc address
+set   askbcc        = no      # do not ask for cc address
+set   reply_self    = no      # strip own address from reply addresses
+set   ignore_list_reply_to = no # ignore reply_to set by mailing lists (use the list-reply then)
+set   bounce_delivered = no   # include Delivered-To headers when bouncing messages
+set   reverse_name  = no      # use the recieving address as From address
+set   edit_headers  = yes     # show headers in editor
+set   header        = no      # insert header into reply text
+
+# Sending
+set   sendmail      = "/usr/sbin/sendmail " # sendmail compatible mail tool
+set   mime_forward  = ask-no  # forward as mime or text?
+set   reply_to      = ask-yes # Reply to reply-to?
+set   include       = yes     # include message in replies
+set   fcc_clear     = yes     # save message unencrypted. (security issue!)
+set   hidden_host   = no      # skip the first part of $hostname (does not affect msg ids)
+set   save_address  = no      # take senders full name as default for saving the message
+set   save_empty    = yes     # delete mbox if empty (does not work with maildir/imap etc)
+set   save_name     = no      # mutt searches for a mailbox with the senders name and saves the mail there instead of record.
+set   encode_from   = yes     # quoted-printable if line contains "From ". Avoids address trash
+set   forward_decode = yes    # decode complex mails to text/plain when forwarding
+set   forward_decrypt = yes   # strip pgp
+set   forward_quote = no      # format forwarded message text like a reply, with quote string etc.
+set   followup_to   = yes     # generates follow up header if replying to a list
+set   honor_followup_to = yes # take Mail-Followup-To header into account, whean group-replying
+
+# File stuff
+set   mask          = "."     # show also dotfiles in file browser
+set   move          = no      # do not move mail from spool to mbox
+set   copy          = yes     # copy the sent messages to $record etc.
+set   fcc_attach    = yes     # save attachments in $record etc.
+
+# Layout
+set   pager_index_lines = 16  # show a few lines from index above msg
+set   pager_stop    = yes     # pgdown does not wrap to next message
+set   markers       = no      # Don't add "+" on wrapped lines (hard to copy)
+set   smart_wrap    = yes     # wrap entire words
+set   sort          = threads # sorting the mails in threads
+set   sort_aux      = date    # sorting the threads
+set   abort_nosubject = no    # abort if message has no subject
+set   reverse_alias = yes     # use username in index instead of email address (if available)
+set   status_on_top = no      # moves the bottom statusbar to the top
+set   mark_old      = no      # mark old unread messages with an o
+set   arrow_cursor  = no      # use arrow curser instead of a colored line
+set   tilde         = yes     # show ~ if mail ends and theres still space on the screen
+set   menu_scroll   = yes     # scroll the screen instead of using pages
+set   sig_dashes    = no      # set signature dashes "-- "
+set   ascii_chars   = no      # allow only ASCII chars for UI building
+
+# Thread handling
+set   strict_threads = no     # thread only by In-Reply-To/References or by Subject.
+set   sort_re        = no     # use subject for thread building
+set   collapse_unread = no    # do not hide unread messages in compressed threads
+set   uncollapse_jump = no    # jump to the first unread message after expanding a thread
+
+# Attachments
+set   implicit_autoview = yes # discover viewing app via mailcap entry
+set   attach_split   = yes    # process attachments one by one. this is for saving, printing, piping.
+set   mailcap_sanitize = yes  # !DO NOT CHANGE! it checks mailcap for bad characters
+
+unalternative_order *         # remove all old entries
+
+alternative_order text/enriched \
+                  text/plain text/html
+
+auto_view text/html \
+          text/enriched \
+          application/x-gunzip \
+          application/postscript \
+          image/gif \
+          image/jpg \
+          image/png \
+          application/x-tar-gz \
+          application/pgp-keys \
+          application/x-zip-compressed
+
+# pipe-message
+set   pipe_decode   = yes     # when piping via pipe-message command, strip headers and decode
+set   pipe_split    = yes     # if several msgs are tagged, do the pipe-message command for each
+set   prompt_after  = no      # promt if external pager exits
+set   wait_key      = no      # wait for a key-press after performing shell/external commands
+
+# other
+set   beep_new      = no      # beep if new message arrives
+set   check_new     = yes     # check for new mails, while the mailbox is open
+set   auto_tag      = yes     # function will applied to all tagged messages in the index
+set   use_domain    = no      # do not autoqualify messages without hostname
+set   read_only     = no      # open folders in read-only mode
+set   score         = no      # use the scoring system
+set   suspend       = no      # allow mutt to be suspended
+set   wrap_search   = yes     # search the mailbox around
+
+
+#bind index G imap-fetch-mail
+
+#source ~/.mutt/colors/solarized-dark.muttrc
+#source ~/.mutt/colors/solarized-light.muttrc
+#source ~/.mutt/colors/zenburn.muttrc
+#source ~/.mutt/colors/davecolor.muttrc
+#source ~/.mutt/colors/Huggie.muttrc
+source ~/.mutt/colors/aperiodic.muttrc
+
+
+
+## Sidebar Settings
+#set sidebar_visible       = yes
+#set sidebar_width         = 28
+#set sidebar_short_path    = no
+#set sidebar_delim_chars   = '/'
+#set sidebar_format        = "%B%* %S"
+#set sidebar_new_mail_only = no
+#set sidebar_sort_method   = unsorted
+#set sidebar_folder_indent = yes
+#set sidebar_indent_string = ""
+
+
+
+# Sidebar keys (general)
+macro index,pager <C-Up>     ':push <sidebar-prev><enter>' # move selection up
+macro index,pager <C-Down>   ':push <sidebar-next><enter>' # move selection down
+macro index,pager <C-Right>  ':push <sidebar-open><enter>' # open selected mailbox
+macro index,pager <C-Return> ':push <sidebar-open><enter>' # open selected mailbox
+macro index,pager S          '<enter-command>toggle sidebar_visible<enter>'
+
+# save to folder
+macro index s "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro pager s "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+# POS1 and END navigation
+bind index,browser home  first-entry
+bind index,browser end   last-entry
+bind pager    home  top
+bind pager    end   bottom
+
+# Index keys
+bind index  c   change-folder
+bind index  v   display-message
+bind index  p   previous-undeleted
+bind index  n   next-undeleted
+bind index  ' ' next-page
+bind index  y   print-message
+bind index  $   sort-mailbox
+bind index  a   tag-prefix
+macro index x   "<sync-mailbox><imap-fetch-mail>"
+
+# Pager keys
+bind pager  p   previous-undeleted
+bind pager  n   next-undeleted
+bind pager  ' ' next-page
+bind pager  c   mail
+bind pager  /   search
+bind pager  y   print-message
+bind pager  \n  noop
+bind pager  up  previous-line
+bind pager  down next-line
+bind pager  g   group-reply
+bind pager  h   display-toggle-weed
+bind pager  d   delete-message
+
+# Compose keys
+bind compose  \cx   send-message
+bind pager,index ,S save-message
+
+# my_hdr hooks
+send-hook @sap\\.com 'set crypt_autosign=no'    # do not encrypt messages when sending to this address
+
+# GPG Settings
+set crypt_use_gpgme     = yes # use the new gpgme method (disabling cumbersome gpg commands below)
+set crypt_replyencrypt  = yes # encrypt, if original mail was encrypted
+set crypt_replysign     = yes # sign, if original mail was signed
+set crypt_verify_sig    = yes # verify sig, if sig is available
+set crypt_autosign      = no  # sign mails per default
+set crypt_use_pka       = yes
+
+# SSL Settings
+set ssl_verify_host = yes
+
+

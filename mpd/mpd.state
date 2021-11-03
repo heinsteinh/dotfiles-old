@@ -1,0 +1,49 @@
+sw_volume: 65
+audio_device_state:1:MPD Alsa Audio
+audio_device_state:1:MPD Pulse Audio
+audio_device_state:1:MPD HTTP Streaming
+audio_device_state:1:MPD Stream
+audio_device_state:1:Wohnzimmer Desktop
+audio_device_state:1:Himbeere Küche
+audio_device_state:1:Alle
+audio_device_state:1:my_fifo
+state: play
+current: 7
+time: 79.577000
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+song_begin: http://wdr-5.akacast.akamaistream.net/7/41/119439/v1/gnl.akacast.akamaistream.net/wdr-5
+Title: Profit - Das Wirtschaftsmagazin
+Name: WDR 5, ? Westdeutscher Rundfunk K?ln
+mtime: 0
+song_end
+song_begin: http://bbcmedia.ic.llnwd.net/stream/bbcmedia_intl_lc_radio1_p?s=1365376033&e=1365390433&h=a0fef58c2149248d6bff1f7b7b438931
+mtime: 0
+song_end
+song_begin: http://bbcmedia.ic.llnwd.net/stream/bbcmedia_intl_lc_radio2_p?s=1365376067&e=1365390467&h=d43dc8ae0f888809462a6cb7c389b46b
+mtime: 0
+song_end
+song_begin: http://bbcmedia.ic.llnwd.net/stream/bbcmedia_intl_lc_radio3_p?s=1365376123&e=1365390523&h=d53cf2a92272f3289b314a2251d23bc8
+mtime: 0
+song_end
+song_begin: http://bbcmedia.ic.llnwd.net/stream/bbcmedia_intl_lc_radio4_p?s=1365376126&e=1365390526&h=ed9a0642b30c422b07fbcd8683c52335
+mtime: 0
+song_end
+song_begin: http://bbcmedia.ic.llnwd.net/stream/bbcmedia_intl_lc_5live_p?s=1365376271&e=1365390671&h=e0d82133f35ae74d41d5eab6b9c150a6
+mtime: 0
+song_end
+song_begin: http://bbcmedia.ic.llnwd.net/stream/bbcmedia_intl_lc_6music_p?s=1365376386&e=1365390786&h=de40a9915206c4402c73e3766dc3fec0
+mtime: 0
+song_end
+song_begin: http://uk4.internet-radio.com:30884/
+Title: B Davis and Boom One Sound System - Yes I
+Name: Pigpen Radio - www.crowdfunder.co.uk/pigpenradio
+mtime: 0
+song_end
+playlist_end

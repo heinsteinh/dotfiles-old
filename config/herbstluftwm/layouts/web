@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function hc() {
+    herbstclient "$@"
+}
+
+Mod=Mod4
+
+if ! hc tag_status | grep "web" >/dev/null ; then
+	TAGS=$(hc tag_status | wc -w)
+	hc add "web"
+	if [[ $TAGS -ge 9 ]] ; then
+		echo "$0: too many tags; will not get a keybinding" >&2
+	else
+		hc keybind "$Mod-$(( TAGS + 1 ))" use "web"
+		hc keybind "$Mod-Shift-$(( TAGS + 1 ))" move "web"
+	fi
+fi
+
+# layout
+hc load web '
+(split horizontal:0.650000:1
+  (clients vertical:0)
+  (clients vertical:0))'
+
+
+# rules
+hc rule class="dwb" tag=web index=0
+
+# applications
+pgrep dwb >/dev/null || dwb &

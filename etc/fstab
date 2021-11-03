@@ -1,0 +1,37 @@
+#
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+# /dev/mapper/vgcrypt-root UUID=95d25907-c486-4231-9e35-3722a2fe751e
+/dev/mapper/vgcrypt-root	/         	ext4      	rw,relatime,data=ordered	0 1
+
+# /dev/sda5 UUID=c7a983fb-979d-4efd-b082-3e1163e6abc3
+/dev/sda5           	/boot     	ext2      	rw,relatime,block_validity,barrier,user_xattr,acl,stripe=4	0 2
+
+# /dev/mapper/vgcrypt-var UUID=cffcf8f8-4dc4-45f9-81fc-459ce5da3499
+/dev/mapper/vgcrypt-var	/var      	ext4      	rw,relatime,data=ordered	0 2
+
+# /dev/mapper/vgcrypt-home UUID=9a72f5e3-8555-44c0-b8c5-0f4a2460bff8
+/dev/mapper/vgcrypt-home	/home     	ext4      	rw,relatime,data=ordered	0 2
+
+# /dev/mapper/vgcrypt-swap UUID=3e6e2120-8f1e-4583-b7ef-a31fe11e7b77
+/dev/mapper/vgcrypt-swap	none      	swap      	defaults  	0 0
+
+
+
+#https://github.com/Joe-Biden/Kerberos/blob/8216391843692405084e3281b505966a2abf4461/etc/fstab
+## put google chrome data in ram
+tmpfs   /home/fkheinstein/.config/google-chrome/Default     tmpfs   mode=0777,noatime,uid=1000,gid=100  0 0
+tmpfs   /home/fkheinstein/.cache/google-chrome              tmpfs   mode=0777,noatime,uid=1000,gid=100  0 0
+
+## put downloads directory in ram
+tmpfs   /home/fkheinstein/Downloads     tmpfs   defaults,mode=0777,noatime,uid=1000,gid=100  0 0
+tmpfs   /home/fkheinstein/.tmp          tmpfs   defaults,mode=0777,noatime,uid=1000,gid=100  0 0
+
+## take some precautions
+tmpfs   /tmp                    tmpfs   defaults,mode=0777,noatime  0 0
+tmpfs   /var/cache/pacman/pkg   tmpfs   defaults,mode=0777,noatime  0 0
+tmpfs   /home/fkheinstein/.purple       tmpfs   defaults,mode=0777,noatime  0 0
+
+
+https://web.raspberryip.com/seafdav 	   /home/raspi/WebDav davfs user,noauto,uid=1000,file_mode=600,dir_mode=700 0 1

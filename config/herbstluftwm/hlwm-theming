@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+#  ██                     ██                ██    ██           ████   ██
+# ░██                    ░██               ░██   ░██          ░██░   ░██
+# ░██       █████  ██████░██       ██████ ██████ ░██ ██   ██ ██████ ██████
+# ░██████  ██░░░██░░██░░█░██████  ██░░░░ ░░░██░  ░██░██  ░██░░░██░ ░░░██░
+# ░██░░░██░███████ ░██ ░ ░██░░░██░░█████   ░██   ░██░██  ░██  ░██    ░██
+# ░██  ░██░██░░░░  ░██   ░██  ░██ ░░░░░██  ░██   ░██░██  ░██  ░██    ░██
+# ░██  ░██░░██████░███   ░██████  ██████   ░░██  ███░░██████  ░██    ░░██
+# ░░   ░░  ░░░░░░ ░░░    ░░░░░   ░░░░░░     ░░  ░░░  ░░░░░░   ░░      ░░
+
+
+
+
+xolor(){
+  echo -n "$( xrdb -query | grep "\*$1:" | grep -oE "#[a-zA-Z0-9]{6}" | cut -c 2- )";
+}
+
+# Wallpaper
+#export HLWM_WALLPAPER="${HOME}/.wallpapers/arch_linux___kiss_by_abhinandh-d4exikc.png"
+#feh --bg-scale "$HLWM_WALLPAPER"
+
+
+#---------------------------------------------------------
+#Numix color palette
+export WM_LIGHT=#$(xolor color15)
+export WM_LLIGHT=#$(xolor color7)
+export WM_ACCENT=#$(xolor color9)
+export WM_LDARK=#$(xolor color8)
+export WM_DARK=#$(xolor color0)
+
+export WM_BG_COLOR=#$(xolor background)
+export WM_FG_COLOR=#$(xolor foreground)
+
+
+export HLWM_FG_COLOR=$WM_FG_COLOR
+export HLWM_ACCENT_COLOR=$WM_LLIGHT
+export HLWM_BG_COLOR=$WM_BG_COLOR
+
+export HLWM_ICON_THEME_COLOR=$WM_LLIGHT
+
+export HLWM_FRAME_FG_COLOR=$WM_FG_COLOR
+export HLWM_FRAME_ACCENT_COLOR=$WM_ACCENT
+export HLWM_FRAME_BG_COLOR=$WM_BG_COLOR
+export HLWM_TRAY_COLOR=0x$(xolor background)
+
+export HLWM_FRAME_BORDER_NORMAL_COLOR=$WM_BG_COLOR
+export HLWM_FRAME_BORDER_ACTIVE_COLOR=$WM_ACCENT
+#---------------------------------------------------------
+
+
+
+
+echo "XTerm*background: $HLWM_BG_COLOR" | xrdb -override
+echo "XTerm*foreground: $HLWM_FG_COLOR" | xrdb -override
+
+#     Mode:              BG,              FG               BG ALT,          HL BG,              HL FG
+echo "rofi.color-normal: $HLWM_BG_COLOR,  $HLWM_FG_COLOR,  $HLWM_BG_COLOR,  $HLWM_ACCENT_COLOR, $HLWM_FG_COLOR" | xrdb -override
+
+#     Window            BACKGROUND,     BORDER
+echo "rofi.color-window: $HLWM_BG_COLOR, $HLWM_ACCENT_COLOR" | xrdb -override
+
+
+
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+
+
+hc attr theme.active.color $HLWM_ACCENT_COLOR
+hc attr theme.normal.color $HLWM_BG_COLOR
+hc attr theme.urgent.color orange
+hc attr theme.inner_width 0
+hc attr theme.inner_color $HLWM_BG_COLOR
+hc attr theme.border_width 4
+hc attr theme.floating.border_width 4
+hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_color $HLWM_BG_COLOR
+hc attr theme.active.inner_color $HLWM_BG_COLOR
+hc attr theme.active.outer_color $HLWM_BG_COLOR
+hc attr theme.background_color $HLWM_BG_COLOR
+
+# borders / backgrounds
+hc set frame_border_width 1
+#hc set frame_border_inner_width 0
+hc set window_border_width 4
+#hc set window_border_inner_width 0
+hc set frame_bg_transparent 0
+#hc set frame_transparent_width 0
+hc set always_show_frame 1
+hc set frame_normal_opacity 20
+hc set frame_active_opacity 50
+# colors
+
+
+#/************************
+hc set frame_border_active_color $HLWM_ACCENT_COLOR
+hc set frame_border_normal_color $HLWM_FRAME_BORDER_NORMAL_COLOR
+
+hc set frame_bg_active_color  $HLWM_FRAME_BG_COLOR
+hc set frame_bg_normal_color  $HLWM_FRAME_BG_COLOR
+
+# padding
+hc set window_gap 6
+hc set frame_gap 4
+hc set frame_padding 0
+
+hc set smart_window_surroundings 0
+hc set smart_frame_surroundings 0
+hc set mouse_recenter_gap 1
+
+
+# nice tree styles:
+hc set tree_style '╾│ ├└╼─┐'
+#hc set tree_style '╾│ ├╰╼─╮'
+#hc set tree_style '*| +`>-.'
+#hc set tree_style '*| +`-->'
+
+
+# vim: set ts=4 sw=4 tw=0 et :

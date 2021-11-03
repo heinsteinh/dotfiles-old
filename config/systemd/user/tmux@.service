@@ -1,0 +1,11 @@
+[Unit]
+Description=tmux client
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/tmux new-session -d -s %I
+ExecStop=/usr/bin/tmux kill-session -t %I
+
+[Install]
+WantedBy=mystuff.target

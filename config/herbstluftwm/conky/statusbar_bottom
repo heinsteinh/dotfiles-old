@@ -1,0 +1,24 @@
+conky.config = {
+  out_to_x = false,
+  own_window = false,
+  out_to_console = true,
+  double_buffer =false,
+  background =false,
+  update_interval = 1.0,
+  total_run_times = 0,
+  if_up_strictness  = address,
+  override_utf8_locale  = false
+ }
+
+conky.text = [[
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/info_01.xbm)^fg() $kernel^fg()]\
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/uptime.xbm)^fg() $uptime_short^fg()]\
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/temp.xbm)^fg() ${execi 1800 $HOME/.config/herbstluftwm/conky/weather.sh "EUR|DE|50169|Horrem"}^fg()]\
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/cpu.xbm)^fg() ${cpu}%^fg()]\
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/mem.xbm)^fg() ${memperc}%^fg()]\
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/temp.xbm)^fg() ${acpitemp}°]\
+   ${if_up wlp3s0}[^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/wifi_02.xbm)^fg()${wireless_essid wlp3s0} ^fg($HLWM_ICON_THEME_COLOR)${wireless_link_qual wlp3s0}%^fg() ^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/net_up_03.xbm) ^fg()${upspeedf wlp3s0}KiB^fg($HLWM_ICON_THEME_COLOR)^i(/home/fkheinstein/.icons/xbm8x8/net_down_03.xbm)^fg()${downspeedf wlp3s0}KiB]${endif}${if_up wlp2s0}[^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/wifi_02.xbm)^fg() ${wireless_essid wlp2s0}^fg($HLWM_ICON_THEME_COLOR)${wireless_link_qual wlp2s0}% ^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/net_up_03.xbm)^fg()${upspeedf wlp2s0}KiB ^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/net_down_03.xbm)^fg()${downspeedf wlp2s0}KiB]${endif}\
+   [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/bat_full_02.xbm)^fg() BAT ${exec acpi -b | grep "Battery 0" | awk '{ print $4}'} ${battery_time BAT0}] ${if_running spotify}[♬ ${exec $HOME/.config/herbstluftwm/conky/spotify_info_artist} – ${exec $HOME/.config/herbstluftwm/conky/spotify_info_title}]${endif}[^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/vol.xbm)^fg() ${exec amixer get Master | egrep -o "[0-9]+%" | head -1 | egrep -o "[0-9]*"}%^fg()] [ ^fg($HLWM_ICON_THEME_COLOR)${execi 6 $HOME/.config/herbstluftwm/conky/dropbox-files}^fg()^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/net_down_03.xbm)${execi 6 $HOME/.config/herbstluftwm/conky/dropbox-down}^fg() ^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/net_up_03.xbm)${execi 6 $HOME/.config/herbstluftwm/conky/dropbox-up}^fg() ]  [^fg($HLWM_ICON_THEME_COLOR)^i($HOME/.icons/xbm8x8/calendar.xbm)^fg() ${time %a %d %b %Y, %H:%M}]\
+   ^fg($HLWM_ICON_THEME_COLOR)^fg()]]
+
+

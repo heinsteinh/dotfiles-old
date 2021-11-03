@@ -1,0 +1,118 @@
+
+http://blog.fefe.de/rss.xml?html interesting conspiracy news "cool stuff"
+http://rss.orf.at/news.xml news
+http://www.heise.de/newsticker/heise.rdf news interesting
+
+https://www.archlinux.org/feeds/news/ "Arch"
+
+https://www.archlinux.org/feeds/packages/ "Arch"
+
+http://allanmcrae.com/feed/ "Arch"
+
+http://jasonwryan.com/atom.xml "Arch"
+
+http://blog.notfoss.com/rss.xml "Arch"
+
+http://pebkac.co/index.php/feed/ "Arch"
+
+http://snott.net/feed/ "Arch"
+
+http://chneukirchen.org/blog/index.atom "Arch"
+
+http://www.archlinuxuser.com/feeds/posts/default "Arch"
+
+http://www.reddit.com/r/archlinux/.rss "Arch"
+
+https://www.kernel.org/feeds/kdist.xml "Linux"
+
+http://feeds2.feedburner.com/Command-line-fu "Linux"
+
+http://www.reddit.com/r/linux/.rss "Linux"
+
+http://www.reddit.com/r/linuxactionshow/.rss "Linux"
+
+http://www.reddit.com/r/unixporn/.rss "Linux"
+
+http://inconsolation.wordpress.com/feed/ "Linux"
+
+http://feeds.feedburner.com/YJLv "Linux"
+
+https://oldpapyrus.wordpress.com/feed/ "Linux"
+
+http://box.matto.nl/index.rss "Linux"
+
+http://www.insanitybit.com/feed/ "Linux"
+
+http://feeds.feedburner.com/sucuri/blog "Sec"
+
+http://feeds.feedburner.com/GoogleOnlineSecurityBlog "Sec"
+
+http://gnuworldorder.info/ogg.xml "Podcast"
+
+http://code.google.com/feeds/p/vimperator-labs/hgchanges/basic "Vimperator"
+
+https://bitbucket.org/portix/dwb/rss?token=a9b8abc1d75a26c0414c3b30cb09ef77 "dwb"
+
+https://bitbucket.org/portix/dwb_extensions/rss "dwb"
+
+https://bbs.archlinux.org/extern.php?action=feed&tid=95589&type=atom "dwb"
+
+https://bbs.archlinux.org/extern.php?action=feed&tid=152930&type=atom "Pantheon"
+
+http://rss.cnn.com/rss/cnn_topstories.rss
+http://newsrss.bbc.co.uk/rss/newsonline_world_edition/front_page/rss.xml
+
+
+# linux community updates {{{
+http://www.kernel.org/feeds/all.atom.xml "~kernel"
+# }}}
+
+# arch linux {{{
+https://aur4.archlinux.org/rss/ arch "~Arch User Repository"
+http://blog.sanctum.geek.nz/feed/ "~Tom Ryder"
+http://allanmcrae.com/feed/?cat=-19 arch "~Allan McRae"
+http://www.toofishes.net/rss/blog/ arch "~Dan McGee"
+http://isenmann.blogspot.com/feeds/posts/default/?alt=rss arch "~Daniel Isenmann"
+http://blog.gtmanfred.com/feeds/all.atom.xml arch "~Daniel Wallace"
+http://vdwaa.nl/atom.xml arch nl "~Jelle van der Waa"
+http://sysphere.org/~anrxc/j/rss.xml arch "~Adrian Caval"
+http://www.blogger.com/feeds/1653723711339405607/posts/default/-/archlinux arch "~Cameron Will"
+http://archlinux.me/dusty/feed/ arch "~Dusty Phillips"
+http://jasonwryan.com/blog/categories/archlinux/atom.xml arch "~Jason Wryan"
+https://www.archlinux.org/feeds/news/ arch "~Arch Linux news"
+https://bbs.archlinux.org/extern.php?action=feed&fid=24&type=atom&order=posted&show=10 arch "~Arch Linux forum"
+# }}}
+
+
+# youtube {{{
+https://www.youtube.com/feeds/videos.xml?channel_id=UCcs0ZkP_as4PpHDhFcmCHyA yt "~Mike's Electric Stuff"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCljE1ODdSF7LS9xx9eWq0GQ yt "~Potholer54"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCivA7_KLKWo43tFcCkFvydw yt "~Applied Science"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2wgWD3oqFtXEmkJgRSMhIw yt "~The Gravicembalo"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNbqa_9xihC8yaV2o6dlsUg yt "~TWiT Security Now"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEfXSMP3x3c2Ji0vFE2MBvA yt "~Harpsichord M"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYgk0h0P55kxFgNLF6E-uKA yt "~Yu-Jie Lin"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCKLIIdKEpjAnn8E76KP7sQg yt "~Tubalcain (Lyle Peterson)"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCUydSC4GgiVQbcpjQTR_zQw yt "~Harry Rogers"
+# }}}
+
+#Vim {{{
+http://tlvince.com/feed                 vim "~Tom Vincent"
+http://jezenthomas.com/feed.xml         vim "~Thomas Jenzen"
+http://vimcasts.org/feeds/quicktime.rss vim
+http://vimcasts.org/feeds/ogg.rss       vim
+http://feeds.feedburner.com/usevim      vim
+http://blog.yjl.im/feeds/posts/default "~Yu-Jie Lin"
+http://www.drbunsen.org/feed.xml "~Seth Brown"
+# }}}
+
+
+# belgian IT bloggers (to check and sort out) {{{
+http://www.krisbuytaert.be/blog/rss.xml be "~Kris Buytaert"
+http://budts.be/weblog/feed be vim "~Jeroen Budts"
+http://vstone.eu/feed/ be "~Jan Vansteenkiste"
+https://visibilityspots.com/feeds/all.rss.xml be "~Jan Collijs"
+http://blog.penumbra.be/feed/ be "~Tom De Vylder"
+http://feeds.feedburner.com/penumbrablog be
+http://feeds.feedburner.com/wayupbe be
+# }}}

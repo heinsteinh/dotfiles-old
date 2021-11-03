@@ -1,0 +1,59 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+audible_bell = false
+mouse_autohide = true
+allow_bold = true
+dynamic_title = true
+urgent_on_bell = true
+clickable_url = true
+#font = Monaco Bold 12
+font = Monaco for Powerline Bold 12
+scrollback_lines = 10000
+search_wrap = true
+icon_name = terminal
+geometry = 2048x1024
+
+# "system", "on" or "off"
+cursor_blink = on
+
+# "block", "underline" or "ibeam"
+cursor_shape = underline
+
+# $BROWSER is used by default
+browser = chromium
+
+# set size hints for the window
+#size_hints = false
+
+# emit escape sequences for other keys modified by Control
+#modify_other_keys = false
+
+
+
+
+# Molokai theme
+[colors]
+#background= #101010
+background      = rgba(56, 63, 63, 0.8)
+foreground= #d0d0d0
+#foreground= #66ff66
+#highlight = #505050
+cursor = #66ff66
+color0= #101010
+color1= #960050
+color2= #66aa11
+color3= #c47f2c
+color4= #30309b
+color5= #7e40a5
+color6= #3579a8
+color7= #9999aa
+color8= #303030
+color9= #ff0090
+color10= #80ff00
+color11= #ffba68
+color12= #5f5fee
+color13= #bb88dd
+color14= #4eb4fa
+color15= #d0d0d0
+

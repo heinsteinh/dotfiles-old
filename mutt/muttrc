@@ -1,0 +1,197 @@
+#https://github.com/xkpd3/xkpd3conf-mutt/blob/5d8bbcb53fdac9179004b9e39c45afc7e04c73f6/muttrc
+
+# Load config source files
+# Folder hooks
+folder-hook 'account.com.gmail.heinsteinh'   'source ~/.mutt/account.com.gmail.heinsteinh'
+folder-hook 'account.com.gmail.ewheezy204'   'source ~/.mutt/account.com.gmail.ewheezy204'
+folder-hook 'account.fr.yahoo.fkheinstein'   'source ~/.mutt/account.fr.yahoo.fkheinstein'
+folder-hook 'account.fr.yahoo.fheinstein'    'source ~/.mutt/account.fr.yahoo.fheinstein'
+
+
+
+# Default account
+#source ~/.mutt/account.com.gmail.gotbletu
+source ~/.mutt/account.com.gmail.heinsteinh
+#source ~/.mutt/account.com.gmail.ewheezy204
+#source ~/.mutt/account.fr.yahoo.fheinstein
+#source ~/.mutt/account.fr.yahoo.fkheinstein
+
+
+# Macros for switching accounts
+macro index <F9>   '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmail.ewheezy204<enter><change-folder>!<enter>'
+macro index <F12>  '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmail.heinsteinh<enter><change-folder>!<enter>'
+macro index <F11>  '<sync-mailbox><enter-command>source ~/.mutt/account.fr.yahoo.fheinstein<enter><change-folder>!<enter>'
+macro index <F10>  '<sync-mailbox><enter-command>source ~/.mutt/account.fr.yahoo.fkheinstein<enter><change-folder>!<enter>'
+
+
+
+set signature     = "~/.mutt/mutt-signature"
+set mailcap_path  = "~/.mutt/mailcap"
+set alias_file    = "~/.mutt/mutt-alias"
+
+
+
+# Set default text editor
+#set editor = "$EDITOR"
+#set editor = 'vim + -c "set textwidth=60" -c "set spell" -c "set wrap"'
+set editor = "emacsclient -c -a emacs"
+
+
+#-------- Basic Config {{{
+#------------------------------------------------------
+set imap_check_subscribed
+# set hostname = gmail.com
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+# set record = "+[GMail]/Sent Mail"
+set move = no
+set include
+#set sort = 'threads'
+#set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+alternative_order text/plain text/html *
+auto_view text/html
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop
+
+
+### Charset ###
+set charset      = "utf-8"
+#set locale       = `echo "${LC_ALL:-${LC_TIME:-${LANG}}}"`
+set send_charset = "us-ascii:iso-8859-15:utf-8"
+
+### Sorting ###
+set sort     = 'threads'
+set sort_browser='reverse-date'
+set sort_aux = 'reverse-last-date-received'
+# }}}
+
+
+
+# Locales
+#set locale           = `echo "${LC_ALL:-${LC_TIME:-${LANG}}}"`
+
+
+# Custom Header
+my_hdr From: "Heinstein F." <heinsteinh@gmail.com>
+my_hdr Precedence: first-class
+my_hdr Priority: normal
+my_hdr X-Editor: `vim --version | head -n1 | cut -d"(" -f1`
+my_hdr X-Operating-System: `uname -rms`
+my_hdr X-Mailer: `mutt -v | head -1`
+my_hdr X-GPG: 0x7B3F1675
+my_hdr OpenPGP: url=http://pgp.mit.edu/pks/lookup?op=get&search=0x70996C617B3F1675\; id=7B3F1675
+
+
+# Display Header
+ignore *
+unignore From To Cc Subject Date Reply-To Newsgroups:
+unignore Organization Organisation
+unignore X-Mailer User-Agent X-Agent X-Newsreader X-Editor
+unignore X-Bogosity X-Spam-Status
+unignore Sender X-Sender
+unignore OpenPGP
+hdr_order From: To: Cc: Subject: Date:
+
+
+
+
+
+
+#-------- Color Theme {{{
+#------------------------------------------------------
+
+
+
+#source ~/.mutt/colors/solarized-dark.muttrc
+#source ~/.mutt/colors/solarized-light.muttrc
+#source ~/.mutt/colors/gruvbox-16.muttrc
+#source ~/.mutt/colors/gruvbox-256.muttrc
+#source ~/.mutt/colors/zenburn.muttrc
+#source ~/.mutt/colors/davecolor.muttrc
+#source ~/.mutt/colors/Huggie.muttrc
+#source ~/.mutt/colors/aperiodic.muttrc
+source ~/.mutt/colors/colors
+
+
+# }}}
+
+
+##  {{{{
+
+
+
+# Note that we explicitly set the comment armor header since GnuPG, when used
+# in some localiaztion environments, generates 8bit data in that header, thereby
+# breaking PGP/MIME.
+
+# decode application/pgp
+set pgp_decode_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - %f"
+
+# verify a pgp/mime signature
+set pgp_verify_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - --verify %s %f"
+
+# decrypt a pgp/mime attachment
+set pgp_decrypt_command="gpg --status-fd=2 --no-verbose --quiet --batch --output - %f"
+
+# create a pgp/mime signed attachment
+# set pgp_sign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_sign_command="gpg --no-verbose --batch --quiet --output - --armor --detach-sign --textmode %?a?-u %a? %f"
+
+# create a application/pgp signed (old-style) message
+# set pgp_clearsign_command="gpg-2comp --comment '' --no-verbose --batch --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --quiet --output - %?p?--passphrase-fd 0? --armor --textmode --clearsign %?a?-u %a? %f"
+
+# create a pgp/mime encrypted attachment
+# set pgp_encrypt_only_command="pgpewrap gpg-2comp -v --batch --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_only_command="/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust -- -r %r -- %f"
+
+# create a pgp/mime encrypted and signed attachment
+# set pgp_encrypt_sign_command="pgpewrap gpg-2comp %?p?--passphrase-fd 0? -v --batch --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+set pgp_encrypt_sign_command="/usr/lib/mutt/pgpewrap gpg --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust -- -r %r -- %f"
+
+# import a key into the public key ring
+set pgp_import_command="gpg --no-verbose --import %f"
+
+# export a key from the public key ring
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+
+# verify a key
+set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
+
+# read in the public key ring
+set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
+
+# read in the secret key ring
+set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
+
+# fetch keys
+# set pgp_getkeys_command="pkspxycwrap %r"
+# This will work when #172960 will be fixed upstream
+# set pgp_getkeys_command="gpg --recv-keys %r"
+
+# pattern for good signature - may need to be adapted to locale!
+
+# set pgp_good_sign="^gpgv?: Good signature from "
+
+# OK, here's a version which uses gnupg's message catalog:
+# set pgp_good_sign="`gettext -d gnupg -s 'Good signature from "' | tr -d '"'`"
+
+# This version uses --status-fd messages
+set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
+
+# Wheezy Heinstein pgp
+set pgp_use_gpg_agent="yes"
+set my_pgp_id="7B3F1675"
+
+#  }}}}
+
+
+# SSL Settings
+set ssl_verify_host = yes

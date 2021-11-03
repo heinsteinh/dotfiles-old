@@ -1,0 +1,40 @@
+#                                      _
+#         ___ _ __   ___ _ __ ___   __| |
+#        / __| '_ \ / __| '_ ` _ \ / _` |
+#        \__ | |_) | (__| | | | | | (_| |
+#        |___| .__/ \___|_| |_| |_|\__,_|
+#             |_|
+#
+#                  keys for feh
+#               Created by: spcmd
+#           http://spcmd.github.io
+#           https://github.com/spcmd
+#           https://gist.github.com/spcmd
+
+
+# The default keybind needs to be unset (cleared) if a key has a 'default' function (bind).
+# Use <command> without a <key> to unset the default keybind.
+
+#moving
+next_img j
+prev_img k
+
+#unset the 'z' key
+jump_random
+
+# map zoom
+zoom_fit z
+zoom_in l
+zoom_out h
+
+#unset the 'Enter' (Return) key
+action_0
+toggle_fullscreen Return
+
+#unset the 'm' and 'f' keys
+save_filelist
+toggle_menu
+
+#image manipulation
+mirror m
+flip f

@@ -1,0 +1,39 @@
+###########################
+### Yahoo! Account Setup ##
+###########################
+#https://github.com/sharethewisdom/dotfiles3/blob/7001878290768a2f38993ddf5aa70b54740ffdaa/mutt/yahoo
+#https://github.com/fab-du/notes/blob/9fef8c1bf80dc3fd307e797d75454b4b37472da2/various/mutt.md
+
+# read passwords
+source "gpg -d $HOME/.mutt/mutt-passwords.gpg |"
+
+
+
+
+set imap_user = "f_heinstein@yahoo.fr"
+set imap_pass = $my_yahoo2_pass
+
+set smtp_url  = "smtps://f_heinstein@smtp.mail.yahoo.com:466"
+set smtp_pass = "$my_yahoo2_pass"
+set from      = "f_heinstein@yahoo.fr"
+set realname  = "Heinstein F."
+set folder    = "imaps://imap.mail.yahoo.com:994"
+set spoolfile = "+INBOX"
+set postponed = "+[Yahoo]/Drafts"
+set record    = "+Sent"
+
+
+set header_cache     = ~/.mutt/fr.yahoo.fheinstein/cache/headers
+set message_cachedir = ~/.mutt/fr.yahoo.fheinstein/cache/bodies
+set certificate_file = ~/.mutt/fr.yahoo.fheinstein/certificates
+
+
+
+# Connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_user=f_heinstein@yahoo.fr imap_pass=$my_yahoo2_pass"
+
+

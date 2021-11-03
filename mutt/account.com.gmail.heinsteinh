@@ -1,0 +1,38 @@
+# vim:set ft=muttrc :
+
+# read passwords
+#source "gpg -d $HOME/.mutt/mutt-passwords.gpg |"
+
+source "gpg2 -dq $HOME/.mutt/mutt-passwords.gpg |"
+## Receive options
+
+
+#*********************************************************************************************
+
+set imap_user = "heinsteinh@gmail.com"
+set imap_pass = $my_gmail1_pass
+set smtp_url = "smtps://heinsteinh@smtp.gmail.com:465/"
+set smtp_pass = $my_gmail1_pass
+set from = "heinsteinh@gmail.com"
+set realname = "Heinstein Fotso"
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = +[Gmail]/Sent\ Mail
+
+set hostname      = "gmail.com"
+
+set signature="Heinstein F."
+
+# These two lines appear to be needed on some Linux distros, like Arch Linux
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+
+set header_cache     = ~/.mutt/com.gmail.heinsteinh/cache/headers
+set message_cachedir = ~/.mutt/com.gmail.heinsteinh/cache/bodies
+set certificate_file = ~/.mutt/com.gmail.heinsteinh/certificates
+
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_user=heinsteinh@gmail.com imap_pass=$my_gmail1_pass"

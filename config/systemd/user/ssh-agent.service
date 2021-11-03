@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenSSH private key agent
+IgnoreOnIsolate=true
+
+[Service]
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -d -a $SSH_AUTH_SOCK
+ExecStartPost=/bin/systemctl --user set-environment SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
+ExecStopPost=/bin/rm ${SSH_AUTH_SOCK}
+
+[Install]
+WantedBy=environment.target

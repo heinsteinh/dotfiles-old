@@ -1,0 +1,75 @@
+# dont forget to replace
+# MY_EMAIL with your email address
+# MY_PASSWORD with your pw
+#
+#set editor      = `echo \$EDITOR`
+
+source "gpg2 -dq $HOME/.mutt/mutt-passwords.gpg |"
+
+set editor      = 'vim + -c "set textwidth=60" -c "set spell" -c "set wrap"'
+set my_name     = "Heinstein F."
+set imap_user   = heinsteinh@gmail.com
+set imap_pass   = $my_qmail1_pass
+set folder      = imaps://heinsteinh@imap.gmail.com/
+set spoolfile   = +INBOX
+mailboxes       = +INBOX
+set imap_check_subscribed
+
+# SMTP settings:
+set smtp_url    = "smtp://$imap_user:$imap_pass@smtp.gmail.com:587/" # don't need this setting with gmail
+set ssl_starttls = yes
+set record = +[Gmail]/Sent
+
+#Gmail saves automatically sent e-mail to +[Gmail]/Sent, so we do not want duplicates.
+unset record
+set from        = "heinsteinh@gmail.com"
+
+set hostname    = gmail.com
+
+
+# Store message headers locally to speed things up.
+# If hcache is a folder, Mutt will create sub cache folders for each account which may speeds things even more up.
+set header_cache = "~/.mutt/cache/headers"
+set signature    = "~/.mutt/mutt-signature"
+
+
+# Store messages locally to speed things up, like searching message bodies.
+# Can be the same folder as header_cache.
+# This will cost important disk usage according to your e-mail amount.
+set message_cachedir = "~/.mutt/cache/bodies"
+
+# Specify where to save and/or look for postponed messages.
+set postpone    = yes
+set postponed   = +[Gmail]/Drafts
+
+# Allow Mutt to open new imap connection automatically.
+unset imap_passive
+
+# Keep IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+# How often to check for new mail (time in seconds).
+set mail_check = 120
+
+set sort            = threads
+set sort_browser    = date
+set sort_aux        = reverse-last-date-received
+
+
+# View html mails using lynx
+# set implicit_autoview
+auto_view text/html text/enriched application/x-gunzip application/postscript image/gif application/x-tar-gz
+#auto_view text/html application/x-pgp-message
+set mailcap_path="~/.mutt/mailcap"
+set mailcap_sanitize=yes
+
+
+#bind index G imap-fetch-mail
+
+#source ~/.mutt/colors/solarized-dark.muttrc
+#source ~/.mutt/colors/solarized-light.muttrc
+#source ~/.mutt/colors/zenburn.muttrc
+#source ~/.mutt/colors/davecolor.muttrc
+#source ~/.mutt/colors/Huggie.muttrc
+source ~/.mutt/colors/aperiodic.muttrc
+
