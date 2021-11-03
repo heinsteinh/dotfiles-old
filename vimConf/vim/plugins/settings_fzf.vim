@@ -128,23 +128,6 @@ elseif executable('ag')
 endif
 
 
-if executable('rg')
-    source $HOME/$VIMFILE_DIR/plugins/fzf_devicon.vim
-    " FZF Plugin -------------------------------------------------------------------
-    " Files (':Files' with devicons)
-    nmap <C-p> :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND)<CR>
-    " Git tracked files (ignore submodules + .gitignore files)
-    nmap <C-g> :call Fzf_files_with_dev_icons("git ls-files \| uniq")<CR>
-    " Lines
-    nmap <C-l> :Lines<CR>
-    " Rg
-    nmap <C-f> :Rg<CR>
-    " Tags
-    nmap <C-t> :Tags<CR>
-    " Git diff
-    nmap <C-d> :call Fzf
-endif
-
 "FZF keymaps
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap <leader>fb  :Buffers<CR>
