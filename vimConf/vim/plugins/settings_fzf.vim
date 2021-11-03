@@ -129,7 +129,7 @@ endif
 
 
 if executable('rg')
-    source $HOME/$VIMFILE_DIR/plugin/fzf_devicon.vim
+    source $HOME/$VIMFILE_DIR/plugins/fzf_devicon.vim
     " FZF Plugin -------------------------------------------------------------------
     " Files (':Files' with devicons)
     nmap <C-p> :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND)<CR>
