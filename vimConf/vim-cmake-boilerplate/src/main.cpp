@@ -23,6 +23,8 @@ int main(int argc, char *argv[]) {
 
   std::cout << "" << std::endl;
 
+
+  std::cout <<" " << std::endl;
   printf("Hello, CMake!\n");
   return 0;
 }

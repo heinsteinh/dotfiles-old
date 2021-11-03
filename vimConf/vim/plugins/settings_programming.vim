@@ -18,6 +18,16 @@ else
 endif
 
 
+let g:clang_hl_errors=1
+let g:clang_periodic_quickfix=1
+let g:clang_snippets=1
+let g:clang_snippets_engine='ultisnips'
+let g:clang_trailing_placeholder=1
+let g:clang_close_preview=1
+let g:clang_complete_patterns=1
+let g:clang_complete_macros=1
+
+
 " Disable function highlighting (affects both C and C++ files)
 let g:cpp_function_highlight = 1
 " Enable highlighting of C++11 attributes
@@ -28,33 +38,4 @@ let g:cpp_member_highlight = 1
 " (affects both C and C++ files)
 let g:cpp_simple_highlight = 1
 
-" tagbar configuration
-"autocmd VimEnter * nested TagbarOpen
-map <F7> :TagbarToggle<CR>
-let g:tagbar_width = 50
-let g:tagbar_sort = 0
-let g:tagbar_compact = 0
-let g:tagbar_indent = 2
-let g:tagbar_autofocus = 0
-let g:tagbar_autoclose = 0
-let g:tagbar_usearrows = 1
-let g:tagbar_autoshowtag = 1
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => UltiSnip
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" Trigger configuration. Do not use <tab> if you use YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-t>"
-let g:UltiSnipsJumpForwardTrigger="<C-f>"
-let g:UltiSnipsJumpBackwardTrigger="<C-b>"
-
-" " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"

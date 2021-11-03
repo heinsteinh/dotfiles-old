@@ -1,5 +1,5 @@
 "let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_layout = { 'down': '~40%' }
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
 
@@ -11,9 +11,6 @@ if g:is_win
 
 elseif g:is_linux
     let g:fzf_history_dir = '$HOME/.local/share/fzf-history'
-
-
-
 endif
 
 
@@ -27,6 +24,25 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 "let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 
 
+
+" This is the default extra key bindings
+let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
+
+" An action can be a reference to a function that processes selected lines
+function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
+endfunction
+
+let g:fzf_action = {
+            \ 'ctrl-q': function('s:build_quickfix_list'),
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 
 "" [Buffers] Jump to the existing window if possible
@@ -67,6 +83,7 @@ let g:fzf_colors =
 if executable('ag')
 
     nnoremap  <silent><Leader>f :Ag<cr>
+    nnoremap  <silent><C-f> :Ag<cr>
     let s:fzf_custom_command = 'ag --hidden -l --nocolor --nogroup '.'
                 \ --ignore "*.[odODaA]"
                 \ --ignore "*.exe"
@@ -95,22 +112,46 @@ if executable('rg')
 
     "  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
     "  set grepprg=rg\ --vimgrep
-
-
-
     nnoremap  <silent><Leader>f :Rg <cr>
+    nnoremap  <silent><C-f> :Rg <cr>
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
     echo "fzf Using ripgrep"   
 endif
 
+
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "\!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+elseif executable('ag')
+    set grepprg=ag\ --nogrup\ --nocolor
+endif
+
+
+if executable('rg')
+    source $HOME/$VIMFILE_DIR/plugin/fzf_devicon.vim
+    " FZF Plugin -------------------------------------------------------------------
+    " Files (':Files' with devicons)
+    nmap <C-p> :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND)<CR>
+    " Git tracked files (ignore submodules + .gitignore files)
+    nmap <C-g> :call Fzf_files_with_dev_icons("git ls-files \| uniq")<CR>
+    " Lines
+    nmap <C-l> :Lines<CR>
+    " Rg
+    nmap <C-f> :Rg<CR>
+    " Tags
+    nmap <C-t> :Tags<CR>
+    " Git diff
+    nmap <C-d> :call Fzf
+endif
+
 "FZF keymaps
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap <leader>fb  :Buffers<CR>
-" nnoremap <leader>b   :Buffers<CR>
 nnoremap <leader>ff  :Files<CR>
-nnoremap <leader>fgf :GFiles<CR>
+nnoremap <leader>fg  :GFiles<CR>
 nnoremap <leader>fag :Ag<CR>
+nnoremap <leader>fr  :Rg<cr>
 nnoremap <leader>fl  :Lines<CR>
 nnoremap <leader>fh  :History<CR>
 nnoremap <leader>;   :History<CR>
@@ -119,6 +160,8 @@ nnoremap <leader>fco :Commits<CR>
 nnoremap <leader>fcb :BCommits<CR>
 nnoremap <leader>fw  :Windows<CR>
 nnoremap <leader>fc  :Commands<cr>
+nnoremap <leader>fm  :Maps<cr>
+
 nnoremap <leader>ff  :FzfFunky<cr>
 nnoremap <leader>fd  :call <SID>fzfrun_dir()<cr>
 
@@ -158,3 +201,86 @@ function! s:fzfrun_dir() abort
     endif
     call fzf#run(l:run_dict)
 endfunction
+
+
+""
+" @private
+" Get file and devicons
+" From: https://github.com/ryanoasis/vim-devicons/issues/106
+function! s:FzfFilesWithDevIcons() abort
+    if executable('bat')
+        let l:fzf_files_options = printf('--preview "bat %s %s | head -%s"',
+                    \ '--style=numbers,changes --color always',
+                    \ exists('*WebDevIconsGetFileTypeSymbol') ? '{2..-1}' : '{}',
+                    \ &lines)
+    else
+        let l:fzf_files_options = ''
+    endif
+
+    function! s:GetFiles()
+        let l:files = split(system($FZF_DEFAULT_COMMAND), "\n")
+        return <sid>PrependIcon(l:files)
+    endfunction
+
+    function! s:PrependIcon(candidates)
+        let l:result = []
+        for candidate in a:candidates
+            let l:fname = fnamemodify(candidate, ':p:t')
+            if exists('*WebDevIconsGetFileTypeSymbol')
+                let l:icon = WebDevIconsGetFileTypeSymbol(l:fname, isdirectory(l:fname))
+                call add(l:result, printf('%s %s', l:icon, candidate))
+            else
+                call add(l:result, candidate)
+            endif
+        endfor
+        return l:result
+    endfunction
+
+    function! s:EditFile(item)
+        let l:pos = stridx(a:item, ' ')
+        let l:file_path = a:item[pos+1:-1]
+        execute 'silent e' l:file_path
+    endfunction
+
+    call fzf#run({
+                \ 'source': <sid>GetFiles(),
+                \ 'sink': function('s:EditFile'),
+                \ 'options': '-m ' . l:fzf_files_options,
+                \ 'down': '40%' })
+endfunction
+
+command! FzfFilesWithDevIcons call <sid>FzfFilesWithDevIcons()
+nnoremap <silent> <leader>fff :FzfFilesWithDevIcon<cr>
+
+
+" similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+command! -bang -nargs=* Rg
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
+
+" command for git grep
+" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang -nargs=* GGrep
+            \ call fzf#vim#grep(
+            \   'git grep --line-number '.shellescape(<q-args>), 0,
+            \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
+" augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Bat: https://github.com/sharkdp/bat
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+            \ call fzf#vim#ag(<q-args>,
+            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \                 <bang>0)
+

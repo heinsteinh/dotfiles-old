@@ -16,6 +16,11 @@ let g:tagbar_sort=0
 let g:tagbar_compact=1
 let g:tagbar_indent=4
 
+
+" tagbar configuration
+"autocmd VimEnter * nested TagbarOpen
+
+
 if !exists('g:tagbar_iconchars')
     if has('multi_byte') && has('unix') && &encoding == 'utf-8' &&
      \ (empty(&termencoding) || &termencoding == 'utf-8')

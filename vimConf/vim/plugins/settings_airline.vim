@@ -114,7 +114,6 @@ function! UpdateBattery(timer)
     call CheckBatteryPercent()
 
     let l:show_alert = 0
-
     if g:battery_percent < 0
         " This handles when the battery function didn't work correctly.
         let g:battery_timer = timer_start(5*1000, 'UpdateBattery')
@@ -147,7 +146,6 @@ function! UpdateBattery(timer)
                     \   'borderchars': ['━', '┃', '━', '┃', '┏', '┓', '┛', '┗']
                     \ })
     endif
-
 endfunction
 
 function! TablineUpdate(timer)

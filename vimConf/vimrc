@@ -36,7 +36,7 @@ if hostname() == "BHI4PCH7D3"
 
 else
 endif
-"}}
+"}}}
 
 if g:is_win
     :let $VIMFILE_DIR = 'vimfiles'
@@ -59,7 +59,7 @@ elseif g:is_linux
 
     "set filetype=unix
     "set ffs=unix
-    set path=.,/usr/include/,/usr/include/c++/4.7/ "c++ is in /usr/include/c++/...
+    set path=.,/usr/include/,/usr/include/c++/4.7/ "c++ is in /usr/include/c++/
     " Allows you to enter sudo pass and save the file
     " " when you forgot to open your file with sudo
     cmap w!! %!sudo tee > /dev/null %
@@ -80,7 +80,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 
-source $HOME/$VIMFILE_DIR/plugins_vimrc.vim   
+source $HOME/$VIMFILE_DIR/plugins_vimrc.vim
 
 
 " All of your Plugins must be added before the following line
@@ -96,99 +96,7 @@ let g:loaded_golden_ratio = 0
 " show errors in different Colors
 highlight Errors ctermbg=green guibg=darkred
 
-"}}
-
-"set softtabstop=2 " Indent by 2 spaces when hitting tab
-"set shiftwidth=4 " Indent by 4 spaces when auto-indenting
-"set tabstop=4 " Show existing tab with 4 spaces width
-"syntax on " Enable syntax highlighting
-"filetype indent on " Enable indenting for files
-"set autoindent " Enable auto indenting
-"set number " Enable line numbers
-"set background=dark
-""colorscheme desert " Set nice looking colorscheme
-""colorscheme herald " Set nice looking colorscheme
-""colorscheme oceanic_material
-""colorscheme PaperColor
-"colorscheme OceanicNext
-""colorscheme gruvbox
-""colorscheme atom
-"set laststatus=2 "show status line
-"set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-"set wildmenu " Display command line'scomplete options as a menu.
-"set number
-"set relativenumber
-
-""- Allow backspacing over indention, line breaks and insertion start.
-"set backspace=indent,eol,start
-""- Set bigger history of executed commands.
-"set history=1000
-""- Show incomplete commands at the bottom.
-"set showcmd
-""- Show current mode at the bottom.
-"set showmode
-
-"" Vim will automatically save files when moving between buffers.
-"" This is pretty safe because I persist edit history, so I can undo changes if a buffer gets closed.
-"set autowrite
-"set autowriteall
-
-"" Automatically reread a file if some other process writes to it.
-"" Useful for editing files in a full IDE or other vim sessions simultaneously.
-"set autoread
-
-
-"" Highlights a cross over the cursor.
-"" Some highlighting gets a little strange due to my theme.
-"set cursorline
-""set cursorcolumn
-
-"" Always display the sign column, used by coc, ale, and gitgutter to display changes, errors, and warning.
-""set signcolumn=yes
-
-"set title 
-"" Allow hidden buffers, don't limit to 1 file per window/split
-"set hidden
-
-"" Indentation settings for using 4 spaces instead of tabs.
-"" Do not change 'tabstop' from its default value of 8 with this setup.
-"set shiftwidth=4
-"set softtabstop=4
-"set expandtab
-
-"" Displays tabs, nbsps, and trailing spaces with printable characters.
-""set list listchars=tab:▸\ ,nbsp:·,trail:·
-"" Shows a fancy arrow on wrapped lines.
-"set showbreak=↪\ 
-
-
-"" After 300 millis of no edits, a swap file will be written.
-"" After 300 millis, the CursorHold event fires.
-"set updatetime=300
-"" Blocks "hit enter" prompts on completion menu actions.
-"set shortmess+=c
-"" Adds a second line to the cmd bar.
-"set cmdheight=2
-
-"set switchbuf=useopen " reveal already opened files from the quickfix window
-"" instead of opening new buffers
-""let g:rainbow_active = 1
-
-"" Very magic by default
-"nnoremap ? ?\v
-"nnoremap / /\v
-"cnoremap %s/ %sm/
-"" Proper search
-"set incsearch
-"set ignorecase
-"set smartcase
-"" Highlights search matches.
-"set hlsearch
-
-
-"let $LANG='en'
-"set langmenu=en
-"set mouse=a
+"}}}
 
 
 
@@ -236,6 +144,10 @@ if has("gui_running")
     set ruler
     " Highlight the current line
     set cursorline
+
+
+    set guioptions+=a           " Autoselect text
+    set guioptions+=c           " Use console dialogs
 
     " Hide the toolbar
     set guioptions-=T
@@ -297,7 +209,17 @@ else
     endif
 endif
 "}}}
-"
+
+
+
+" " Nice window title
+" if has('title') && (has('gui_running') || &title)
+"   set titlestring=
+"   set titlestring+=%f\  " file name
+"   set titlestring+=%h%m%r%w " flags
+"   set titlestring+=\ -\ %{v:progname} " program name
+" endif
+
 
 " source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
@@ -339,9 +261,11 @@ nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
 "map Y y$
 
 
-" Double tap s to save the buffer contents, more convienent than keep the pressure on the modifier keys to be CUA compatible.
+" Double tap s to save the buffer contents,more convienent than keep the pressure on the modifier keys to be CUA compatible.
 nnoremap <silent> ss :update<CR>
 
+"Map \e to edit a file from the directory of the current buffer
+nnoremap <Leader>e :e <C-R>=expand("%:p:h") . "/"<CR>
 
 "{{{  Documentation Link here
 "Good FZF Option here
@@ -373,7 +297,6 @@ vnoremap <S-Insert> "*p
 
 
 "}}}
-
 
 
 "{{{ Mappings Movement 
@@ -558,17 +481,11 @@ vnoremap <leader>. >
 "nnoremap <CR> :noh<CR>
 nnoremap <silent> <CR> :noh<CR>
 
-" <leader>bd will use the bufkill plugin to close buffers and leave windows open.
-nnoremap <leader>bd :BD!<CR>
 
 " <leader>t to create new tab.
 noremap <leader>t :tabnew<CR>
 " <leader>tt to create new terminal tab.
 noremap <leader>tt :tabnew<CR>:term ++curwin<CR>
-" <leader>tt to create new ammonite tab.
-noremap <leader>ta :exe 'tabnew \| term ++curwin ++close ' . g:amm <CR>
-" <leader>tt to create new ipython tab.
-noremap <leader>ti :tabnew<CR>:term ++curwin ++close ipython<CR>
 " <leader>tc to close the current tab.
 noremap <leader>tc :tabc<CR>
 
@@ -582,6 +499,9 @@ nmap <leader>cc :Commentary<CR>
 vmap <leader>cc :Commentary<CR>
 "}}}"
 
+" Turn On/Off NERDTree
+map <leader>n :NERDTreeToggle %<CR>
+
 " Reindent file and return to current line
 map <leader>i mmgg=G`m<cr>
 
@@ -590,9 +510,52 @@ map <leader>i mmgg=G`m<cr>
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 
-set foldlevel=100         " start out with everything folded
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
-set foldcolumn=1
+" Folding rules {{{
+function! MyFoldText()
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    " expand tabs into spaces
+    let onetab = strpart('          ', 0, &tabstop)
+    let line = substitute(line, '\t', onetab, 'g')
+
+    let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
+    let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
+    return line . ' …' . repeat(" ",fillcharcount) . foldedlinecount . ' '
+endfunction
+set foldtext=MyFoldText()
+
+" Mappings to easily toggle fold levels
+nnoremap z0 :set foldlevel=0<cr>
+nnoremap z1 :set foldlevel=1<cr>
+nnoremap z2 :set foldlevel=2<cr>
+nnoremap z3 :set foldlevel=3<cr>
+nnoremap z4 :set foldlevel=4<cr>
+nnoremap z5 :set foldlevel=5<cr>
+
+nnoremap <space> za
+vnoremap <Space> za
+nnoremap zo zr
+nnoremap zO zR
+nnoremap zc zm
+nnoremap zC zM
+
+
+" create fold (visual select)
+vnoremap <space> zf
+
+" close other folds
+nnoremap zo zMzv
+
+
+hi Folded guibg=bg
+hi Folded guifg='orange'
+"}}}
+
+
 
 source $HOME/$VIMFILE_DIR/plugins/settings_nerdtree.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_rooter.vim
@@ -611,16 +574,8 @@ source $HOME/$VIMFILE_DIR/plugins/backupFiles.vim
 source $HOME/$VIMFILE_DIR/plugins/automkdir.vim
 source $HOME/$VIMFILE_DIR/plugins/diminactive.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_programming.vim
 
-
-function! My_Tab_Completion()
-   if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-      return "\<C-P>"
-   else
-      return "\<Tab>"
-   endif
-endfunction
-inoremap <Tab> <C-R>=My_Tab_Completion()<CR>
 
 function! LargeFile()
     " No need for the extra IO of making the swap/backup/undo files.
@@ -630,6 +585,7 @@ function! LargeFile()
     " Display message once buffer is open.
     autocmd ++once BufEnter *  echom "The file is larger than " . g:large_fsize . " MB, so some options are changed."
 endfunction
+
 
 
 "{{{

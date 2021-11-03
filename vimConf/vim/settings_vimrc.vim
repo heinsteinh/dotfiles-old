@@ -24,8 +24,12 @@ colorscheme OceanicNext
 set laststatus=2 "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu " Display command line'scomplete options as a menu.
+set wildmode=list:longest,full               " list all options, match to the longest
 set number
 set relativenumber
+
+set textwidth=0           " Don't wrap words by default
+set textwidth=80          " This wraps a line with a break when you reach 80 chars
 
 "- Allow backspacing over indention, line breaks and insertion start.
 set backspace=indent,eol,start
@@ -93,8 +97,55 @@ set smartcase
 " Highlights search matches.
 set hlsearch
 
+" Better splits (new windows appear below and to the right)
+set splitbelow
+set splitright
+
 
 
 let $LANG='en'
 set langmenu=en
 set mouse=a
+
+set whichwrap+=<,>,[,]
+
+set listchars=tab:>-,trail:·
+set list
+
+" Selection {{{
+" Change selected letters when write
+set selectmode=mouse,key
+
+" Select with SHIFT + ARROW for Vim-noobs
+set keymodel=startsel,stopsel
+
+" Enable select with mouse in insert mode
+"set selection=exclusive
+set selection=inclusive
+
+" Can move cursor past end of line, where there are no characters, in visualblock mode
+set virtualedit=block
+
+" Visual selection automatically copied to clipboard
+set go+=a
+ if g:is_win
+     set go+=a
+ elseif g:is_mac
+ elseif g:is_linux
+     set go+=P 
+ endif
+
+"set mousemodel=popup
+"}}}
+
+" Folding rules {{{
+set foldenable                  " enable folding
+
+set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+set foldcolumn=1
+set foldlevel=100         " start out with everything folded
+"set foldmethod=marker           " detect triple-{ style fold markers
+set foldlevelstart=99           " start out with everything unfolded
+
+
+"}}}
