@@ -16,7 +16,7 @@ let g:mapleader = ','
 let g:is_win   = has('win32') || has('win64')
 let g:is_mac   = has('mac') || system('uname') =~? '^darwin'
 let g:is_linux = !g:is_mac && has('unix')
-"}}
+"}}}
 
 "{{{ Simple Branch Template Example
 if g:is_win
@@ -91,7 +91,7 @@ filetype plugin indent on    " required
 
 " Golden Ratio:
 " This should disable the plugin, use :GoldenRatioToggle to reenable.
-let g:loaded_golden_ratio = 0
+let g:loaded_golden_ratio =  1
 
 " show errors in different Colors
 highlight Errors ctermbg=green guibg=darkred
@@ -99,7 +99,7 @@ highlight Errors ctermbg=green guibg=darkred
 "}}}
 
 
-
+"{{{ Settings Section
 source $HOME/$VIMFILE_DIR/settings_vimrc.vim  
 
 
@@ -119,16 +119,16 @@ elseif g:is_linux
     endif
 endif
 "}}}
+"}}}
 
 "Vimrc quick edit
 nnoremap <Leader>pv :split $MYVIMRC<CR>
 nnoremap <Leader>vv :vsplit $MYVIMRC<CR>
-nnoremap <Leader>rv :source $MYVIMRC<CR>
+nnoremap <Leader>rv :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
 nnoremap <Leader>r  :source $MYVIMRC<CR>:echo "Reloaded: " . $MYVIMRC<CR>
 nnoremap <Leader>tv :tabnew $MYVIMRC<CR>
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
 
-nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
 " Quick PluginStall
 nnoremap <Leader>pi :source $MYVIMRC<cr>:PluginInstall<cr>
 
@@ -210,30 +210,17 @@ else
 endif
 "}}}
 
-
-
-" " Nice window title
-" if has('title') && (has('gui_running') || &title)
-"   set titlestring=
-"   set titlestring+=%f\  " file name
-"   set titlestring+=%h%m%r%w " flags
-"   set titlestring+=\ -\ %{v:progname} " program name
-" endif
-
-
-" source all the helper files
+"{{{ source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
     "echo "sourcing dir "
     echo f
     exec 'source' f
 endfor
 
+"}}}
 
-
-
-
-" {{{ Special setting for ConEmu
-" http://conemu.github.io/en/VimXterm.html
+"{{{ Special setting for ConEmu
+"http://conemu.github.io/en/VimXterm.html
 if g:is_win && !has("gui_running")
     " 256-color
     set term=xterm
@@ -251,15 +238,9 @@ endif
 
 
 
-" Mappings {{{
 " Useful mappings
-""nnoremap <Leader>r  :source ~/dotfiles/vimConf/vimrc_fzf <CR>:echo "Reloaded: " . ~/dotfiles/vimConf/vimrc_fzf<CR>
+"{{{ Mappings Movement 
 nnoremap <leader>et :exec ":vsp $HOME/notes/" . strftime('%m-%d-%y') . ".md"<CR>
-
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-"map Y y$
-
 
 " Double tap s to save the buffer contents,more convienent than keep the pressure on the modifier keys to be CUA compatible.
 nnoremap <silent> ss :update<CR>
@@ -267,14 +248,11 @@ nnoremap <silent> ss :update<CR>
 "Map \e to edit a file from the directory of the current buffer
 nnoremap <Leader>e :e <C-R>=expand("%:p:h") . "/"<CR>
 
-"{{{  Documentation Link here
-"Good FZF Option here
-"https://github.com/samoshkin/dotfiles/tree/f330daaf3544184c197ae541b9893304c3adf327
-
 "}}}
 
 
 
+"{{{ Copy/Paste
 ""https://github.com/jwbat/dotfiles/blob/4fc36a3eda20ed4467b21dd863507fa2c31b80d5/.vimrc#L131
 "Good Register paste example in this link
 "
@@ -286,20 +264,30 @@ nnoremap <leader>v "+p`]
 " cut line(s) into system clipboard
 xnoremap <leader>x"+d
 
-" yank whole file into system clipboard
-nnoremap <leader><leader>' gg0"+yG
-
-
 nnoremap <C-Insert> "*y
 nnoremap <S-Insert> "*p
 vnoremap <C-Insert> "*y
 vnoremap <S-Insert> "*p
 
+" Copy entire file to clipboard
+nnoremap Y :%y+<cr>
 
+
+""copy visual text into register u
+""replace visual text with text from u
+vnoremap <leader><leader>yu "uy
+vnoremap <leader><leader>pu "uP
+noremap <leader><leader>yu "uy
+noremap <leader><leader>pu "uP
+
+noremap <leader><leader>pa "aP
+noremap <leader><leader>ya "ay
+
+nnoremap <leader><leader>yv "vy
+nnoremap <leader><leader>pv "vP
+vnoremap <leader><leader>yv "uy
+vnoremap <leader><leader>pv "uP
 "}}}
-
-
-"{{{ Mappings Movement 
 
 " remap movement keys so that up-down work over visual lines rather than 
 " actual lines
@@ -311,13 +299,54 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 
-"Faster navigation
-nnoremap J <C-d>
-nnoremap K <C-u
+" quick scroll down/up
+nnoremap J Lzz
+vnoremap J Lzz
+nnoremap K Hzz
+vnoremap K Hzz
 
-"Start and End of the line Maing
-noremap H 0
-noremap L $
+
+" Map 0 to first non-blank character
+nnoremap 0 ^
+
+" Move to the end of the line
+nnoremap L $zL
+vnoremap L $
+nnoremap H 0zH
+vnoremap H 0
+
+""indent/unindent visual mode selection with tab/shift+tab
+"vmap <tab> >gv
+"vmap <s-tab> <gv
+
+" Copy number of lines and paste below
+nnoremap <leader>cp :<c-u>exe 'normal! y' . (v:count == 0 ? 1 : v:count) . 'j' . (v:count == 0 ? 1 : v:count) . 'jo<C-v><Esc>p'<cr>
+
+
+
+" Windows mappings
+nnoremap <c-w>v :vnew<cr>
+nnoremap <c-w>s :new<cr>
+nnoremap <c-w>e :enew<cr>
+
+" Delete current buffer
+nnoremap <silent> <leader>bd :bp <bar> bd #<cr>
+" Close current buffer
+nnoremap <silent> <leader>bc :close<cr>
+
+" This creates a new line of '=' signs the same length of the line
+nnoremap <leader>o yypVr=
+
+
+
+" Map dp and dg with leader for diffput and diffget
+nmap <leader>dp :diffput<cr>
+nmap <leader>dg :diffget<cr>
+nmap <leader>du :windo diffoff <bar> windo diffupdate<cr>
+nmap <leader>dn :windo diffthis<cr>
+nmap <leader>df :windo diffoff<cr>
+
+
 
 " Backspace in normal mode
 nnoremap <bs> d1<Left>
@@ -373,6 +402,11 @@ inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+
+" Map - to move a line down and _ a line up
+nnoremap - "ldd$"lp
+nnoremap _ "ldd2k"lp
 
 
 " [EDIT+VISUAL+COMMAND] CTRL-K UP Split above
@@ -435,15 +469,6 @@ noremap <leader>H :wincmd H<CR>
 noremap <leader>L :wincmd L<CR>
 
 
-" Rotate windows.
-noremap [r :wincmd r<CR>
-noremap ]r :wincmd R<CR>
-
-" Next/prev window.
-noremap [w :wincmd w<CR>
-noremap ]w :wincmd W<CR>
-
-
 "" Esc to enter terminal normal mode
 "tnoremap <Esc> <C-\><C-n>
 
@@ -461,21 +486,30 @@ cnoremap <C-A-V> <C-R>+
 noremap n nzz
 noremap N Nzzo
 
-"https://github.com/jabrouwer82/configurations/blob/ab816a9b08b394b7cd114a912d4e04c926b46345/.vimrc
-" Use ;/ to search this file for the current word/selection.
-vnoremap <leader>/ y/<C-r>"<CR>
-nnoremap <leader>/ /<C-r><C-w><CR>
+" Search mappings
+nnoremap <silent> * :execute "normal! *N"<cr>
+nnoremap <silent> # :execute "normal! #n"<cr>
+
+
+" Search visually selected text with // or * or #
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
 
 " <leader>s will prepare a :s command for the current word/selection.
-vnoremap <leader>s y:%s/<C-r>"\C/<C-r>"/g
-nnoremap <leader>s :%s/<C-r><C-w>\C/<C-r><C-w>/g
+"vnoremap <leader>s y:%s/<C-r>"\C/<C-r>"/g
+"nnoremap <leader>s :%s/<C-r><C-w>\C/<C-r><C-w>/g
 
-" Lazy indentation decrementors.
-vnoremap <leader>, <
-nnoremap <leader>, <<
-" Lazy indentation incrementors
-nnoremap <leader>. >>
-vnoremap <leader>. >
+" Search and Replace
+nnoremap <Leader>s :.,$s?<C-r><C-w>?<C-r><C-w>?gc<Left><Left><Left>
+vnoremap <leader>s "hy:.,$s?<C-r>h?<C-r>h?gc<left><left><left>
+
+vnoremap <leader>dab "hyqeq:v?\V<c-r>h?d E<cr>:let @"=@e<cr>:noh<cr>
+vnoremap <leader>daa "hyqeq:g?\V<c-r>h?d E<cr>:let @"=@e<cr>:noh<cr>
+
+vnoremap <leader>yab "hymmqeq:v?\V<c-r>h?yank E<cr>:let @"=@e<cr>`m:noh<cr>
+vnoremap <leader>yaa "hymmqeq:g?\V<c-r>h?yank E<cr>:let @"=@e<cr>`m:noh<cr>
+
+
 
 " Pressing enter will clear search highlighting.
 "nnoremap <CR> :noh<CR>
@@ -555,7 +589,152 @@ hi Folded guibg=bg
 hi Folded guifg='orange'
 "}}}
 
+" Netrw (directory browsing) out-of-the-box plugin {{{
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+let g:netrw_keepdir = 1
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :if !exists("NERDTree") | Vexplore | endif
+" augroup END
 
+"map <silent> <C-o> :Lexplore<CR>
+" }}}
+
+
+" " Use ag for search
+" if executable('rg')
+"   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+" elseif executable('ag')
+"   set grepprg=ag\ --vimgrep\ --follow
+" endif
+
+"" Populate current word in search
+"nnoremap <leader>/ :grep '\b<C-R>=substitute(expand("<cword>"), '#', '\\#', 'g')<CR>\b'<space>
+
+" Grep {{{
+" This is only availale in the quickfix window, owing to the filetype
+" restriction on the autocmd (see below).
+function! <SID>OpenQuickfix(new_split_cmd)
+  " 1. the current line is the result idx as we are in the quickfix
+  let l:qf_idx = line('.')
+  " 2. jump to the previous window
+  wincmd p
+  " 3. switch to a new split (the new_split_cmd will be 'vnew' or 'split')
+  execute a:new_split_cmd
+  " 4. open the 'current' item of the quickfix list in the newly created buffer
+  "    (the current means, the one focused before switching to the new buffer)
+  execute l:qf_idx . 'cc'
+endfunction
+
+augroup grep_augroup
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* copen
+  autocmd QuickFixCmdPost l*    lopen
+  autocmd FileType qf nnoremap <buffer> <C-v> :call <SID>OpenQuickfix("vnew")<CR>
+  autocmd FileType qf nnoremap <buffer> <C-x> :call <SID>OpenQuickfix("split")<CR>
+augroup END
+
+" Set grepprg as RipGrep or ag (the_silver_searcher), fallback to grep
+if executable('rg')
+  let &grepprg="rg --vimgrep --no-heading --smart-case --hidden --follow -g '!{" . &wildignore . "}' $*"
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+elseif executable('ag')
+  let &grepprg='ag --vimgrep --smart-case --hidden --follow --ignore "!{' . &wildignore . '}" $*'
+  set grepformat=%f:%l:%c:%m
+else
+  let &grepprg='grep -n -r --exclude=' . shellescape(&wildignore) . ' . -- $*'
+endif
+
+function s:RipGrepCWORD(bang, visualmode, ...) abort
+  let search_word = a:1
+
+  if a:visualmode
+    " Get the line and column of the visual selection marks
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+
+    " Get all the lines represented by this range
+    let lines = getline(lnum1, lnum2)
+
+    " The last line might need to be cut if the visual selection didn't end on the last column
+    let lines[-1] = lines[-1][: col2 - (&selection ==? 'inclusive' ? 1 : 2)]
+    " The first line might need to be trimmed if the visual selection didn't start on the first column
+    let lines[0] = lines[0][col1 - 1:]
+
+    " Get the desired text
+    let search_word = join(lines, "\n")
+  endif
+  if search_word ==? ''
+    let search_word = expand('<cword>')
+  endif
+  echom 'Searching for ' . search_word
+  " Silent removes the "press enter to continue" prompt, and band (!) is for
+  " not jumping to the first result
+  let grepcmd = 'silent grep' . a:bang .' -- ' . shellescape(search_word)
+  execute grepcmd
+endfunction
+command! -bang -range -nargs=? RipGrepCWORD call <SID>RipGrepCWORD("<bang>", v:false, <q-args>)
+command! -bang -range -nargs=? RipGrepCWORDVisual call <SID>RipGrepCWORD("<bang>", v:true, <q-args>)
+nmap <c-e> :RipGrepCWORD!<Space>
+vmap <c-e> :RipGrepCWORDVisual!<cr>
+" }}}
+
+
+" Terminal configurations {{{
+if exists(':terminal')
+
+  if !exists('g:terminal_ansi_colors')
+    let g:terminal_ansi_colors = [
+          \'#21222C',
+          \'#FF5555',
+          \'#69FF94',
+          \'#FFFFA5',
+          \'#D6ACFF',
+          \'#FF92DF',
+          \'#A4FFFF',
+          \'#FFFFFF',
+          \'#636363',
+          \'#F1FA8C',
+          \'#BD93F9',
+          \'#FF79C6',
+          \'#8BE9FD',
+          \'#F8F8F2',
+          \'#6272A4',
+          \'#FF6E6E'
+    \]
+  endif
+
+  " Function to set terminal colors
+  fun! s:setTerminalColors()
+    if exists('g:terminal_ansi_colors')
+      for i in range(len(g:terminal_ansi_colors))
+          exe 'let g:terminal_color_' . i . ' = g:terminal_ansi_colors[' . i . ']'
+      endfor
+      unlet! g:terminal_ansi_colors
+    endif
+  endfunction
+
+  augroup TerminalAugroup
+    autocmd!
+
+    " Start terminal in insert mode
+    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+    " Call terminal colors function only after colorscheme changed
+    autocmd Colorscheme * call <sid>setTerminalColors()
+  augroup END
+
+  tnoremap <Esc> <C-\><C-n>
+
+  " To force using 256 colors
+  set t_Co=256
+endif
+
+" }}}
 
 source $HOME/$VIMFILE_DIR/plugins/settings_nerdtree.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_rooter.vim
@@ -578,7 +757,7 @@ source $HOME/$VIMFILE_DIR/plugins/diminactive.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_fzf.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_programming.vim
 
-
+"{{{  LargeFile
 function! LargeFile()
     " No need for the extra IO of making the swap/backup/undo files.
     setlocal noswapfile nobackup nowritebackup noundofile
@@ -587,13 +766,18 @@ function! LargeFile()
     " Display message once buffer is open.
     autocmd ++once BufEnter *  echom "The file is larger than " . g:large_fsize . " MB, so some options are changed."
 endfunction
-
-
+"}}}
 
 "{{{
 if has ('autocmd') " Remain compatible with earlier versaons
     " automatically rebalance windows on vim resize
     autocmd VimResized * :wincmd =
+
+" augroup vimrc-incsearch-highlight
+"   autocmd!
+"   autocmd CmdlineEnter /,\? :set hlsearch
+"   autocmd CmdlineLeave /,\? :set nohlsearch
+" augroup END
 
     autocmd FileType sh set foldmethod=indent
     autocmd FileType c,cpp set foldmethod=syntax 

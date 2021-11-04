@@ -18,9 +18,12 @@ set background=dark
 "colorscheme herald " Set nice looking colorscheme
 "colorscheme oceanic_material
 "colorscheme PaperColor
-colorscheme OceanicNext
+"colorscheme OceanicNext
 "colorscheme gruvbox
 "colorscheme atom
+
+"colorscheme neodark
+colorscheme onedark
 set laststatus=2 "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu " Display command line'scomplete options as a menu.

@@ -3,7 +3,7 @@
 au BufEnter,BufNewFile,BufRead *.cpp,*.h,*.c setl filetype=cpp
 augroup filetype_cpp
     autocmd!
-    au FileType cpp colorscheme PaperColor
+    "au FileType cpp colorscheme PaperColor
     "au FileType cpp hi statusline none
     au FileType cpp nnoremap <buffer> <leader>c :norm 0i//<cr>j
     au FileType cpp nnoremap <buffer> <leader>u :norm 0xx<cr>j

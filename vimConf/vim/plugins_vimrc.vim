@@ -41,10 +41,11 @@ Plugin 'delimitMate.vim'
 
 "Plugin 'markonm/traces.vim' " Preview for substitute commands.
 Plugin 'roman/golden-ratio' " Automatically resize windows.
-
+Plugin 'KeitaNakamura/neodark.vim'
+Plugin 'joshdick/onedark.vim'
 
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-"CTage managementfor 
+"CTage management for 
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar'
 Plugin 'tpope/vim-dispatch'
