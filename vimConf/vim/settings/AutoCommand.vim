@@ -75,8 +75,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
         " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F5> :setlocal makeprg=cmake\ --build\ D:/dev/proj/SoundReader/build\ --config\ Debug\ --\ /property:GenerateFullPaths=true\ /m<CR>:Make<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <F6> :Dispatch "D:/dev/proj/SoundReader/bin/Debug/SoundReader.exe"<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} nnoremap <buffer> <S-Space> :YcmCompleter GetType<CR>
-        "autocmd BufEnter *{.cpp,.h} source $HOME/$VIMFILE_DIR/language/cpp.vim
-        "autocmd BufEnter *{.c,.h}   source $HOME/$VIMFILE_DIR/language/c.vim
+        autocmd BufEnter *{.cpp,.h} source $HOME/$VIMFILE_DIR/syntax/cpp.vim
+        autocmd BufEnter *{.c,.h}   source $HOME/$VIMFILE_DIR/syntax/c.vim
         " " Cpp ctor stub by highlighting the member vars
         " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Ctor :call <SID>pythonSelectedTextPasteAbove("cpp.ctor_stub")<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Opeq :call <SID>pythonSelectedTextPasteAbove("cpp.stub_opeq")<CR>
