@@ -91,7 +91,7 @@ filetype plugin indent on    " required
 
 " Golden Ratio:
 " This should disable the plugin, use :GoldenRatioToggle to reenable.
-let g:loaded_golden_ratio =  1
+let g:loaded_golden_ratio=1
 
 " show errors in different Colors
 highlight Errors ctermbg=green guibg=darkred
