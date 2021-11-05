@@ -44,10 +44,10 @@ else
     :let $VIMFILE_DIR = '.vim'
 endif
 
-echo "Current Hostname :: " 
-echo hostname()
-echo $HOME
-echo $VIMFILE_DIR
+"echo "Current Hostname :: " 
+"echo hostname()
+"echo $HOME
+"echo $VIMFILE_DIR
 
 
 if g:is_win
@@ -213,7 +213,7 @@ endif
 "{{{ source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
     "echo "sourcing dir "
-    echo f
+    "echo f
     exec 'source' f
 endfor
 
@@ -615,123 +615,123 @@ let g:netrw_keepdir = 1
 "" Populate current word in search
 "nnoremap <leader>/ :grep '\b<C-R>=substitute(expand("<cword>"), '#', '\\#', 'g')<CR>\b'<space>
 
-" Grep {{{
-" This is only availale in the quickfix window, owing to the filetype
-" restriction on the autocmd (see below).
-function! <SID>OpenQuickfix(new_split_cmd)
-  " 1. the current line is the result idx as we are in the quickfix
-  let l:qf_idx = line('.')
-  " 2. jump to the previous window
-  wincmd p
-  " 3. switch to a new split (the new_split_cmd will be 'vnew' or 'split')
-  execute a:new_split_cmd
-  " 4. open the 'current' item of the quickfix list in the newly created buffer
-  "    (the current means, the one focused before switching to the new buffer)
-  execute l:qf_idx . 'cc'
-endfunction
+" " Grep {{{
+" " This is only availale in the quickfix window, owing to the filetype
+" " restriction on the autocmd (see below).
+" function! <SID>OpenQuickfix(new_split_cmd)
+"   " 1. the current line is the result idx as we are in the quickfix
+"   let l:qf_idx = line('.')
+"   " 2. jump to the previous window
+"   wincmd p
+"   " 3. switch to a new split (the new_split_cmd will be 'vnew' or 'split')
+"   execute a:new_split_cmd
+"   " 4. open the 'current' item of the quickfix list in the newly created buffer
+"   "    (the current means, the one focused before switching to the new buffer)
+"   execute l:qf_idx . 'cc'
+" endfunction
 
-augroup grep_augroup
-  autocmd!
-  autocmd QuickFixCmdPost [^l]* copen
-  autocmd QuickFixCmdPost l*    lopen
-  autocmd FileType qf nnoremap <buffer> <C-v> :call <SID>OpenQuickfix("vnew")<CR>
-  autocmd FileType qf nnoremap <buffer> <C-x> :call <SID>OpenQuickfix("split")<CR>
-augroup END
+" augroup grep_augroup
+"   autocmd!
+"   autocmd QuickFixCmdPost [^l]* copen
+"   autocmd QuickFixCmdPost l*    lopen
+"   autocmd FileType qf nnoremap <buffer> <C-v> :call <SID>OpenQuickfix("vnew")<CR>
+"   autocmd FileType qf nnoremap <buffer> <C-x> :call <SID>OpenQuickfix("split")<CR>
+" augroup END
 
-" Set grepprg as RipGrep or ag (the_silver_searcher), fallback to grep
-if executable('rg')
-  let &grepprg="rg --vimgrep --no-heading --smart-case --hidden --follow -g '!{" . &wildignore . "}' $*"
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-elseif executable('ag')
-  let &grepprg='ag --vimgrep --smart-case --hidden --follow --ignore "!{' . &wildignore . '}" $*'
-  set grepformat=%f:%l:%c:%m
-else
-  let &grepprg='grep -n -r --exclude=' . shellescape(&wildignore) . ' . -- $*'
-endif
+" " Set grepprg as RipGrep or ag (the_silver_searcher), fallback to grep
+" if executable('rg')
+"   let &grepprg="rg --vimgrep --no-heading --smart-case --hidden --follow -g '!{" . &wildignore . "}' $*"
+"   set grepformat=%f:%l:%c:%m,%f:%l:%m
+" elseif executable('ag')
+"   let &grepprg='ag --vimgrep --smart-case --hidden --follow --ignore "!{' . &wildignore . '}" $*'
+"   set grepformat=%f:%l:%c:%m
+" else
+"   let &grepprg='grep -n -r --exclude=' . shellescape(&wildignore) . ' . -- $*'
+" endif
 
-function s:RipGrepCWORD(bang, visualmode, ...) abort
-  let search_word = a:1
+" function s:RipGrepCWORD(bang, visualmode, ...) abort
+"   let search_word = a:1
 
-  if a:visualmode
-    " Get the line and column of the visual selection marks
-    let [lnum1, col1] = getpos("'<")[1:2]
-    let [lnum2, col2] = getpos("'>")[1:2]
+"   if a:visualmode
+"     " Get the line and column of the visual selection marks
+"     let [lnum1, col1] = getpos("'<")[1:2]
+"     let [lnum2, col2] = getpos("'>")[1:2]
 
-    " Get all the lines represented by this range
-    let lines = getline(lnum1, lnum2)
+"     " Get all the lines represented by this range
+"     let lines = getline(lnum1, lnum2)
 
-    " The last line might need to be cut if the visual selection didn't end on the last column
-    let lines[-1] = lines[-1][: col2 - (&selection ==? 'inclusive' ? 1 : 2)]
-    " The first line might need to be trimmed if the visual selection didn't start on the first column
-    let lines[0] = lines[0][col1 - 1:]
+"     " The last line might need to be cut if the visual selection didn't end on the last column
+"     let lines[-1] = lines[-1][: col2 - (&selection ==? 'inclusive' ? 1 : 2)]
+"     " The first line might need to be trimmed if the visual selection didn't start on the first column
+"     let lines[0] = lines[0][col1 - 1:]
 
-    " Get the desired text
-    let search_word = join(lines, "\n")
-  endif
-  if search_word ==? ''
-    let search_word = expand('<cword>')
-  endif
-  echom 'Searching for ' . search_word
-  " Silent removes the "press enter to continue" prompt, and band (!) is for
-  " not jumping to the first result
-  let grepcmd = 'silent grep' . a:bang .' -- ' . shellescape(search_word)
-  execute grepcmd
-endfunction
-command! -bang -range -nargs=? RipGrepCWORD call <SID>RipGrepCWORD("<bang>", v:false, <q-args>)
-command! -bang -range -nargs=? RipGrepCWORDVisual call <SID>RipGrepCWORD("<bang>", v:true, <q-args>)
-nmap <c-e> :RipGrepCWORD!<Space>
-vmap <c-e> :RipGrepCWORDVisual!<cr>
-" }}}
+"     " Get the desired text
+"     let search_word = join(lines, "\n")
+"   endif
+"   if search_word ==? ''
+"     let search_word = expand('<cword>')
+"   endif
+"   echom 'Searching for ' . search_word
+"   " Silent removes the "press enter to continue" prompt, and band (!) is for
+"   " not jumping to the first result
+"   let grepcmd = 'silent grep' . a:bang .' -- ' . shellescape(search_word)
+"   execute grepcmd
+" endfunction
+" command! -bang -range -nargs=? RipGrepCWORD call <SID>RipGrepCWORD("<bang>", v:false, <q-args>)
+" command! -bang -range -nargs=? RipGrepCWORDVisual call <SID>RipGrepCWORD("<bang>", v:true, <q-args>)
+" nmap <c-e> :RipGrepCWORD!<Space>
+" vmap <c-e> :RipGrepCWORDVisual!<cr>
+" " }}}
 
 
 " Terminal configurations {{{
 if exists(':terminal')
 
-  if !exists('g:terminal_ansi_colors')
-    let g:terminal_ansi_colors = [
-          \'#21222C',
-          \'#FF5555',
-          \'#69FF94',
-          \'#FFFFA5',
-          \'#D6ACFF',
-          \'#FF92DF',
-          \'#A4FFFF',
-          \'#FFFFFF',
-          \'#636363',
-          \'#F1FA8C',
-          \'#BD93F9',
-          \'#FF79C6',
-          \'#8BE9FD',
-          \'#F8F8F2',
-          \'#6272A4',
-          \'#FF6E6E'
-    \]
-  endif
-
-  " Function to set terminal colors
-  fun! s:setTerminalColors()
-    if exists('g:terminal_ansi_colors')
-      for i in range(len(g:terminal_ansi_colors))
-          exe 'let g:terminal_color_' . i . ' = g:terminal_ansi_colors[' . i . ']'
-      endfor
-      unlet! g:terminal_ansi_colors
+    if !exists('g:terminal_ansi_colors')
+        let g:terminal_ansi_colors = [
+                    \'#21222C',
+                    \'#FF5555',
+                    \'#69FF94',
+                    \'#FFFFA5',
+                    \'#D6ACFF',
+                    \'#FF92DF',
+                    \'#A4FFFF',
+                    \'#FFFFFF',
+                    \'#636363',
+                    \'#F1FA8C',
+                    \'#BD93F9',
+                    \'#FF79C6',
+                    \'#8BE9FD',
+                    \'#F8F8F2',
+                    \'#6272A4',
+                    \'#FF6E6E'
+                    \]
     endif
-  endfunction
 
-  augroup TerminalAugroup
-    autocmd!
+    " Function to set terminal colors
+    fun! s:setTerminalColors()
+        if exists('g:terminal_ansi_colors')
+            for i in range(len(g:terminal_ansi_colors))
+                exe 'let g:terminal_color_' . i . ' = g:terminal_ansi_colors[' . i . ']'
+            endfor
+            unlet! g:terminal_ansi_colors
+        endif
+    endfunction
 
-    " Start terminal in insert mode
-    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    augroup TerminalAugroup
+        autocmd!
 
-    " Call terminal colors function only after colorscheme changed
-    autocmd Colorscheme * call <sid>setTerminalColors()
-  augroup END
+        " Start terminal in insert mode
+        autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
-  tnoremap <Esc> <C-\><C-n>
+        " Call terminal colors function only after colorscheme changed
+        autocmd Colorscheme * call <sid>setTerminalColors()
+    augroup END
 
-  " To force using 256 colors
-  set t_Co=256
+    tnoremap <Esc> <C-\><C-n>
+
+    " To force using 256 colors
+    set t_Co=256
 endif
 
 " }}}
@@ -743,6 +743,7 @@ source $HOME/$VIMFILE_DIR/plugins/settings_tagbar.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_ultisnips.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_airline.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_ycm.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_rainbow.vim
 
 
 source $HOME/$VIMFILE_DIR/settings/settings_vim_cpp.vim
@@ -768,16 +769,14 @@ function! LargeFile()
 endfunction
 "}}}
 
-"{{{
+"{{{ AutoCommand
 if has ('autocmd') " Remain compatible with earlier versaons
     " automatically rebalance windows on vim resize
     autocmd VimResized * :wincmd =
 
-" augroup vimrc-incsearch-highlight
-"   autocmd!
-"   autocmd CmdlineEnter /,\? :set hlsearch
-"   autocmd CmdlineLeave /,\? :set nohlsearch
-" augroup END
+    "enable rainbow it globally
+    au FileType c,cpp,objc,objcpp call rainbow#load()
+    "let g:rainbow_active = 1
 
     autocmd FileType sh set foldmethod=indent
     autocmd FileType c,cpp set foldmethod=syntax 
@@ -872,21 +871,11 @@ if has ('autocmd') " Remain compatible with earlier versaons
     augroup end
 
 
-    " Change the directory of vim to current working directory
-    augroup General
-        autocmd BufEnter * if &modifiable | lcd %:p:h | endif
-    augroup END
-
     "autocmd BufEnter * silent! lcd %:p:h
     "autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
     "autocmd BufEnter *.cpp,*.c,*.java,*.py :TagbarOpen
 
 
-    " Let the cmd line breath when it has space.
-    augroup ResizeCmdline
-        au!
-        au VimResized * let &cmdheight=1 + float2nr(ceil(&lines / 64.0))
-    augroup end
 
     " Automatic rename of tmux window
     " if exists('$TMUX') && !exists('$NORENAME')

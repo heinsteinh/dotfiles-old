@@ -47,7 +47,8 @@ Plugin 'joshdick/onedark.vim'
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 "CTage management for 
 Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'majutsushi/tagbar'
+"Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar', {'on': ['TagbarOpen', 'TagbarToggle']}
 Plugin 'tpope/vim-dispatch'
 
 "Track the engine.
@@ -58,14 +59,14 @@ Plugin 'honza/vim-snippets'
 Plugin 'dawikur/algorithm-mnemonics.vim'
 
 
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'rhysd/vim-clang-format'
+"Plugin 'Rip-Rip/clang_complete'
+"Plugin 'rhysd/vim-clang-format'
 
 
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
 else
-
+    Plugin 'jeaye/color_coded'
 end
 
 "}}}
@@ -91,8 +92,9 @@ Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 
-
-
+" Plugin 'haya14busa/incsearch.vim' " better incremental search with all matches highlighting
+" Plugin 'haya14busa/incsearch-fuzzy.vim' " fuzzy incremental search
+" Plugin 'haya14busa/incsearch-easymotion.vim' " easymotion and incsearch integration
 
 " Open vim-dispatch window and scroll to bottom
 nnoremap    <C-m>m    :Copen<CR> <bar> G
