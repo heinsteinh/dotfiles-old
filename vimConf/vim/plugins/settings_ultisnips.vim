@@ -23,7 +23,8 @@ let g:UltiSnipsSnippetsDir = '$HOME/$VIMFILE_DIR/snippets'
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Trigger configuration. Do not use <tab> if you use YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-t>"
+""let g:UltiSnipsExpandTrigger="<C-t>"
+let g:UltiSnipsExpandTrigger="<C-ö>"
 let g:UltiSnipsJumpForwardTrigger="<C-f>"
 let g:UltiSnipsJumpBackwardTrigger="<C-b>"
 

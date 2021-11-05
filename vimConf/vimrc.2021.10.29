@@ -314,13 +314,36 @@ source ~/.vim/settings/AutoCommand.vim
 
 
 " Cursor style {{{
-"let &t_SI.="\e[5 q" "SI = INSERT mode
-"let &t_SR.="\e[4 q" "SR = REPLACE mode
-"let &t_EI.="\e[1 q" "EI = NORMAL mode (Eu)
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (Eu)
 "}}}
 
 
 "{{{ Utility function :TODO please remove me here
+
+" functions and commands
+"`Maximize` current window
+function! ToggleAutoMaximize()
+    if exists('g:tautomax')
+        autocmd! maxCurrWin
+        wincmd =
+        unlet g:tautomax
+    else
+        augroup maxCurrWin
+            autocmd! WinEnter * call Maximize()
+        augroup END
+        do maxCurrWin WinEnter 
+        let g:tautomax=1
+    endif
+endfunction
+function! Maximize()
+    "wincmd |
+    wincmd _
+endfunction
+nnoremap <Leader>max :call ToggleAutoMaximize()<CR>
+nnoremap <C-w>m :call Maximize()<CR>
+
 "create `scratch` buffer
 function! ScratchBuffer(...)
     let l:fname = get(a:, 1, "")
@@ -362,9 +385,9 @@ endfunction
 
 "{{{ working on Agenda Mappings
 "insert date 
-nnoremap <Leader>-d "=system("date " . shellescape("+<%F %a>"))<CR>p
+nnoremap <Leader>d "=system("date " . shellescape("+<%F %a>"))<CR>p
 "insert SCHEDUlED tag
-nnoremap <Leader>-sc "=system("date " . shellescape("+[SCHEDULED]: <%F %a>"))<CR>p
+nnoremap <Leader>sc "=system("date " . shellescape("+[SCHEDULED]: <%F %a>"))<CR>p
 "insert TODO tag
-nnoremap <Leader>-td o[TODO]<ESC>
+nnoremap <Leader>td o[TODO]<ESC>
 "}}}
