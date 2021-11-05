@@ -180,7 +180,7 @@ if has("gui_running")
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
-        set guifont=Fira\ Code\ Medium\ 11
+        set guifont=Fira\ Code\ Medium\ 10
     endif
 
     nnoremap <A-n>  :confirm enew<CR>
@@ -879,7 +879,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
 
     "autocmd BufEnter * silent! lcd %:p:h
     "autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
-    autocmd BufEnter *.cpp,*.c,*.java,*.py :TagbarOpen
+    "autocmd BufEnter *.cpp,*.c,*.java,*.py :TagbarOpen
 
 
     " Let the cmd line breath when it has space.
