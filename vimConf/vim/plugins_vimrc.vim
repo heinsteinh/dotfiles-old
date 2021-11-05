@@ -57,7 +57,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " C++ Algorithms snippets (using mnemonics)
 Plugin 'dawikur/algorithm-mnemonics.vim'
-
+Plugin 'derekwyatt/vim-fswitch'
 
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
