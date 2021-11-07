@@ -66,7 +66,7 @@ Plugin 'derekwyatt/vim-fswitch'
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
 else
-    Plugin 'jeaye/color_coded'
+"    Plugin 'jeaye/color_coded'
 end
 
 "}}}
