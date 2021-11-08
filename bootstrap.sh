@@ -48,6 +48,7 @@ rm -rf ${HOME}/.zshrc
 rm -rf ${HOME}/.config/alacritty.yml
 
 rm -rf ${HOME}/.vim
+rm -rf ${HOME}/.zsh
 rm -rf ${HOME}/.tmux
 rm -rf ${HOME}/.emacs.d
 
@@ -56,12 +57,13 @@ rm -rf ${HOME}/.emacs.d
 [[ -d ${DOTFILES_DIR}/vimConf           ]] &&  link  vimConf/vim             .vim
 [[ -d ${DOTFILES_DIR}/tmuxConf          ]] &&  link  tmuxConf/tmux           .tmux
 [[ -d ${DOTFILES_DIR}/emacsConf         ]] &&  link  emacsConf/emacs         .emacs.d
+[[ -d ${DOTFILES_DIR}/zshConf        ]] &&  link  zshConf    .zsh
 
 
 
-link vimConf/vimrc                     .vimrc
+link vimConf/vimrc                      .vimrc
 
-link tmuxConf/tmux.conf                .tmux.conf
+link tmuxConf/tmux.conf                 .tmux.conf
 
 link bashConf/bash_profile              .bash_profile
 link bashConf/bashrc                    .bashrc
