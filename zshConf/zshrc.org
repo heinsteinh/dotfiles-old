@@ -1,0 +1,74 @@
+# Exports {{{
+export GITHUB_USER="your-username"
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin # Reorder PATH so local bin is first
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+export MANPAGER="less -X" # DonÎé}t clear the screen after quitting a manual page
+export EDITOR="vim"
+export TERM="screen-256color"
+export CLICOLOR=1
+export LSCOLORS=Gxfxcxdxbxegedabagacad
+export LS_COLORS=Gxfxcxdxbxegedabagacad
+
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+
+# }}}
+
+
+# Tmux {{{
+# Makes creating a new tmux session (with a specific name) easier
+function tmuxopen() {
+  tmux attach -t $1
+}
+
+# Makes creating a new tmux session (with a specific name) easier
+function tmuxnew() {
+  tmux new -s $1
+}
+
+# Makes deleting a tmux session easier
+function tmuxkill() {
+  tmux kill-session -t $1
+}
+# }}}
+
+# Alias' {{{
+alias vi="vim"
+alias r="source ~/.zshrc"
+alias tat='tmux new-session -As $(basename "$PWD" | tr . -)' # will attach if session exists, or create a new session
+alias tmuxsrc="tmux source-file ~/.tmux.conf"
+alias tmuxkillall="tmux ls | cut -d : -f 1 | xargs -I {} tmux kill-session -t {}" # tmux kill all sessions
+alias ct="ctags -R --exclude=.git --exclude=node_modules"
+alias dotfiles="ls -a | grep '^\.' | grep --invert-match '\.DS_Store\|\.$'"
+# }}}
+
+# History {{{
+HISTSIZE=10000
+SAVEHIST=9000
+HISTFILE=~/.zsh_history
+# }}}
+
+# Zsh Hooks {{{
+function precmd {
+  # vcs_info
+  # Put the string "hostname::/full/directory/path" in the title bar:
+  echo -ne "\e]2;$PWD\a"
+
+  # Put the parentdir/currentdir in the tab
+  echo -ne "\e]1;$PWD:h:t/$PWD:t\a"
+}
+
+function set_running_app {
+  printf "\e]1; $PWD:t:$(history $HISTCMD | cut -b7- ) \a"
+}
+
+function preexec {
+  set_running_app
+}
+
+function postexec {
+  set_running_app
+}
+# }}}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

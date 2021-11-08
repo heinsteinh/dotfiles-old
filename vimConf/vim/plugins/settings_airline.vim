@@ -6,7 +6,9 @@
 " Airline:
 " Use my custom airline theme.
 "let g:airline_theme = 'tomorrow'
-let g:airline_theme = 'luna'
+"let g:airline_theme = 'luna'
+let g:airline_theme = 'gruvbox'
+"let g:airline_theme = 'dark'
 "let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'papercolor'
 " Use powerline symbols.

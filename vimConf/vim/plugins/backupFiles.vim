@@ -54,7 +54,13 @@ if !isdirectory(expand(&backupskip))
     call mkdir(expand(&backupskip), "p")
 endif
 
+ let s:viminfo_dir = expand('$HOME/$VIMFILE_DIR/files/info')
+ if !isdirectory(expand(s:viminfo_dir))
+     call mkdir(expand(s:viminfo_dir), "p")
+ endif
 
+" " Restore buffer list, marks are remembered for 9999 files, memory registers up to 512Kb are remembered.
+" set viminfo=%,'9999,s512,n$viminfo_dir/viminfo
 
 let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags

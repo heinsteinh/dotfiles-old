@@ -14,20 +14,28 @@ filetype indent on " Enable indenting for files
 set autoindent " Enable auto indenting
 set number " Enable line numbers
 set background=dark
+set t_Co=256
 "colorscheme desert " Set nice looking colorscheme
 "colorscheme herald " Set nice looking colorscheme
 "colorscheme oceanic_material
 "colorscheme PaperColor
-colorscheme OceanicNext
+"colorscheme OceanicNext
 "colorscheme gruvbox
 "colorscheme atom
+
+let g:gruvbox_bold='1'
+let g:gruvbox_italic='1'
+let g:gruvbox_transparent_bg='1'
+let g:gruvbox_italicize_comments='1'
+autocmd vimenter * ++nested colorscheme gruvbox
 
 "colorscheme neodark
 "colorscheme onedark
 set laststatus=2 "show status line
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 set wildmenu " Display command line'scomplete options as a menu.
-set wildmode=list:longest,full               " list all options, match to the longest
+"set wildmode=list:longest,full               " list all options, match to the longest
+set wildmode=longest,full               " list all options, match to the longest
 set number
 set relativenumber
 

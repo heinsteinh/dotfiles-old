@@ -67,11 +67,8 @@ Plugin 'derekwyatt/vim-fswitch'
 if hostname() == "BHI4PCH7D3"
 else
 "    Plugin 'jeaye/color_coded'
-end
-
+endif
 "}}}
-
-
 
 Plugin 'mhinz/vim-startify'
 
@@ -83,6 +80,8 @@ Plugin 'chrisbra/Colorizer'
 
 " Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
 "Plugin 'gruvbox-community/gruvbox'
+Plugin 'morhetz/gruvbox'
+
 Plugin 'frazrepo/vim-rainbow'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'ryanoasis/vim-webdevicons'
@@ -92,12 +91,11 @@ Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 
-" Plugin 'haya14busa/incsearch.vim' " better incremental search with all matches highlighting
-" Plugin 'haya14busa/incsearch-fuzzy.vim' " fuzzy incremental search
-" Plugin 'haya14busa/incsearch-easymotion.vim' " easymotion and incsearch integration
 
-" Open vim-dispatch window and scroll to bottom
-nnoremap    <C-m>m    :Copen<CR> <bar> G
-" Build debug and release targets
-nnoremap    <C-m>bd   :Dispatch! make -C build/Debug<CR>
-nnoremap    <C-m>br   :Dispatch! make -C build/Release<CR>
+set background=dark
+set t_Co=256
+let g:gruvbox_bold='1'
+let g:gruvbox_italic='1'
+let g:gruvbox_transparent_bg='1'
+let g:gruvbox_italicize_comments='1'
+"autocmd vimenter * ++nested colorscheme gruvbox

@@ -6,7 +6,8 @@ set -e
 #DOTFILES=$HOME/Seafile/Dotfiles
 
 function link {
-    ln -sf $DOTFILES/$1 ~/$2
+    #ln -sfv $DOTFILES_DIR/$1 ~/$2
+    ln -sfv $DOTFILES_DIR/$1 $HOME/$2
 }
 
 
@@ -14,52 +15,61 @@ function link {
 # Get current dir (so run this script from anywhere)
 
 #export DOTFILES_DIR EXTRA_DIR
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
-     BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 EXTRA_DIR="$HOME/.extra"
 
 
 
+echo Dotfiles Dir: ${DOTFILES_DIR}
+echo Extra Dir: ${EXTRA_DIR}
+echo Base Dir: ${BASE_DIR}
+
+
 export DOTFILES_DIR EXTRA_DIR
+
 # Update dotfiles itself first
 #[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+
+echo Dotfiles Dir: ${DOTFILES_DIR}
+echo Extra Dir: ${EXTRA_DIR}
+echo Base Dir: ${BASE_DIR}
 
 
 # Bunch of symlinks
 dir=${DOTFILES_DIR}                    # dotfiles directory
-echo $DOTFILES_DIR
 
 #remove any symlink if exist
 
+rm -rf ${HOME}/.bash_profile
+rm -rf ${HOME}/.bashrc
+rm -rf ${HOME}/.zsh_profile
+rm -rf ${HOME}/.zshrc
 rm -rf ${HOME}/.config/alacritty.yml
 
-
 rm -rf ${HOME}/.vim
-[[ -d ${DOTFILES_DIR}/vimConf                  ]] &&  ln -sfv ${DOTFILES_DIR}/vimConf/vim               ${HOME}/.vim
+rm -rf ${HOME}/.tmux
+rm -rf ${HOME}/.emacs.d
 
 
-# rm -rf ${HOME}/.tmux
-# [[ -d ${DOTFILES_DIR}/tmuxConf                 ]] &&  ln -sfv ${DOTFILES_DIR}/tmuxConf/tmux             ${HOME}/.tmux
+
+[[ -d ${DOTFILES_DIR}/vimConf           ]] &&  link  vimConf/vim             .vim
+[[ -d ${DOTFILES_DIR}/tmuxConf          ]] &&  link  tmuxConf/tmux           .tmux
+[[ -d ${DOTFILES_DIR}/emacsConf         ]] &&  link  emacsConf/emacs         .emacs.d
 
 
-#rm -rf ${HOME}/.emacs.d
-#[[ -d ${DOTFILES_DIR}/emacsConf                ]] &&  ln -sfv ${DOTFILES_DIR}/emacsConf/emacs            ${HOME}/.emacs.d
 
+link vimConf/vimrc                     .vimrc
 
- ln -sfv ${DOTFILES_DIR}/vimConf/vimrc                ${HOME}/.vimrc
-# ln -sfv ${DOTFILES_DIR}/tmuxConf/tmux.conf           ${HOME}/.tmux.conf
+link tmuxConf/tmux.conf                .tmux.conf
 
+link bashConf/bash_profile              .bash_profile
+link bashConf/bashrc                    .bashrc
 
-# ln -sfv ${DOTFILES_DIR}/bashConf/bash_profile           ${HOME}/.bash_profile
-# ln -sfv ${DOTFILES_DIR}/bashConf/bashrc                 ${HOME}/.bashrc
+link zshConf/zsh_profile                .zsh_profile
+link zshConf/zshrc                      .zshrc
 
-# ln -sfv ${DOTFILES_DIR}/zshConf/zsh_profile           ${HOME}/.zsh_profile
-# ln -sfv ${DOTFILES_DIR}/zshConf/zshrc                 ${HOME}/.zshrc
-
-
- ln -sfv ${DOTFILES_DIR}/alacrittyConf/alacritty.yml        ${HOME}/.config/alacritty.yml
-#ln -sfv ${DOTFILES_DIR}/runcom/inputrc                ${HOME}/.inputrc
-#ln -sfv ${DOTFILES_DIR}/runcom/compton.conf           ${HOME}/.compton.conf
+link alacrittyConf/alacritty.yml        .config/alacritty.yml
 
 
 mkdir  -p  $HOME/.local/share/fonts/TTF
