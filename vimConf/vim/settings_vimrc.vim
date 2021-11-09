@@ -145,11 +145,11 @@ set clipboard=unnamed,unnamedplus " Copy into system (*, +) register.
 " Visual selection automatically copied to clipboard
 set go+=a
 if g:is_win
-    "set clipboard=unnamed " Copy into system (*) register.
+    set clipboard=unnamed " Copy into system (*) register.
     set go+=a
 elseif g:is_mac
 elseif g:is_linux
-    "set clipboard=unnamedplus " Copy into system (+) register.
+    set clipboard=unnamedplus " Copy into system (+) register.
     set go+=P 
 endif
 
