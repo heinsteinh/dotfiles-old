@@ -5,7 +5,7 @@ let g:webdevicons_enable_nerdtree = 1
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.DS_Store', "\idea", '\.temp', '\.git']
 
-
+let g:NERDTreeHijackNetrw=0
 "{{{
 " Start NERDTree and leave the cursor in it.
 "autocmd VimEnter * NERDTree
@@ -13,8 +13,8 @@ let NERDTreeShowHidden=1
 let NERDTreeShowBookmarks = 1   " Display bookmarks on startup.
 
 " Basically disable nerdtree markers
-"let NERDTreeDirArrowExpandable=">"
-"let NERDTreeDirArrowCollapsible="v"
+let NERDTreeDirArrowExpandable=">"
+let NERDTreeDirArrowCollapsible="v"
 
 noremap <leader>ne :NERDTreeFind<cr>
 noremap <F7> :NERDTreeToggle %<CR>

@@ -62,6 +62,8 @@ Plugin 'derekwyatt/vim-fswitch'
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
 
+Plugin 'tpope/vim-vinegar'
+
 
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"

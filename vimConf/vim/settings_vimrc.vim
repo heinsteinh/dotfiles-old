@@ -20,14 +20,14 @@ set t_Co=256
 "colorscheme oceanic_material
 "colorscheme PaperColor
 "colorscheme OceanicNext
-"colorscheme gruvbox
+colorscheme gruvbox
 "colorscheme atom
 
-let g:gruvbox_bold='1'
-let g:gruvbox_italic='1'
-let g:gruvbox_transparent_bg='1'
-let g:gruvbox_italicize_comments='1'
-autocmd vimenter * ++nested colorscheme gruvbox
+"let g:gruvbox_bold='1'
+"let g:gruvbox_italic='1'
+"let g:gruvbox_transparent_bg='1'
+"let g:gruvbox_italicize_comments='1'
+"autocmd vimenter * ++nested colorscheme gruvbox
 
 "colorscheme neodark
 "colorscheme onedark
@@ -89,7 +89,7 @@ set showbreak=↪\
 " After 300 millis, the CursorHold event fires.
 set updatetime=300
 " Blocks "hit enter" prompts on completion menu actions.
-set shortmess+=c
+"set shortmess+=c
 " Adds a second line to the cmd bar.
 set cmdheight=2
 
@@ -137,14 +137,21 @@ set selection=inclusive
 " Can move cursor past end of line, where there are no characters, in visualblock mode
 set virtualedit=block
 
+
+"Set it to unnamedplus for yank and paste commands to work with the + register by default:
+"You can also tell Vim to use both at once:
+set clipboard=unnamed,unnamedplus " Copy into system (*, +) register.
+
 " Visual selection automatically copied to clipboard
 set go+=a
- if g:is_win
-     set go+=a
- elseif g:is_mac
- elseif g:is_linux
-     set go+=P 
- endif
+if g:is_win
+    "set clipboard=unnamed " Copy into system (*) register.
+    set go+=a
+elseif g:is_mac
+elseif g:is_linux
+    "set clipboard=unnamedplus " Copy into system (+) register.
+    set go+=P 
+endif
 
 "set mousemodel=popup
 "}}}

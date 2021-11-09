@@ -234,7 +234,7 @@ if has("gui_running")
     "Useful to find out how the font is set in guifont :set guifont?
     map <F3> <Esc>:set guifont=*<CR> 
 else
-    echo "sourcing from Terminal "
+    "echo "sourcing from Terminal "
     set t_Co=256
     set nocursorline  
 
