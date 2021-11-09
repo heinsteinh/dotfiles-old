@@ -1,0 +1,410 @@
+#!/usr/bin/env bash
+
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+
+alias cp="rsync --archive --human-readable --progress --verbose --whole-file"
+alias scp="rsync --archive --checksum --compress --human-readable --itemize-changes --rsh=ssh --stats --verbose"
+alias scpresume='rsync --partial --progress --rsh=ssh'
+
+alias ls='colorls'
+#alias ls='-ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias la='ls -lha --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+#alias ll='ls -lhl --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
+alias ls='colorls -l --group-directories-first '
+alias la='colorls -lha --group-directories-first '
+alias ll='colorls -lhl --group-directories-first  --color=auto '
+
+alias lt='colorls -altr --color=auto'
+alias lso="cololrs  --color=auto -alG | awk '{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/)*2^(8-i));if(k)printf(\" %0o \",k);print}'"
+
+alias lsbig1="echo 'listing files by size' | pv -qL 10 && find . -printf '%s %p\n'|sort -nr|head | ccze -A"    #sort files by size
+alias lsbig="echo 'listing files & directories by size' | pv -qL 10 && ls -lSrh | ccze -A"    #sort files dirs by size
+
+
+alias dir='ls --color=auto --format=vertical'
+alias vdir='ls --color=auto --format=long'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+
+alias rmtilda='find . -name "*~" -o -name ".*~" -exec \rm -rf {} \;'
+
+alias log='journalctl -f | ccze -A'  # follow log
+alias log_realtime='journalctl -f -all |  ccze -A'
+alias log0='journalctl -b -0 | ccze -A'  # current log
+alias log1='journalctl -b -1 | ccze -A'  # previous log
+alias log_bootmsg="echo -n Boot Messages | pv -qL 10 && sudo journalctl -b | ccze -A"  #boot messages
+alias log_nginx='sudo tail -f /var/log/nginx/access.log /var/log/nginx/error.log | ccze'
+alias log_jrnlctl_systemdmsg="sudo journalctl /usr/lib/systemd/systemd | ccze -A"
+alias log_jrnlctl_cleansyslog="sudo journalctl --vacuum-time=2d"
+alias log_sysctrl_blame="systemd-analyze blame | ccze -A"
+alias log_sysctrl_units="echo -n Listing Units | pv -qL 10 && systemctl list-units | ccze -A"
+
+
+alias vnc='vncviewer 192.168.2.146:1'
+
+
+# alias less='less -FSRXc'                   # Preferred 'less' implementation
+ cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
+ alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+ alias ..='cd ../'                           # Go back 1 directory level
+ alias ...='cd ../../'                       # Go back 2 directory levels
+ alias .3='cd ../../../'                     # Go back 3 directory levels
+ alias .4='cd ../../../../'                  # Go back 4 directory levels
+ alias .5='cd ../../../../../'               # Go back 5 directory levels
+ alias .6='cd ../../../../../../'            # Go back 6 directory levels
+
+ #alias ~="cd ~"                              # ~:            Go Home
+ alias dotf="cd ~/Seafile/Dotfiles"           # ~:            Go Home
+ alias c='clear'                              # c:            Clear terminal display
+ #alias which='type -all'                     # which:        Find executables
+ alias path='echo -e ${PATH//:/\\n}'          # path:         Echo all executable Paths
+ alias show_options='shopt'                   # Show_options: display bash options settings
+
+
+# show most commonly used commands
+alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+
+
+ #   showa: to remind yourself of an alias (given some part of it)
+ #------------------------------------------------------------
+ showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
+ findPid () { lsof -t -c "$@" ; }
+
+ alias psc='ps xawf -eo pid,user,cgroup,args'
+ alias psg1='ps aux | grep '
+ alias psg='psc | grep '
+
+ my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,start,time,bsdtime,command ; }
+
+ alias qfind="find . -name "                 # qfind:    Quickly search for file
+ ff  () { /usr/bin/find . -name "$@" ; }     # ff:       Find file under the current directory
+ ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
+ ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
+
+
+ alias agrep='alias | grep '
+ alias freemem='sudo /sbin/sysctl -w vm.drop_caches=3'
+
+
+ alias findword='grep -rnw . -e '
+ alias findall='grep -rn . -e '
+ alias findprocess='ps -e | grep '
+# }}
+
+
+
+# human readable size
+alias freeMt="free -mt"
+
+# human readable size and a total amount
+alias dfT='df -Tha --total'
+alias du='du -h'
+alias du1='du -h --max-depth=1 | sort -hr'
+alias du2='du -h --max-depth=2 | sort -hr'
+alias disks='echo "╓───── m o u n t . p o i n t s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -a; echo ""; echo "╓───── d i s k . u s a g e"; echo "╙────────────────────────────────────── ─ ─ "; df -h; echo ""; echo "╓───── U.U.I.D.s"; echo "╙────────────────────────────────────── ─ ─ "; lsblk -f;'
+alias drives="echo -n '\e[1;32mListing connected drives:\e[0m'  | pv -qL 10 && lsblk -f"     #list hdds, uuids
+
+alias usage='du -ch | grep total'
+
+# Misc :)
+alias less='less -r'                          # raw control characters
+alias whence='type -a'                        # where, of a sort
+alias grep='grep --color'                     # show differences in colour
+alias egrep='egrep --color=auto'              # show differences in colour
+alias fgrep='fgrep --color=auto'              # show differences in colour
+
+
+# convenience aliases for editing configs
+alias ev='vim ~/.vimrc'
+alias et='vim ~/.tmux.conf'
+alias ez='vim ~/.zshrc'
+alias eb='vim ~/.bashrc'
+alias ep='vim ~/.bash_profile'
+alias ex='vim ~/.Xresources'
+alias ei='vim ~/.config/i3/config'
+alias eh='vim ~/.config/herbstluftwm/autostart'
+
+
+
+# Emacs settings (for Linux)
+#alias emacsclient="/usr/local/bin/emacsclient"
+alias ess="emacs --daemon"
+alias esk="emacsclient -e '(kill-emacs)'"
+alias eec="emacsclient -nw -c -a 'emacs -nw'"
+alias ecc="emacsclient -nw -c -a 'emacs -nw'"
+alias ec="emacsclient -c"
+
+#As a daemon
+#In order to avoid reloading the Emacs config file every time Emacs starts, you can run Emacs as a daemon:
+#$ emacs --daemon
+#You may then connect to the daemon by running:
+#$ emacsclient -nc
+#Which creates a new frame -c (use -t if you prefer to use it in the terminal) and does not hog the terminal -n (--no-wait). Note that some programs such as Mutt or Git (for commit messages) wait for the editor to finish, so you cannot use the -n parameter. If your default editor is set to use it, you will have to specify an alternate editor (e.g. emacsclient -a "" -t) for those programs.
+
+alias emacsInit='emacs ~/.emacs.d/init.el'
+alias emacsDebug='emacs --debug-init'
+alias emnw='emacsclient -t'                      # used to be "emacs -nw"
+alias semnw='sudo emacsclient -t'                # used to be "sudo emacs -nw"
+
+alias emacsc="emacsclient -c -a emacs"           # new - opens the GUI with alternate non-daemon
+
+
+# convenience aliases for editing configs
+alias guiev='emacs ~/.vimrc'
+alias guiet='emacs ~/.tmux.conf'
+alias guiez='emacs ~/.zshrc'
+alias guieb='emacs ~/.bashrc'
+alias guiep='emacs ~/.bash_profile'
+
+alias guiep='emacs ~/.config/polybar/config'
+alias guieh='emacs ~/.config/herbstluftwm/autostart'
+
+
+
+# List declared aliases, functions
+alias listgitaliases="git config --get-regexp alias"
+alias listaliases="alias | sed 's/=.*//'"
+alias listfunctions="declare -f | grep '^[a-z].* ()' | sed 's/{$//'" # show non _prefixed functions
+
+alias weather='curl wttr.in/kerpen'
+
+#n/ankara.tree
+alias treefind="find . -not -wholename '*/.git/*' -not -wholename '*/.bzr/*' -not -name '.bzr' -not -name '.git' -not -name '*.sw?' -not -name '*~' -print | sed -e 's;[^/]*/;|__;g;s;__|; |;g'"
+alias tree="tree -A"
+alias treed="tree -d"
+alias tree1="tree -d -L 1"
+alias tree2="tree -d -L 2"
+alias pstree="pstree -U "$@" | sed '
+	s/[-a-zA-Z]\+/\x1B[32m&\x1B[0m/g
+	s/[{}]/\x1B[31m&\x1B[0m/g
+	s/[─┬─├─└│]/\x1B[34m&\x1B[0m/g'"
+
+alias gps='ps -eo cmd,fname,pid,pcpu,time --sort=-pcpu | head -n 11 && echo && ps -eo cmd,fname,pid,pmem,rss --sort=-rss | head -n 9'
+
+
+alias dus='du -sckxh * | sort -nr' #directories sorted by size
+alias dirsize='du -sch' # Show size of current directory
+
+#ssh
+# unsorted / general
+alias ssh='TERM=xterm-256color ssh'
+sshforward() {
+    REMOTEHOST=$1
+    REMOTELOCALPORT=$2
+    LOCALPORT=$3
+    ssh -NL ${LOCALPORT}:localhost:${REMOTELOCALPORT} ${REMOTEHOST}
+}
+
+# wifi with networkmanager
+alias nmcli_won='nmcli radio wifi on; wscan'
+alias nmcli_woff='nmcli radio wifi off'
+alias nmcli_wscan='nmcli dev wifi rescan > /dev/null 2>&1; true'
+alias nmcli_wlist='nmcli dev wifi list'
+alias nmcli_wcon='nmcli dev wifi connect'
+
+alias keepass='secret-tool lookup keepass password | keepass $HOME/.keepass/passwords.kdbx --pw-stdin'
+alias kp='keepass-dmenu --database ~/.keepass/passwords.kdbx --password "$(secret-tool lookup keepass password)" --fn "Droid Sans Mono-8" --nb "#FFFFFF" --nf "#000000" --sb "#00D7FF" --sf "#101010" > /dev/null'
+
+
+alias reload='source ~/.bash_profile'
+
+# Re-scan fonts
+alias refont='sudo fc-cache -fv'
+
+# Re-load .Xresources
+alias xres='xrdb  -merge $HOME/.Xresources'
+alias xresLo='xrdb -merge $HOME/.Xresources.lodpi'
+alias xresHi='xrdb -merge $HOME/.Xresources.hidpi'
+alias redwm='cd ~/dwm; updpkgsums; makepkg -fi --noconfirm; killall dwm'
+
+
+alias bin='cd ~/.bin && ls -a'
+alias desktop='~/Desktop && ls -a'
+alias downloads='cd ~/Downloads && ls -a'
+alias dropbox='cd ~/Dropbox && ls -a'
+
+alias h="cd ~/ && ls -a"
+alias d="cd ~/Documents && ls -a"
+alias D="cd ~/Downloads && ls -a"
+alias m="cd ~/Music && ls -a"
+alias pp="cd ~/Pictures && ls -a"
+alias vv="cd ~/Videos && ls -a"
+alias cf="cd ~/.config && ls -a"
+alias mn="cd /mnt && ls -a"
+alias e="cd /etc && ls -a"
+
+alias progs="(pacman -Qet && pacman -Qm) | sort -u" # List programs I've installed
+
+alias mynote='vim ~/Seafile/Dotfiles/Note.txt'
+alias Agd='emacs ~/Seafile/Agenda/Task.org'
+
+
+# Alias' {{{
+# aliases for Tmux
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls'
+alias tkill='tmux kill-session -t'
+
+# vim
+alias vi="vim"
+alias vimt='vim $(date +"%Y-%m-%d")'
+v() { (cd-git-root; vim "$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"); }
+alias vr="vim +:FZFMru"
+
+alias tm='tmux'
+alias tat='tmux new-session -As $(basename "$PWD" | tr . -)' # will attach if session exists, or create a new session
+alias tmxsrc="tmux source-file ~/.tmux.conf"
+alias tmxvsplit='tmux split-window -h && tmux selectp -t 1 && tmux split-window -v && tmux selectp -t 0'
+alias tmxkillall="tmux ls | cut -d : -f 1 | xargs -I {} tmux kill-session -t {}" # tmux kill all sessions
+alias tmxrename='tmux rename-window $(basename $(pwd))'
+alias dotfiles="ls -a | grep '^\.' | grep --invert-match '\.DS_Store\|\.$'"
+# }}}
+
+
+# Super Zsh plugin - RSync
+# Reference: https://rsync.samba.org/ftp/rsync/rsync.html
+# Author: Laurent Pireyn
+alias rsync-copy="rsync -av --progress -h"
+alias rsync-move="rsync -av --progress -h --remove-source-files"
+alias rsync-update="rsync -avu --progress -h"
+alias rsync-synchronize="rsync -avu --delete --progress -h"
+
+
+alias cleanupds="find . -type f -name '*.DS_Store' -ls -exec /bin/rm {} \;"
+alias cleanupad="find . -type d -name .AppleDouble -ls -exec /bin/rm -r {} \;"
+
+
+# colored man pages
+mand() {
+	env GROFF_NO_SGR=1 \
+	LESS="-r" \
+	LESS_TERMCAP_mb=$'\E[01;31m' \
+	LESS_TERMCAP_md=$'\E[01;31m' \
+	LESS_TERMCAP_me=$'\E[0m' \
+	LESS_TERMCAP_se=$'\E[0m' \
+	LESS_TERMCAP_so=$'\E[01;47;34m' \
+	LESS_TERMCAP_ue=$'\E[0m' \
+	LESS_TERMCAP_us=$'\E[01;32m' \
+	man "$@"
+}
+
+
+
+export TRASH=$HOME/.local/share/Trash/files
+
+# rm is stressful, use the desktop's trash bin
+[ ! -d $TRASH ] && command mkdir -p $TRASH
+
+alias rm='mv -f -t $TRASH'
+alias rmtrash='rrm $TRASH/*'
+alias rrm='command rm -rfv'
+
+alias rml=list_trash
+
+list_trash()
+{
+    echo -e "${TRASH} :\n"
+    ls -l ${TRASH}
+}
+
+
+
+
+# find alternative apps if it is installed on your system
+  find_alt() { for i;do which "$i" >/dev/null && { echo "$i"; return 0;};done;return 1; }
+
+# }}}
+
+# Export Paths {{{
+
+
+
+
+# Priviledge Access {{{
+
+
+
+  
+if [ $UID -ne 0 ]; then
+  alias dhcpcd='sudo dhcpcd'
+  alias fdisk='sudo fdisk -l'
+  alias gparted='sudo gparted'
+  alias mount='sudo mount -a'
+  alias own='sudo chown -R fkheinstein'
+  alias powertop='sudo powertop'
+  alias root='sudo su'
+
+  alias smv='sudo mv'
+  alias srm='sudo rm'
+  alias srmr='sudo rm -ri'
+
+  alias sudo='sudo'
+  alias tlp='sudo tlp'
+  alias diskact="sudo iotop -Po"  # disk activity
+  alias big='ncdu -x'
+  alias wifi-menu='sudo wifi-menu -o wlp2s0'
+  alias freemem='sudo /sbin/sysctl -w vm.drop_caches=3'
+  alias disks='df -h; btrfs filesystem df /'
+  alias err='dmesg -l err; systemctl --failed'
+  alias warn='dmesg -l warn'
+  alias errors="sudo journalctl -p 0..3 -xn"  # high priority errors
+  alias blame='systemd-analyze; systemd-analyze blame'
+  alias log='journalctl -f | ccze -A'  # follow log
+  alias log0='journalctl -b -0 | ccze -A'  # current log
+  alias log1='journalctl -b -1 | ccze -A' # previous log
+fi
+
+# }}}
+
+
+
+
+# Handling Mirrors {{{
+
+  alias mirrorlist='vim /etc/pacman.d/mirrorlist'
+  alias rft-5='sudo reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist'
+  alias rft-200='sudo reflector --verbose -l 200 -p http --sort rate --save /etc/pacman.d/mirrorlist'
+
+# }}}
+
+
+
+# System Admin Stuff {{{
+
+  alias sudo='sudo '
+  alias diskact="sudo iotop -Po"  # disk activity
+  alias big='ncdu -x'
+  alias freemem='sudo /sbin/sysctl -w vm.drop_caches=3'
+  alias disks='df -h; btrfs filesystem df /'
+  alias err='dmesg -l err; systemctl --failed --all'
+  alias usrerr='systemctl --failed --all --user'
+  alias warn='dmesg -l warn'
+  alias errors="sudo journalctl -p 0..3 -xn"  # high priority errors
+  alias blame='systemd-analyze; systemd-analyze blame'
+  alias log='journalctl -f | ccze -A'  # follow log
+  alias log0='journalctl -b -0 | ccze -A'  # current log
+  alias log1='journalctl -b -1 | ccze -A'  # previous log
+  alias list='systemctl list-unit-files'
+  alias usrlist='systemctl --user list-unit-files'
+
+# Saves journal logs to file
+  getlog() { local file=~/logs/system/log-$(date +%Y%m%d-%H:%M).txt; sudo journalctl -b > "$file" && xdg-open "$file"; }
+
+# }}}
+
+
+# Pac-Man C o o o {{{
+
+alias refr='refl; sudo rm -r /var/lib/pacman/db.lck; sudo pacman-key --init; sudo pacman-key --populate archlinux; sudo pacman-key --refresh-keys; sudo pacman-optimize' # Refresh all the things
+alias refl='sudo reflector --verbose --country 'Germany' -l 200 -p http --sort age --fastest 3 --save /etc/pacman.d/mirrorlist; cat /etc/pacman.d/mirrorlist'
+# }}}
+
+
+source "$DOTFILES_DIR"/system/.alias_applications
+source "$DOTFILES_DIR"/system/.alias_systems
+source "$DOTFILES_DIR"/system/.alias_gpg
+

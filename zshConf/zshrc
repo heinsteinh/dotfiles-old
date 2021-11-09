@@ -1,3 +1,6 @@
+
+source ~/.zsh_profile
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -206,3 +209,51 @@ setopt multios # perform implicit tees or cats when multiple redirections are at
 
 #setopt promptsubst
 autoload -U colors && colors # Enable colors in prompt
+
+
+
+
+
+
+ 
+# Swap Ctrl_L and CapsLock
+if [[ -n $DISPLAY ]]; then
+	setxkbmap de
+	setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
+fi
+
+# Finally we can source the dotfiles (order matters)
+for DOTFILE in "$DOTFILES_DIR"/system/{alias,function}; do
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
+    echo "$DOTFILE"
+done
+
+
+# # Finally we can source the dotfiles (order matters)
+# for DOTFILE in "$DOTFILES_DIR"/system/.{function,path,env,alias,completion,grep,prompt,custom}; do
+#     [ -f "$DOTFIE" ] && . "$DOTFILE"
+#     echo "$DOTFILE"
+# done
+
+
+
+if [ "$OS" = "OSX" ]; then
+	for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.osx; do
+		[ -f "$DOTFILE" ] && source "$DOTFILE" # && echo "$DOTFILE source -- Done!"
+	done
+fi
+
+
+if [ "$OS" = "LINUX" ]; then
+	for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.linux; do
+		[ -f "$DOTFILE" ] && source "$DOTFILE" # && echo "$DOTFILE source -- Done!"
+	done
+fi
+
+if [ "$OS" = "CYGWIN_NT" ]; then
+	for DOTFILE in "$DOTFILES_DIR"/system/.{env,alias,function}.cygwin; do
+		[ -f "$DOTFILE" ] && source "$DOTFILE" # && echo "$DOTFILE source -- Done!"
+	done
+fi
+
+

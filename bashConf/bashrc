@@ -99,6 +99,81 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 
+#https://github.com/scagle/public_dotfiles/blob/e1c4ffeb4828ef7aa5e44985cbf356e45878997e/shell/.config/shell/extra.rc
+# FZF {{{
+
+if [[ -x ~/.fzf/bin/fzf ]]; then
+    export FZF_BINDS="--bind ctrl-y:yank,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
+    # Fuzzy edit
+    fe () {
+        FZF_MATCHES=$(fzf $FZF_BINDS -m --preview="head -n 100 {}")
+        [[ ! -z $FZF_MATCHES ]] && $EDITOR $FZF_MATCHES
+    }
+
+    # Fuzzy Pushd to directory
+    fp () {
+        GREPPED_FILES=$(find $@ -type d) 
+        if [[ ! -z $GREPPED_FILES ]] ; then
+            FZF_MATCH=$(echo $GREPPED_FILES | tr " " "\n" | fzf $FZF_BINDS --preview="tree -L 2 {}")
+            [[ ! -z $FZF_MATCH ]] && pushd $FZF_MATCH
+        fi
+    }
+
+    # Fuzzy Pushd to Parent of file
+    fpp () {
+        GREPPED_FILES=$(find $@) 
+        if [[ ! -z $GREPPED_FILES ]] ; then
+            FZF_MATCH=$(echo $GREPPED_FILES | tr " " "\n" | fzf $FZF_BINDS)
+            [[ ! -z $FZF_MATCH ]] && pushd $(dirname $FZF_MATCH)
+        fi
+    }
+fi
+
+# }}}
+
+# Ripgrep {{{
+
+if [[ -x /bin/rg || -x /usr/local/bin/rg || -x /snap/bin/rg ]]; then
+    export RIPGREP_CONFIG_PATH=$HOME/.config/rg/.ripgreprc
+    alias rgf="rg --files | rg"
+
+    # Ripgrep + FZF
+    if [[ -x ~/.fzf/bin/fzf ]]; then
+        # Grep edit
+        ge () {
+            GREPPED_FILES=$(rg -l --no-ignore $@) 
+            if [[ ! -z $GREPPED_FILES ]] ; then
+                FZF_MATCHES=$(echo $GREPPED_FILES | tr " " "\n" | fzf -m $FZF_BINDS --preview="rg $@ {} -C 2 -n --color=always")
+                [[ ! -z $FZF_MATCHES ]] && $EDITOR $FZF_MATCHES
+            fi
+        }
+
+        # Grep file(s) edit
+        gfe () {
+            GREPPED_FILES=$(rg --files --no-ignore | rg $@) 
+            if [[ ! -z $GREPPED_FILES ]] ; then
+                FZF_MATCHES=$(echo $GREPPED_FILES | tr " " "\n" | fzf -m $FZF_BINDS --preview="head -n 100 {}")
+                [[ ! -z $FZF_MATCHES ]] && $EDITOR $FZF_MATCHES
+            fi
+        }
+    fi
+fi
+
+# }}}
+
+# Makefiles {{{
+
+if [[ -f /usr/bin/make ]]; then 
+    alias m='make'
+    if [[ -f /usr/bin/unbuffer ]]; then 
+        # Less Make (unbuffer used to keep colors)
+        alias lm='unbuffer make | less -R'
+    fi
+fi
+
+# }}}
+
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

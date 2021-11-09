@@ -1,3 +1,62 @@
+
+
+
+# OS
+if [ "$(uname -s)" = "Darwin" ]; then
+    OS="OSX"
+elif [ "$(uname -s)" = "Linux" ]; then
+    OS="LINUX"
+elif [ "$(uname -s)" = "CYGWIN_NT" ]; then
+	OS="CYGWIN"
+else
+    OS=$(uname -s)
+fi
+
+
+# OS
+if [ "$(uname -s)" = "Darwin" ]; then
+    OS="OSX"
+elif [ "$(uname -s)" = "Linux" ]; then
+    OS="LINUX"
+elif [ "$(uname -s)" = "CYGWIN_NT" ]; then
+	OS="CYGWIN"
+else
+    OS=$(uname -s)
+fi
+
+
+
+
+# set xdg folders so programs use them
+[ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME="$HOME/.config"
+[ -z $XDG_DATA_HOME ]   && export XDG_DATA_HOME="$HOME/.local/share"
+[ -z $XDG_CACHE_HOME ]  && export XDG_CACHE_HOME="$HOME/.cache"
+
+
+
+
+#DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#DOTFILES_DIR=~/.dotfiles
+DOTFILES_DIR=~/dotfiles
+#DOTFILES_DIR=/cygdrive/d/SeafileData/Seafile/dotfiles
+EXTRA_DIR=~/.extra
+
+#echo "==================== config_bash.sh ===================="
+export OS=$OS
+export DOTFILES=$DOTFILES_DIR
+export DOTFILES_DIR=$DOTFILES_DIR
+
+echo DOTFILES_DIR: $DOTFILES_DIR
+echo EXTRA_DIR:    $EXTRA_DIR
+#echo OS Type: $OS
+#echo SCRIPT_PATH Type: $SCRIPT_PATH
+echo "OS is set to $OS"
+#echo "================= END: config_bash.sh =================="
+
+
+
+
+
 ## environment variables
 ##----------------------------------------------------------------------------------------
 ## set up directories
