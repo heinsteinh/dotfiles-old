@@ -6,6 +6,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 
+Plugin 'bfrg/vim-cpp-modern'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 " Provides a command to close a buffer but keep its window.
 Plugin 'qpkorr/vim-bufkill'
@@ -45,7 +46,7 @@ Plugin 'KeitaNakamura/neodark.vim'
 Plugin 'joshdick/onedark.vim'
 
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-"CTage management for 
+"CTage management for
 Plugin 'ludovicchabant/vim-gutentags'
 "Plugin 'majutsushi/tagbar'
 Plugin 'majutsushi/tagbar', {'on': ['TagbarOpen', 'TagbarToggle']}
@@ -58,11 +59,24 @@ Plugin 'honza/vim-snippets'
 " C++ Algorithms snippets (using mnemonics)
 Plugin 'dawikur/algorithm-mnemonics.vim'
 Plugin 'derekwyatt/vim-fswitch'
-
+Plugin 'ilyachur/cmake4vim'
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
 
 Plugin 'tpope/vim-vinegar'
+
+"cmake build
+Plugin 'mhinz/vim-signify'
+
+Plugin 'dkarter/bullets.vim'
+
+"Debuging:
+Plugin 'puremourning/vimspector', { 'do': 'python3 install_gadget.py --enable-vscode-cpptools' }
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
+"let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB'
+ 
+
 
 
 "{{{ System Specifics Plugins
@@ -81,7 +95,6 @@ Plugin 'tikhomirov/vim-glsl'
 Plugin 'chrisbra/Colorizer' 
 
 " Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
-"Plugin 'gruvbox-community/gruvbox'
 Plugin 'morhetz/gruvbox'
 
 Plugin 'frazrepo/vim-rainbow'
@@ -92,7 +105,7 @@ Plugin 'ryanoasis/vim-webdevicons'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
-
+Plugin 'junegunn/seoul256.vim'
 
 set background=dark
 set t_Co=256

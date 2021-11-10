@@ -20,7 +20,8 @@ set t_Co=256
 "colorscheme oceanic_material
 "colorscheme PaperColor
 "colorscheme OceanicNext
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme onedark 
 "colorscheme atom
 
 "let g:gruvbox_bold='1'

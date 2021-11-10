@@ -250,14 +250,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 nnoremap <Leader>s :.,$s?<C-r><C-w>?<C-r><C-w>?gc<Left><Left><Left>
 vnoremap <leader>s "hy:.,$s?<C-r>h?<C-r>h?gc<left><left><left>
 
-vnoremap <leader>dab "hyqeq:v?\V<c-r>h?d E<cr>:let @"=@e<cr>:noh<cr>
-vnoremap <leader>daa "hyqeq:g?\V<c-r>h?d E<cr>:let @"=@e<cr>:noh<cr>
-
-vnoremap <leader>yab "hymmqeq:v?\V<c-r>h?yank E<cr>:let @"=@e<cr>`m:noh<cr>
-vnoremap <leader>yaa "hymmqeq:g?\V<c-r>h?yank E<cr>:let @"=@e<cr>`m:noh<cr>
-
-
-
 " Pressing enter will clear search highlighting.
 "nnoremap <CR> :noh<CR>
 nnoremap <silent> <CR> :noh<CR>
@@ -290,6 +282,23 @@ map <leader>i mmgg=G`m<cr>
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
+
+"packadd! vimspector
+function! Menu()
+    exec "tabnew | Startify"
+endfunction
+
+map <silent> <Leader>m :call Menu()<CR>
+
+
+function! DebugProfile()
+    if &filetype == 'cpp'
+        exec "!cp $HOME/$VIMFILE_DIR/debug_profile/cpp/.vimspector.json %:h"
+    elseif &filetype == 'py'
+        exec "!cp $HOME/$VIMFILE_DIR/debug_profile/python/.vimspector.json %:h"
+    endif
+endfunction
+nnoremap <leader>dp :call DebugProfile()<cr>
 
 
 " Folding rules {{{

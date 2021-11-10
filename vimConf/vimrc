@@ -131,7 +131,7 @@ source $HOME/$VIMFILE_DIR/settings_vimrc.vim
 
 "{{{ source all the helper files
 for f in split(glob('$HOME/$VIMFILE_DIR/functions/*.vim'), '\n')
-    "echo "sourcing dir "
+    "echo"sourcing dir "
     "echo f
     exec 'source' f
 endfor
@@ -612,7 +612,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     "autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
     "autocmd BufEnter *.cpp,*.c,*.java,*.py :TagbarOpen
 
-
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen   
 
     " Automatic rename of tmux window
     " if exists('$TMUX') && !exists('$NORENAME')
@@ -631,6 +631,8 @@ endif " has autocmd
 
 source $HOME/$VIMFILE_DIR/settings/AutoCommand.vim
 source $HOME/$VIMFILE_DIR/keymap_vimrc.vim
+
+source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
 
 "}}}
 
