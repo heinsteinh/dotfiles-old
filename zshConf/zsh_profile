@@ -13,71 +13,11 @@ else
 fi
 
 
-# OS
-if [ "$(uname -s)" = "Darwin" ]; then
-    OS="OSX"
-elif [ "$(uname -s)" = "Linux" ]; then
-    OS="LINUX"
-elif [ "$(uname -s)" = "CYGWIN_NT" ]; then
-	OS="CYGWIN"
-else
-    OS=$(uname -s)
-fi
-
-
-
-
-# set xdg folders so programs use them
-[ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME="$HOME/.config"
-[ -z $XDG_DATA_HOME ]   && export XDG_DATA_HOME="$HOME/.local/share"
-[ -z $XDG_CACHE_HOME ]  && export XDG_CACHE_HOME="$HOME/.cache"
-
-
-
-
-#DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-#DOTFILES_DIR=~/.dotfiles
-DOTFILES_DIR=~/dotfiles
-#DOTFILES_DIR=/cygdrive/d/SeafileData/Seafile/dotfiles
-EXTRA_DIR=~/.extra
-
-#echo "==================== config_bash.sh ===================="
-export OS=$OS
-export DOTFILES=$DOTFILES_DIR
-export DOTFILES_DIR=$DOTFILES_DIR
-
-echo DOTFILES_DIR: $DOTFILES_DIR
-echo EXTRA_DIR:    $EXTRA_DIR
-#echo OS Type: $OS
-#echo SCRIPT_PATH Type: $SCRIPT_PATH
-echo "OS is set to $OS"
-#echo "================= END: config_bash.sh =================="
-
-
-
-
-
-## environment variables
-##----------------------------------------------------------------------------------------
-## set up directories
-#[[ ${XDG_CONFIG_HOME} ]] || export XDG_CONFIG_HOME="${HOME}/.config"
-#[[ ${XDG_CACHE_HOME} ]] || export XDG_CACHE_HOME="${HOME}/.cache"
-#[[ ${XDG_DATA_HOME} ]] || export XDG_DATA_HOME="${HOME}/.local/share"
-#[[ ${XDG_DESKTOP_DIR} ]] || export XDG__DIR="${HOME}/.desktop"
-#[[ ${XDG_DOCUMENTS_DIR} ]] || export XDG__DIR="${HOME}/documents"
-#[[ ${XDG_DOWNLOAD_DIR} ]] || export XDG__DIR="${HOME}/downloads"
-#[[ ${XDG_MUSIC_DIR} ]] || export XDG__DIR="${HOME}/media/audio/music"
-#[[ ${XDG_PICTURES_DIR} ]] || export XDG__DIR="${HOME}/media/pictures"
-#[[ ${XDG_VIDEOS_DIR} ]] || export XDG__DIR="${HOME}/media/videos"
-#[[ ${XDG_PUBLICSHARE_DIR} ]] || export XDG__DIR="${HOME}/.desktop/public"
-#[[ ${XDG_TEMPLATES_DIR} ]] || export XDG__DIR="${HOME}/.desktop/templates"
-##[[ ${XDG__DIR} ]] || export XDG__DIR="${HOME}/"
-##
-
+source ~/.zsh/zshenv
 
 export EDITOR=gvim
 export VISUAL=gvim
-export SUDO_EDITOR=gvim
+export SUDO_EDITOR=vim
 
 if [[ -n "$DISPLAY" ]] ; then
     export EDITOR=gvim
@@ -100,3 +40,28 @@ export GROFF_NO_SGR=yes
 # On OpenSuSE, show the first matching man page rather than a list of matching man pages
 # (see https://www.suse.com/releasenotes/i386/openSUSE/11.1/RELEASE-NOTES.en.html)
 export MAN_POSIXLY_CORRECT=1
+
+
+
+
+#DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+#DOTFILES_DIR=~/.dotfiles
+DOTFILES_DIR=~/dotfiles
+#DOTFILES_DIR=/cygdrive/d/SeafileData/Seafile/dotfiles
+EXTRA_DIR=~/.extra
+
+#echo "==================== config_bash.sh ===================="
+export OS=$OS
+export DOTFILES=$DOTFILES_DIR
+export DOTFILES_DIR=$DOTFILES_DIR
+
+echo DOTFILES_DIR: $DOTFILES_DIR
+echo EXTRA_DIR:    $EXTRA_DIR
+echo OS Type: $OS
+#echo SCRIPT_PATH Type: $SCRIPT_PATH
+echo "OS is set to $OS"
+#echo "================= END: config_bash.sh =================="
+
+
+
+

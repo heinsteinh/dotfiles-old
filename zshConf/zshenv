@@ -1,14 +1,21 @@
 
-#https://github.com/jabrouwer82/configurations/blob/ab816a9b08b394b7cd114a912d4e04c926b46345/.zshenv
 
 
-# Some common locations
-export THIRDPARTY="$HOME/thirdparty"
-export WORK="$HOME/work/"
-export PDS="$WORK/pds/"
-export PFP="$WORK/pfp/"
-export PERS="$HOME/personal/"
-export CFG="$PERS/configurations/"
+# Set ZSH config root to home (which is the default)
+
+# XDG Base Directory specification
+# https://wiki.archlinux.org/index.php/XDG_Base_Directory
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_RUNTIME_DIR="${HOME}/.run"
+[[ "${UID}" -ge 500 && -n "${XDG_CONFIG_HOME}" && ! -d "${XDG_CONFIG_HOME}" ]] && mkdir -p "${XDG_CONFIG_HOME}"
+[[ "${UID}" -ge 500 && -n "${XDG_CACHE_HOME}" && ! -d "${XDG_CACHE_HOME}" ]] && mkdir -p "${XDG_CACHE_HOME}"
+[[ "${UID}" -ge 500 && -n "${XDG_DATA_HOME}" && ! -d "${XDG_DATA_HOME}" ]] && mkdir -p "${XDG_DATA_HOME}"
+[[ "${UID}" -ge 500 && -n "${XDG_RUNTIME_DIR}" && ! -d "${XDG_RUNTIME_DIR}" ]] && mkdir -p "${XDG_RUNTIME_DIR}"
+
+
+
 
 # FZF configuration
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
@@ -18,12 +25,19 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export LESS="-FRX $LESS"
 
 
-
-export MANPATH="/usr/local/man:$MANPATH"
+# Language
+# export LANGUAGE=C.UTF-8
+export LANGUAGE=en_US.UTF-8
+# export LANG=C.UTF-8
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+# export LC_ALL=C
+# export LC_ALL=C.UTF-8
+export LC_ALL=en_US.UTF-8
+# export TERM=xterm-256color
 
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 export COLORTERM=truecolor
-export PYTHONPATH="${PYTHONPATH}:$HOME/work/python"
-export FZF_BASE=/usr/local/bin/fzf
+#export FZF_BASE=/usr/local/bin/fzf
 export BAT_STYLE=changes,numbers

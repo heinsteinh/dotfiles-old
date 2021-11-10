@@ -223,7 +223,7 @@ if [[ -n $DISPLAY ]]; then
 fi
 
 # Finally we can source the dotfiles (order matters)
-for DOTFILE in "$DOTFILES_DIR"/system/{alias,function}; do
+for DOTFILE in "$DOTFILES_DIR"/system/{function,path,env,alias,prompt}; do
     [ -f "$DOTFILE" ] && . "$DOTFILE"
     echo "$DOTFILE"
 done
