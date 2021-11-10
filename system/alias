@@ -13,12 +13,6 @@ alias lr='lsd -R'
 alias du='duf'
 
 
-# Modern Unix https://github.com/ibraheemdev/modern-unix
-if command -v lsd &> /dev/null; then
-    alias ls='lsd -laF'
-else 
-    alias ls='ls -la'
-fi
 
 if command -v duf &> /dev/null; then
     alias du='duf'
@@ -38,6 +32,20 @@ alias tree='lsd --tree'
 alias ldot='lsd -ld .* --color=auto'
 alias lart='lsd -1Fcart --color=auto'
 alias lrt='lsd -1Fcrt --color=auto'
+
+# Modern Unix https://github.com/ibraheemdev/modern-unix
+if command -v lsd &> /dev/null; then
+    alias ls='lsd -laF'
+else
+    alias ls='ls -la'
+fi
+
+if command -v duf &> /dev/null; then
+    alias du='duf'
+fi
+
+
+
 
 alias c="clear"
 
@@ -172,5 +180,57 @@ list_trash()
     echo -e "${TRASH} :\n"
     ls -l ${TRASH}
 }
+
+
+
+# Handling Mirrors {{{
+
+  alias mirrorlist='vim /etc/pacman.d/mirrorlist'
+  alias rft-5='sudo reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist'
+  alias rft-200='sudo reflector --verbose -l 200 -p http --sort rate --save /etc/pacman.d/mirrorlist'
+
+# }}}
+
+
+# Alias' {{{
+# aliases for Tmux
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls'
+alias tkill='tmux kill-session -t'
+
+# vim
+alias vi="vim"
+alias vimt='vim $(date +"%Y-%m-%d")'
+v() { (cd-git-root; vim "$(fzf --query="$(echo $@ | tr ' ' '\ ' )")"); }
+alias vr="vim +:FZFMru"
+
+alias tm='tmux'
+alias tat='tmux new-session -As $(basename "$PWD" | tr . -)' # will attach if session exists, or create a new session
+alias tmxsrc="tmux source-file ~/.tmux.conf"
+alias tmxvsplit='tmux split-window -h && tmux selectp -t 1 && tmux split-window -v && tmux selectp -t 0'
+alias tmxkillall="tmux ls | cut -d : -f 1 | xargs -I {} tmux kill-session -t {}" # tmux kill all sessions
+alias tmxrename='tmux rename-window $(basename $(pwd))'
+alias dotfiles="ls -a | grep '^\.' | grep --invert-match '\.DS_Store\|\.$'"
+# }}}
+
+
+
+
+# Pac-Man C o o o {{{
+
+alias refr='refl; sudo rm -r /var/lib/pacman/db.lck; sudo pacman-key --init; sudo pacman-key --populate archlinux; sudo pacman-key --refresh-keys; sudo pacman-optimize' # Refresh all the things
+alias refl='sudo reflector --verbose --country 'Germany' -l 200 -p http --sort age --fastest 3 --save /etc/pacman.d/mirrorlist; cat /etc'
+# }}}
+
+
+source "$DOTFILES_DIR"/system/.alias_applications
+source "$DOTFILES_DIR"/system/.alias_systems
+source "$DOTFILES_DIR"/system/.alias_pacman
+
+echo "$DOTFILES_DIR"/system/.alias_applications
+echo "$DOTFILES_DIR"/system/.alias_systems
+echo "$DOTFILES_DIR"/system/.alias_gpg
 
 

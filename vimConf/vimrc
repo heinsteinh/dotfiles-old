@@ -215,7 +215,7 @@ if has("gui_running")
 
     elseif g:is_linux
         "set guifont=Ubuntu\ Mono\ Regular\ 13
-        set guifont=Fira\ Code\ Medium\ 10
+        set guifont=Fira\ Code\ Medium\ 11
     endif
 
     nnoremap <A-n>  :confirm enew<CR>
@@ -632,6 +632,9 @@ endif " has autocmd
 source $HOME/$VIMFILE_DIR/settings/AutoCommand.vim
 source $HOME/$VIMFILE_DIR/keymap_vimrc.vim
 
+
+ let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
 source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
 
 "}}}

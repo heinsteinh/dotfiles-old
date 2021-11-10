@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+## System
+
+#system Power
+alias reboot='sudo shutdown -r now'
+alias poweroff='sudo shutdown -h now'
+
+alias ShutdowSound='mpg123 ${HOME}/Seafile/Dotfiles/system/sound/ubuntu_start_up_tone.mp3 && sudo shutdown -h now'
+alias Shutdown='sudo shutdown -P now'
+alias Suspend='sudo pm-suspend'
+
+alias Stat='uname -a;systemd-analyze time;wc -l /lib/modules/$(uname -r)/modules.order;lsinitcpio -a /boot/initramfs-linux.img'
+
+
+
+# Configs
+alias Config='cd ~/.config'
+
+# GPG
+alias Keys='gpg --recv-keys'
+
+# Fonts
+alias Fonts='fc-cache -vf ~/.fonts'
+alias font-check='echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"'
+
+
+#https://github.com/msjche/dotfiles_laptop/blob/master/.zshrc#
+
+
+#sshfs -o idmap=user pi@10.42.0.47:/home/pi ~/Pi
+#sshfs -p 18001 pi@localhost:/home/pi ~/nas/ -o reconnect -o ServerAliveInterval=5
+# fstab sshfs#pi@localhost:/home/pi /media/nas fuse port=18001,noauto,user 0 0
+
+alias mountraspi="sshfs -p 22 raspi@192.168.2.146:/home/raspi /home/fkheinstein/Raspi"
+alias mountax51="sshfs -p 22 raspi@192.168.2.138:/home/root /home/fkheinstein/Axodin"
+alias mpdsrv='echo -n "MPD Stream via Raspberry Pi  Archlinux server" | pv -qL 20 && mplayer http://192.168.2.148:9001'
+alias mpdserver='echo -n "Rpi 🇲🇵🇩 🇸🇪🇷🇻🇪🇷    " | pv -qL 20 && mplayer http://192.168.2.148:9001'
+
+
+
+alias getssh='cat ~/.ssh/id_rsa.pub'
+alias gpga='gpg --recv-keys'
+alias gpge='gpg --edit-key heinsteinh@gmail.com'
+alias gpgl='gpg --list-keys'
+alias gpgls='gpg --list-secret-keys'
+alias size='expac -H M "%m\t%n" | sort -h'
+
+alias startserver='sudo systemctl start nginx && sudo systemctl start php-fpm && sudo systemctl start mysqld'
+alias stopserver='sudo systemctl stop nginx && sudo systemctl stop php-fpm && sudo systemctl stop mys'
+
+
+pathadd() {
+if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="${PATH:+"$PATH:"}$1"
+fi
+}
