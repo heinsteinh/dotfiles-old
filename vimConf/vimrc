@@ -35,6 +35,9 @@ endif
 if g:is_win
 elseif g:is_linux
 endif
+
+let g:unicode = g:is_linux && has("gui_running")
+
 "}}}
 
 "{{{ Python DLL and Dir Path
@@ -181,6 +184,27 @@ if has("gui_running")
     set cursorline
 
 
+    set background=dark
+    "set background=light
+    "set t_Co=256
+    "colorscheme desert " Set nice looking colorscheme
+    "colorscheme herald " Set nice looking colorscheme
+    "colorscheme oceanic_material
+    "colorscheme PaperColor
+    "colorscheme OceanicNext
+    "colorscheme gruvbox
+    "colorscheme onedark
+    "colorscheme atom
+
+    "let g:gruvbox_bold='1'
+    "let g:gruvbox_italic='1'
+    "let g:gruvbox_transparent_bg='1'
+    "let g:gruvbox_italicize_comments='1'
+    "autocmd vimenter * ++nested colorscheme gruvbox
+
+    "colorscheme neodark
+    colorscheme onedark
+
     set guioptions+=a           " Autoselect text
     set guioptions+=c           " Use console dialogs
 
@@ -231,12 +255,13 @@ if has("gui_running")
     noremap <A-w> :browse confirm saveas<CR>
     vnoremap <A-w> :browse confirm saveas<CR>
     inoremap <A-w> :browse confirm saveas<CR>
+
     "Useful to find out how the font is set in guifont :set guifont?
-    map <F3> <Esc>:set guifont=*<CR> 
+    map <F3> <Esc>:set guifont=*<CR>
 else
     "echo "sourcing from Terminal "
     set t_Co=256
-    set nocursorline  
+    set nocursorline
 
     if g:is_win
     elseif g:is_linux
@@ -478,7 +503,7 @@ endfunction
 
 command! Agenda call Agenda()
 
-"search with ag, result in quickfix 
+"search with ag, result in quickfix
 function! Ag(pattern, ...)
     let l:fname = get(a:, 1, "")
     if l:fname == ""
@@ -497,7 +522,7 @@ endfunction
 
 
 "{{{ working on Agenda Mappings
-"insert date 
+"insert date
 nnoremap <Leader>td "=system("date " . shellescape("+<%F %a>"))<CR>p
 "insert SCHEDUlED tag
 nnoremap <Leader>tsc "=system("date " . shellescape("+[SCHEDULED]: <%F %a>"))<CR>p
@@ -511,32 +536,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
     " automatically rebalance windows on vim resize
     autocmd VimResized * :wincmd =
 
-    "enable rainbow it globally
-    au FileType c,cpp,objc,objcpp call rainbow#load()
-    "let g:rainbow_active = 1
-
-    autocmd FileType sh set foldmethod=indent
-    autocmd FileType c,cpp set foldmethod=syntax 
-    " " Enable marker folds for .vimrc files and shell files
-    autocmd FileType vim,sh setlocal foldmethod=marker
-    "autocmd BufRead * normal zM
-
-    autocmd filetype gitcommit setlocal spell spelllang=en_us
-
-    " Easier closing of vim help menus.
-    augroup helpft
-        au!
-        au FileType help noremap <buffer> q :q<CR>
-    augroup end
-
-    " Easier closing of bufferized commands.
-    augroup bufferizeft
-        au!
-        au FileType bufferize noremap <buffer> q :q<CR>
-    augroup end
-
     " autowrite[all] only saves in certain situations, leaving a window is another situation that I think should autosave.
-    augroup AutoWre
+    augroup AutoWrite
         au!
         au WinLeave * silent! update
     augroup end
@@ -567,7 +568,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     augroup end
 
     let g:large_fsize = 10
-    augroup LargeFile 
+    augroup LargeFile
         au!
         autocmd BufReadPre *
                     \ let f=getfsize(expand("<afile>")) / 1024 / 1024 | if f > g:large_fsize || f == -2 | call LargeFile() | endif
@@ -612,7 +613,7 @@ if has ('autocmd') " Remain compatible with earlier versaons
     "autocmd BufEnter .vimrc,*.vim,*.cpp,*.c,*.java,*.py :TagbarOpen
     "autocmd BufEnter *.cpp,*.c,*.java,*.py :TagbarOpen
 
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen   
+    "autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 
     " Automatic rename of tmux window
     " if exists('$TMUX') && !exists('$NORENAME')
@@ -626,6 +627,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
         augroup END
     end
 
+
+
 endif " has autocmd
 
 
@@ -633,9 +636,9 @@ source $HOME/$VIMFILE_DIR/settings/AutoCommand.vim
 source $HOME/$VIMFILE_DIR/keymap_vimrc.vim
 
 
- let g:vimspector_enable_mappings = 'HUMAN'
-packadd! vimspector
-source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
+"let g:vimspector_enable_mappings = 'HUMAN'
+" packadd! vimspector
+" source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
 
 "}}}
 

@@ -77,7 +77,7 @@ class UpVisitor: public Visitor
     }
     /*virtual*/void visit(TheOther *e)
     {
-        cout << "do Up on " + e->theOther() << '\n';
+        cout << "do Up on " + e->theOther();
 
         std::cout<<  ""  <<std::endl;
     }

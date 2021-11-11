@@ -17,15 +17,22 @@ else
     "let g:clang_library_path='/usr/lib/llvm-3.8/lib'
 endif
 
+" if has('win32') || g:shell ==# 'msys'
+"     let s:libclang = GetPath($PROGRAMFILES, 'LLVM/lib/libclang.lib')
+" elseif g:shell ==# 'cygwin'
+"     let s:libclang = '/usr/lib/libclang.dll.a'
+" else
+"     let s:libclang = '/usr/lib/libclang.so'
+" endif
 
-let g:clang_hl_errors=1
-let g:clang_periodic_quickfix=1
-let g:clang_snippets=1
-let g:clang_snippets_engine='ultisnips'
-let g:clang_trailing_placeholder=1
-let g:clang_close_preview=1
-let g:clang_complete_patterns=1
-let g:clang_complete_macros=1
+" let g:clang_hl_errors=1
+" let g:clang_periodic_quickfix=1
+" let g:clang_snippets=1
+" let g:clang_snippets_engine='ultisnips'
+" let g:clang_trailing_placeholder=1
+" let g:clang_close_preview=1
+" let g:clang_complete_patterns=1
+" let g:clang_complete_macros=1
 
 
 " Disable function highlighting (affects both C and C++ files)

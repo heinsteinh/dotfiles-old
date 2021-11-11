@@ -75,7 +75,7 @@ Plugin 'puremourning/vimspector', { 'do': 'python3 install_gadget.py --enable-vs
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
 "let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB'
- 
+
 
 
 
@@ -92,7 +92,7 @@ Plugin 'mhinz/vim-startify'
 Plugin 'tikhomirov/vim-glsl'
 
 " Show hex codes as colours
-Plugin 'chrisbra/Colorizer' 
+Plugin 'chrisbra/Colorizer'
 
 " Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
 Plugin 'morhetz/gruvbox'

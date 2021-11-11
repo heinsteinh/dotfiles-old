@@ -1,7 +1,7 @@
 "https://github.com/jabrouwer82/configurations/blob/ab816a9b08b394b7cd114a912d4e04c926b46345/.vimrc
 " After 300 millis of no edits, a swap file will be written.
 " After 300 millis, the CursorHold event fires.
-"set updatetime=300
+set updatetime=300
 
 " Airline:
 " Use my custom airline theme.
@@ -9,11 +9,12 @@
 "let g:airline_theme = 'luna'
 "let g:airline_theme = 'gruvbox'
 let g:airline_theme = 'dark'
+"let g:airline_theme = 'light'
 "let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'papercolor'
 " Use powerline symbols.
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " Create the symbols dict.
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -26,17 +27,49 @@ let g:airline_detect_spell=0
 if !exists('g:airline_mode_map')
     let g:airline_mode_map = {}
 endif
-" Normal
-let g:airline_mode_map['n'] = ''
-" Insert
-let g:airline_mode_map['i'] = ''
-" Visual
-let g:airline_mode_map['v'] = 'V'
-" Visual Line
-let g:airline_mode_map['V'] = 'VL'
-" Visual Block
-let g:airline_mode_map[''] = 'VB'
 
+if g:unicode
+    let g:airline_powerline_fonts = 1
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.spell = '₷'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.readonly = '⊘'
+    let g:airline_symbols.whitespace = '✹'
+    let g:airline_symbols.notexists = ' Ɇ'
+    let g:airline_symbols.dirty = ' ×'
+else
+    let g:airline_symbols_ascii = 1
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = 'λ'
+    let g:airline_symbols.spell = 'ς'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.readonly = 'ο'
+    let g:airline_symbols.whitespace = '!'
+    let g:airline_symbols.notexists = ' ε'
+    let g:airline_symbols.dirty = ' ~'
+endif
+
+if hostname() == "BHI4PCH7D3"
+else
+    " This chunk puts a clock and battery meter in the top right of the airline tabline.
+    " Normal
+    let g:airline_mode_map['n'] = 'N '
+    " Insert
+    let g:airline_mode_map['i'] = 'I '
+    " Visual
+    let g:airline_mode_map['v'] = 'V'
+    " Visual Line
+    let g:airline_mode_map['V'] = 'VL'
+    " Visual Block
+    let g:airline_mode_map[''] = 'VB'
+endif
 
 " Enables detection of whitespace errors.
 let g:airline#extensions#whitespace#enabled = 0
@@ -89,23 +122,23 @@ elseif g:is_mac
 elseif g:is_linux
 
 
-if hostname() == "BHI4PCH7D3"
-else 
-    " This chunk puts a clock and battery meter in the top right of the airline tabline.
-    let g:battery_percent = "--"
-    call CheckBatteryPercent()
+    if hostname() == "BHI4PCH7D3"
+    else
+        " This chunk puts a clock and battery meter in the top right of the airline tabline.
+        let g:battery_percent = "--"
+        call CheckBatteryPercent()
 
 
-    if exists('g:tabline_timer')
-        call timer_stop(g:tabline_timer)
+        if exists('g:tabline_timer')
+            call timer_stop(g:tabline_timer)
+        endif
+        let g:tabline_timer = timer_start(&updatetime, 'TablineUpdate', { 'repeat': -1 })
+
+        if exists('g:battery_timer')
+            call timer_stop(g:battery_timer)
+        endif
+        let g:battery_timer = timer_start(&updatetime, 'UpdateBattery')
     endif
-    let g:tabline_timer = timer_start(&updatetime, 'TablineUpdate', { 'repeat': -1 })
-
-    if exists('g:battery_timer')
-        call timer_stop(g:battery_timer)
-    endif
-    let g:battery_timer = timer_start(&updatetime, 'UpdateBattery')
-endif
 endif
 
 

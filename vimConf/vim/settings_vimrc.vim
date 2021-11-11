@@ -13,22 +13,7 @@ syntax on " Enable syntax highlighting
 filetype indent on " Enable indenting for files
 set autoindent " Enable auto indenting
 set number " Enable line numbers
-set background=dark
-set t_Co=256
-"colorscheme desert " Set nice looking colorscheme
-"colorscheme herald " Set nice looking colorscheme
-"colorscheme oceanic_material
-"colorscheme PaperColor
-"colorscheme OceanicNext
-"colorscheme gruvbox
-colorscheme onedark 
-"colorscheme atom
 
-"let g:gruvbox_bold='1'
-"let g:gruvbox_italic='1'
-"let g:gruvbox_transparent_bg='1'
-"let g:gruvbox_italicize_comments='1'
-"autocmd vimenter * ++nested colorscheme gruvbox
 
 "colorscheme neodark
 "colorscheme onedark
@@ -70,7 +55,7 @@ set cursorline
 " Always display the sign column, used by coc, ale, and gitgutter to display changes, errors, and warning.
 "set signcolumn=yes
 
-set title 
+set title
 " Allow hidden buffers, don't limit to 1 file per window/split
 set hidden
 
@@ -83,7 +68,7 @@ set expandtab
 " Displays tabs, nbsps, and trailing spaces with printable characters.
 "set list listchars=tab:▸\ ,nbsp:·,trail:·
 " Shows a fancy arrow on wrapped lines.
-set showbreak=↪\ 
+set showbreak=↪\
 
 
 " After 300 millis of no edits, a swap file will be written.
@@ -141,17 +126,17 @@ set virtualedit=block
 
 "Set it to unnamedplus for yank and paste commands to work with the + register by default:
 "You can also tell Vim to use both at once:
-set clipboard=unnamed,unnamedplus " Copy into system (*, +) register.
+"set clipboard=unnamed,unnamedplus " Copy into system (*, +) register.
 
 " Visual selection automatically copied to clipboard
-set go+=a
+"set go+=a
 if g:is_win
     set clipboard=unnamed " Copy into system (*) register.
     set go+=a
 elseif g:is_mac
 elseif g:is_linux
     set clipboard=unnamedplus " Copy into system (+) register.
-    set go+=P 
+    set go+=P
 endif
 
 "set mousemodel=popup
