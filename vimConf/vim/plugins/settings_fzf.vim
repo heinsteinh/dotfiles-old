@@ -127,11 +127,12 @@ elseif executable('ag')
     set grepprg=ag\ --nogrup\ --nocolor
 endif
 
+nnoremap <C-f>  :Files<CR>
 
 "FZF keymaps
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap <leader>fb  :Buffers<CR>
-nnoremap <leader>ff  :Files<CR>
+"nnoremap <leader>ff  :Files<CR>
 nnoremap <leader>fg  :GFiles<CR>
 nnoremap <leader>fag :Ag<CR>
 nnoremap <leader>fr  :Rg<cr>

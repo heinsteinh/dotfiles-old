@@ -173,6 +173,28 @@ nnoremap <Leader>pi :source $MYVIMRC<cr>:PluginInstall<cr>
 
 
 
+
+set background=dark
+"set background=light
+"set t_Co=256
+"colorscheme desert " Set nice looking colorscheme
+"colorscheme herald " Set nice looking colorscheme
+"colorscheme oceanic_material
+"colorscheme PaperColor
+"colorscheme OceanicNext
+"colorscheme gruvbox
+"colorscheme onedark
+"colorscheme atom
+
+"let g:gruvbox_bold='1'
+"let g:gruvbox_italic='1'
+"let g:gruvbox_transparent_bg='1'
+"let g:gruvbox_italicize_comments='1'
+"autocmd vimenter * ++nested colorscheme gruvbox
+
+"colorscheme neodark
+colorscheme onedark
+
 "{{{ Gui Running config
 if has("gui_running")
 
@@ -182,28 +204,6 @@ if has("gui_running")
     set ruler
     " Highlight the current line
     set cursorline
-
-
-    set background=dark
-    "set background=light
-    "set t_Co=256
-    "colorscheme desert " Set nice looking colorscheme
-    "colorscheme herald " Set nice looking colorscheme
-    "colorscheme oceanic_material
-    "colorscheme PaperColor
-    "colorscheme OceanicNext
-    "colorscheme gruvbox
-    "colorscheme onedark
-    "colorscheme atom
-
-    "let g:gruvbox_bold='1'
-    "let g:gruvbox_italic='1'
-    "let g:gruvbox_transparent_bg='1'
-    "let g:gruvbox_italicize_comments='1'
-    "autocmd vimenter * ++nested colorscheme gruvbox
-
-    "colorscheme neodark
-    colorscheme onedark
 
     set guioptions+=a           " Autoselect text
     set guioptions+=c           " Use console dialogs
@@ -636,9 +636,9 @@ source $HOME/$VIMFILE_DIR/settings/AutoCommand.vim
 source $HOME/$VIMFILE_DIR/keymap_vimrc.vim
 
 
-"let g:vimspector_enable_mappings = 'HUMAN'
+let g:vimspector_enable_mappings = 'HUMAN'
 " packadd! vimspector
-" source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
+source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
 
 "}}}
 

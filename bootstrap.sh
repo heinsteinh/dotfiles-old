@@ -51,13 +51,32 @@ rm -rf ${HOME}/.vim
 rm -rf ${HOME}/.zsh
 rm -rf ${HOME}/.tmux
 rm -rf ${HOME}/.emacs.d
+rm -rf ${HOME}/.config/ranger
+rm -rf ${HOME}/.config/termite
+rm -rf ${HOME}/.config/feh
+rm -rf ${HOME}/.config/zathura
+rm -rf ${HOME}/.config/dunst
+rm -rf ${HOME}/.config/tint2
+#rm -rf ${HOME}/.config/herstluftwm
+#rm -rf ${HOME}/.config/polybar
 
 
+[[ -d ${DOTFILES_DIR}/vimConf   ]] &&  link  vimConf/vim       .vim
+[[ -d ${DOTFILES_DIR}/tmuxConf  ]] &&  link  tmuxConf/tmux     .tmux
+[[ -d ${DOTFILES_DIR}/emacsConf ]] &&  link  emacsConf/emacs   .emacs.d
+[[ -d ${DOTFILES_DIR}/zshConf   ]] &&  link  zshConf           .zsh
 
-[[ -d ${DOTFILES_DIR}/vimConf           ]] &&  link  vimConf/vim             .vim
-[[ -d ${DOTFILES_DIR}/tmuxConf          ]] &&  link  tmuxConf/tmux           .tmux
-[[ -d ${DOTFILES_DIR}/emacsConf         ]] &&  link  emacsConf/emacs         .emacs.d
-[[ -d ${DOTFILES_DIR}/zshConf           ]] &&  link  zshConf                 .zsh
+
+[[ -d ${DOTFILES_DIR}/config/ranger   ]] && link config/ranger    .config/ranger
+[[ -d ${DOTFILES_DIR}/config/sxhkd    ]] && link config/sxhkd     .config/sxhkd
+[[ -d ${DOTFILES_DIR}/config/termite  ]] && link config/termite   .config/termite
+[[ -d ${DOTFILES_DIR}/config/feh      ]] && link config/feh       .config/feh
+[[ -d ${DOTFILES_DIR}/config/zathura  ]] && link config/zathura   .config/zathura
+[[ -d ${DOTFILES_DIR}/config/tint2    ]] && link config/tint2     .config/tint2
+[[ -d ${DOTFILES_DIR}/config/dunst    ]] && link config/dunst     .config/dunst
+#[[ -d ${DOTFILES_DIR}/config/polybar ]] && link config/polybar   .config/polybar
+#[[ -d ${DOTFILES_DIR}/config/herbstluftwm ]] && link config/herbstluftwm   .config/herbstluftwm
+
 
 
 

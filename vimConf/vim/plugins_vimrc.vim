@@ -67,17 +67,18 @@ Plugin 'tpope/vim-vinegar'
 
 "cmake build
 Plugin 'mhinz/vim-signify'
-
+Plugin 'cdelledonne/vim-cmake'
 Plugin 'dkarter/bullets.vim'
 
 "Debuging:
 Plugin 'puremourning/vimspector', { 'do': 'python3 install_gadget.py --enable-vscode-cpptools' }
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
 "let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB'
 
-
-
+"Windows:
+ Plugin 'gauteh/vim-cppman' "Color man text documentation
+ Plugin 'jmckiern/vim-shoot', { 'do': '\"./install.py\" chromedriver' } "Take sscreenshot of a portion of code
 
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
@@ -106,6 +107,9 @@ Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'junegunn/seoul256.vim'
+Plugin 'navarasu/onedark.nvim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'sainnhe/everforest'
 
 set background=dark
 set t_Co=256

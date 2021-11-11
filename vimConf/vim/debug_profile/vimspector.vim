@@ -1,3 +1,6 @@
+"https://github.com/artificial-equation/dotfiles/blob/f33cc5459a3c532155daa93a0091ddfe3470499c/.config/nvim/cpp-configurcion.vim
+
+
  let g:vimspector_sidebar_width = 60
 
 
@@ -38,22 +41,24 @@ function! DebugProfile()
 endfunction
 nnoremap <leader>dp :call DebugProfile()<cr>
 
-" command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
 
-" nnoremap <localleader>gd :call vimspector#Launch()<cr>
-" nnoremap <localleader>gc :call vimspector#Continue()<cr>
-" nnoremap <localleader>gs :call vimspector#Stop()<cr>
-" nnoremap <localleader>gR :call vimspector#Restart()<cr>
-" nnoremap <localleader>gp :call vimspector#Pause()<cr>
-" nnoremap <localleader>gb :call vimspector#ToggleBreakpoint()<cr>
-" nnoremap <localleader>gB :call vimspector#ToggleConditionalBreakpoint()<cr>
-" nnoremap <localleader>gn :call vimspector#StepOver()<cr>
-" nnoremap <localleader>gi :call vimspector#StepInto()<cr>
-" nnoremap <localleader>go :call vimspector#StepOut()<cr>
-" nnoremap <localleader>gr :call vimspector#RunToCursor()<cr>
+"{{{ Debuggiing 
+command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
 
+nnoremap <localleader>gd :call vimspector#Launch()<cr>
+nnoremap <localleader>gc :call vimspector#Continue()<cr>
+nnoremap <localleader>gs :call vimspector#Stop()<cr>
+nnoremap <localleader>gR :call vimspector#Restart()<cr>
+nnoremap <localleader>gp :call vimspector#Pause()<cr>
+nnoremap <localleader>gb :call vimspector#ToggleBreakpoint()<cr>
+nnoremap <localleader>gB :call vimspector#ToggleConditionalBreakpoint()<cr>
+nnoremap <localleader>gn :call vimspector#StepOver()<cr>
+nnoremap <localleader>gi :call vimspector#StepInto()<cr>
+nnoremap <localleader>go :call vimspector#StepOut()<cr>
+nnoremap <localleader>gr :call vimspector#RunToCursor()<cr>
+"}}}
 
-"{{{  clang_format.vim
+"{{{ clang_format.vim
 function! s:JbzClangFormat(first, last)
   let l:winview = winsaveview()
   execute a:first . "," . a:last . "!clang-format"
@@ -68,12 +73,13 @@ au FileType c,cpp vnoremap <buffer><leader>lf :JbzClangFormat<CR>
 
 
 
-"{{{  cmake.vim
+"{{{ cmake.vim
 let g:cmake_link_compile_commands = 1
 
 nmap <leader>cg :CMakeGenerate<cr> "to generate cmake files
 nmap <leader>cb :CMakeBuild<cr> "to build them
 "}}}
+
 "{{{ fswtich.vim
 au BufEnter *.h  let b:fswitchdst = "c,cpp,cc,m"
 au BufEnter *.cc let b:fswitchdst = "h,hpp"
