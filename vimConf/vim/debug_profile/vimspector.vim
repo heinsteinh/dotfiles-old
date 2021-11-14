@@ -42,7 +42,7 @@ endfunction
 nnoremap <leader>dp :call DebugProfile()<cr>
 
 
-"{{{ Debuggiing 
+"{{{ Debuggiing
 command! -nargs=+ Vfb call vimspector#AddFunctionBreakpoint(<f-args>)
 
 nnoremap <localleader>gd :call vimspector#Launch()<cr>

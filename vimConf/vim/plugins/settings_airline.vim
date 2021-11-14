@@ -8,9 +8,9 @@ set updatetime=300
 "let g:airline_theme = 'tomorrow'
 "let g:airline_theme = 'luna'
 "let g:airline_theme = 'gruvbox'
-let g:airline_theme = 'dark'
+"let g:airline_theme = 'dark'
 "let g:airline_theme = 'light'
-"let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'powerlineish'
 "let g:airline_theme = 'papercolor'
 " Use powerline symbols.
 

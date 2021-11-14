@@ -15,14 +15,14 @@ fi
 
 source ~/.zsh/zshenv
 
-export EDITOR=gvim
-export VISUAL=gvim
+export EDITOR=vim
+export VISUAL=vim
 export SUDO_EDITOR=vim
 
 if [[ -n "$DISPLAY" ]] ; then
-    export EDITOR=gvim
-    export VISUAL=gvim
-    export SUDO_EDITOR=gvim
+    export EDITOR=vim
+    export VISUAL=vim
+    export SUDO_EDITOR=vim
 fi
 
 

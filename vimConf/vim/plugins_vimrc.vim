@@ -58,15 +58,19 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " C++ Algorithms snippets (using mnemonics)
 Plugin 'dawikur/algorithm-mnemonics.vim'
+
+"Switch from header to implementation and vice versa!
 Plugin 'derekwyatt/vim-fswitch'
-Plugin 'ilyachur/cmake4vim'
+"Plugin 'ilyachur/cmake4vim'
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
 
-Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'
 
 "cmake build
+"Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
 Plugin 'mhinz/vim-signify'
+
 Plugin 'cdelledonne/vim-cmake'
 Plugin 'dkarter/bullets.vim'
 
@@ -77,8 +81,60 @@ let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
 "let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB'
 
 "Windows:
- Plugin 'gauteh/vim-cppman' "Color man text documentation
- Plugin 'jmckiern/vim-shoot', { 'do': '\"./install.py\" chromedriver' } "Take sscreenshot of a portion of code
+Plugin 'gauteh/vim-cppman' "Color man text documentation
+"Plugin 'jmckiern/vim-shoot', { 'do': '\"./install.py\" chromedriver' } "Take sscreenshot of a portion of code
+
+Plugin 'vim-syntastic/syntastic'
+
+Plugin 'dominikduda/vim_current_word'
+let g:vim_current_word#enabled = 1
+"autocmd BufAdd NERD_tree_*,*.cpp,*c,*cxx,*h,*hpp :let g:vim_current_word#enabled = 1
+let g:vim_current_word#highlight_twins = 1
+let g:vim_current_word#highlight_current_word = 1
+let g:vim_current_word#highlight_delay = 100
+let g:vim_current_word#highlight_only_in_focused_window = 1
+
+"A negative number makes the highlight persistent.
+"let g:highlightedyank_highlight_duration = -1
+
+"https://github.com/MattesGroeger/vim-bookmarks
+Plugin 'MattesGroeger/vim-bookmarks'
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+let g:bookmark_no_default_key_mappings = 1
+
+"Plugin 'psliwka/vim-smoothie'          " wonderful scroll up/down experience
+
+"Far.vim makes it easier to find and replace text through multiple files. It's inspired by fancy IDEs, like IntelliJ and Eclipse, that provide cozy tools for such tasks.
+Plugin 'brooth/far.vim'
+"example usage
+":Farr foo bar **/*.py
+
+
+
+"Plugin 'ntpeters/vim-better-whitespace'
+"let g:better_whitespace_ctermcolor='lightcyan'
+"let g:better_whitespace_guicolor='lightcyan'
+""let g:better_whitespace_guicolor = 'white'
+"let g:strip_whitespace_confirm=1
+"let g:better_whitespace_enabled=1
+"let g:strip_whitespace_on_save=1
+"let g:better_whitespace_filetypes_blacklist=[
+"            \ 'startify',
+"            \ 'diff',
+"            \ 'gitcommit',
+"            \ 'unite',
+"            \ 'qf',
+"            \ 'help',
+"            \ 'coc-explorer',
+"            \ 'vista',
+"            \ 'floaterm',
+"            \ 'dashboard'
+"            \ ]
+
+
 
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
@@ -111,10 +167,10 @@ Plugin 'navarasu/onedark.nvim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'sainnhe/everforest'
 
-set background=dark
-set t_Co=256
-let g:gruvbox_bold='1'
-let g:gruvbox_italic='1'
-let g:gruvbox_transparent_bg='1'
-let g:gruvbox_italicize_comments='1'
+" set background=dark
+" set t_Co=256
+" let g:gruvbox_bold='1'
+" let g:gruvbox_italic='1'
+" let g:gruvbox_transparent_bg='1'
+" let g:gruvbox_italicize_comments='1'
 "autocmd vimenter * ++nested colorscheme gruvbox

@@ -15,3 +15,5 @@ vimConf/vim/.netrwhist
 tags
 vimConf/vim-cmake-boilerplate/src/tags
 vimConf/vim-cmake-boilerplate/src/tags
+vimConf/vim/files/*
+

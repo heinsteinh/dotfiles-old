@@ -46,6 +46,10 @@ set autowriteall
 " Useful for editing files in a full IDE or other vim sessions simultaneously.
 set autoread
 
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
+
 
 " Highlights a cross over the cursor.
 " Some highlighting gets a little strange due to my theme.
@@ -67,9 +71,26 @@ set expandtab
 
 " Displays tabs, nbsps, and trailing spaces with printable characters.
 "set list listchars=tab:▸\ ,nbsp:·,trail:·
+"set list listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+
+
+" Visualize tabs and newlines
+set list
+"set listchars=space:.,eol:¬,trail:.,tab:>.
+set listchars=eol:↵,tab:➝\ ,trail:~,extends:>,precedes:<,space:·
+nnoremap <silent> <leader>ccc :set nolist!<CR>
+
 " Shows a fancy arrow on wrapped lines.
 set showbreak=↪\
 
+set showmatch
+" Tenths of a second to show the matching paren, when 'showmatch' is set.
+set matchtime=1
+" Make < and > as well as match pairs.
+set matchpairs+=<:>
+
+" clear search
+map <leader><space> :let @/=''<cr> "
 
 " After 300 millis of no edits, a swap file will be written.
 " After 300 millis, the CursorHold event fires.
@@ -77,7 +98,7 @@ set updatetime=300
 " Blocks "hit enter" prompts on completion menu actions.
 "set shortmess+=c
 " Adds a second line to the cmd bar.
-set cmdheight=2
+set cmdheight=1
 
 set switchbuf=useopen " reveal already opened files from the quickfix window
 " instead of opening new buffers
@@ -98,7 +119,7 @@ set hlsearch
 set splitbelow
 set splitright
 
-
+set termguicolors
 
 let $LANG='en'
 set langmenu=en
@@ -106,8 +127,13 @@ set mouse=a
 
 set whichwrap+=<,>,[,]
 
-set listchars=tab:>-,trail:·
-set list
+" set listchars=tab:>-,trail:·
+" set list
+
+"- Disable beep on error.
+set noerrorbells
+"- Flash the screen instead of beeping on errors.
+set visualbell
 
 " Selection {{{
 " Change selected letters when write

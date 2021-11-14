@@ -339,7 +339,7 @@ selection:
   background: '0xdc3232'
   white:   '0xffffff'
 
-      
+
 cursor:
   # Cursor style
   style:

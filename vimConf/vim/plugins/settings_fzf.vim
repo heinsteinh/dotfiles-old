@@ -95,7 +95,7 @@ if executable('ag')
                 \ --ignore ".git"
                 \ -g ""'
     let $FZF_DEFAULT_COMMAND=s:fzf_custom_command
-    "echo "fzf Using silver search Ag"   
+    "echo "fzf Using silver search Ag"
 endif
 
 " ripgrep
@@ -116,7 +116,7 @@ if executable('rg')
     nnoremap  <silent><C-f> :Rg <cr>
     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
-    "echo "fzf Using ripgrep"   
+    "echo "fzf Using ripgrep"
 endif
 
 
@@ -133,8 +133,8 @@ nnoremap <C-f>  :Files<CR>
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap <leader>fb  :Buffers<CR>
 "nnoremap <leader>ff  :Files<CR>
-nnoremap <leader>fg  :GFiles<CR>
-nnoremap <leader>fag :Ag<CR>
+"nnoremap <leader>fg  :GFiles<CR>
+nnoremap <leader>fg  :Ag<CR>
 nnoremap <leader>fr  :Rg<cr>
 nnoremap <leader>fl  :Lines<CR>
 nnoremap <leader>fh  :History<CR>

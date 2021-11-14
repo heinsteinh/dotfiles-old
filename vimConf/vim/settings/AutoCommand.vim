@@ -66,9 +66,9 @@ if has ('autocmd') " Remain compatible with earlier versaons
         " Close all folds when opening a new buffer
         "autocmd BufRead * setlocal foldmethod=marker
 
-        "     " Enable marker folds for .vimrc files and shell files
-        "     autocmd FileType vim,sh setlocal foldmethod=marker
-        "     autocmd BufRead * normal zM
+        "    " Enable marker folds for .vimrc files and shell files
+        " autocmd FileType vim,sh setlocal foldmethod=marker
+        " autocmd BufRead * normal zM
 
         " Start NERDTree and put the cursor back in the other window.
         "autocmd VimEnter * NERDTree | wincmd p
