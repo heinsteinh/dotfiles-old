@@ -133,6 +133,11 @@ if has ('autocmd') " Remain compatible with earlier versaons
         " " Cpp ctor stub by highlighting the member vars
         " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Ctor :call <SID>pythonSelectedTextPasteAbove("cpp.ctor_stub")<CR>
         " autocmd BufNewFile,BufRead *{.cpp,.h} command! -range Opeq :call <SID>pythonSelectedTextPasteAbove("cpp.stub_opeq")<CR>
+        "
+        autocmd BufEnter *.h  let b:fswitchdst = "c,cpp,cc,m"
+        autocmd BufEnter *.cc let b:fswitchdst = "h,hpp"
+
+        autocmd BufEnter *.h let b:fswitchdst = 'c,cpp,m,cc' | let b:fswitchlocs = 'reg:|include.*|src/**|'
     augroup END
 
 
