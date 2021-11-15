@@ -7,8 +7,8 @@ if has ('autocmd') " Remain compatible with earlier versaons
         autocmd FileType text setlocal textwidth=78
 
         "enable rainbow it globally
-        au FileType c,cpp,objc,objcpp call rainbow#load()
-        "let g:rainbow_active = 1
+        "au FileType c,cpp,objc,objcpp call rainbow#load()
+        let g:rainbow_active = 0
 
         autocmd FileType sh set foldmethod=indent
         autocmd FileType c,cpp set foldmethod=syntax
