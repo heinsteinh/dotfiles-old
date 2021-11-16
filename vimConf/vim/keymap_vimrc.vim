@@ -694,9 +694,22 @@ noremap <leader>tt :tabnew<CR>:term ++curwin<CR>
 noremap <leader>tc :tabc<CR>
 
 
+"{{{ Switch buffers
 "Switch buffers
 nnoremap ü :bnext<CR>
 nnoremap ö :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nnoremap <leader>bq :<c-u>bp <bar> bd #<cr>
+
+""<leader> bd should close all buffers except the current one.
+nnoremap <leader>bd :<c-u>up <bar> %bd <bar> e#<cr>
+
+"}}}"
+
+
+
 
 "{{{ Comment text
 nmap <leader>cc :Commentary<CR>
@@ -731,14 +744,8 @@ endfunction
 map <silent> <Leader>m :call Menu()<CR>
 
 
-function! DebugProfile()
-    if &filetype == 'cpp'
-        exec "!cp $HOME/$VIMFILE_DIR/debug_profile/cpp/.vimspector.json %:h"
-    elseif &filetype == 'py'
-        exec "!cp $HOME/$VIMFILE_DIR/debug_profile/python/.vimspector.json %:h"
-    endif
-endfunction
-nnoremap <leader>dp :call DebugProfile()<cr>
+
+
 
 
 " Folding rules {{{
@@ -908,3 +915,5 @@ function! RangeChooser()
 endfunction
 command! -bar RangerChooser call RangeChooser()
 nnoremap <leader>rs :<C-U>RangerChooser<CR>
+
+

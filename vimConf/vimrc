@@ -193,20 +193,25 @@ set background=dark
 "autocmd vimenter * ++nested colorscheme gruvbox
 
 "colorscheme neodark
-colorscheme onedark
+"colorscheme onedark
+" Vimscript initialization file
+colorscheme nightfly
+
 
 "{{{ Gui Running config
 if has("gui_running")
 
     "echo "sourcing from Gui"
     set encoding=utf-8
+
     " Always show cursor
     set ruler
+
     " Highlight the current line
     set cursorline
 
-    set guioptions+=a           " Autoselect text
-    set guioptions+=c           " Use console dialogs
+    set guioptions+=a    " Autoselect text
+    set guioptions+=c    " Use console dialogs
 
     " Hide the toolbar
     set guioptions-=T

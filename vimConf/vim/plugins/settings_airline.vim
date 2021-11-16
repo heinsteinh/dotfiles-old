@@ -93,7 +93,7 @@ let g:airline#extensions#tabline#show_tabs = 1
 " Don't show the tab count.
 let g:airline#extensions#tabline#show_tab_count = 0
 " Don't show close button for tabs.
-let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_close_button = 1
 " Switch buffers and tabs in the tabline, only works for ctrlspace, but hopefully that changes.
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 0
 

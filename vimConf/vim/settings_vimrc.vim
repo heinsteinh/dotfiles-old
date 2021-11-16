@@ -78,7 +78,7 @@ set expandtab
 set list
 "set listchars=space:.,eol:¬,trail:.,tab:>.
 set listchars=eol:↵,tab:➝\ ,trail:~,extends:>,precedes:<,space:·
-nnoremap <silent> <leader>ccc :set nolist!<CR>
+nnoremap <silent> <leader>ll :set nolist!<CR>
 
 " Shows a fancy arrow on wrapped lines.
 set showbreak=↪\

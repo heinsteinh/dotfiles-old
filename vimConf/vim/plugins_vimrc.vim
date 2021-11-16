@@ -61,6 +61,12 @@ Plugin 'dawikur/algorithm-mnemonics.vim'
 
 "Switch from header to implementation and vice versa!
 Plugin 'derekwyatt/vim-fswitch'
+nmap <silent> <c-w>o :FSHere<cr>
+nmap <silent> <c-w>oj :FSHereHere<cr>
+nmap <silent> <c-w>ok :FSAbove<cr>
+nmap <silent> <c-w>ol :FSSplitAbove<cr>
+nmap <silent> <c-w>oh :FSHere<cr>
+
 "Plugin 'ilyachur/cmake4vim'
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
@@ -135,7 +141,6 @@ Plugin 'brooth/far.vim'
 "            \ ]
 
 
-
 "{{{ System Specifics Plugins
 if hostname() == "BHI4PCH7D3"
 else
@@ -153,6 +158,9 @@ Plugin 'chrisbra/Colorizer'
 
 " Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
 Plugin 'morhetz/gruvbox'
+Plugin 'bluz71/vim-nightfly-guicolors'
+let g:color_coded_enabled = 1
+let g:color_coded_filetypes = ['c', 'cpp', 'objc']
 
 Plugin 'frazrepo/vim-rainbow'
 Plugin 'ryanoasis/vim-devicons'
@@ -167,10 +175,10 @@ Plugin 'navarasu/onedark.nvim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'sainnhe/everforest'
 
-" set background=dark
-" set t_Co=256
-" let g:gruvbox_bold='1'
-" let g:gruvbox_italic='1'
-" let g:gruvbox_transparent_bg='1'
-" let g:gruvbox_italicize_comments='1'
+"set background=dark
+"set t_Co=256
+"let g:gruvbox_bold='1'
+"let g:gruvbox_italic='1'
+"let g:gruvbox_transparent_bg='1'
+"let g:gruvbox_italicize_comments='1'
 "autocmd vimenter * ++nested colorscheme gruvbox

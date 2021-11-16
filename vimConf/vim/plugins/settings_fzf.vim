@@ -1,14 +1,13 @@
 "let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'down': '~50%' }
 " Preview window on the upper side of the window with 40% height,
 " hidden by default, ctrl-/ to toggle
 
 "let g:fzf_layout = { 'down': '~30%' }
-let g:fzf_preview_window = ['right:40%', 'ctrl-/']
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
 if g:is_win
     let g:fzf_history_dir = 'c:/temp/pzf-history'
-
 elseif g:is_linux
     let g:fzf_history_dir = '$HOME/.local/share/fzf-history'
 endif
@@ -23,26 +22,6 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 "let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 "let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 
-
-
-" This is the default extra key bindings
-let g:fzf_action = {
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
-
-" An action can be a reference to a function that processes selected lines
-function! s:build_quickfix_list(lines)
-    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-    copen
-    cc
-endfunction
-
-let g:fzf_action = {
-            \ 'ctrl-q': function('s:build_quickfix_list'),
-            \ 'ctrl-t': 'tab split',
-            \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vsplit' }
 
 
 "" [Buffers] Jump to the existing window if possible
@@ -61,7 +40,7 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " Customize fzf colors to match your color scheme
 " - fzf#wrap translates this to a set of `--color` options
 let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
+          \ { 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
             \ 'hl':      ['fg', 'Comment'],
             \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -74,10 +53,6 @@ let g:fzf_colors =
             \ 'marker':  ['fg', 'Keyword'],
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
-
-
-
-
 
 " The Silver Searcher
 if executable('ag')
@@ -120,12 +95,12 @@ if executable('rg')
 endif
 
 
-if executable('rg')
-    set grepprg=rg\ --vimgrep
-    command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "\!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-elseif executable('ag')
-    set grepprg=ag\ --nogrup\ --nocolor
-endif
+" if executable('rg')
+"     set grepprg=rg\ --vimgrep
+"     command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "\!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+" elseif executable('ag')
+"     set grepprg=ag\ --nogrup\ --nocolor
+" endif
 
 nnoremap <C-f>  :Files<CR>
 
@@ -267,4 +242,22 @@ command! -bang -nargs=* Ag
             \                 <bang>0 ? fzf#vim#with_preview('up:60%')
             \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
             \                 <bang>0)
+
+
+
+" FZZ mapping
+nmap ; :Buffers<CR>
+nmap <Leader>t :Files<CR>
+nmap <Leader>ta :Tags<CR>
+
+" RG SETTINGS
+nnoremap <leader>a :Rg<space>
+nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>{{{}}}
+
+autocmd VimEnter * command! -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color  "always" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
