@@ -102,11 +102,13 @@ if hostname() == "BHI4PCH7D3"
     \ ]
     "let g:cmake_generate_options = ["Visual Studio 16 2019"]
 else
-   let g:cmake_build_dir_location = "build/build.unix"
+   let g:cmake_build_dir_location = "GameProjet/build"
    let g:cmake_generate_options = [
   \ '-G Ninja',
   \ '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',
   \ ]
+   "let g:cmake_root_markers='/home/fkheinstein/Projects/GameEngineECS/GameProjet'
+   let g:cmake_root_markers = ['build']
    " let g:cmake_generate_options = ["Unix Makefiles"]
    "let g:cmake_generate_options = ['-Bbuild/build.unix', '-GNinja', '-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE']
 endif
