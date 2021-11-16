@@ -92,13 +92,23 @@ Plugin 'mhinz/vim-signify'
 Plugin 'cdelledonne/vim-cmake'
 let g:cmake_config = "Debug"
 let g:cmake_link_compile_commands = 1
-let g:cmake_generate_options = ["-DBUILD_TESTS=ON"]
-"let g:cmake_build_options = ["--target", s:runner]
 
 if hostname() == "BHI4PCH7D3"
     let g:cmake_build_dir_location = "build/build.windows"
+    let g:cmake_generate_options = [
+    \ '-G ',
+    \ 'Visual Studio 16 2019',
+    \ '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',
+    \ ]
+    "let g:cmake_generate_options = ["Visual Studio 16 2019"]
 else
-    let g:cmake_build_dir_location = "build/build.unix"
+   let g:cmake_build_dir_location = "build/build.unix"
+   let g:cmake_generate_options = [
+  \ '-G Ninja',
+  \ '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON',
+  \ ]
+   " let g:cmake_generate_options = ["Unix Makefiles"]
+   "let g:cmake_generate_options = ['-Bbuild/build.unix', '-GNinja', '-DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE']
 endif
 
 "}}}
