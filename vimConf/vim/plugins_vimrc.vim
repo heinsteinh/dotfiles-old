@@ -59,6 +59,16 @@ Plugin 'honza/vim-snippets'
 " C++ Algorithms snippets (using mnemonics)
 Plugin 'dawikur/algorithm-mnemonics.vim'
 
+"Plugin to work with register in vim
+Plugin 'junegunn/vim-peekaboo'
+
+"every variable is a different color,
+Plugin 'jaxbot/semantic-highlight.vim'
+"nnoremap <Leader>s :SemanticHighlightToggle<cr>
+ " nnoremap <Leader>sh :SemanticHighlightToggle<cr>
+ " autocmd FileType c SemanticHighlight
+ " autocmd FileType c++ SemanticHighlight
+
 "Switch from header to implementation and vice versa!
 Plugin 'derekwyatt/vim-fswitch'
 nmap <silent> <c-w>o :FSHere<cr>
@@ -71,13 +81,28 @@ nmap <silent> <c-w>oh :FSHere<cr>
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
 
-"Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-vinegar'
 
 "cmake build
 "Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
 Plugin 'mhinz/vim-signify'
 
+
+"{{{ Cmake build config
 Plugin 'cdelledonne/vim-cmake'
+let g:cmake_config = "Debug"
+let g:cmake_link_compile_commands = 1
+let g:cmake_generate_options = ["-DBUILD_TESTS=ON"]
+"let g:cmake_build_options = ["--target", s:runner]
+
+if hostname() == "BHI4PCH7D3"
+    let g:cmake_build_dir_location = "build/build.windows"
+else
+    let g:cmake_build_dir_location = "build/build.unix"
+endif
+
+"}}}
+
 Plugin 'dkarter/bullets.vim'
 
 "Debuging:
@@ -87,7 +112,7 @@ let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
 "let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB'
 
 "Windows:
-Plugin 'gauteh/vim-cppman' "Color man text documentation
+"Plugin 'gauteh/vim-cppman' "Color man text documentation
 "Plugin 'jmckiern/vim-shoot', { 'do': '\"./install.py\" chromedriver' } "Take sscreenshot of a portion of code
 
 Plugin 'vim-syntastic/syntastic'

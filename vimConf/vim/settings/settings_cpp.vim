@@ -1,11 +1,29 @@
 "https://github.com/jwbat/dotfiles/blob/4fc36a3eda20ed4467b21dd863507fa2c31b80d5/.vimrc
 ""cpp
+
+
+" https://github.com/octol/vim-cpp-enhanced-highlight
+" Put this into ~/.vimrc
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let g:cpp_no_function_highlight = 1
+
+
 au BufEnter,BufNewFile,BufRead *.cpp,*.h,*.c setl filetype=cpp
 augroup filetype_cpp
     autocmd!
     "au FileType cpp colorscheme PaperColor
     "au FileType cpp colorscheme OceanicNext
     au FileType cpp colorscheme nightfly
+
+"     nnoremap <Leader>sh :SemanticHighlightToggle<cr>
+"     autocmd FileType c SemanticHighlight
+"     autocmd FileType c++ SemanticHighlight
+
     "au FileType cpp hi statusline none
     au FileType cpp nnoremap <buffer> <leader>c :norm 0i//<cr>j
     au FileType cpp nnoremap <buffer> <leader>u :norm 0xx<cr>j

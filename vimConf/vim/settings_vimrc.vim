@@ -75,7 +75,7 @@ set expandtab
 
 
 " Visualize tabs and newlines
-set list
+"set list
 "set listchars=space:.,eol:¬,trail:.,tab:>.
 set listchars=eol:↵,tab:➝\ ,trail:~,extends:>,precedes:<,space:·
 nnoremap <silent> <leader>ll :set nolist!<CR>

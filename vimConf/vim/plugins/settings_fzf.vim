@@ -59,6 +59,8 @@ if executable('ag')
 
     nnoremap  <silent><Leader>f :Ag<cr>
     nnoremap  <silent><C-f> :Ag<cr>
+
+    let g:ackprg = 'ag --vimgrep'
     let s:fzf_custom_command = 'ag --hidden -l --nocolor --nogroup '.'
                 \ --ignore "*.[odODaA]"
                 \ --ignore "*.exe"
@@ -84,6 +86,7 @@ if executable('rg')
                 \ ""'
     let $FZF_DEFAULT_COMMAND=s:fzf_custom_command
 
+     set grepprg=ag\ --nogroup\ --nocolor
 
     "  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
     "  set grepprg=rg\ --vimgrep
@@ -102,10 +105,10 @@ endif
 "     set grepprg=ag\ --nogrup\ --nocolor
 " endif
 
-nnoremap <C-f>  :Files<CR>
 
 "FZF keymaps
 " https://github.com/junegunn/fzf.vim#commands
+nnoremap <C-f>  :Files<CR>
 nnoremap <leader>fb  :Buffers<CR>
 "nnoremap <leader>ff  :Files<CR>
 "nnoremap <leader>fg  :GFiles<CR>
@@ -247,12 +250,13 @@ command! -bang -nargs=* Ag
 
 " FZZ mapping
 nmap ; :Buffers<CR>
-nmap <Leader>t :Files<CR>
-nmap <Leader>ta :Tags<CR>
+"nmap <Leader>t :Files<CR>
+"nmap <Leader>ta :Tags<CR>
 
 " RG SETTINGS
 nnoremap <leader>a :Rg<space>
-nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>{{{}}}
+nnoremap <leader>A :exec "Rg ".expand("<cword>")<cr>
+
 
 autocmd VimEnter * command! -nargs=* Rg
   \ call fzf#vim#grep(

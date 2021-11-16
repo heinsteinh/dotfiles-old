@@ -16,15 +16,15 @@ import mcts.game.tictactoe.TicTacToe;
 public class GameFactory {
 	public static final int TICTACTOE = 0;
 	public static final int CATAN = 1;
-	
+
 	private GameConfig gameConfig;
 	private Belief belief;
-	
+
 	public GameFactory(GameConfig gameConfig, Belief belief) {
 		this.gameConfig = gameConfig;
 		this.belief = belief;
 	}
-	
+
 	public Game getNewGame(){
 		if(gameConfig.id == CATAN){
 			if(belief != null) {
@@ -38,8 +38,8 @@ public class GameFactory {
 			}
 		}else
 			return new TicTacToe();
-	} 
-	
+	}
+
 	public Game getGame(int[] state){
 		if(gameConfig.id == CATAN){
 			if(belief != null)
@@ -48,29 +48,29 @@ public class GameFactory {
 				return new Catan(state, ((CatanConfig) gameConfig));
 		}else
 			return new TicTacToe(state);
-	} 
+	}
 
 	public GameConfig getConfig(){
 		return gameConfig;
 	}
-	
+
 	public Belief getBelief() {
 		return belief;
 	}
-	
+
 	public DeterminizationSampler getDeterminizationSampler() {
 		if(gameConfig.id == CATAN && belief != null)
 			return new CatanDeterminizationSampler();
 		return new NullDeterminizationSampler();
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public static int nMaxPlayers(){
 		return 4;
 	}
-	
+
 	public GameFactory copy() {
 		Belief clone = null;
 		if(belief != null)
@@ -78,5 +78,5 @@ public class GameFactory {
 		GameFactory factory = new GameFactory(gameConfig.copy(), clone);
 		return factory;
 	}
-	
+
 }

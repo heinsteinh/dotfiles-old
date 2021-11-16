@@ -2,20 +2,6 @@
 "{{{ Copy/Paste
 ""https://github.com/jwbat/dotfiles/blob/4fc36a3eda20ed4467b21dd863507fa2c31b80d5/.vimrc#L131
 "Good Register paste example in this link
-"
-" yank to system clipboard
-xnoremap <leader>c "+y
-nnoremap <leader>c "+y
-" paste from system clipboard and go end of the paste
-nnoremap <leader>v "+p`]
-" cut line(s) into system clipboard
-xnoremap <leader>x "+d
-
-nnoremap <C-Insert> "*y
-nnoremap <S-Insert> "*p
-vnoremap <C-Insert> "*y
-vnoremap <S-Insert> "*p
-
 
 let g:uname = system("uname")
 
@@ -69,7 +55,6 @@ nnoremap g# g#zz
 
 " Copy number of lines and paste below
 nnoremap <leader>cp :<c-u>exe 'normal! y' . (v:count == 0 ? 1 : v:count) . 'j' . (v:count == 0 ? 1 : v:count) . 'jo<C-v><Esc>p'<cr>
-
 
 
 " Windows mappings
@@ -282,25 +267,13 @@ if has("gui_running")
 " Ranger
 nnoremap <leader>ra :silent !ranger %:h<cr>:redraw!<cr>
 nnoremap <leader>Ra :silent !ranger<cr>:redraw!<cr>
-
 endif
 
-"packadd! vimspector
 function! Menu()
     exec "tabnew | Startify"
 endfunction
 
 map <silent> <Leader>m :call Menu()<CR>
-
-
-function! DebugProfile()
-    if &filetype == 'cpp'
-        exec "!cp $HOME/$VIMFILE_DIR/debug_profile/cpp/.vimspector.json %:h"
-    elseif &filetype == 'py'
-        exec "!cp $HOME/$VIMFILE_DIR/debug_profile/python/.vimspector.json %:h"
-    endif
-endfunction
-nnoremap <leader>dp :call DebugProfile()<cr>
 
 
 " Folding rules {{{
@@ -356,7 +329,6 @@ hi Folded guifg='orange'
 
 
 " Visual Mode */# from Scrooloose {{{
-
 function! s:VSetSearch()
   let temp = @@
   norm! gvy
@@ -366,7 +338,6 @@ endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
 " }}}
 
 "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
@@ -448,6 +419,30 @@ nnoremap <leader>c "+y
 nnoremap <leader>v "+p`]
 " cut line(s) into system clipboard
 xnoremap <leader>x "+d
+
+"Better copy paste
+"Manipulate register a
+nnoremap ay "ay
+vnoremap ay "ay
+nnoremap aY "aY
+vnoremap aY "aY
+nnoremap ayy "ayy
+vnoremap ayy "ayy
+nnoremap ap "ap
+nnoremap ad "ad
+vnoremap ad "ad
+nnoremap add "add
+vnoremap add "add
+
+"Manipulate register e
+nnoremap ey "dy
+nnoremap eY "dY
+nnoremap eyy "dyy
+nnoremap ep "dp
+nnoremap ed "dd
+vnoremap ed "dd
+nnoremap edd "ddd
+vnoremap edd "ddd
 
 nnoremap <C-Insert> "*y
 nnoremap <S-Insert> "*p
