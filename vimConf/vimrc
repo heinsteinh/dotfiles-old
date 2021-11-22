@@ -376,6 +376,7 @@ source $HOME/$VIMFILE_DIR/plugins/settings_airline.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_ycm.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_rainbow.vim
 source $HOME/$VIMFILE_DIR/plugins/settings_startify.vim
+source $HOME/$VIMFILE_DIR/plugins/settings_ctrlp.vim
 
 
 source $HOME/$VIMFILE_DIR/settings/settings_vim_cpp.vim
@@ -587,7 +588,7 @@ source $HOME/$VIMFILE_DIR/settings/fzf-spell.vim
 
 let g:vimspector_enable_mappings = 'HUMAN'
 " packadd! vimspector
-source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
+"source $HOME/$VIMFILE_DIR/debug_profile/vimspector.vim
 
 "}}}
 

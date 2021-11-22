@@ -41,9 +41,9 @@ Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'delimitMate.vim'
 
 "Plugin 'markonm/traces.vim' " Preview for substitute commands.
-Plugin 'roman/golden-ratio' " Automatically resize windows.
-Plugin 'KeitaNakamura/neodark.vim'
-Plugin 'joshdick/onedark.vim'
+"Plugin 'roman/golden-ratio' " Automatically resize windows.
+"Plugin 'KeitaNakamura/neodark.vim'
+"Plugin 'joshdick/onedark.vim'
 
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 "CTage management for
@@ -57,17 +57,17 @@ Plugin 'SirVer/ultisnips'
 "Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 " C++ Algorithms snippets (using mnemonics)
-Plugin 'dawikur/algorithm-mnemonics.vim'
+"Plugin 'dawikur/algorithm-mnemonics.vim'
 
 "Plugin to work with register in vim
-Plugin 'junegunn/vim-peekaboo'
+"Plugin 'junegunn/vim-peekaboo'
 
 "every variable is a different color,
 Plugin 'jaxbot/semantic-highlight.vim'
 "nnoremap <Leader>s :SemanticHighlightToggle<cr>
- " nnoremap <Leader>sh :SemanticHighlightToggle<cr>
- " autocmd FileType c SemanticHighlight
- " autocmd FileType c++ SemanticHighlight
+nnoremap <Leader>sh :SemanticHighlightToggle<cr>
+autocmd FileType c SemanticHighlight
+autocmd FileType c++ SemanticHighlight
 
 "Switch from header to implementation and vice versa!
 Plugin 'derekwyatt/vim-fswitch'
@@ -81,7 +81,7 @@ nmap <silent> <c-w>oh :FSHere<cr>
 "Plugin 'Rip-Rip/clang_complete'
 "Plugin 'rhysd/vim-clang-format'
 
-Plugin 'tpope/vim-vinegar'
+"Plugin 'tpope/vim-vinegar'
 
 "cmake build
 "Signify (or just Sy) uses the sign column to indicate added, modified and removed lines in a file that is managed by a version control system (VCS)
@@ -115,9 +115,9 @@ endif
 
 "}}}
 
-Plugin 'dkarter/bullets.vim'
+"Plugin 'dkarter/bullets.vim'
 
-"Debuging:
+" Debuging:
 Plugin 'puremourning/vimspector', { 'do': 'python3 install_gadget.py --enable-vscode-cpptools' }
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
