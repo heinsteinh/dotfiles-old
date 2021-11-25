@@ -13,7 +13,7 @@ if g:is_win
     let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
     set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
-    echo "Use Windows dir for CtrlP search  " 
+    "echo "Use Windows dir for CtrlP search  " 
     "Use a custom file listing command:   
     let g:ctrlp_clear_cache_on_exit = 0
     let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'

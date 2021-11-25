@@ -52,6 +52,10 @@ Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'majutsushi/tagbar', {'on': ['TagbarOpen', 'TagbarToggle']}
 Plugin 'tpope/vim-dispatch'
 
+
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
 "Track the engine.
 Plugin 'SirVer/ultisnips'
 "Snippets are separated from the engine. Add this if you want them:

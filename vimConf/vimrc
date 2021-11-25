@@ -181,7 +181,7 @@ set background=dark
 "colorscheme herald " Set nice looking colorscheme
 "colorscheme oceanic_material
 "colorscheme PaperColor
-"colorscheme OceanicNext
+colorscheme OceanicNext
 "colorscheme gruvbox
 "colorscheme onedark
 "colorscheme atom
@@ -195,7 +195,7 @@ set background=dark
 "colorscheme neodark
 "colorscheme onedark
 " Vimscript initialization file
-colorscheme nightfly
+"colorscheme nightfly
 
 
 "{{{ Gui Running config
