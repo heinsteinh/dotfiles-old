@@ -47,15 +47,15 @@ Plugin 'delimitMate.vim'
 
 Plugin 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 "CTage management for
-Plugin 'ludovicchabant/vim-gutentags'
+"Plugin 'ludovicchabant/vim-gutentags'
 "Plugin 'majutsushi/tagbar'
 Plugin 'majutsushi/tagbar', {'on': ['TagbarOpen', 'TagbarToggle']}
 Plugin 'tpope/vim-dispatch'
 
 
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'tomtom/tlib_vim'
+"Plugin 'garbas/vim-snipmate'
 "Track the engine.
 Plugin 'SirVer/ultisnips'
 "Snippets are separated from the engine. Add this if you want them:
@@ -67,11 +67,11 @@ Plugin 'honza/vim-snippets'
 "Plugin 'junegunn/vim-peekaboo'
 
 "every variable is a different color,
-Plugin 'jaxbot/semantic-highlight.vim'
+"Plugin 'jaxbot/semantic-highlight.vim'
 "nnoremap <Leader>s :SemanticHighlightToggle<cr>
-nnoremap <Leader>sh :SemanticHighlightToggle<cr>
-autocmd FileType c SemanticHighlight
-autocmd FileType c++ SemanticHighlight
+"nnoremap <Leader>sh :SemanticHighlightToggle<cr>
+"autocmd FileType c SemanticHighlight
+"autocmd FileType c++ SemanticHighlight
 
 "Switch from header to implementation and vice versa!
 Plugin 'derekwyatt/vim-fswitch'
@@ -133,13 +133,13 @@ let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools']
 
 Plugin 'vim-syntastic/syntastic'
 
-Plugin 'dominikduda/vim_current_word'
-let g:vim_current_word#enabled = 1
-"autocmd BufAdd NERD_tree_*,*.cpp,*c,*cxx,*h,*hpp :let g:vim_current_word#enabled = 1
-let g:vim_current_word#highlight_twins = 1
-let g:vim_current_word#highlight_current_word = 1
-let g:vim_current_word#highlight_delay = 100
-let g:vim_current_word#highlight_only_in_focused_window = 1
+"Plugin 'dominikduda/vim_current_word'
+"let g:vim_current_word#enabled = 1
+""autocmd BufAdd NERD_tree_*,*.cpp,*c,*cxx,*h,*hpp :let g:vim_current_word#enabled = 1
+"let g:vim_current_word#highlight_twins = 1
+"let g:vim_current_word#highlight_current_word = 1
+"let g:vim_current_word#highlight_delay = 100
+"let g:vim_current_word#highlight_only_in_focused_window = 1
 
 "A negative number makes the highlight persistent.
 "let g:highlightedyank_highlight_duration = -1
@@ -195,7 +195,7 @@ Plugin 'mhinz/vim-startify'
 Plugin 'tikhomirov/vim-glsl'
 
 " Show hex codes as colours
-Plugin 'chrisbra/Colorizer'
+"Plugin 'chrisbra/Colorizer'
 
 " Gruvbox Community theme.  !!!!Danger for fzf make it Hang!!!
 Plugin 'morhetz/gruvbox'
