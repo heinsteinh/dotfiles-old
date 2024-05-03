@@ -11,7 +11,6 @@ function link {
 }
 
 
-
 # Get current dir (so run this script from anywhere)
 
 #export DOTFILES_DIR EXTRA_DIR
